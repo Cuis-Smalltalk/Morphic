@@ -1,7 +1,8 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3277] on 13 March 2018 at 4:34:40 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3593] on 1 February 2019 at 10:52:58 am'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 15!
+!provides: 'Morphic-Widgets-Extras' 1 16!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
+SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
 
 !classDefinition: #SimpleEditor category: #'Morphic-Widgets-Extras'!
@@ -104,6 +105,16 @@ RectangleLikeMorph subclass: #SamplePlotterMorph
 SamplePlotterMorph class
 	instanceVariableNames: ''!
 
+!classDefinition: #TextEditorTest category: #'Morphic-Widgets-Extras-Tests'!
+TestCase subclass: #TextEditorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Widgets-Extras-Tests'!
+!classDefinition: 'TextEditorTest class' category: #'Morphic-Widgets-Extras-Tests'!
+TextEditorTest class
+	instanceVariableNames: ''!
+
 
 !SimpleEditor commentStamp: '<historical>' prior: 0!
 See comment in Editor!
@@ -197,6 +208,24 @@ Would be cool to add other interpolators. So far, we only have Nearest Neighbor.
 
 Check SignalProcessing.pck.st for other 1D interpolators: Linear, Cubic, Splines, Beziers, Lanczos...
 !
+
+!LimitedHeightTextMorph class methodsFor: 'instance creation' stamp: 'jmv 11/14/2011 16:32'!
+initializedInstance
+	^self new
+		maxHeight: 48;
+		model: (TextModel new contents: 'This is some text to test the morph.')! !
+
+!FunctionGraphMorph class methodsFor: 'instance creation' stamp: 'jmv 7/20/2016 10:00:31'!
+initializedInstance
+	"
+	self  initializedInstance openInWorld
+	"
+	| g |
+	g _ FunctionGraphMorph new.
+	g domain: (-4 to: 4).
+	g addFunction: [ :x | x cos ] color: Color green.
+	g addFunction: [ :x | (x + 1) squared - 3 ] color: Color red. "parabola with vertex at (-1,-3)"
+	^ g! !
 
 !SimpleEditor methodsFor: 'typing support' stamp: 'jmv 12/19/2011 12:24'!
 addString: aString
@@ -502,12 +531,6 @@ privateExtent: aPoint
 !LimitedHeightTextMorph methodsFor: 'accessing' stamp: 'jmv 11/14/2011 16:32'!
 maxHeight: aNumber
 	maxHeight _ aNumber! !
-
-!LimitedHeightTextMorph class methodsFor: 'instance creation' stamp: 'jmv 11/14/2011 16:32'!
-initializedInstance
-	^self new
-		maxHeight: 48;
-		model: (TextModel new contents: 'This is some text to test the morph.')! !
 
 !MagnifierMorph methodsFor: 'menu' stamp: 'di 9/28/1999 23:06'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
@@ -915,18 +938,6 @@ xToMorphic: x
 !FunctionGraphMorph methodsFor: 'geometry' stamp: 'jmv 11/25/2016 11:03:27'!
 yToMorphic: y
 	^yMax - y / (yMax - yMin ) * (extent y-20)! !
-
-!FunctionGraphMorph class methodsFor: 'instance creation' stamp: 'jmv 7/20/2016 10:00:31'!
-initializedInstance
-	"
-	self  initializedInstance openInWorld
-	"
-	| g |
-	g _ FunctionGraphMorph new.
-	g domain: (-4 to: 4).
-	g addFunction: [ :x | x cos ] color: Color green.
-	g addFunction: [ :x | (x + 1) squared - 3 ] color: Color red. "parabola with vertex at (-1,-3)"
-	^ g! !
 
 !MinimalStringMorph methodsFor: 'accessing' stamp: 'jmv 6/6/2014 10:58'!
 contents: newContents 
@@ -1515,3 +1526,64 @@ iterate: aBlock
 	sampleSequences with: colors do: [ :seq :c |
 		domain with: seq do: [ :x :y |
 			aBlock value: x value: y value: c ]]! !
+
+!TextEditorTest methodsFor: 'as yet unclassified' stamp: 'jmv 12/28/2017 16:11:57'!
+testSimpleEditor
+	"
+	TextEditorTest new testSimpleEditor
+	"
+	| m |
+	self shouldnt: [
+		m _ OneLineEditorMorph new.
+		m editor offerMenuFromEsc:
+			(KeyboardEvent new
+				setType: #keystroke
+				buttons: 0
+				position: 0@0
+				keyValue: 65
+				hand: UISupervisor ui activeHand
+				stamp: 0)
+	] raise: Exception! !
+
+!TextEditorTest methodsFor: 'testing' stamp: 'jmv 4/19/2016 10:22'!
+testUndoRedo
+	"
+	TextEditorTest new testUndoRedo
+	"
+	| editor model textComposition m text1 text0 text2 |
+	text0 _ ''.
+	model _ TextModel withText: text0 copy.
+	editor _ TextEditor new.
+	m _ InnerTextMorph new.
+	m privateOwner: TextModelMorph new.
+	m model: model.
+	editor morph: m.
+	editor instVarNamed: 'emphasisHere' put: Array new.
+	editor model: model.
+	textComposition _ TextComposition new.
+	textComposition
+		setModel: model;
+		extentForComposing: 300@300.
+	editor textComposition: textComposition.
+	textComposition editor: editor.
+	textComposition composeAll.
+
+	text1 _ 'some words' asText.
+	editor addString: text1.
+	self assert: model actualContents = text1.
+	editor undo.
+	self assert: model actualContents = text0.
+	editor redo.
+	self assert: model actualContents = text1.
+
+	text2 _ ' additional inserted stuff' asText.
+	editor addString: text2.
+	self assert: model actualContents = (text1, text2).
+	editor undo.
+	self assert: model actualContents = text1.
+	editor undo.
+	self assert: model actualContents = text0.
+	editor redo.
+	self assert: model actualContents = text1.
+	editor redo.
+	self assert: model actualContents = (text1, text2).! !
