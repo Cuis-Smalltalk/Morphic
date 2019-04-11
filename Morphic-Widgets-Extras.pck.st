@@ -1,6 +1,6 @@
 'From Cuis 5.0 of 7 November 2016 [latest update: #3593] on 1 February 2019 at 10:52:58 am'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 16!
+!provides: 'Morphic-Widgets-Extras' 1 17!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -1108,10 +1108,10 @@ characterIndexAtPoint: aPoint
 	^ block stringIndex! !
 
 !OneLineEditorMorph methodsFor: 'drawing' stamp: 'jmv 10/16/2013 22:37'!
-displayTextCursorAtX: x top: top bottom: bottom emphasis: emphasis on: aCanvas
+displayTextCursorAtX: x top: top bottom: bottom emphasis: anEmphasis on: aCanvas
 	| textCursorColor x1 isBold isItalic x0 h w halfW r d |
-	isBold _ emphasis allMask: 1.
-	isItalic _ emphasis allMask: 2.
+	isBold _ anEmphasis allMask: 1.
+	isItalic _ anEmphasis allMask: 2.
 	textCursorColor _ Theme current textCursor.
 	h _ bottom - top.
 	w _ isBold
