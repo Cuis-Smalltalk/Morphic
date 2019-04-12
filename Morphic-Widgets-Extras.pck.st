@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3593] on 1 February 2019 at 10:52:58 am'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3695] on 12 April 2019 at 4:13:31 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 17!
+!provides: 'Morphic-Widgets-Extras' 1 18!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -1176,12 +1176,9 @@ drawTextCursorOn: aCanvas
 clickAndHalf: aMouseButtonEvent localPosition: localEventPosition
 	self handleInteraction: [ self editor clickAndHalf ]! !
 
-!OneLineEditorMorph methodsFor: 'events' stamp: 'len 11/15/2015 06:45'!
+!OneLineEditorMorph methodsFor: 'events' stamp: 'jmv 4/12/2019 16:12:44'!
 keyStroke: aKeyboardEvent
 	"Handle a keystroke event."
-
-	(Theme current keyStroke: aKeyboardEvent morph: self)
-		ifTrue: [^ self].
 
 	(self focusKeyboardFor: aKeyboardEvent)
 		ifTrue: [ ^ self ].
