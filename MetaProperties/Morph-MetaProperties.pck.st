@@ -1,10 +1,10 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3695] on 14 April 2019 at 4:21:25 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:13:57 am'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 74!
-!requires: 'Morphic-Misc1' 1 109 nil!
+!provides: 'Morph-MetaProperties' 1 75!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
 !requires: 'Morphic-ColorEditor' 1 31 nil!
 !requires: 'Cuis-Base' 50 3695 nil!
+!requires: 'Morphic-Misc1' 1 109 nil!
 SystemOrganization addCategory: #'Morph-MetaProperties'!
 
 
@@ -539,7 +539,7 @@ fontPreferenceChanged
 	super fontPreferenceChanged.
 	self refreshView.! !
 
-!VisualPropertyEditor methodsFor: 'events' stamp: 'KenD 11/30/2016 16:08:09'!
+!VisualPropertyEditor methodsFor: 'events' stamp: 'jmv 4/25/2019 10:08:23'!
 refreshView
 
 	"Something may have changed.."
@@ -554,7 +554,7 @@ refreshView
 	self showAllIvars  ifTrue: [ self addIVarsDisplay ].
 	self showAllProps ifTrue: [ self addOrdinaryPropertiesDisplay ].
 	
-	self titleMorph morphExtent: (self titleMorph morphExtent x) @ (Preferences windowTitleFont height).
+	self titleMorph morphExtent: (self titleMorph morphExtent x) @ (Preferences windowTitleFont lineSpacing).
 	self adjustSubmorphsLayout;
 		yourself! !
 

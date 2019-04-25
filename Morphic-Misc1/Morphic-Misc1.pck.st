@@ -1,9 +1,9 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3695] on 12 April 2019 at 4:17:08 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:14:10 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 133!
+!provides: 'Morphic-Misc1' 1 134!
+!requires: 'Color-Extras' 1 4 nil!
 !requires: 'Cuis-Base' 50 3695 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
-!requires: 'Color-Extras' 1 4 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
 
 
@@ -1589,13 +1589,13 @@ layoutSubmorphs
 	
 	layoutNeeded _ false! !
 
-!Panel methodsFor: 'geometry' stamp: 'KenD 4/24/2015 16:28'!
+!Panel methodsFor: 'geometry' stamp: 'jmv 4/25/2019 10:07:34'!
 boxExtent
 	"answer the extent to use in all the buttons. 
 	 
 	the label height is used to be proportional to the fonts preferences"
 	| e |
-	e _ Preferences windowTitleFont height.
+	e _ Preferences windowTitleFont lineSpacing.
 	^e@e! !
 
 !Panel methodsFor: 'geometry' stamp: 'KenD 8/26/2015 12:31'!
@@ -1679,11 +1679,11 @@ buttonColor
 
 	^ Theme current buttonColorFrom: self widgetsColor! !
 
-!Panel methodsFor: 'GUI building' stamp: 'KenD 12/9/2013 18:42'!
+!Panel methodsFor: 'GUI building' stamp: 'jmv 4/25/2019 10:07:38'!
 defaultButtonPaneHeight
 	"Answer the user's preferred default height for new button panes."
 
-	^ Preferences standardButtonFont height * 14 // 8! !
+	^ Preferences standardButtonFont lineSpacing * 14 // 8! !
 
 !Panel methodsFor: 'GUI building' stamp: 'KenD 4/25/2015 08:51'!
 hideButtons
@@ -2667,10 +2667,10 @@ propWidthPercent
 		addMorph: (StringMorph contents: '%');
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'initialization' stamp: 'KenD 9/18/2016 10:45:07'!
+!LayoutSpecEditPanel methodsFor: 'initialization' stamp: 'jmv 4/25/2019 10:06:26'!
 auxHeight
 
-	^ 5 * AbstractFont default height    "pixels"! !
+	^ 5 * AbstractFont default lineSpacing    "pixels"! !
 
 !LayoutSpecEditPanel methodsFor: 'initialization' stamp: 'KenD 9/17/2016 14:23:14'!
 defaultExtent
@@ -3373,7 +3373,7 @@ default: aString label: stringName
 		  morphExtent: (self morphExtent max: self minimumExtent).
 ! !
 
-!StringEntryPanel methodsFor: 'initialization' stamp: 'KenD 12/23/2016 10:07:06'!
+!StringEntryPanel methodsFor: 'initialization' stamp: 'jmv 4/25/2019 10:08:12'!
 initialize
 
 	"inits before #initialize usied in #buildMorphicWindow"
@@ -3381,7 +3381,7 @@ initialize
 	stringEditMorph layoutSpec: 
 		(LayoutSpec 
 			proportionalWidth: 1 
-			fixedHeight: Preferences windowTitleFont height ).
+			fixedHeight: Preferences windowTitleFont lineSpacing ).
 	super initialize.
 ! !
 
@@ -4281,7 +4281,7 @@ list
 
 	^ list! !
 
-!RadioGroup methodsFor: 'accessing' stamp: 'KenD 9/17/2016 14:20:55'!
+!RadioGroup methodsFor: 'accessing' stamp: 'jmv 4/25/2019 10:07:57'!
 list: arrayOfSymbols
 	"Set up my submorphs from arrayOfSymbols"
 
@@ -4313,7 +4313,7 @@ list: arrayOfSymbols
 	"Make all labels have same width"
 	labelLayout := LayoutSpec 
 			fixedWidth: maxStringWidth + 4
-			fixedHeight: (RadioButtonMorph defaultDiameter max: self font height) + 4
+			fixedHeight: (RadioButtonMorph defaultDiameter max: self font lineSpacing) + 4
 			minorDirectionPadding: #left.
 	labelList do: [ :label | label layoutSpec: labelLayout ].
 "	self layoutSpec: (LayoutSpec fixedHeight: self naturalHeight). "
@@ -4372,13 +4372,13 @@ calculateMinimumExtent
 	extent := super calculateMinimumExtent.
 	^ (extent x) @ (extent y max: self naturalHeight)! !
 
-!RadioGroup methodsFor: 'geometry' stamp: 'KenD 9/17/2016 10:33:51'!
+!RadioGroup methodsFor: 'geometry' stamp: 'jmv 4/25/2019 10:08:01'!
 naturalHeight
 	"Answer the combined heights of my elements"
 	
-	^ 4 + ((self list size) * (2 + ((self font height) max: (RadioButtonMorph defaultDiameter))))! !
+	^ 4 + ((self list size) * (2 + ((self font lineSpacing) max: (RadioButtonMorph defaultDiameter))))! !
 
-!RadioGroup methodsFor: 'events-processing' stamp: 'KenD 10/29/2015 16:38'!
+!RadioGroup methodsFor: 'events-processing' stamp: 'jmv 4/25/2019 10:07:51'!
 fontPreferenceChanged
 
 	| labelStrings maxStringWidth labelLayoutSpec |
@@ -4392,7 +4392,7 @@ fontPreferenceChanged
 	labelLayoutSpec := 
 			LayoutSpec 
 					fixedWidth: maxStringWidth + 4
-					fixedHeight: self font height + 2
+					fixedHeight: self font lineSpacing + 2
 					minorDirectionPadding: #center. 
 	self submorphsDo: [ :selectLine |
 		selectLine submorphsDo: [ :aMorph |
@@ -4493,13 +4493,13 @@ showButtonsNamed: aSymbolColleciton
 			].
 ! !
 
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/28/2015 14:04'!
+!WindowTitleMorph methodsFor: 'accessing' stamp: 'jmv 4/25/2019 10:08:32'!
 boxExtent
 	"answer the extent to use in all the buttons. 
 	 
 	the label height is used to be proportional to the fonts preferences"
 	| e |
-	e _ Preferences windowTitleFont height.
+	e _ Preferences windowTitleFont lineSpacing.
 	^e@e! !
 
 !WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/23/2015 17:01'!
@@ -4580,14 +4580,14 @@ minimumExtent
 	^ (minButtonExt x + minTitleExt x) 
      	   @ (minButtonExt y max: minTitleExt y)! !
 
-!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 11/23/2016 14:52:41'!
+!WindowTitleMorph methodsFor: 'geometry' stamp: 'jmv 4/25/2019 10:08:37'!
 minimumTitleExtent
 	"My titleString can shrink a bit but not completely"
 	| font |
 	font := Preferences windowTitleFont.
 
 	"Keep space for 8 characters"
-	^ (8 * (font widthOf: $A)) @ (4 + font height)
+	^ (8 * (font widthOf: $A)) @ (4 + font lineSpacing)
 	! !
 
 !WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 8/25/2015 19:45'!
@@ -4860,7 +4860,7 @@ fontToUse
 
 	^ Preferences standardListFont ! !
 
-!SimpleNumberEntryMorph methodsFor: 'accessing' stamp: 'KenD 10/28/2015 20:22'!
+!SimpleNumberEntryMorph methodsFor: 'accessing' stamp: 'jmv 4/25/2019 10:08:07'!
 measureContents
 	| myFont |
 
@@ -4868,7 +4868,7 @@ measureContents
 	
 	myFont := self fontToUse.
 	"Use a wide character as sample for the character width"
-	^ 4 + ((myFont widthOfString: 'A') * (self numCharsToHold max: 3)  @ myFont height).! !
+	^ 4 + ((myFont widthOfString: 'A') * (self numCharsToHold max: 3)  @ myFont lineSpacing).! !
 
 !SimpleNumberEntryMorph methodsFor: 'accessing' stamp: 'KenD 11/21/2013 15:06'!
 numCharsToHold

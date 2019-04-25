@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3319] on 14 May 2018 at 12:54:27 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:14:43 am'!
 'Description Draw with a pen and messages as go: turn: etc.'!
-!provides: 'Pen' 1 3!
+!provides: 'Pen' 1 4!
 SystemOrganization addCategory: #Pen!
 
 
@@ -126,7 +126,7 @@ place: aPoint
 
 	location _ aPoint! !
 
-!Pen methodsFor: 'operations' stamp: 'jmv 5/14/2018 12:47:58'!
+!Pen methodsFor: 'operations' stamp: 'jmv 4/25/2019 10:07:44'!
 print: str withFont: font
 	"Print the given string in the given font at the current heading"
 	| lineStart scale wasDown |
@@ -136,7 +136,7 @@ print: str withFont: font
 	str do:
 		[:char |
 		char = Character cr ifTrue:
-			[self place: lineStart; up; turn: 90; go: font height*scale; turn: -90; down]
+			[self place: lineStart; up; turn: 90; go: font lineSpacing*scale; turn: -90; down]
 		ifFalse:
 			[ | charStart pix rowStart form backgroundCode |
 			form := font glyphAt: char.

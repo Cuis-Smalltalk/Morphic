@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3695] on 12 April 2019 at 4:13:31 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:14:32 am'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 18!
+!provides: 'Morphic-Widgets-Extras' 1 19!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -964,11 +964,11 @@ fontToUse
 		ifTrue: [fontToUse]
 		ifFalse: [fontToUse emphasized: emphasis]! !
 
-!MinimalStringMorph methodsFor: 'accessing' stamp: 'jmv 12/20/2010 16:25'!
+!MinimalStringMorph methodsFor: 'accessing' stamp: 'jmv 4/25/2019 10:09:59'!
 measureContents
 	| f |
 	f _ self fontToUse.
-	^(((f widthOfString: contents) max: 3)  @ f height).! !
+	^(((f widthOfString: contents) max: 3)  @ f lineSpacing).! !
 
 !MinimalStringMorph methodsFor: 'initialization' stamp: 'cbr 12/3/2010 23:29'!
 defaultColor
@@ -1078,14 +1078,14 @@ keyboardFocusWatcher: aMorph
 		- There are too many evens already defined. It would be good to reduce that."
 	keyboardFocusWatcher _ aMorph! !
 
-!OneLineEditorMorph methodsFor: 'accessing' stamp: 'jmv 12/20/2010 16:25'!
+!OneLineEditorMorph methodsFor: 'accessing' stamp: 'jmv 4/25/2019 10:10:16'!
 measureContents
 	| f |
 
 	f _ self fontToUse.
-	^((f widthOfString: contents) max: 3)  @ f height.! !
+	^((f widthOfString: contents) max: 3)  @ f lineSpacing.! !
 
-!OneLineEditorMorph methodsFor: 'drawing' stamp: 'jmv 12/27/2017 11:21:01'!
+!OneLineEditorMorph methodsFor: 'drawing' stamp: 'jmv 4/25/2019 10:10:12'!
 characterIndexAtPoint: aPoint
 
 	| line block f |
@@ -1098,7 +1098,7 @@ characterIndexAtPoint: aPoint
 		paddingWidth: 0.
 	line
 		rectangle: (0@0 extent: extent);
-		lineHeight: f height baseline: f ascent.
+		lineHeight: f lineSpacing baseline: f ascent.
 		
 	block _ (CharacterBlockScanner new text: (contents asText font: f))
 		defaultFont: f;
@@ -1149,11 +1149,11 @@ drawOn: aCanvas
 		font: self fontToUse
 		color: color! !
 
-!OneLineEditorMorph methodsFor: 'drawing' stamp: 'KenD 9/27/2016 09:10:25'!
+!OneLineEditorMorph methodsFor: 'drawing' stamp: 'jmv 4/25/2019 10:07:24'!
 drawSelectionOn: aCanvas
 	| rightX leftX bottom |
 
-	bottom _ self baseFont height.
+	bottom _ self baseFont lineSpacing.
 	leftX _ self fontToUse widthOfString: contents from: 1 to: editor startIndex-1.
 	leftX _ leftX min: extent x.
 	rightX _ self fontToUse widthOfString: contents from: 1 to: editor stopIndex-1.
@@ -1163,12 +1163,12 @@ drawSelectionOn: aCanvas
 		fillRectangle: (leftX+1 @ 1 corner: (rightX + 2) @ (bottom + 2))
 		color: (Theme current textHighlightFocused: self hasKeyboardFocus)! !
 
-!OneLineEditorMorph methodsFor: 'drawing' stamp: 'jmv 10/16/2013 22:19'!
+!OneLineEditorMorph methodsFor: 'drawing' stamp: 'jmv 4/25/2019 10:07:30'!
 drawTextCursorOn: aCanvas
 	|  bottom x |
 
 	showTextCursor ifTrue: [
-		bottom _ self baseFont height.
+		bottom _ self baseFont lineSpacing.
 		x _ self fontToUse widthOfString: contents from: 1 to: editor startIndex-1.
 		self displayTextCursorAtX: x top: 0 bottom: bottom emphasis: emphasis on: aCanvas ]! !
 
