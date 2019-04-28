@@ -1,10 +1,10 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3319] on 12 May 2018 at 5:47:59 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3713] on 28 April 2019 at 7:14:16 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 32!
-!requires: 'Morphic-Misc1' 1 103 nil!
+!provides: 'Morphic-ColorEditor' 1 33!
 !requires: 'Graphics-Files-Additional' 1 nil nil!
 !requires: 'CSS3-NamedColors' 1 0 nil!
-!requires: 'Cuis-Base' 50 2984 nil!
+!requires: 'Cuis-Base' 50 3713 nil!
+!requires: 'Morphic-Misc1' 1 103 nil!
 !requires: 'Color-Extras' 1 4 nil!
 SystemOrganization addCategory: #'Morphic-ColorEditor'!
 
@@ -109,16 +109,30 @@ This pane shows the range of color of z at the focus point -- constant (x,y)
 !ColorEditorModel commentStamp: '<historical>' prior: 0!
 I am the model (state holder) for a ColorEditor.!
 
+!ColorPallet class methodsFor: 'instance creation' stamp: 'KenD 12/24/2013 17:57'!
+initializedInstance
+
+	^ ImagePallet namedColors! !
+
+!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 10/28/2015 20:34'!
+initializedInstance
+
+	|  window |
+	window _ self new.
+	^ window
+		model: (ColorEditorModel new);
+		buildMorphicWindow;
+		setLabel: 'Color Editor';
+		setColor: self defaultColor ;
+		morphExtent: self defaultExtent;
+		yourself
+! !
+
 !ColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/24/2013 17:55'!
 includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	
 	^ true! !
-
-!ColorPallet class methodsFor: 'instance creation' stamp: 'KenD 12/24/2013 17:57'!
-initializedInstance
-
-	^ ImagePallet namedColors! !
 
 !ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
 useCSS3ColorDict
@@ -467,8 +481,8 @@ makeColorSwatchDroppable
 				ifTrue: [ self setColor: colorValue ]. "else ignore"
 		].! !
 
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 8/7/2016 08:47:55'!
-openInWorld: aWorld extent: extent
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 4/28/2019 19:10:45'!
+openInWorld: aWorld extent: myExtent
 	"Open me in the current world"
 	
 	aWorld addMorph: self.
@@ -567,20 +581,6 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	
 	^ true! !
-
-!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 10/28/2015 20:34'!
-initializedInstance
-
-	|  window |
-	window _ self new.
-	^ window
-		model: (ColorEditorModel new);
-		buildMorphicWindow;
-		setLabel: 'Color Editor';
-		setColor: self defaultColor ;
-		morphExtent: self defaultExtent;
-		yourself
-! !
 
 !ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 11/24/2013 16:47'!
 open
