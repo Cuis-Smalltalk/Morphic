@@ -1,9 +1,9 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:13:57 am'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3713] on 28 April 2019 at 7:13:45 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 75!
+!provides: 'Morph-MetaProperties' 1 76!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
 !requires: 'Morphic-ColorEditor' 1 31 nil!
-!requires: 'Cuis-Base' 50 3695 nil!
+!requires: 'Cuis-Base' 50 3713 nil!
 !requires: 'Morphic-Misc1' 1 109 nil!
 SystemOrganization addCategory: #'Morph-MetaProperties'!
 
@@ -1365,7 +1365,7 @@ initialize
 	"self initializeDictionaries." "invoked in VisualPropertyEditor class>>initialize"
 ! !
 
-!MetaProperty class methodsFor: 'class initialization' stamp: 'KenD 8/10/2018 19:41:37'!
+!MetaProperty class methodsFor: 'class initialization' stamp: 'KenD 4/28/2019 19:00:44'!
 initializeDictionaries
 	"Add typical usages to dictionary for sharing."
 "
@@ -1415,7 +1415,7 @@ initializeDictionaries
 	props at: #acceptsNumber put: (MetaProperty kind: Number).
 	props at: #acceptsColor 
 		    put: (MetaProperty kind: Color
-								editProc: [ :morph :metaProp : name |
+								editProc: [ :morph :metaProp :propName |
 												Color colorSelectionMenu ] ).
 	props at: #acceptsPoint 
 		    put: (MetaProperty 
@@ -1444,7 +1444,7 @@ initializeDictionaries
 	props at: #acceptsFont 
 		    put: (MetaProperty 
 				kind: AbstractFont
-				editProc: [ :morph :metaProp : name |
+				editProc: [ :morph :metaProp : aPropName |
 								PickAFontPallet initializedInstance openInWorld ]  ).
 	props at: #acceptsForm put: (MetaProperty kind: Form).
 	props at: #acceptsLocation put: (MetaProperty kind: Point).

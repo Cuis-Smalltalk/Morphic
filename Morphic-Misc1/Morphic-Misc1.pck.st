@@ -1,8 +1,8 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:14:10 am'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3713] on 28 April 2019 at 7:14:39 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 134!
+!provides: 'Morphic-Misc1' 1 135!
 !requires: 'Color-Extras' 1 4 nil!
-!requires: 'Cuis-Base' 50 3695 nil!
+!requires: 'Cuis-Base' 50 3713 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
 
@@ -1499,7 +1499,7 @@ drawClassicFrameOn: aCanvas color: titleColor
 	The look is that the title area is inside the window"
 	aCanvas fillRectangle: (borderWidth@borderWidth extent: extent x - (2*borderWidth)@ self labelHeight) color: titleColor! !
 
-!Panel methodsFor: 'drawing' stamp: 'KenD 4/24/2015 16:08'!
+!Panel methodsFor: 'drawing' stamp: 'KenD 4/27/2019 13:37:25'!
 drawOn: aCanvas
 
 	| titleColor roundCorners |
@@ -1514,10 +1514,10 @@ drawOn: aCanvas
 			"No round corners. No title gradient."
 			self drawClassicFrameOn: aCanvas color: titleColor ].
 
-	self titleMorph ifNotNil: [ :titleMorph | titleMorph drawOn: aCanvas ].! !
+	self titleMorph ifNotNil: [ :titleM | titleM drawOn: aCanvas ].! !
 
-!Panel methodsFor: 'drawing' stamp: 'KenD 12/9/2013 17:08'!
-drawRoundedFrameOn: aCanvas color: widgetsColor
+!Panel methodsFor: 'drawing' stamp: 'KenD 4/28/2019 19:12:43'!
+drawRoundedFrameOn: aCanvas color: theWidgetsColor
 	"Title area is not inside window borders"
 	| bottomFactor topFactor |
 	Theme current useWindowTitleGradient
@@ -1529,7 +1529,7 @@ drawRoundedFrameOn: aCanvas color: widgetsColor
 			bottomFactor _ 1 ].
 	aCanvas
 		windowFrame: (0@0 extent: extent)
-		color: widgetsColor * Theme current titleGradientExtraLightness
+		color: theWidgetsColor * Theme current titleGradientExtraLightness
 		radius: Theme current roundedWindowRadius
 		border: borderWidth
 		labelHeight: self labelHeight + borderWidth
@@ -1977,13 +1977,11 @@ editModel: anObject
 
 	editModel := anObject! !
 
-!EditPanel methodsFor: 'area layouts' stamp: 'KenD 8/25/2015 15:52'!
+!EditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:33:57'!
 newButtonArea
 	"Answer a LayoutMorph with Update and Cancel buttons"
 	
-	| buttonArea |
-	buttonArea := LayoutMorph newRow.
-	^ buttonArea 
+	^ ( LayoutMorph newRow) 
 		separation: 8@0;
 		addMorph: (PluggableButtonMorph 
 				model: self 
@@ -2343,7 +2341,7 @@ newDirectionArea
 	
 	! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 9/17/2016 14:09:06'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:35:32'!
 newPaddingArea
 	"Answer a FramedLayoutMorph with controls for Padding"
 	
@@ -2365,7 +2363,7 @@ newPaddingArea
 	"Setup"
 	padEntry := SimpleNumberEntryMorph realFactor: 1.0 maxNumChars: 3.
 	(padRadio rowFor: #Specify) addMorph: padEntry.
-	padEntry valueAccessor: [ :model | model padding ].
+	padEntry valueAccessor: [ :myModel | myModel padding ].
 	padEntry valueUpdator: [ :newPad | self modelPadding: newPad ].
 	padEntry refreshValueFrom: self editModel.
 	self setPadRadio: padRadio fromPadFactor: padEntry value.
@@ -2398,7 +2396,7 @@ newPaddingSelection: padSym
 
 ! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 9/17/2016 14:06:54'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:38:54'!
 newSeparationtionArea
 	"Answer a FramedLayoutMorph with controls for x & y separation"
 	
@@ -2436,9 +2434,9 @@ newSeparationtionArea
 		addMorph: (StringMorph contents: 'pixels').
 
 	"Value flow"
-	xSep valueAccessor: [ :model | model xSeparation ].
+	xSep valueAccessor: [ :myModel | myModel xSeparation ].
 	xSep valueUpdator:   [ :newX | self modelXSeparation: newX ].
-	ySep valueAccessor: [ :model | model ySeparation ].
+	ySep valueAccessor: [ :myModel | myModel ySeparation ].
 	ySep valueUpdator:   [ :newY | self modelYSeparation: newY ].
 	xSep refreshValueFrom: self editModel.
 	ySep refreshValueFrom: self editModel.
@@ -2507,7 +2505,7 @@ setPadRadio: radio fromPadFactor: factor
 		[1.0] -> [ (radio buttons at: 3) select ].
 	} otherwise: [ (radio buttons at: 4) select ]! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 10/30/2015 14:12'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:40:34'!
 addFixedHeightEntryMorphTo: radio
 	"Add entry field to #Fixed radioButton row"
 
@@ -2517,7 +2515,7 @@ addFixedHeightEntryMorphTo: radio
 						integerRangeFrom: 0 
 						to: DisplayScreen actualScreenSize y 
 						maxNumChars: 4.
-	fixEntry valueAccessor: [ :model | model privateFixedHeight ].
+	fixEntry valueAccessor: [ :myModel | myModel privateFixedHeight ].
 	fixEntry valueUpdator: [ :newFixPix | spec fixedHeight: newFixPix ].
 	fixEntry refreshValueFrom: spec.
 	"Do layout surgery to make room for added field"
@@ -2529,7 +2527,7 @@ addFixedHeightEntryMorphTo: radio
 			addMorph: fixEntry.
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 10/30/2015 14:11'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:40:48'!
 addFixedWidthEntryMorphTo: radio
 	"Add entry field to #Fixed radioButton row"
 
@@ -2539,7 +2537,7 @@ addFixedWidthEntryMorphTo: radio
 						integerRangeFrom: 0 
 						to: DisplayScreen actualScreenSize x 
 						maxNumChars: 4.
-	fixEntry valueAccessor: [ :model | model privateFixedWidth ].
+	fixEntry valueAccessor: [ :myModel | myModel privateFixedWidth ].
 	fixEntry valueUpdator: [ :newFixPix | spec fixedWidth: newFixPix ].
 	fixEntry refreshValueFrom: spec.
 	"Do layout surgery to make room for added field"
@@ -2577,7 +2575,7 @@ newProportionalWidthAuxArea
 		addMorph: self propWidthMinimum;
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 10/30/2015 14:19'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:41:11'!
 propHeightMinimum
 	"proportion percent"
 
@@ -2587,8 +2585,8 @@ propHeightMinimum
 						integerRangeFrom: 0 
 						to: DisplayScreen actualScreenSize y 
 						maxNumChars: 4.
-	minEntry valueAccessor: [ :model | 
-		model privateFixedHeight ifNil: [ 0 ] ifNotNil: [ :height | height rounded ]
+	minEntry valueAccessor: [ :myModel | 
+		myModel privateFixedHeight ifNil: [ 0 ] ifNotNil: [ :height | height rounded ]
 	].
 	minEntry valueUpdator: [ :newMinPixels | 
 		self editModel proportionalHeight: self editModel privateProportionalHeight
@@ -2601,15 +2599,15 @@ propHeightMinimum
 		addMorph: (StringMorph contents: ' pixels');
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/18/2015 19:49'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:41:37'!
 propHeightPercent
 	"proportion percent"
 
 	| row propEntry |
 	row := LayoutMorph newRow.
 	propEntry := SimpleNumberEntryMorph percentForRealFactor: 1.0.
-	propEntry valueAccessor: [ :model | 
-		model privateProportionalHeight ifNil: [ 0 ] ifNotNil: [ :height | height ]
+	propEntry valueAccessor: [ :myModel | 
+		myModel privateProportionalHeight ifNil: [ 0 ] ifNotNil: [ :height | height ]
 	].
 	propEntry valueUpdator: [ :newFactor | 
 		self editModel proportionalHeight: newFactor 
@@ -2622,7 +2620,7 @@ propHeightPercent
 		addMorph: (StringMorph contents: '%');
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/18/2015 19:49'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:42:05'!
 propWidthMinimum
 	"proportion percent"
 
@@ -2632,8 +2630,8 @@ propWidthMinimum
 						integerRangeFrom: 0 
 						to: DisplayScreen actualScreenSize y 
 						maxNumChars: 4.
-	minEntry valueAccessor: [ :model | 
-		model privateFixedWidth ifNil: [ 0 ] ifNotNil: [ :width | width rounded ]
+	minEntry valueAccessor: [ :myModel | 
+		myModel privateFixedWidth ifNil: [ 0 ] ifNotNil: [ :width | width rounded ]
 	].
 	minEntry valueUpdator: [ :newMinPixels | 
 		self editModel proportionalWidth: self editModel privateProportionalWidth
@@ -2646,15 +2644,15 @@ propWidthMinimum
 		addMorph: (StringMorph contents: ' pixels');
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/18/2015 19:48'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:42:30'!
 propWidthPercent
 	"proportion percent"
 
 	| row propEntry |
 	row := LayoutMorph newRow.
 	propEntry := SimpleNumberEntryMorph percentForRealFactor: 1.0.
-	propEntry valueAccessor: [ :model | 
-		model privateProportionalWidth ifNil: [ 1.0 ] ifNotNil: [ :width | width ]
+	propEntry valueAccessor: [ :myModel | 
+		myModel privateProportionalWidth ifNil: [ 1.0 ] ifNotNil: [ :width | width ]
 	].
 	propEntry valueUpdator: [ :newFactor | 
 		self editModel proportionalWidth: newFactor 
@@ -2798,18 +2796,18 @@ newEmptyAuxArea
 		separation: self defaultSeparation;
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 9/18/2016 10:40:19'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:45:05'!
 newHeightArea
 	"Answer a FramedLayoutMorph with controls for Height"
 	
-	| heightArea label spec radio selected |
-	heightArea := FramedLayoutMorph newColumn.
+	| heightRegion label spec radio selected |
+	heightRegion := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Height'.
 	radio := RadioGroup fromList: #( 'use morph height' Fixed Proportional ).
 	selected := self heightSelectionSymbol.
 
 	spec := LayoutSpec fixedHeight:
-		(2 * heightArea borderWidth)
+		(2 * heightRegion borderWidth)
 		+ (label naturalHeight)
 		+ (radio naturalHeight)
 		+ (self auxHeight)
@@ -2822,7 +2820,7 @@ newHeightArea
 	"Nota Bene: be sure to setRadioSelection:selectSym: BEFORE when:send:to:"
 	radio when: #informRadioSelection send: #newHeightSelection: to: self.
 		
-	^ heightArea
+	^ heightRegion
 		layoutSpec: spec;
 		separation: 4;
 		color: Color  transparent ;
@@ -2834,7 +2832,7 @@ newHeightArea
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 9/18/2016 10:40:27'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:45:50'!
 newPaddingArea
 	"Answer a FramedLayoutMorph with controls for Padding"
 	
@@ -2854,7 +2852,7 @@ newPaddingArea
 	padEntry := SimpleNumberEntryMorph realFactor: 1.0 maxNumChars: 3.
 	row := (padRadio rowFor: #Specify).
 	row addMorph: padEntry.
-	padEntry valueAccessor: [ :model | model minorDirectionPadding ].
+	padEntry valueAccessor: [ :myModel | myModel minorDirectionPadding ].
 	padEntry valueUpdator: [ :newPad | self modelPadding: newPad ].
 	padEntry refreshValueFrom: self editModel.
 	self setPadRadio: padRadio fromPadFactor: padEntry value.
@@ -2870,18 +2868,18 @@ newPaddingArea
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 9/18/2016 10:40:35'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:47:20'!
 newWidthArea
 	"Answer a FramedLayoutMorph with controls for Width"
 	
-	| widthArea label spec radio selected |
-	widthArea := FramedLayoutMorph newColumn.
+	| widthRegion label spec radio selected |
+	widthRegion := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Width'.
 	radio := RadioGroup fromList: #( 'use morph width' Fixed Proportional ).
 	selected := self widthSelectionSymbol.
 
 	spec := LayoutSpec fixedHeight:
-		(2 * widthArea borderWidth)
+		(2 * widthRegion borderWidth)
 		+ (label naturalHeight)
 		+ (radio naturalHeight)
 		+ (self auxHeight)
@@ -2894,7 +2892,7 @@ newWidthArea
 	"Nota Bene: be sure to setRadioSelection:selectSym: BEFORE when:send:to:"
 	radio when: #informRadioSelection send: #newWidthSelection: to: self.
 		
-	^ widthArea
+	^ widthRegion
 		layoutSpec: spec;
 		color: Color  transparent ;
 		separation: 4;
@@ -3054,7 +3052,7 @@ showHaloButtonClicked
 
 	self showHalo! !
 
-!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 12/23/2016 14:21:51'!
+!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 4/28/2019 18:49:13'!
 updateMasterFromCopy
 	"Update model from editModel"
 	
@@ -3075,7 +3073,7 @@ updateMasterFromCopy
 	self editModel: nil.
 	"My containing LayoutMorph may need to recalculate & redisplay"
 	original morph containingLayout 
-		ifNotNil: [ :layoutMorph | layoutMorph calculateMinimumExtent; layoutSubmorphs; redrawNeeded ].
+		ifNotNil: [ :myLayoutMorph | myLayoutMorph calculateMinimumExtent; layoutSubmorphs; redrawNeeded ].
 	original triggerEvent: #propertyChanged.
 	
 	self stayUp 
@@ -3148,13 +3146,13 @@ minimumExtent
 
 	^ 12@4 * self boxExtent! !
 
-!CharacterEntryPanel methodsFor: 'events' stamp: 'KenD 3/29/2017 14:01:16'!
+!CharacterEntryPanel methodsFor: 'events' stamp: 'KenD 4/28/2019 18:50:16'!
 accept
 	
 	self delete.
 	self model 
-		ifNotNil: [ :model | 
-			model propertyValue: (self characterEditMorph value at: 1) 
+		ifNotNil: [ :myModel | 
+			myModel propertyValue: (self characterEditMorph value at: 1) 
 		].! !
 
 !CharacterEntryPanel methodsFor: 'events' stamp: 'KenD 3/18/2019 17:04:32'!
@@ -3212,13 +3210,13 @@ new
 
 	^ self basicNew initialize default: 'c' label: 'Character Value'.! !
 
-!PointEntryPanel methodsFor: 'events' stamp: 'KenD 12/22/2016 14:47:17'!
+!PointEntryPanel methodsFor: 'events' stamp: 'KenD 4/28/2019 18:50:41'!
 accept
 	
 	self delete.
 	self model 
-		ifNotNil: [ :model | 
-			model propertyValue: 
+		ifNotNil: [ :myModel | 
+			myModel propertyValue: 
 				(xEntryMorph value @ yEntryMorph value) 
 		].! !
 
@@ -3288,13 +3286,13 @@ example1
 		openInWorld: self runningWorld;
 		yourself! !
 
-!PositiveIntegerEntryPanel methodsFor: 'events' stamp: 'KenD 12/22/2016 17:20:56'!
+!PositiveIntegerEntryPanel methodsFor: 'events' stamp: 'KenD 4/28/2019 18:51:07'!
 accept
 	
 	self delete.
 	self model 
-		ifNotNil: [ :model | 
-			model propertyValue: numberEntryMorph value 
+		ifNotNil: [ :myModel | 
+			myModel propertyValue: numberEntryMorph value 
 		].! !
 
 !PositiveIntegerEntryPanel methodsFor: 'events' stamp: 'KenD 3/18/2019 17:02:36'!
@@ -3347,13 +3345,13 @@ new
 
 	^ self basicNew initialize default: 0 label: 'Positive Integer Value'.! !
 
-!StringEntryPanel methodsFor: 'events' stamp: 'KenD 12/22/2016 16:14:05'!
+!StringEntryPanel methodsFor: 'events' stamp: 'KenD 4/28/2019 18:52:43'!
 accept
 	
 	self delete.
 	self model 
-		ifNotNil: [ :model | 
-			model propertyValue: stringEditMorph contents 
+		ifNotNil: [ :myModel | 
+			myModel propertyValue: stringEditMorph contents 
 		].! !
 
 !StringEntryPanel methodsFor: 'events' stamp: 'KenD 3/18/2019 17:01:36'!
@@ -4365,12 +4363,12 @@ setList: arrayOfSymbols
 
 	list := arrayOfSymbols ! !
 
-!RadioGroup methodsFor: 'geometry' stamp: 'KenD 9/18/2016 09:46:59'!
+!RadioGroup methodsFor: 'geometry' stamp: 'KenD 4/28/2019 18:54:06'!
 calculateMinimumExtent
 
-	| extent |
-	extent := super calculateMinimumExtent.
-	^ (extent x) @ (extent y max: self naturalHeight)! !
+	| minExtent |
+	minExtent := super calculateMinimumExtent.
+	^ (minExtent x) @ (minExtent y max: self naturalHeight)! !
 
 !RadioGroup methodsFor: 'geometry' stamp: 'jmv 4/25/2019 10:08:01'!
 naturalHeight
@@ -4540,17 +4538,17 @@ titleString: aString
 	titleString := aString.
 	self reset! !
 
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/28/2015 15:36'!
+!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/28/2019 18:55:49'!
 titleStringForDisplay
 	"Answer a string scaled to fit"
 	
-	| titleWidth desiredWidth titleString |
-	titleString := self titleString.
-	titleWidth := Preferences windowTitleFont widthOfString: titleString.
+	| titleWidth desiredWidth myTitleString |
+	myTitleString := self titleString.
+	titleWidth := Preferences windowTitleFont widthOfString: myTitleString.
 	desiredWidth := (self morphWidth - (self boxExtent x * self buttonNamesShown size)) max: 20.
 	^ (titleWidth <= desiredWidth)
-		ifTrue: [ titleString ]
-		ifFalse: [ titleString squeezedTo: (titleString size * (desiredWidth / titleWidth)) rounded]! !
+		ifTrue: [ myTitleString ]
+		ifFalse: [ myTitleString squeezedTo: (myTitleString size * (desiredWidth / titleWidth)) rounded]! !
 
 !WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 1/28/2016 16:07'!
 width
@@ -4716,13 +4714,13 @@ title: aString
 
 	^ self title: aString buttonsNamed: #()! !
 
-!WindowTitleMorph class methodsFor: 'instance creation' stamp: 'KenD 4/25/2015 13:18'!
+!WindowTitleMorph class methodsFor: 'instance creation' stamp: 'KenD 4/28/2019 18:57:20'!
 title: aString buttonsNamed: aSymbolCollection
 
 	((self buttonNames) includesAllOf: aSymbolCollection)
 		ifFalse: [ | stdNames outliers |
 			stdNames := self buttonNames.
-			outliers := aSymbolCollection reject: [ :name | stdNames includes: name ].
+			outliers := aSymbolCollection reject: [ :aName | stdNames includes: aName ].
 			self error: 'Bad button name(s): ', outliers printString 
 		].
 	^ (self newRow) title: aString buttonsNamed: aSymbolCollection
