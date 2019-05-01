@@ -38,8 +38,9 @@ If the morph is a LayoutMorph, one can also open an editor for the LayoutMorph f
 
 One package which requires this one is the Color Editor in https://github.com/Cuis-Smalltalk/Morphic/tree/master/ColorEditor
 
-Another useful package which requires this oneOB adds editors and allows "drag 'n drop" values for visual properties
+Another useful package which requires this one adds editors and allows "drag 'n drop" values for visual properties
 https://github.com/Cuis-Smalltalk/Morphic/tree/master/MetaProperties
+
 The MetaProperties package adds visual property selection items to Morph menus.
 ````Smalltalk
 	Feature require: #'Morph-MetaProperties'.
