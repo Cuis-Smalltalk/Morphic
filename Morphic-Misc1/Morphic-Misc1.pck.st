@@ -1,9 +1,9 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3729] on 5 May 2019 at 4:21:04 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3741] on 10 May 2019 at 4:09:47 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 136!
+!provides: 'Morphic-Misc1' 1 137!
+!requires: 'Cuis-Base' 50 3741 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
-!requires: 'Cuis-Base' 50 3713 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
 
 
@@ -469,7 +469,7 @@ I am used to display a font, e.g. in a FontPallet.
 
 (FontMorph font: AbstractFont default) openInHand.
 
-ImagePallet strikeFonts.!
+ImagePallet systemFonts.!
 
 !FrameMorph commentStamp: '<historical>' prior: 0!
 I appear as an empty frame!
@@ -567,10 +567,10 @@ initializedInstance
 
 	^ super namedColors! !
 
-!PickAFontPallet class methodsFor: 'instance creation' stamp: 'KenD 12/7/2016 08:35:13'!
+!PickAFontPallet class methodsFor: 'instance creation' stamp: 'KenD 5/10/2019 15:57:24'!
 initializedInstance
 
-	^ super strikeFonts! !
+	^ super systemFonts! !
 
 !PickAIconPallet class methodsFor: 'instance creation' stamp: 'KenD 12/7/2016 08:27:02'!
 initializedInstance
@@ -1160,6 +1160,41 @@ strikeFonts
 						value: (FontMorph font: aFont))
 			]
 		]
+	].
+
+	maxExtent := 0@0.
+	fontsCollection do: [ :assoc | maxExtent := maxExtent max: assoc value minimumExtent ].
+	fontsCollection do: [ :assoc | |m | 
+		m := assoc value. 
+		m  morphExtent: maxExtent "(maxExtent x) @ (m morphExtent y)"
+	].
+
+	ip := ImagePallet 
+			fromCollection: fontsCollection.
+	sw := Panel new.
+	sw addMorph: ip.
+	ip color: sw windowColor paler.
+	sw setLabel: 'Pick a Font';
+	showButtonsNamed: #( close collapse ).
+	sw openInWorld.
+	sw 	morphExtent: sw minimumExtent.   "openInWorld algorithm resets extent"
+	^ sw! !
+
+!ImagePallet class methodsFor: 'examples' stamp: 'KenD 5/10/2019 15:56:54'!
+systemFonts
+"
+	ImagePallet  systemFonts.
+"
+	| ip sw fontsCollection maxExtent |
+	fontsCollection := OrderedCollection new. 
+	FontFamily familyNames do: [ :familyName |
+		fontsCollection add: 
+					(Association 
+						key: familyName
+						value: (FontMorph 
+							font: (FontFamily familyName: familyName 
+												  pointSize: FontFamily defaultPointSize)))
+		
 	].
 
 	maxExtent := 0@0.
