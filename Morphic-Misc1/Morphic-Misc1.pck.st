@@ -1,9 +1,9 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3713] on 28 April 2019 at 7:14:39 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3729] on 5 May 2019 at 4:21:04 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 135!
+!provides: 'Morphic-Misc1' 1 136!
 !requires: 'Color-Extras' 1 4 nil!
-!requires: 'Cuis-Base' 50 3713 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
+!requires: 'Cuis-Base' 50 3713 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
 
 
@@ -1139,7 +1139,7 @@ namedIcons
 	sw 	morphExtent: sw minimumExtent.   "openInWorld algorithm resets extent"
 	^ sw! !
 
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 3/7/2019 14:07:36'!
+!ImagePallet class methodsFor: 'examples' stamp: 'jmv 5/5/2019 16:19:08'!
 strikeFonts
 "
 	ImagePallet strikeFonts.
@@ -1148,10 +1148,11 @@ strikeFonts
 		Feature require:  #'SF2-Import'.
 	See Cuis-Smalltalk-SF2-Import file README.md for usage.
 "
-	| ip sw fontsCollection maxExtent |
+	| ip sw fontsCollection maxExtent aFont |
 	fontsCollection := OrderedCollection new. 
-	AbstractFont availableFonts do: [ :aFontFamily |
-		aFontFamily keysAndValuesDo: [ :aSize :aFont |
+	FontFamily familyNames do: [ :familyName |
+		(FontFamily pointSizesFor: familyName) do: [ :aSize |
+			aFont _ FontFamily familyName: familyName pointSize: aSize.
 			(aSize <= 24) ifTrue: [
 				fontsCollection add: 
 					(Association 
