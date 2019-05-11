@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3741] on 10 May 2019 at 4:09:47 pm'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3741] on 11 May 2019 at 1:38:44 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 137!
+!provides: 'Morphic-Misc1' 1 139!
 !requires: 'Cuis-Base' 50 3741 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -3630,13 +3630,13 @@ adjustExtent
 
 	self morphExtent: (self morphExtent min: self minimumExtent)! !
 
-!FontMorph methodsFor: 'geometry' stamp: 'KenD 11/29/2016 10:26:35'!
+!FontMorph methodsFor: 'geometry' stamp: 'KenD 5/11/2019 13:36:02'!
 labelMorphOffset
 	"LabelMorph is offset by combinedBorder"
 	| combinedBorder |
-	combinedBorder := self labelMorph extentBorder + self borderWidth.
+	combinedBorder := self labelMorph extentBorder + self borderWidth + 10.
 	
-	^ combinedBorder@combinedBorder.! !
+	^ combinedBorder@(combinedBorder + 16).! !
 
 !FontMorph methodsFor: 'initialization' stamp: 'KenD 11/29/2016 09:54:03'!
 defaultColor
@@ -3691,10 +3691,10 @@ labelMorph
 
 	^ labelMorph! !
 
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:53:25'!
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 5/11/2019 13:33:39'!
 minimumExtent
 
-	^ (2 * self borderWidth) + self labelMorph minimumExtent! !
+	^ (2 * self borderWidth) + self labelMorph minimumExtent + 18! !
 
 !FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 09:59:09'!
 morphExtent: aPoint 
@@ -4210,7 +4210,7 @@ drawOn: aCanvas
 		borderWidth: borderWidth 
 		borderStyleSymbol: frameSelector! !
 
-!PalletLayoutMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 7/5/2015 19:48'!
+!PalletLayoutMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 5/11/2019 01:39:50'!
 aboutToGrab: aMorph
 	"submorph is being grabbed by a hand.
 	Perform necessary adjustments (if any) and return the actual morph
