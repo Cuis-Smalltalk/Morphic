@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:14:32 am'!
+'From Cuis 5.0 of 7 November 2016 [latest update: #3774] on 28 May 2019 at 9:49:17 am'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 19!
+!provides: 'Morphic-Widgets-Extras' 1 20!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -67,7 +67,7 @@ FrameRateMorph class
 
 !classDefinition: #FunctionGraphMorph category: #'Morphic-Widgets-Extras'!
 RectangleLikeMorph subclass: #FunctionGraphMorph
-	instanceVariableNames: 'xMin xMax yMin yMax functions colors'
+	instanceVariableNames: 'xMin xMax yMin yMax functions colors yRangeInvalid'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
@@ -844,7 +844,7 @@ yRange: anInterval
 	yMin _ anInterval first asFloat.
 	yMax _ anInterval last asFloat.! !
 
-!FunctionGraphMorph methodsFor: 'drawing' stamp: 'jmv 3/13/2018 16:32:31'!
+!FunctionGraphMorph methodsFor: 'drawing' stamp: 'pb 5/27/2019 18:21:01'!
 drawOn: aCanvas
 	"
 	| g |
@@ -855,7 +855,7 @@ drawOn: aCanvas
 	g openInWorld
 	"
 	| r fontToUse xtra p prevP |
-	yMin ifNil: [
+	yRangeInvalid ifTrue: [
 		yMin _ Float infinity.
 		yMax _ Float negativeInfinity.
 		self iterate: [ :x :y :c |
@@ -866,7 +866,8 @@ drawOn: aCanvas
 			yMax _ yMax max: 0 ].
 		xtra _ yMax-yMin/50.
 		yMin _ yMin - xtra.
-		yMax _ yMax + xtra
+		yMax _ yMax + xtra.
+		yRangeInvalid := false.
 		].
 			
 	r _ 40@0 corner: extent - (0@20).
@@ -884,7 +885,8 @@ drawOn: aCanvas
 		xMin asFloat to: xMax count: extent x do: [ :x | | y |
 			y _ f value: x.
 			(y between: yMin and: yMax) 
-				ifFalse: [ prevP _ nil ]
+				ifFalse: [ yRangeInvalid := true.
+					prevP _ nil ]
 				ifTrue: [
 					p _ (self xToMorphic: x)@(self yToMorphic: y).
 					(r containsPoint: p) 
@@ -920,12 +922,17 @@ iterate: aBlock
 			y _ f value: x.
 			aBlock value: x value: y asFloat value: c ]]! !
 
-!FunctionGraphMorph methodsFor: 'initialization' stamp: 'jmv 7/1/2015 11:16'!
+!FunctionGraphMorph methodsFor: 'initialization' stamp: 'pb 5/27/2019 18:19:57'!
 initialize
 	super initialize.
 	extent _ 320@240.
 	functions _ OrderedCollection new.
-	colors _ OrderedCollection new! !
+	colors _ OrderedCollection new.
+	yRangeInvalid := true! !
+
+!FunctionGraphMorph methodsFor: 'initialization' stamp: 'pb 5/27/2019 18:19:17'!
+invalidateYRange
+	yRangeInvalid := true! !
 
 !FunctionGraphMorph methodsFor: 'geometry' stamp: 'jmv 5/17/2015 09:20'!
 toMorphic: aPoint
