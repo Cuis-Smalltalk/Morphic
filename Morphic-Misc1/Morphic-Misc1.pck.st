@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3741] on 11 May 2019 at 1:38:44 pm'!
+'From Cuis 5.0 [latest update: #3878] on 17 September 2019 at 1:29:10 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 139!
+!provides: 'Morphic-Misc1' 1 140!
 !requires: 'Cuis-Base' 50 3741 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -1741,6 +1741,11 @@ windowColor
 	"Some default"
 	
 	^ Theme current transcript  "model class windowColor"! !
+
+!Panel methodsFor: 'dropping/grabbing' stamp: 'KenD 9/17/2019 13:26:55'!
+valueWhenDropped
+
+	^nil! !
 
 !Panel methodsFor: 'events' stamp: 'KenD 4/24/2015 16:45'!
 closeButtonClicked
