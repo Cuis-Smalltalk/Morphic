@@ -1,11 +1,11 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3713] on 28 April 2019 at 7:14:16 pm'!
+'From Cuis 5.0 [latest update: #3878] on 17 September 2019 at 6:38:09 am'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 33!
-!requires: 'Graphics-Files-Additional' 1 nil nil!
-!requires: 'CSS3-NamedColors' 1 0 nil!
-!requires: 'Cuis-Base' 50 3713 nil!
+!provides: 'Morphic-ColorEditor' 1 35!
 !requires: 'Morphic-Misc1' 1 103 nil!
 !requires: 'Color-Extras' 1 4 nil!
+!requires: 'Cuis-Base' 50 3878 nil!
+!requires: 'CSS3-NamedColors' 1 0 nil!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
 SystemOrganization addCategory: #'Morphic-ColorEditor'!
 
 
@@ -566,22 +566,6 @@ refreshColorSwatch
 	colorSwatch image: (model color iconOrThumbnailOfSize: self colorSwatchExtent).
 	colorSwatch color: self model color! !
 
-!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 12/24/2013 09:26'!
-defaultColor
-
-	^ Color  r: 16r40/255 g: 16rA5/255 b: 16rD0/255.! !
-
-!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 9/17/2016 21:24:54'!
-defaultExtent
-
-	^ 660@330! !
-
-!ColorEditorPanel class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:09'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ true! !
-
 !ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 11/24/2013 16:47'!
 open
 "
@@ -605,6 +589,22 @@ openColor: aColor
 		openInWorld: self runningWorld extent: self defaultExtent;
 		yourself
 ! !
+
+!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 12/24/2013 09:26'!
+defaultColor
+
+	^ Color  r: 16r40/255 g: 16rA5/255 b: 16rD0/255.! !
+
+!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 9/17/2016 21:24:54'!
+defaultExtent
+
+	^ 660@330! !
+
+!ColorEditorPanel class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:09'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ true! !
 
 !ColorPaneMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 11/30/2013 19:33'!
 aboutToGrab: aMorph
@@ -881,15 +881,15 @@ mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
 		]
 ! !
 
-!ColorPaneMorph methodsFor: 'events-processing' stamp: 'KenD 11/27/2013 15:57'!
+!ColorPaneMorph methodsFor: 'events-processing' stamp: 'KenD 9/17/2019 06:35:23'!
 mouseEnter: event
 
-	Cursor currentCursor: Cursor crossHair ! !
+	Cursor currentCursor: (Cursor cursorAt: #crossHairCursor)! !
 
-!ColorPaneMorph methodsFor: 'events-processing' stamp: 'KenD 11/27/2013 15:59'!
+!ColorPaneMorph methodsFor: 'events-processing' stamp: 'KenD 9/17/2019 06:35:45'!
 mouseLeave: event
 
-	Cursor currentCursor: Cursor normal! !
+	Cursor currentCursor: (Cursor cursorAt: #normalCursor)! !
 
 !ColorPaneMorph methodsFor: 'events-processing' stamp: 'KenD 11/29/2013 00:08'!
 updateColorFromModel: model
