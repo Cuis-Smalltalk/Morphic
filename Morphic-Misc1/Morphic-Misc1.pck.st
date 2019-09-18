@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #3878] on 17 September 2019 at 1:29:10 pm'!
+'From Cuis 5.0 [latest update: #3878] on 18 September 2019 at 3:16:20 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 140!
+!provides: 'Morphic-Misc1' 1 141!
 !requires: 'Cuis-Base' 50 3741 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -5107,7 +5107,7 @@ circleDegreesRounded
 			]
 			toString: [ :n | n printString ]! !
 
-!SimpleNumberEntryMorph class methodsFor: 'examples' stamp: 'KenD 12/22/2016 15:44:43'!
+!SimpleNumberEntryMorph class methodsFor: 'examples' stamp: 'KenD 9/18/2019 15:13:43'!
 floatDefault: aReal  maxNumChars: numChars
 	"Any real number"
 	
@@ -5119,7 +5119,7 @@ floatDefault: aReal  maxNumChars: numChars
 		     numCharsToHold: numChars
 			value: aReal 
 			validator: [ :str |  [ str asNumber ] on: Error do: [ -1 ] ] 
-			toString:  [ :n | n printString ]! !
+			toString:  [ :n | n printStringFractionDigits: 4 ]! !
 
 !SimpleNumberEntryMorph class methodsFor: 'examples' stamp: 'KenD 11/23/2013 20:01'!
 hexEntryOfSize: numChars
