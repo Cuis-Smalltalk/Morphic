@@ -1,11 +1,11 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3741] on 11 May 2019 at 2:11:50 am'!
+'From Cuis 5.0 [latest update: #3878] on 18 September 2019 at 4:07:53 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 78!
-!requires: 'Morphic-Misc1' 1 109 nil!
-!requires: 'Morphic-ColorEditor' 1 31 nil!
-!requires: 'Cuis-Base' 50 3741 nil!
-!requires: 'Graphics-Files-Additional' 1 18 nil!
+!provides: 'Morph-MetaProperties' 1 79!
 !requires: 'Complex' 1 0 nil!
+!requires: 'Cuis-Base' 50 3878 nil!
+!requires: 'Morphic-ColorEditor' 1 31 nil!
+!requires: 'Morphic-Misc1' 1 109 nil!
+!requires: 'Graphics-Files-Additional' 1 18 nil!
 SystemOrganization addCategory: #'Morph-MetaProperties'!
 
 
@@ -707,10 +707,18 @@ initialize
 
 ! !
 
-!VisualPropertyMenuItem methodsFor: 'accessing' stamp: 'KenD 4/14/2019 15:29:05'!
+!VisualPropertyMenuItem methodsFor: 'accessing' stamp: 'KenD 9/18/2019 16:05:31'!
 displayString
 
-	^ name asString , ': ', (self propertyValue printString)! !
+	| propValue propString |
+	propValue := self propertyValue.
+	propString :=
+		(propValue is: Number) 
+		ifTrue: [propValue printStringFractionDigits: 4] 
+		ifFalse: [(propValue isPoint) 
+			ifTrue: [propValue printStringFractionDigits: 2]
+			ifFalse: [propValue printString]].
+	^ name asString , ': ', propString! !
 
 !VisualPropertyMenuItem methodsFor: 'accessing' stamp: 'KenD 11/28/2016 16:29:30'!
 metaProperty
@@ -2002,11 +2010,6 @@ icon
 
 	^ VisualPropertyMenuItem chronIcon ! !
 
-!Complex methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:55'!
-icon
-
-	^ VisualPropertyMenuItem complexIcon ! !
-
 !Character methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:57'!
 icon
 
@@ -2353,6 +2356,11 @@ front: fontToUse
 			ifFalse: [fontToUse emphasized: emphasis].
 	self fitContents.
 	self redrawNeeded ! !
+
+!Complex methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:55'!
+icon
+
+	^ VisualPropertyMenuItem complexIcon ! !
 VisualPropertyEditor initialize!
 VisualPropertyMenuItem initialize!
 MetaProperty initialize!
