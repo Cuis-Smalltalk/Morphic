@@ -1,10 +1,10 @@
-'From Cuis 5.0 [latest update: #3878] on 18 September 2019 at 4:07:53 pm'!
+'From Cuis 5.0 [latest update: #3901] on 3 October 2019 at 8:28:39 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 79!
-!requires: 'Complex' 1 0 nil!
+!provides: 'Morph-MetaProperties' 1 80!
 !requires: 'Cuis-Base' 50 3878 nil!
+!requires: 'Morphic-Misc1' 1 142 nil!
 !requires: 'Morphic-ColorEditor' 1 31 nil!
-!requires: 'Morphic-Misc1' 1 109 nil!
+!requires: 'Complex' 1 0 nil!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
 SystemOrganization addCategory: #'Morph-MetaProperties'!
 
@@ -52,7 +52,7 @@ MetaPropertyTests class
 !classDefinition: #MetaProperty category: #'Morph-MetaProperties'!
 Object subclass: #MetaProperty
 	instanceVariableNames: 'kind editProc'
-	classVariableNames: 'MetaPropDict PreDefinedPropsDict'
+	classVariableNames: 'MetaPropDict PreDefinedPropsDict PredrfinedPropsDict'
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
 !classDefinition: 'MetaProperty class' category: #'Morph-MetaProperties'!
@@ -1374,7 +1374,7 @@ initialize
 	"self initializeDictionaries." "invoked in VisualPropertyEditor class>>initialize"
 ! !
 
-!MetaProperty class methodsFor: 'class initialization' stamp: 'KenD 5/11/2019 02:09:34'!
+!MetaProperty class methodsFor: 'class initialization' stamp: 'KenD 10/3/2019 18:21:43'!
 initializeDictionaries
 	"Add typical usages to dictionary for sharing."
 "
@@ -1397,7 +1397,9 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent ]).
+												+ morph morphExtent;
+							    fitInWorld
+							 ]).
 	props at: #acceptsSymbol 
 			put: (MetaProperty 
 					kind: Symbol
@@ -1408,7 +1410,8 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent ]).
+												+ morph morphExtent;
+								fitInWorld ]).
 	props at: #acceptsCharacter 
 			put: (MetaProperty 
 					kind: Character
@@ -1419,7 +1422,7 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent
+												+ morph morphExtent; fitInWorld
 						]).
 	props at: #acceptsNumber put: (MetaProperty kind: Number).
 	props at: #acceptsColor 
@@ -1436,7 +1439,7 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent ]).
+												+ morph morphExtent; fitInWorld ]).
 	props at: #acceptsRectangle put: (MetaProperty kind: Rectangle).
 	props at: #acceptsBoolean put: (MetaProperty kind: Boolean).
 	props at: #acceptsMorph put: (MetaProperty kind: Morph).
@@ -1563,7 +1566,7 @@ minValue: aValue
 
 	minValue := aValue ! !
 
-!MetaPropertyFrom class methodsFor: 'class initialization' stamp: 'KenD 12/22/2016 17:18:00'!
+!MetaPropertyFrom class methodsFor: 'class initialization' stamp: 'KenD 10/3/2019 18:22:53'!
 addToInitialDictionaries
 	"Add typical usages to dictionary for sharing."
 "
@@ -1583,7 +1586,8 @@ addToInitialDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent ]).
+												+ morph morphExtent
+								; fitInWorld ]).
 	props at: #acceptsPositiveNumber put: (MetaPropertyFrom kind: Number minValue: 0).
 	props at: #acceptsPositiveInteger
 		    put: (MetaPropertyFrom 
@@ -1596,7 +1600,8 @@ addToInitialDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent ]).
+												+ morph morphExtent;
+								fitInWorld ]).
 	! !
 
 !MetaPropertyFrom class methodsFor: 'class initialization' stamp: 'KenD 4/2/2017 14:43:50'!
@@ -1980,6 +1985,13 @@ icon
 
 	^ VisualPropertyMenuItem trueIcon ! !
 
+!Color methodsFor: '*morph-metaproperties' stamp: 'KenD 12/6/2016 18:46:47'!
+morphForDrag
+	"Answer a morph suitable for DragNDrop"
+	
+	^ DropColorMorph fromColor: self
+! !
+
 !UndefinedObject methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
 icon
 
@@ -2039,13 +2051,6 @@ icon
 icon
 
 	^ VisualPropertyMenuItem symbolIcon ! !
-
-!Color methodsFor: '*morph-metaproperties' stamp: 'KenD 12/6/2016 18:46:47'!
-morphForDrag
-	"Answer a morph suitable for DragNDrop"
-	
-	^ DropColorMorph fromColor: self
-! !
 
 !Stream methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
 icon
