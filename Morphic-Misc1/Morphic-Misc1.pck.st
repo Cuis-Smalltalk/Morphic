@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #3878] on 18 September 2019 at 3:16:20 pm'!
+'From Cuis 5.0 [latest update: #3901] on 3 October 2019 at 8:26:21 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 141!
+!provides: 'Morphic-Misc1' 1 142!
 !requires: 'Cuis-Base' 50 3741 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -1036,7 +1036,7 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	^ false! !
 
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 10/17/2018 23:22:06'!
+!ImagePallet class methodsFor: 'examples' stamp: 'KenD 10/1/2019 13:00:20'!
 largerIcons
 "
 	ImagePallet largerIcons.
@@ -1060,7 +1060,7 @@ largerIcons
 			fromCollection: (sortedCollection collect: [ :assoc | 
 				Association key: (assoc key) value: assoc value
 			])
-			imageFilter: [:form | ImageMorph new image: (form magnifyTo: 32 @ 32)].
+			imageFilter: [:form | ImageMorph new image: (form magnifyTo: 64 @ 64)].
 
 	sw := Panel new.
 	sw addMorph: ip.
@@ -1633,6 +1633,16 @@ boxExtent
 	| e |
 	e _ Preferences windowTitleFont lineSpacing.
 	^e@e! !
+
+!Panel methodsFor: 'geometry' stamp: 'KenD 10/3/2019 17:09:10'!
+fitInWorld
+
+	"Try to be contained in the world"
+	| displayRect boundingBox |
+	displayRect := RealEstateAgent maximumUsableAreaInWorld: self runningWorld.
+	boundingBox  := self morphPositionInWorld extent: self morphExtentInWorld.
+	boundingBox := boundingBox translatedToBeWithin: displayRect.
+	self morphPositionInWorld: boundingBox origin! !
 
 !Panel methodsFor: 'geometry' stamp: 'KenD 8/26/2015 12:31'!
 fontPreferenceChanged
@@ -5719,7 +5729,7 @@ stringForCode: emphasisCode
 	
 	^ stringResult! !
 
-!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 4/12/2019 16:04:12'!
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/3/2019 09:16:03'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
 	"Add morph-specific items to the given menu which was invoked by the given hand.  This method provides is invoked both from the halo-menu and from the control-menu regimes."
 
@@ -5728,7 +5738,8 @@ addCustomMenuItems: aCustomMenu hand: aHandMorph
 	(Smalltalk includesKey: #VisualPropertyEditor)
 		ifTrue: [ aCustomMenu addVisualProperties;
 				  addLine;
-				  add: 'show target halo' action: #addHalo
+				  add: 'show target halo' action: #addHalo;
+				  add: 'show DropTarget for me' action: #showDropTarget
 			 ]
 		ifFalse: [ aCustomMenu add: 'edit my layoutSpec' action: #editMyLayoutSpec ]! !
 
