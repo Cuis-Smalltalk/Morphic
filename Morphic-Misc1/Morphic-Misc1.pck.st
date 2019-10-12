@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #3901] on 3 October 2019 at 8:26:21 pm'!
+'From Cuis 5.0 [latest update: #3915] on 12 October 2019 at 2:45:16 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 142!
+!provides: 'Morphic-Misc1' 1 143!
 !requires: 'Cuis-Base' 50 3741 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -5729,7 +5729,7 @@ stringForCode: emphasisCode
 	
 	^ stringResult! !
 
-!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/3/2019 09:16:03'!
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/12/2019 14:44:35'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
 	"Add morph-specific items to the given menu which was invoked by the given hand.  This method provides is invoked both from the halo-menu and from the control-menu regimes."
 
@@ -5738,10 +5738,19 @@ addCustomMenuItems: aCustomMenu hand: aHandMorph
 	(Smalltalk includesKey: #VisualPropertyEditor)
 		ifTrue: [ aCustomMenu addVisualProperties;
 				  addLine;
-				  add: 'show target halo' action: #addHalo;
-				  add: 'show DropTarget for me' action: #showDropTarget
-			 ]
+				  add: 'show target halo' action: #addHalo";
+				  add: 'show DropTarget for me' action: #showDropTarget"
+		]
 		ifFalse: [ aCustomMenu add: 'edit my layoutSpec' action: #editMyLayoutSpec ]! !
+
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/12/2019 14:40:40'!
+boxExtent
+	"answer the extent to use in all the buttons. 
+	 
+	the label height is used to be proportional to the fonts preferences"
+	| e |
+	e _ Preferences windowTitleFont lineSpacing.
+	^e@e! !
 
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 9/17/2016 10:08:23'!
 colorizeLayouts
