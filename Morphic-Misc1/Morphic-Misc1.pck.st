@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #3915] on 12 October 2019 at 2:45:16 pm'!
+'From Cuis 5.0 [latest update: #4048] on 29 February 2020 at 1:45:18 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 143!
+!provides: 'Morphic-Misc1' 1 144!
 !requires: 'Cuis-Base' 50 3741 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -235,6 +235,16 @@ ImageMorph subclass: #BorderedImageMorph
 	category: 'Morphic-Misc1'!
 !classDefinition: 'BorderedImageMorph class' category: #'Morphic-Misc1'!
 BorderedImageMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #ClickColorMorph category: #'Morphic-Misc1'!
+ImageMorph subclass: #ClickColorMorph
+	instanceVariableNames: 'colorTargetMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'ClickColorMorph class' category: #'Morphic-Misc1'!
+ClickColorMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #DropColorMorph category: #'Morphic-Misc1'!
@@ -479,12 +489,19 @@ I supply a border to an ImageMorph.
 
 borderStyle is one of #simple #raised #inset!
 
+!ClickColorMorph commentStamp: '<historical>' prior: 0!
+I am clicked upon to set my colorTargetMorph to my color.
+
+I am used to select/set a color, not to be dragged.  Note DropColorMorph.!
+
 !DropColorMorph commentStamp: '<historical>' prior: 0!
 I am picked up to be dropped on another morph.
 
 I change that morph's color to my color.
 
-See method #dropAction:!
+See method #dropAction:
+
+Note: To click-select a color, see ClickColorMorph!
 
 !LabelMorph commentStamp: '<historical>' prior: 0!
 I am a StringMorph used as a label!
@@ -1035,6 +1052,39 @@ new
 includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	^ false! !
+
+!ImagePallet class methodsFor: 'examples' stamp: 'KenD 2/29/2020 13:11:26'!
+clickSelectColorsFor: aMorph
+	"Click-Select from a ClickColorPallet"
+	
+	| pallet imagePanel sortedColors  |
+	sortedColors := SortedCollection sortBlock: 
+		 [ :aAssoc :bAssoc | | a b |
+			a := aAssoc value.
+			b := bAssoc value.
+			(a hue < b hue) or: [(a hue = b hue) and: [a saturation < b saturation ]]
+		].
+	Color colorNamesDict associationsDo: [ :assoc | sortedColors add: assoc ].
+	
+	pallet := ImagePallet 
+			fromCollection: sortedColors
+			imageFilter: [:color | | clickColorMorph |
+				clickColorMorph := ClickColorMorph fromColor: color forTarget: aMorph.
+				clickColorMorph image: (color icon "magnifyTo: 20 @ 20");
+					color: color;
+					yourself
+			].
+
+	imagePanel := Panel new.
+	pallet color: imagePanel windowColor paler.
+	imagePanel addMorph: pallet;
+		setLabel: 'Click to Select a Color for ', aMorph printString ;
+	     showButtonsNamed: #( close  ).
+	pallet hideOrShowScrollBars.
+	imagePanel openInWorld. 
+	"openInWorld resets extent"
+	imagePanel morphExtent: (imagePanel minimumExtent).  "openInWorld resets extent"
+	^ imagePanel! !
 
 !ImagePallet class methodsFor: 'examples' stamp: 'KenD 10/1/2019 13:00:20'!
 largerIcons
@@ -1634,15 +1684,16 @@ boxExtent
 	e _ Preferences windowTitleFont lineSpacing.
 	^e@e! !
 
-!Panel methodsFor: 'geometry' stamp: 'KenD 10/3/2019 17:09:10'!
+!Panel methodsFor: 'geometry' stamp: 'KenD 10/3/2019 12:52:58'!
 fitInWorld
 
-	"Try to be contained in the world"
+	"Try to be contained in the world; return boundingBox"
 	| displayRect boundingBox |
 	displayRect := RealEstateAgent maximumUsableAreaInWorld: self runningWorld.
 	boundingBox  := self morphPositionInWorld extent: self morphExtentInWorld.
 	boundingBox := boundingBox translatedToBeWithin: displayRect.
-	self morphPositionInWorld: boundingBox origin! !
+	self morphPositionInWorld: boundingBox origin.
+	^boundingBox! !
 
 !Panel methodsFor: 'geometry' stamp: 'KenD 8/26/2015 12:31'!
 fontPreferenceChanged
@@ -2221,21 +2272,23 @@ minimumExtent
 	].
 	^ width @ 20 + height + self buttonArea minimumExtent y! !
 
-!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 12/17/2013 12:35'!
+!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 2/26/2020 07:57:15'!
 modelBeColumn
 	"My editModel should be a Column"
 
 	self editModel beColumn.
 	self refreshDirectionArea.
-	self refreshPaddingArea.! !
+	self refreshPaddingArea.
+	self editModel refreshExtent.! !
 
-!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 12/17/2013 12:36'!
+!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 2/26/2020 07:57:26'!
 modelBeRow
 	"My editModel should be a Row"
 	
 	self editModel beRow.
 	self refreshDirectionArea.
-	self refreshPaddingArea.! !
+	self refreshPaddingArea.
+	self editModel refreshExtent.! !
 
 !LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 12/17/2013 12:35'!
 modelColor: aColor
@@ -2289,7 +2342,7 @@ showHaloButtonClicked
 				popUpForHand: self  world activeHand
 	]! !
 
-!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 12/23/2016 14:21:11'!
+!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 2/26/2020 08:00:09'!
 updateMasterFromCopy
 	"Update model from editModel"
 	
@@ -2300,7 +2353,7 @@ updateMasterFromCopy
 	original padding: editCopy padding.
 	original separation: ( editCopy xSeparation @ editCopy ySeparation ).
 	original color: editCopy color.
-	original calculateMinimumExtent; layoutSubmorphs; redrawNeeded.
+	original refreshExtent; layoutSubmorphs; redrawNeeded.
 	original owner ifNotNil: [ :container | container layoutSubmorphs; redrawNeeded ].
 	self editModel: nil.
 	original triggerEvent: #propertyChanged.
@@ -3983,6 +4036,83 @@ initialize
 	super initialize.
 	borderColor := Color orange.
 	borderStyle := #raised.! !
+
+!ClickColorMorph methodsFor: 'event handling testing' stamp: 'KenD 2/29/2020 09:22:26'!
+handlesMouseDown: aMouseButtonEvent
+	"Do I want to receive mouseDown events (mouseDown:, mouseMove:, mouseUp:)?"
+	^true! !
+
+!ClickColorMorph methodsFor: 'event handling' stamp: 'KenD 2/29/2020 13:41:30'!
+mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
+
+	| colorSetters choices |
+
+	(self morphContainsPoint: localEventPosition)
+		ifFalse: [ ^self ]. "Stay up"
+			
+	colorSetters := (((colorTargetMorph class withAllSuperclasses 
+		collect: [ :c | c selectors ] andFold: [ :a :b | a union: b]) "all selectors"
+			select: [ :s | ('*color*:' match: s) and: [('*:*:' match: s) not]] ) asArray).
+			
+	(colorTargetMorph class == Morph) 
+		ifTrue: [
+			PopUpMenu inform: 'My color attribute cannot be set ', self printString 
+			^ self
+		].
+		
+	(colorSetters size = 1)
+		ifTrue: [ colorTargetMorph targetMorph perform: (colorSetters at: 1) with: self color ]
+		ifFalse: [ | selection |
+			choices := OrderedCollection with: #Cancel.
+			choices addAll: colorSetters.
+			selection := PopUpMenu withCaption: 'Choose color setter' 
+											chooseFrom: choices.
+			(selection = 1) ifFalse: [ "1 -> Cancel"
+				colorTargetMorph 
+						perform: (colorSetters at: selection - 1) 
+						with: self color;
+						triggerEvent: #propertyChanged.
+			]
+		].
+
+	colorTargetMorph redrawNeeded.
+	self closeContainingPanel: self owner.
+! !
+
+!ClickColorMorph methodsFor: 'initialization' stamp: 'KenD 2/29/2020 09:17:41'!
+fromColor: aColor forTarget: aMorph
+
+	colorTargetMorph := aMorph. "immutable"
+	self 
+		color: aColor;
+		image: (self color icon magnifyTo: 32@32)
+	! !
+
+!ClickColorMorph methodsFor: 'closing' stamp: 'KenD 2/29/2020 13:43:18'!
+closeContainingPanel: nextOwner
+	"After user selection, I need to close my containing Panel; chain up to find it"
+
+	(nextOwner is: #Panel) 
+		ifTrue: [ nextOwner closeButtonClicked ] 
+		ifFalse: [
+			nextOwner 
+				ifNil: [ ^self ] 
+				ifNotNil: [ self closeContainingPanel: nextOwner owner]
+		]! !
+
+!ClickColorMorph class methodsFor: 'instance creation' stamp: 'KenD 2/29/2020 09:15:05'!
+fromColor: aColor forTarget: aMorph
+"
+	(DropColorMorph fromColor: Color teal) openInHand.
+"
+
+	^ self new fromColor: aColor forTarget: aMorph! !
+
+!ClickColorMorph class methodsFor: 'new-morph participation' stamp: 'KenD 2/29/2020 12:58:24'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ false! !
 
 !DropColorMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 11/30/2013 20:07'!
 aboutToBeGrabbedBy: aHand
@@ -5729,7 +5859,7 @@ stringForCode: emphasisCode
 	
 	^ stringResult! !
 
-!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/12/2019 14:44:35'!
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/3/2019 09:16:03'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
 	"Add morph-specific items to the given menu which was invoked by the given hand.  This method provides is invoked both from the halo-menu and from the control-menu regimes."
 
@@ -5738,9 +5868,9 @@ addCustomMenuItems: aCustomMenu hand: aHandMorph
 	(Smalltalk includesKey: #VisualPropertyEditor)
 		ifTrue: [ aCustomMenu addVisualProperties;
 				  addLine;
-				  add: 'show target halo' action: #addHalo";
-				  add: 'show DropTarget for me' action: #showDropTarget"
-		]
+				  add: 'show target halo' action: #addHalo;
+				  add: 'show DropTarget for me' action: #showDropTarget
+			 ]
 		ifFalse: [ aCustomMenu add: 'edit my layoutSpec' action: #editMyLayoutSpec ]! !
 
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/12/2019 14:40:40'!
