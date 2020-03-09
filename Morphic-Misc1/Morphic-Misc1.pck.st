@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4048] on 29 February 2020 at 1:45:18 pm'!
+'From Cuis 5.0 [latest update: #4064] on 9 March 2020 at 2:48:21 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 144!
-!requires: 'Cuis-Base' 50 3741 nil!
+!provides: 'Morphic-Misc1' 1 145!
+!requires: 'Cuis-Base' 50 4064 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -45,16 +45,6 @@ ImagePallet subclass: #PickAColorPallet
 	category: 'Morphic-Misc1'!
 !classDefinition: 'PickAColorPallet class' category: #'Morphic-Misc1'!
 PickAColorPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickAFontPallet category: #'Morphic-Misc1'!
-ImagePallet subclass: #PickAFontPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickAFontPallet class' category: #'Morphic-Misc1'!
-PickAFontPallet class
 	instanceVariableNames: ''!
 
 !classDefinition: #PickAIconPallet category: #'Morphic-Misc1'!
@@ -372,11 +362,6 @@ I am just a way of getting an initializedInstance from the New Morph.. menu..
 
 See my class side.!
 
-!PickAFontPallet commentStamp: '<historical>' prior: 0!
-I am just a way of getting an initializedInstance from the New Morph.. menu..  
-
-See my class side.!
-
 !PickAIconPallet commentStamp: '<historical>' prior: 0!
 I am just a way of getting an initializedInstance from the New Morph.. menu..  
 
@@ -583,11 +568,6 @@ I am a LineMorph which has a "pointer" morph which I maintain in position at my 
 initializedInstance
 
 	^ super namedColors! !
-
-!PickAFontPallet class methodsFor: 'instance creation' stamp: 'KenD 5/10/2019 15:57:24'!
-initializedInstance
-
-	^ super systemFonts! !
 
 !PickAIconPallet class methodsFor: 'instance creation' stamp: 'KenD 12/7/2016 08:27:02'!
 initializedInstance
@@ -1023,10 +1003,11 @@ imageWidth
 
 	^ imageExtent x! !
 
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 11/23/2016 14:21:53'!
+!ImagePallet methodsFor: 'accessing' stamp: 'KenD 3/9/2020 14:33:58'!
 minimumExtent
 
-	^ self calculatedExtent ifNil: [1@1] ifNotNil: [ :ext | ext ] ! !
+	"Widen calculated extent to avoid showing scroll bars"
+	^ self calculatedExtent ifNil: [1@1] ifNotNil: [ :ext | ext + (Theme current scrollbarThickness // 2) ] ! !
 
 !ImagePallet methodsFor: 'accessing' stamp: 'KenD 9/14/2013 16:33'!
 nameImageCollection
@@ -1086,7 +1067,7 @@ clickSelectColorsFor: aMorph
 	imagePanel morphExtent: (imagePanel minimumExtent).  "openInWorld resets extent"
 	^ imagePanel! !
 
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 10/1/2019 13:00:20'!
+!ImagePallet class methodsFor: 'examples' stamp: 'KenD 3/9/2020 14:37:33'!
 largerIcons
 "
 	ImagePallet largerIcons.
@@ -1110,7 +1091,7 @@ largerIcons
 			fromCollection: (sortedCollection collect: [ :assoc | 
 				Association key: (assoc key) value: assoc value
 			])
-			imageFilter: [:form | ImageMorph new image: (form magnifyTo: 64 @ 64)].
+			imageFilter: [:form | ImageMorph new image: (form magnifyTo: 32 @ 32)].
 
 	sw := Panel new.
 	sw addMorph: ip.
@@ -1306,12 +1287,6 @@ useXKCDColorDict
 	Color setColorNamesDict: Color xkcdColorDictionary.! !
 
 !PickAColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:28:49'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ true! !
-
-!PickAFontPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:34:13'!
 includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	
@@ -1752,7 +1727,7 @@ minPaneWidthForReframe
 
 	^ ScrollBar scrollbarThickness * 3! !
 
-!Panel methodsFor: 'geometry' stamp: 'KenD 11/24/2016 09:12:17'!
+!Panel methodsFor: 'geometry' stamp: 'KenD 3/9/2020 13:29:27'!
 minimumExtent
 	"Subclasses may want to override me"
 	
@@ -1763,7 +1738,6 @@ minimumExtent
 	
 	^ ((minTitleExtent x max: minLayoutExtent x)
 		@ (minTitleExtent y + minLayoutExtent y))
-		+ (6@4) "Frame space"
 	! !
 
 !Panel methodsFor: 'GUI building' stamp: 'KenD 12/9/2013 18:55'!
@@ -2259,8 +2233,8 @@ fontPreferenceChanged
 	self submorphsDo: [ :m | m fontPreferenceChanged ].
 .	self morphExtent: self minimumExtent ! !
 
-!LayoutMorphEditPanel methodsFor: 'geometry' stamp: 'KenD 9/17/2016 13:21:55'!
-minimumExtent
+!LayoutMorphEditPanel methodsFor: 'geometry' stamp: 'KenD 3/9/2020 13:08:03'!
+xxMminimumExtent
 "Answer minimum extent to hold my submorphs"
 
 	| width height |
@@ -2270,7 +2244,7 @@ minimumExtent
 		width := width max: minExt x.
 		height := height + minExt y.
 	].
-	^ width @ 20 + height + self buttonArea minimumExtent y! !
+	^ width @ height! !
 
 !LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 2/26/2020 07:57:15'!
 modelBeColumn
@@ -2363,31 +2337,22 @@ updateMasterFromCopy
 		ifTrue: [ self refreshView ]
 ! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 9/17/2016 13:45:07'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:43:58'!
 newColorArea
 	"Answer a FramedLayoutMorph showing color swatch and hex RGB entry"
 	
-	| newColorArea label spec colorRGB hexEntry |
+	| newColorArea label  colorRGB hexEntry |
 	newColorArea := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Color'.
 	colorRGB := SimpleNumberEntryMorph hexRGBEntry.
-	spec := LayoutSpec fixedHeight:
-		(2 * newColorArea borderWidth)
-		+ (label naturalHeight)
-		+ 68 "colorSwatch height"
-		+ 28 "hexEntry height"
-		+ 2.
 		
 	hexEntry := LayoutMorph newRow.
 	hexEntry
-		separation: 1; padding: #left;
+		separation: 2; padding: #left;
 		color: Color transparent;
-		addMorph: (StringMorph contents: '16r') 
-				layoutSpec: (LayoutSpec keepMorphExtent);
+		addMorph: (StringMorph contents: '16r');
 		addMorph: colorRGB;
-		addMorph: (StringMorph contents: 'hexRGB') 
-				layoutSpec: (LayoutSpec keepMorphExtent);
-		layoutSpec: (LayoutSpec fixedHeight: 28). "@@@Tune@@@"
+		addMorph: (StringMorph contents: 'hexRGB').
 		
 	"Setup"
 	colorRGB valueAccessor: [ :someModel | | backgroundColor |
@@ -2396,36 +2361,31 @@ newColorArea
 	].
 	colorRGB valueUpdator: [ :integerRGB |
 			self modelColor: (Color 
-					r: ((integerRGB bitShift: -16) bitAnd: 255)	/ 255
+					r: ((integerRGB bitShift: -16) bitAnd: 255) / 255
 					g: ((integerRGB bitShift: -8) bitAnd: 255) / 255
 					b: (integerRGB bitAnd: 255) / 255)
 	].
 	colorRGB refreshValueFrom: self editModel.
 		
 	^ newColorArea
-		layoutSpec: spec;
 		color: Color  transparent;
-		padding: #center;
+		padding: #top;
+		separation: self defaultSeparation + 4;
 		addMorph: label;
-		addMorph: (self colorMorph) 
-				layoutSpec: (LayoutSpec keepMorphExtent);
+		addMorph: self colorMorph;
 		addMorph: hexEntry;
 		yourself 
 	
 	! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 9/16/2016 16:33:11'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:22:53'!
 newDirectionArea
 	"Answer a FramedLayoutMorph with controls for Direction (Row,Column)"
 	
-	| dirArea label radio spec direction |
+	| dirArea label radio direction |
 	dirArea := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Direction'.
 	radio := RadioGroup fromList: #(Row Column).
-	spec := LayoutSpec fixedHeight:
-		(2 * dirArea borderWidth)
-		+ (label naturalHeight)
-		+ (radio naturalHeight).
 		
 	"Setup"
 	direction := self editModel direction.
@@ -2436,7 +2396,6 @@ newDirectionArea
 	radio when: #informRadioSelection send: #newDirectionSelection: to: self.
 		
 	^ dirArea
-		layoutSpec: spec;
 		color: Color  transparent ;
 		separation: 2;
 		addMorph: label;
@@ -2445,11 +2404,11 @@ newDirectionArea
 	
 	! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:35:32'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:22:30'!
 newPaddingArea
 	"Answer a FramedLayoutMorph with controls for Padding"
 	
-	| padArea label spec direction |
+	| padArea label direction |
 	padArea := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Padding'.
 	direction := self editModel direction.
@@ -2457,13 +2416,8 @@ newPaddingArea
 		(direction = #horizontal)
 			ifTrue: [ #(Left Center Right Specify) ] 
 			ifFalse: [ #(Top Center Bottom Specify) ]
-	).
-	spec := LayoutSpec fixedHeight:
-		(2 * padArea borderWidth)
-		+ (label naturalHeight)
-		+ (padRadio naturalHeight)
-		+ 6.
-		
+	)..
+	
 	"Setup"
 	padEntry := SimpleNumberEntryMorph realFactor: 1.0 maxNumChars: 3.
 	(padRadio rowFor: #Specify) addMorph: padEntry.
@@ -2475,8 +2429,7 @@ newPaddingArea
 	padRadio when: #informRadioSelection send: #newPaddingSelection: to: self.
 		
 	^ padArea
-		layoutSpec: spec;
-		color: Color  transparent ;
+		color: Color transparent ;
 		separation: 4;
 		addMorph: label;
 		addMorph: padRadio;
@@ -2500,17 +2453,13 @@ newPaddingSelection: padSym
 
 ! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:38:54'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:24:09'!
 newSeparationtionArea
 	"Answer a FramedLayoutMorph with controls for x & y separation"
 	
-	| sepArea label spec xArea yArea xSep ySep |
+	| sepArea label xArea yArea xSep ySep |
 	sepArea := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Separation'.
-	spec := LayoutSpec fixedHeight:
-		(2 * sepArea borderWidth)
-		+ (3 * label naturalHeight)
-		+ 10.
 		
 	"Setup"
 	xSep := SimpleNumberEntryMorph 
@@ -2546,7 +2495,6 @@ newSeparationtionArea
 	ySep refreshValueFrom: self editModel.
 		
 	 ^ sepArea
-		layoutSpec: spec;
 		color: Color  transparent ;
 		separation: 2;
 		addMorph: label;
@@ -2769,16 +2717,6 @@ propWidthPercent
 		addMorph: (StringMorph contents: '%');
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'initialization' stamp: 'jmv 4/25/2019 10:06:26'!
-auxHeight
-
-	^ 5 * AbstractFont default lineSpacing    "pixels"! !
-
-!LayoutSpecEditPanel methodsFor: 'initialization' stamp: 'KenD 9/17/2016 14:23:14'!
-defaultExtent
-
-	^ 540@240! !
-
 !LayoutSpecEditPanel methodsFor: 'GUI building' stamp: 'KenD 8/26/2015 12:33'!
 buildMorphicWindow
 
@@ -2819,18 +2757,6 @@ fontPreferenceChanged
 	self refreshView.
 	self submorphsDo: [ :m | m fontPreferenceChanged. ] 
 .	self morphExtent: self minimumExtent ! !
-
-!LayoutSpecEditPanel methodsFor: 'geometry' stamp: 'KenD 9/17/2016 14:49:09'!
-minimumExtent
-	"Answer minimum to hold my submorphs"
-	| width height |
-	width := height := 0.
-	self submorphsDo: [ :sm | | minExt |
-		minExt := sm minimumExtent.
-		width := width max: minExt x.
-		height := height + minExt y.
-	].
-	^ width @ 20 + height + self buttonArea minimumExtent y! !
 
 !LayoutSpecEditPanel methodsFor: 'accessing' stamp: 'KenD 12/17/2013 19:50'!
 heightArea
@@ -2886,21 +2812,21 @@ heightSelectionSymbol
 		]
 		ifNotNil: [ #Proportional ].! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/18/2015 19:01'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:56:10'!
 newEmptyAuxArea
 
 	| aux |
 	aux := LayoutMorph newColumn.
 	^ aux
-		color: Color  transparent ;
+		color: Color  transparent ; "
 		layoutSpec: (LayoutSpec 
 					proportionalWidth: 1.0 
 					fixedHeight: self auxHeight
 					minorDirectionPadding: #center);
-		separation: self defaultSeparation;
+		separation: self defaultSeparation;"
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:45:05'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:17:53'!
 newHeightArea
 	"Answer a FramedLayoutMorph with controls for Height"
 	
@@ -2910,12 +2836,7 @@ newHeightArea
 	radio := RadioGroup fromList: #( 'use morph height' Fixed Proportional ).
 	selected := self heightSelectionSymbol.
 
-	spec := LayoutSpec fixedHeight:
-		(2 * heightRegion borderWidth)
-		+ (label naturalHeight)
-		+ (radio naturalHeight)
-		+ (self auxHeight)
-		+ 4.
+	spec := LayoutSpec useAll.
 	spec minorDirectionPadding: #top.
 		
 	"Setup"
@@ -2972,23 +2893,15 @@ newPaddingArea
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:47:20'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:55:22'!
 newWidthArea
 	"Answer a FramedLayoutMorph with controls for Width"
 	
-	| widthRegion label spec radio selected |
+	| widthRegion label radio selected |
 	widthRegion := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Width'.
 	radio := RadioGroup fromList: #( 'use morph width' Fixed Proportional ).
 	selected := self widthSelectionSymbol.
-
-	spec := LayoutSpec fixedHeight:
-		(2 * widthRegion borderWidth)
-		+ (label naturalHeight)
-		+ (radio naturalHeight)
-		+ (self auxHeight)
-		+ 4.
-	spec minorDirectionPadding: #top.
 			
 	"Setup"
 	self setRadioSelection: radio selectSym: selected.	
@@ -2997,7 +2910,6 @@ newWidthArea
 	radio when: #informRadioSelection send: #newWidthSelection: to: self.
 		
 	^ widthRegion
-		layoutSpec: spec;
 		color: Color  transparent ;
 		separation: 4;
 		addMorph: label;
@@ -3008,7 +2920,7 @@ newWidthArea
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 12/17/2013 20:36'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 14:00:37'!
 refreshHeightArea
 	"Update my view"
 	
@@ -3016,10 +2928,11 @@ refreshHeightArea
 	oldArea := self heightArea.
 	newArea := self newHeightArea.
 	self replaceArea: oldArea with: newArea.
-	self heightArea: newArea 
+	self heightArea: newArea;
+		 morphExtent: self minimumExtent 
 	! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 12/17/2013 19:55'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 14:00:47'!
 refreshPaddingArea
 	"Update my view"
 	
@@ -3027,10 +2940,11 @@ refreshPaddingArea
 	oldArea := self paddingArea.
 	newArea := self newPaddingArea.
 	self replaceArea: oldArea with: newArea.
-	self paddingArea: newArea 
+	self paddingArea: newArea;
+		 morphExtent: self minimumExtent 
 	! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 12/17/2013 20:35'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 14:00:54'!
 refreshWidthArea
 	"Update my view"
 	
@@ -3038,7 +2952,8 @@ refreshWidthArea
 	oldArea := self widthArea.
 	newArea := self newWidthArea.
 	self replaceArea: oldArea with: newArea.
-	self widthArea: newArea 
+	self widthArea: newArea;
+		 morphExtent: self minimumExtent 
 	! !
 
 !LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 12/17/2013 19:55'!
@@ -3131,12 +3046,13 @@ newWidthSelection: selectSym
 	
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 4/19/2015 15:20'!
+!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 3/9/2020 13:58:10'!
 refreshView
 
 	self refreshHeightArea; 
 		refreshPaddingArea;
-		refreshWidthArea! !
+		refreshWidthArea;
+		morphExtent: self minimumExtent! !
 
 !LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 7/27/2015 16:27'!
 showHalo
@@ -3156,7 +3072,7 @@ showHaloButtonClicked
 
 	self showHalo! !
 
-!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 4/28/2019 18:49:13'!
+!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 3/9/2020 12:52:29'!
 updateMasterFromCopy
 	"Update model from editModel"
 	
@@ -3177,7 +3093,7 @@ updateMasterFromCopy
 	self editModel: nil.
 	"My containing LayoutMorph may need to recalculate & redisplay"
 	original morph containingLayout 
-		ifNotNil: [ :myLayoutMorph | myLayoutMorph calculateMinimumExtent; layoutSubmorphs; redrawNeeded ].
+		ifNotNil: [ :myLayoutMorph | myLayoutMorph layoutSubmorphs; redrawNeeded ].
 	original triggerEvent: #propertyChanged.
 	
 	self stayUp 
@@ -3244,11 +3160,6 @@ initialize
 
 	super initialize.
 	self buildMorphicWindow.! !
-
-!ValueEntryPanel methodsFor: 'geometry' stamp: 'KenD 12/23/2016 16:58:08'!
-minimumExtent
-
-	^ 12@4 * self boxExtent! !
 
 !CharacterEntryPanel methodsFor: 'events' stamp: 'KenD 4/28/2019 18:50:16'!
 accept
@@ -5881,6 +5792,13 @@ boxExtent
 	| e |
 	e _ Preferences windowTitleFont lineSpacing.
 	^e@e! !
+
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 3/9/2020 12:59:53'!
+changeColor
+	"Change the color of the receiver -- triggered, e.g. from a menu"
+
+	"Override default method"
+	ImagePallet clickSelectColorsFor: self! !
 
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 9/17/2016 10:08:23'!
 colorizeLayouts
