@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4064] on 9 March 2020 at 2:48:21 pm'!
+'From Cuis 5.0 [latest update: #4064] on 9 March 2020 at 4:24:32 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 145!
+!provides: 'Morphic-Misc1' 1 146!
 !requires: 'Cuis-Base' 50 4064 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -4527,20 +4527,19 @@ includeInNewMorphMenu
 	
 	^ false! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 8/26/2015 15:20'!
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 3/9/2020 16:20:33'!
 addButton: nameSym action: actionSym baloonText: toolHelpString themeName: iconName
+
 	"add a a button morph to me"
-	| spec button |
-	spec := LayoutSpec keepMorphExtent.
-	spec minorDirectionPadding: 0.001.
+	| button |
 	button := PluggableButtonMorph model: self action: actionSym.
 	button
-		icon: ((Theme current perform: iconName) magnifyTo: self boxExtent - 4) ;
+		icon: ((Theme current perform: iconName) magnifyTo: self boxExtent) ;
 		setBalloonText: toolHelpString;
 		iconName: nameSym;
 		morphExtent: self boxExtent.
 		
-	self addMorph: button layoutSpec: spec
+	self addMorph: button
 	! !
 
 !WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 4/24/2015 08:01'!
@@ -4583,13 +4582,13 @@ showButtonsNamed: aSymbolColleciton
 			].
 ! !
 
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'jmv 4/25/2019 10:08:32'!
+!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 3/9/2020 16:09:20'!
 boxExtent
 	"answer the extent to use in all the buttons. 
 	 
 	the label height is used to be proportional to the fonts preferences"
 	| e |
-	e _ Preferences windowTitleFont lineSpacing.
+	e _ Preferences windowTitleFont pointSize.
 	^e@e! !
 
 !WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/23/2015 17:01'!
