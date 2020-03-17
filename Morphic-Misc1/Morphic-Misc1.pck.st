@@ -1,12 +1,45 @@
-'From Cuis 5.0 [latest update: #4064] on 9 March 2020 at 4:24:32 pm'!
+'From Cuis 5.0 [latest update: #4069] on 13 March 2020 at 2:50:56 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 146!
+!provides: 'Morphic-Misc1' 1 148!
 !requires: 'Cuis-Base' 50 4064 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
 
 
+!classDefinition: #MorphicMisc1Package category: #'Morphic-Misc1'!
+CodePackage subclass: #MorphicMisc1Package
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'MorphicMisc1Package class' category: #'Morphic-Misc1'!
+MorphicMisc1Package class
+	instanceVariableNames: ''!
+
+
+!MorphicMisc1Package commentStamp: '<historical>' prior: 0!
+My purpose in life is to check that any base image methods overridden have not been updated.
+See #MorphMisc1Package class>>prePackageInstall!
+
+!MorphicMisc1Package class methodsFor: 'installing' stamp: 'KenD 3/13/2020 14:01:21'!
+prePackageInstall
+
+	"Check that any method in base image that I wish to override has not changed"
+	
+	"Morph>>changeColor
+	 Last updated   2013-03-05T13:29:00+00:00 @@"
+	self assert:
+		(Morph methodDictionary at: #changeColor) dateAndTime =
+			(DateAndTime
+				year: 2013
+				month: 3
+				day: 5
+				hour: 13
+				minute: 29
+				second: 0).
+! !
+MorphicMisc1Package prePackageInstall!
 !classDefinition: #AddedCursors category: #'Morphic-Misc1'!
 CursorWithMask subclass: #AddedCursors
 	instanceVariableNames: ''
@@ -6013,3 +6046,4 @@ privateProportionalWidth
 AddedCursors initialize!
 RadioButtonMorph initialize!
 FrameMorph initialize!
+MorphicMisc1Package postPackageInstall!
