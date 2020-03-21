@@ -1,11 +1,11 @@
-'From Cuis 5.0 [latest update: #3878] on 17 September 2019 at 6:38:09 am'!
+'From Cuis 5.0 [latest update: #4069] on 21 March 2020 at 1:22:58 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 35!
-!requires: 'Morphic-Misc1' 1 103 nil!
-!requires: 'Color-Extras' 1 4 nil!
-!requires: 'Cuis-Base' 50 3878 nil!
-!requires: 'CSS3-NamedColors' 1 0 nil!
+!provides: 'Morphic-ColorEditor' 1 36!
 !requires: 'Graphics-Files-Additional' 1 nil nil!
+!requires: 'Color-Extras' 1 4 nil!
+!requires: 'Cuis-Base' 50 4069 nil!
+!requires: 'Morphic-Misc1' 1 103 nil!
+!requires: 'CSS3-NamedColors' 1 0 nil!
 SystemOrganization addCategory: #'Morphic-ColorEditor'!
 
 
@@ -397,7 +397,7 @@ resetSliderColumn
 
 	self resetSliderColumn: self colorSelectionSymbol! !
 
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 9/17/2016 21:54:15'!
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 3/21/2020 13:22:00'!
 resetSliderColumn: sliderSym
 	"Radio selector changed.."
 
@@ -420,7 +420,7 @@ resetSliderColumn: sliderSym
 		separation: 6;
 		layoutSpec: (LayoutSpec 
 						fixedWidth: 4 + (AbstractFont default 
-												widthOfString: 'Brightness') "longest string"
+												widthOfString: 'BrightnessXX') "longest string"
 						fixedHeight: 256  
 						minorDirectionPadding: #top);
 		addMorph: scrollBar;
