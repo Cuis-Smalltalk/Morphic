@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4069] on 13 March 2020 at 2:50:56 pm'!
+'From Cuis 5.0 [latest update: #4074] on 28 March 2020 at 8:20:48 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 148!
-!requires: 'Cuis-Base' 50 4064 nil!
+!provides: 'Morphic-Misc1' 1 149!
+!requires: 'Cuis-Base' 50 4074 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -3642,13 +3642,15 @@ adjustExtent
 
 	self morphExtent: (self morphExtent min: self minimumExtent)! !
 
-!FontMorph methodsFor: 'geometry' stamp: 'KenD 5/11/2019 13:36:02'!
+!FontMorph methodsFor: 'geometry' stamp: 'KenD 3/28/2020 08:18:42'!
 labelMorphOffset
 	"LabelMorph is offset by combinedBorder"
 	| combinedBorder |
-	combinedBorder := self labelMorph extentBorder + self borderWidth + 10.
+	combinedBorder := self labelMorph extentBorder 
+							+ self borderWidth
+							+ (self font pointSize / 2).
 	
-	^ combinedBorder@(combinedBorder + 16).! !
+	^ (combinedBorder)@(combinedBorder)! !
 
 !FontMorph methodsFor: 'initialization' stamp: 'KenD 11/29/2016 09:54:03'!
 defaultColor
