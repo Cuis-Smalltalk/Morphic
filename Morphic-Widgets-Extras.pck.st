@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3774] on 28 May 2019 at 9:49:17 am'!
+'From Cuis 5.0 [latest update: #4112] on 21 April 2020 at 8:52:14 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 20!
+!provides: 'Morphic-Widgets-Extras' 1 22!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -153,7 +153,7 @@ A very simple morph to demo stepping, and for knowing about stepping (and world 
 
 FrameRateMorph new openInHand!
 
-!FunctionGraphMorph commentStamp: '<historical>' prior: 0!
+!FunctionGraphMorph commentStamp: 'jmv 4/21/2020 20:52:08' prior: 0!
 For continuous functions on a real domain.
 
 | g d |
@@ -179,6 +179,15 @@ g domain: (-4 to: 4).
 g addFunction: [ :x | x mod: d ] color: Color green.
 g addFunction: [ :x | x div: d ] color: Color red.
 g openInWorld
+
+| g |
+g _ FunctionGraphMorph new.
+g domain: (-30 to: 30 count: 2000).
+g domain: (-30 to: 30).
+g yRange: (-200 to: 200).
+g addFunction: [ :x | ((3* x *x)) / (x+2) ] color: Color red.
+g addFunction: [ :x | ((3* x *x*x) - (6*x*x)) / (x squared -4) ] color: Color green.
+(g embeddedInMorphicWindowLabeled: 'graph') openInWorld.
 !
 
 !MinimalStringMorph commentStamp: 'jmv 4/1/2009 21:43' prior: 0!
@@ -838,13 +847,14 @@ domain: anInterval
 	yMin _ nil.
 	yMax _ nil.! !
 
-!FunctionGraphMorph methodsFor: 'accessing' stamp: 'jmv 3/9/2018 16:06:24'!
+!FunctionGraphMorph methodsFor: 'accessing' stamp: 'jmv 4/21/2020 20:44:35'!
 yRange: anInterval
 
 	yMin _ anInterval first asFloat.
-	yMax _ anInterval last asFloat.! !
+	yMax _ anInterval last asFloat.
+	yRangeInvalid := false.! !
 
-!FunctionGraphMorph methodsFor: 'drawing' stamp: 'pb 5/27/2019 18:21:01'!
+!FunctionGraphMorph methodsFor: 'drawing' stamp: 'jmv 4/21/2020 20:49:45'!
 drawOn: aCanvas
 	"
 	| g |
@@ -859,8 +869,9 @@ drawOn: aCanvas
 		yMin _ Float infinity.
 		yMax _ Float negativeInfinity.
 		self iterate: [ :x :y :c |
-			yMin _ yMin min: y.
-			yMax _ yMax max: y ].
+			y notNil ifTrue: [
+				yMin _ yMin min: y.
+				yMax _ yMax max: y ]].
 		yMax = yMin ifTrue: [
 			yMin _ yMin min: 0.
 			yMax _ yMax max: 0 ].
@@ -883,20 +894,16 @@ drawOn: aCanvas
 	functions with: colors do: [ :f :c |
 		prevP _ nil.
 		xMin asFloat to: xMax count: extent x do: [ :x | | y |
-			y _ f value: x.
-			(y between: yMin and: yMax) 
-				ifFalse: [ yRangeInvalid := true.
-					prevP _ nil ]
-				ifTrue: [
+			y _ [ f value: x ] on: Error do: [].
+			(y notNil and: [
 					p _ (self xToMorphic: x)@(self yToMorphic: y).
-					(r containsPoint: p) 
-						ifFalse: [
-							prevP _ nil]
-						ifTrue: [
-							prevP ifNotNil: [
-								aCanvas
-									line: prevP to: p width: 2 color: c ].
-							prevP _ p ]]]].
+					(r containsPoint: p) ])
+				ifFalse: [
+					prevP _ nil]
+				ifTrue: [
+					prevP notNil ifTrue: [
+						aCanvas line: prevP to: p width: 2 color: c ].
+					prevP _ p ]]].
 
 	"To plot just the points"
 	"self iterate: [ :x :y :c |
@@ -913,13 +920,13 @@ drawOn: aCanvas
 	aCanvas drawString: yMin printString at: 4@(extent y - 32) font: fontToUse color: Color black.
 	aCanvas drawString: yMax printString at: 4@4 font: fontToUse color: Color black.! !
 
-!FunctionGraphMorph methodsFor: 'drawing' stamp: 'jmv 3/9/2018 16:07:41'!
+!FunctionGraphMorph methodsFor: 'drawing' stamp: 'jmv 4/21/2020 20:25:25'!
 iterate: aBlock
 
 	| y |
 	functions with: colors do: [ :f :c |
 		xMin asFloat to: xMax count: extent x do: [ :x |
-			y _ f value: x.
+			y _ [ f value: x ] on: Error do: [].
 			aBlock value: x value: y asFloat value: c ]]! !
 
 !FunctionGraphMorph methodsFor: 'initialization' stamp: 'pb 5/27/2019 18:19:57'!
