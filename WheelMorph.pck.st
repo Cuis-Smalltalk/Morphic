@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4112] on 26 April 2020 at 3:04:05 pm'!
+'From Cuis 5.0 [latest update: #4126] on 28 April 2020 at 2:20:34 pm'!
 'Description A WheelMorph is a mouse based "thumb wheel" for adjusting a value.
 '!
-!provides: 'WheelMorph' 1 1!
+!provides: 'WheelMorph' 1 2!
 SystemOrganization addCategory: #WheelMorph!
 
 
@@ -15,6 +15,16 @@ BorderedRectMorph subclass: #WheelMorph
 WheelMorph class
 	instanceVariableNames: ''!
 
+!classDefinition: #ScrollWheelMorph category: #WheelMorph!
+WheelMorph subclass: #ScrollWheelMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'WheelMorph'!
+!classDefinition: 'ScrollWheelMorph class' category: #WheelMorph!
+ScrollWheelMorph class
+	instanceVariableNames: ''!
+
 
 !WheelMorph commentStamp: 'HilaireFernandes 11/5/2017 16:42:57' prior: 0!
 A thumb wheel widget control:
@@ -25,6 +35,17 @@ w color: Color red.
 w target: Transcript; actionSelector: #print:.
 w openInWorld.
 !
+
+!ScrollWheelMorph commentStamp: '<historical>' prior: 0!
+I am a WheelMorph which sends MouseScrollEvent's to my target.
+
+| ed model wheel |
+ed := TextEditor openTextEditor.
+"paste a bunch of text to get scrollbar"
+model := ed layoutMorph submorphs first. "TextModelMorph"
+wheel := ScrollWheelMorph target: model.
+wheel beVertical.
+wheel openInWorld. "OK. Try it out!!"!
 
 !WheelMorph methodsFor: 'accessing'!
 actionSelector
@@ -211,4 +232,56 @@ initialize
 target: aTarget actionSelector: aSymbol
 	
 	^ self new :: target: aTarget; actionSelector: aSymbol
+! !
+
+!ScrollWheelMorph methodsFor: 'event handling' stamp: 'KenD 4/28/2020 13:52:23'!
+doTargetAction: cursorPoint
+	| new delta mouseScrollDirection |
+	self isHorizontal
+		ifTrue: [ "left lower, right higher"
+				new _ cursorPoint x. 
+				delta _ new - old.
+				(delta < 0)
+					ifTrue:   [ mouseScrollDirection := #left ] 
+					ifFalse:  [ mouseScrollDirection := #right ] 
+		]
+		ifFalse: [ "down lower, up higher"
+				new _ cursorPoint y. 
+				delta _ old - new.
+				(delta < 0)
+					ifTrue:   [ mouseScrollDirection := #down ] 
+					ifFalse:  [ mouseScrollDirection := #up ] 
+		].
+	
+	delta isZero ifTrue: [^self].
+	self addAngle: delta.
+	old _ new.
+		
+	(target ~~ nil) ifTrue: [ | scrollEvent wheelPosition |
+		wheelPosition := (self morphPosition // 2). "wheel center"
+		scrollEvent := MouseScrollEvent new
+						setType: #mouseScroll
+						position: wheelPosition
+						direction: mouseScrollDirection
+						buttons: InputSensor mouseButton1
+						hand: self activeHand
+						stamp: Time localMillisecondClock.
+
+		Cursor normalCursor showWhile: [ "Send a scrollEvent for each 'tick' "
+			1 to: (delta abs) do: [ :count | scrollEvent sentTo: target localPosition: wheelPosition]
+		]
+	]
+
+! !
+
+!ScrollWheelMorph class methodsFor: 'instance creation' stamp: 'KenD 4/28/2020 13:18:21'!
+target: aTarget
+	
+	^ self new :: target: aTarget
+! !
+
+!ScrollWheelMorph class methodsFor: 'instance creation' stamp: 'KenD 4/28/2020 13:20:02'!
+target: aTarget actionSelector: aSymbol
+	
+	self error: 'ScrollWheelMorph''s only action is to send MouseScrollEvents'
 ! !
