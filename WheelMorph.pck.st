@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4126] on 28 April 2020 at 2:20:34 pm'!
+'From Cuis 5.0 [latest update: #4126] on 28 April 2020 at 5:12:51 pm'!
 'Description A WheelMorph is a mouse based "thumb wheel" for adjusting a value.
 '!
-!provides: 'WheelMorph' 1 2!
+!provides: 'WheelMorph' 1 3!
 SystemOrganization addCategory: #WheelMorph!
 
 
@@ -234,7 +234,7 @@ target: aTarget actionSelector: aSymbol
 	^ self new :: target: aTarget; actionSelector: aSymbol
 ! !
 
-!ScrollWheelMorph methodsFor: 'event handling' stamp: 'KenD 4/28/2020 13:52:23'!
+!ScrollWheelMorph methodsFor: 'event handling' stamp: 'KenD 4/28/2020 17:13:05'!
 doTargetAction: cursorPoint
 	| new delta mouseScrollDirection |
 	self isHorizontal
@@ -258,7 +258,7 @@ doTargetAction: cursorPoint
 	old _ new.
 		
 	(target ~~ nil) ifTrue: [ | scrollEvent wheelPosition |
-		wheelPosition := (self morphPosition // 2). "wheel center"
+		wheelPosition := self morphPosition + (self morphExtent // 2). "wheel center"
 		scrollEvent := MouseScrollEvent new
 						setType: #mouseScroll
 						position: wheelPosition
