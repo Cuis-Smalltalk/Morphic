@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4074] on 28 March 2020 at 8:20:48 am'!
+'From Cuis 5.0 [latest update: #4133] on 4 May 2020 at 4:00:20 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 149!
+!provides: 'Morphic-Misc1' 1 150!
 !requires: 'Cuis-Base' 50 4074 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -3939,6 +3939,16 @@ borderWidth: anInteger
 		borderWidth _ anInteger max: 0.
 		self redrawNeeded ]! !
 
+!BorderedImageMorph methodsFor: 'accessing' stamp: 'KenD 5/4/2020 15:55:17'!
+morphHeight
+	
+	^ self morphExtent y! !
+
+!BorderedImageMorph methodsFor: 'accessing' stamp: 'KenD 5/4/2020 15:55:27'!
+morphWidth
+	
+	^ self morphExtent x! !
+
 !BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 12/25/2013 13:41'!
 clippingRect
 	"In own coordinates!!
@@ -3953,11 +3963,17 @@ layoutBounds
 
 	^  (0@0 extent: self morphExtent) insetBy: borderWidth! !
 
-!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 7/4/2015 19:15'!
+!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 5/4/2020 15:40:13'!
+minimumExtent
+	"Answer an extent which includes me, taking into account my borderWidth"
+
+	^ self image extent + borderWidth + borderWidth ! !
+
+!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 5/4/2020 15:39:40'!
 morphExtent
 	"Answer an extent which includes me, taking into account my borderWidth"
 
-	^ self minimumExtent + borderWidth + borderWidth ! !
+	^ self image extent + borderWidth + borderWidth ! !
 
 !BorderedImageMorph methodsFor: 'drawing' stamp: 'KenD 12/25/2013 13:40'!
 drawOn: aCanvas
