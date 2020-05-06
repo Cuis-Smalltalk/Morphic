@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4133] on 4 May 2020 at 4:00:20 pm'!
+'From Cuis 5.0 [latest update: #4133] on 5 May 2020 at 5:27:42 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 150!
+!provides: 'Morphic-Misc1' 1 151!
 !requires: 'Cuis-Base' 50 4074 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -3969,11 +3969,11 @@ minimumExtent
 
 	^ self image extent + borderWidth + borderWidth ! !
 
-!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 5/4/2020 15:39:40'!
+!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 5/5/2020 17:27:33'!
 morphExtent
 	"Answer an extent which includes me, taking into account my borderWidth"
 
-	^ self image extent + borderWidth + borderWidth ! !
+	^ extent + borderWidth + borderWidth ! !
 
 !BorderedImageMorph methodsFor: 'drawing' stamp: 'KenD 12/25/2013 13:40'!
 drawOn: aCanvas
