@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4133] on 6 May 2020 at 9:22:31 am'!
+'From Cuis 5.0 [latest update: #4140] on 12 May 2020 at 4:47:35 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 152!
+!provides: 'Morphic-Misc1' 1 155!
 !requires: 'Cuis-Base' 50 4074 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -924,7 +924,7 @@ collection: aNameImageCollection
 	self collection: aNameImageCollection filter: [ :any | any ] 
 ! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 3/10/2019 14:45:28'!
+!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 5/12/2020 16:46:58'!
 collection: aNameImageCollection filter: imageSelector
 
 	| numImages maxWidth numAcross numDown spacedExtent |
@@ -950,10 +950,10 @@ collection: aNameImageCollection filter: imageSelector
 Transcript show: 'numAcross: ', (numAcross asString), '  numDown: ', (numDown asString)
 	; newLine.
 "
-	self calculatedExtent:  (
-			((self imageWidth + self spaceWidth) * numAcross)
-							@ ((self imageHeight + self spaceWidth) * numDown)
-							) + self spaceWidth. "frame"
+	self calculatedExtent:  
+			(((self imageWidth + self spaceWidth) * numAcross)
+							@ ((self imageHeight + self spaceWidth) * numDown))
+							+ (2 * self spaceWidth). "frame"
 "
 Transcript show: 'calculatedExtent: ', (self calculatedExtent asString)
 	; newLine.
@@ -974,7 +974,7 @@ initialize
 		layoutSpec: LayoutSpec useAll;
 		yourself! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 11/24/2016 09:09:42'!
+!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 5/12/2020 16:45:12'!
 layoutImages: numAcross extent: layoutExtent
 
 	"Lay out images in self"
@@ -986,7 +986,8 @@ layoutImages: numAcross extent: layoutExtent
 							
 	column := LayoutMorph newColumn.
 	column separation:    self spaceWidth;
-			 morphExtent: self calculatedExtent.
+			 morphExtent: self calculatedExtent;
+			 padding: #top.
 
 	count := -1.
 	self nameImageCollection do: [ :nameImageAssoc |
@@ -995,7 +996,7 @@ layoutImages: numAcross extent: layoutExtent
 			image := nameImageAssoc value.
 			count := count + 1.  "Row count"
 			(count \\ numAcross) isZero ifTrue: [ "Start a new Row"
-				nextRow := PalletLayoutMorph newRow separation: self spaceWidth.
+				nextRow := PalletLayoutMorph newRow separation: (self spaceWidth @ 0).
 				nextRow layoutSpec: rowLayoutSpec.
 				column addMorph: nextRow.
 			].
