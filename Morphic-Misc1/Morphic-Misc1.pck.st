@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4140] on 12 May 2020 at 4:47:35 pm'!
+'From Cuis 5.0 [latest update: #4197] on 1 June 2020 at 3:42:08 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 155!
-!requires: 'Cuis-Base' 50 4074 nil!
+!provides: 'Morphic-Misc1' 1 157!
+!requires: 'Cuis-Base' 50 4197 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -798,14 +798,14 @@ initialize
 	self borderWidth: 4.
 	self ofSize: self defaultDiameter! !
 
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 11/24/2013 09:06'!
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 5/22/2020 13:52:10'!
 ofSize: numPixels
 
 	self morphExtent: numPixels @ numPixels.
 	self layoutSpec: (LayoutSpec 
 							fixedWidth: numPixels 
 							fixedHeight: numPixels
-							minorDirectionPadding:  #center) ! !
+							offAxisEdgeWeight:  #center) ! !
 
 !RadioButtonMorph methodsFor: 'event handling testing' stamp: 'KenD 11/19/2013 20:22'!
 handlesMouseDown: aMouseButtonEvent
@@ -974,7 +974,7 @@ initialize
 		layoutSpec: LayoutSpec useAll;
 		yourself! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 5/12/2020 16:45:12'!
+!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 5/31/2020 17:32:15'!
 layoutImages: numAcross extent: layoutExtent
 
 	"Lay out images in self"
@@ -982,12 +982,12 @@ layoutImages: numAcross extent: layoutExtent
 	rowLayoutSpec := LayoutSpec 
 							fixedWidth: layoutExtent x  
 							fixedHeight: self imageHeight
-							minorDirectionPadding: #left.
+							offAxisEdgeWeight: #columnLeft.
 							
 	column := LayoutMorph newColumn.
 	column separation:    self spaceWidth;
 			 morphExtent: self calculatedExtent;
-			 padding: #top.
+			 axisEdgeWeight: #columnTop.
 
 	count := -1.
 	self nameImageCollection do: [ :nameImageAssoc |
@@ -1010,7 +1010,7 @@ layoutImages: numAcross extent: layoutExtent
 	column layoutSpec: (LayoutSpec
 							fixedWidth: self imageWidth
 							fixedHeight: layoutExtent y 
-							minorDirectionPadding: #top).
+							offAxisEdgeWeight: #columnLeft).
 	self addToScroller: column.
 	self hideOrShowScrollBars.
 
@@ -1870,10 +1870,10 @@ defaultExtent
 
 	^ 300 @ 200! !
 
-!Panel methodsFor: 'initialization' stamp: 'KenD 9/16/2016 16:49:16'!
+!Panel methodsFor: 'initialization' stamp: 'KenD 6/1/2020 14:55:20'!
 defaultSeparation
 
-	^ 6 "Pixels between controls/layouts"! !
+	^ 4 "Pixels between controls/layouts"! !
 
 !Panel methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:40'!
 initialize
@@ -2087,7 +2087,7 @@ editModel: anObject
 
 	editModel := anObject! !
 
-!EditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:33:57'!
+!EditPanel methodsFor: 'area layouts' stamp: 'KenD 5/25/2020 13:32:23'!
 newButtonArea
 	"Answer a LayoutMorph with Update and Cancel buttons"
 	
@@ -2100,7 +2100,7 @@ newButtonArea
 			layoutSpec: (LayoutSpec 
 							proportionalWidth: 0.3 
 							proportionalHeight:  1 
-							minorDirectionPadding: #center);
+							offAxisEdgeWeight: #center);
 		addMorph: (PluggableButtonMorph 
 				model: self 
 				action:  #cancelAndForgetEverything
@@ -2108,7 +2108,7 @@ newButtonArea
 			layoutSpec: (LayoutSpec 
 							proportionalWidth: 0.3 
 							proportionalHeight:  1 
-							minorDirectionPadding: #center);
+							offAxisEdgeWeight: #center);
 		addMorph: (PluggableButtonMorph 
 				model: self 
 				action:  #showHaloButtonClicked
@@ -2116,18 +2116,18 @@ newButtonArea
 			layoutSpec: (LayoutSpec 
 							proportionalWidth: 0.3 
 							proportionalHeight:  1 
-							minorDirectionPadding: #center);
+							offAxisEdgeWeight: #center);
 		layoutSpec: (LayoutSpec 
 							proportionalWidth: 1 
-							fixedHeight: 36
-							minorDirectionPadding: #center);
-		padding: #center;
+							fixedHeight: (2 * Preferences windowTitleFont lineSpacing)
+							offAxisEdgeWeight: #center);
+		axisEdgeWeight: #center;
 		color: self widgetsColor;
 		yourself
 
 	! !
 
-!LayoutMorphEditPanel methodsFor: 'GUI building' stamp: 'KenD 9/17/2016 14:13:28'!
+!LayoutMorphEditPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 13:27:43'!
 buildMorphicWindow
 	
 	| controlArea leftCol rightCol  |	
@@ -2141,20 +2141,20 @@ buildMorphicWindow
 	self buttonArea: self newButtonArea.
 
 	controlArea :=  LayoutMorph newRow.  "A row of two columns"
-	controlArea separation: self defaultSeparation.
+	controlArea separation: 2.
 		
 	leftCol := LayoutMorph newColumn.
 	leftCol 
-		separation: self defaultSeparation + 4;
-		padding: #top;
+		separation: self defaultSeparation;
+		axisEdgeWeight: #columnTop;
 		addMorph: directionArea;
 		addMorph: paddingArea.
 	controlArea addMorph: leftCol.
 
 	rightCol := LayoutMorph newColumn.
 	rightCol 
-		separation: self defaultSeparation + 4;
-		padding: #top;
+		separation: self defaultSeparation;
+		axisEdgeWeight: #columnTop;
 		addMorph: separationArea ;
 		addMorph: colorArea .
 	controlArea addMorph: rightCol.
@@ -2163,7 +2163,7 @@ buildMorphicWindow
 		separation: self defaultSeparation;
 		addMorph: controlArea;
 		addMorph: self buttonArea;
-		padding: #center.
+		axisEdgeWeight: #center.
 		
 	self morphExtent: self minimumExtent;
 		yourself
@@ -2304,10 +2304,10 @@ modelColor: aColor
 	self editModel color: aColor.
 	self refreshColorArea.! !
 
-!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 12/17/2013 12:36'!
+!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 5/22/2020 13:32:33'!
 modelPadding: numPixels
 	
-	self editModel padding: numPixels.
+	self editModel axisEdgeWeight: numPixels.
 	self refreshPaddingArea.! !
 
 !LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 12/17/2013 12:36'!
@@ -2350,7 +2350,7 @@ showHaloButtonClicked
 				popUpForHand: self  world activeHand
 	]! !
 
-!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 2/26/2020 08:00:09'!
+!LayoutMorphEditPanel methodsFor: 'event handling' stamp: 'KenD 5/22/2020 13:26:01'!
 updateMasterFromCopy
 	"Update model from editModel"
 	
@@ -2358,7 +2358,7 @@ updateMasterFromCopy
 	original := self model.
 	editCopy := self editModel.
 	original direction: editCopy direction.
-	original padding: editCopy padding.
+	original axisEdgeWeight: editCopy axisEdgeWeight.
 	original separation: ( editCopy xSeparation @ editCopy ySeparation ).
 	original color: editCopy color.
 	original refreshExtent; layoutSubmorphs; redrawNeeded.
@@ -2371,7 +2371,7 @@ updateMasterFromCopy
 		ifTrue: [ self refreshView ]
 ! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:43:58'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 15:26:57'!
 newColorArea
 	"Answer a FramedLayoutMorph showing color swatch and hex RGB entry"
 	
@@ -2379,10 +2379,11 @@ newColorArea
 	newColorArea := FramedLayoutMorph newColumn.
 	label := LabelMorph contents: 'Color'.
 	colorRGB := SimpleNumberEntryMorph hexRGBEntry.
+	colorRGB layoutSpec: (LayoutSpec keepMorphExtent offAxisEdgeWeight: #center).
 		
 	hexEntry := LayoutMorph newRow.
 	hexEntry
-		separation: 2; padding: #left;
+		separation: 2; axisEdgeWeight: #rowLeft;
 		color: Color transparent;
 		addMorph: (StringMorph contents: '16r');
 		addMorph: colorRGB;
@@ -2403,8 +2404,8 @@ newColorArea
 		
 	^ newColorArea
 		color: Color  transparent;
-		padding: #top;
-		separation: self defaultSeparation + 4;
+		axisEdgeWeight: #columnTop;
+		separation: self defaultSeparation + 6;
 		addMorph: label;
 		addMorph: self colorMorph;
 		addMorph: hexEntry;
@@ -2438,13 +2439,13 @@ newDirectionArea
 	
 	! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:22:30'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 5/22/2020 13:27:02'!
 newPaddingArea
 	"Answer a FramedLayoutMorph with controls for Padding"
 	
 	| padArea label direction |
 	padArea := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'Padding'.
+	label := LabelMorph contents: 'EdgeWeight'.
 	direction := self editModel direction.
 	padRadio := RadioGroup fromList: ( 
 		(direction = #horizontal)
@@ -2455,7 +2456,7 @@ newPaddingArea
 	"Setup"
 	padEntry := SimpleNumberEntryMorph realFactor: 1.0 maxNumChars: 3.
 	(padRadio rowFor: #Specify) addMorph: padEntry.
-	padEntry valueAccessor: [ :myModel | myModel padding ].
+	padEntry valueAccessor: [ :myModel | myModel axisEdgeWeight ].
 	padEntry valueUpdator: [ :newPad | self modelPadding: newPad ].
 	padEntry refreshValueFrom: self editModel.
 	self setPadRadio: padRadio fromPadFactor: padEntry value.
@@ -2591,7 +2592,7 @@ setPadRadio: radio fromPadFactor: factor
 		[1.0] -> [ (radio buttons at: 3) select ].
 	} otherwise: [ (radio buttons at: 4) select ]! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:40:34'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 5/31/2020 17:36:09'!
 addFixedHeightEntryMorphTo: radio
 	"Add entry field to #Fixed radioButton row"
 
@@ -2608,12 +2609,12 @@ addFixedHeightEntryMorphTo: radio
 	rowForFixed := (radio rowFor: #Fixed).
 	rowForFixed
 			layoutSpec proportionalWidth: 0.4;
-			minorDirectionPadding:  #left.
+			offAxisEdgeWeight:  #rowLeft.
 	rowForFixed 
 			addMorph: fixEntry.
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:40:48'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 6/1/2020 14:46:20'!
 addFixedWidthEntryMorphTo: radio
 	"Add entry field to #Fixed radioButton row"
 
@@ -2630,7 +2631,7 @@ addFixedWidthEntryMorphTo: radio
 	rowForFixed := (radio rowFor: #Fixed).
 	rowForFixed 
 			layoutSpec proportionalWidth: 0.4;
-			minorDirectionPadding:  #left.
+			offAxisEdgeWeight:  #rowTop.
 	rowForFixed
 			addMorph: fixEntry.
 ! !
@@ -2751,7 +2752,7 @@ propWidthPercent
 		addMorph: (StringMorph contents: '%');
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'GUI building' stamp: 'KenD 8/26/2015 12:33'!
+!LayoutSpecEditPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:34:07'!
 buildMorphicWindow
 
 	| controlsArea |
@@ -2776,7 +2777,7 @@ buildMorphicWindow
 		separation: self defaultSeparation;
 		addMorph: controlsArea;
 		addMorph: self buttonArea;
-		padding: #center.
+		axisEdgeWeight: #center.
 		
 	self morphExtent: self minimumExtent;
 		yourself
@@ -2860,7 +2861,7 @@ newEmptyAuxArea
 		separation: self defaultSeparation;"
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:17:53'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 14:56:23'!
 newHeightArea
 	"Answer a FramedLayoutMorph with controls for Height"
 	
@@ -2871,7 +2872,7 @@ newHeightArea
 	selected := self heightSelectionSymbol.
 
 	spec := LayoutSpec useAll.
-	spec minorDirectionPadding: #top.
+	spec offAxisEdgeWeight: #leftOrTop.
 		
 	"Setup"
 	self setRadioSelection: radio selectSym: selected.
@@ -2881,7 +2882,7 @@ newHeightArea
 		
 	^ heightRegion
 		layoutSpec: spec;
-		separation: 4;
+		separation: 2;
 		color: Color  transparent ;
 		addMorph: label;
 		addMorph: radio;
@@ -2891,13 +2892,13 @@ newHeightArea
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 4/28/2019 18:45:50'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 14:57:09'!
 newPaddingArea
 	"Answer a FramedLayoutMorph with controls for Padding"
 	
 	| padArea label spec row |
 	padArea := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'Padding'.
+	label := LabelMorph contents: 'offAxis EdgeWeight'.
 	padRadio := RadioGroup fromList:  #('Left/Top' Center 'Right/Bottom' Specify) .
 	
 	spec := LayoutSpec fixedHeight:
@@ -2905,13 +2906,13 @@ newPaddingArea
 		+ (label naturalHeight)
 		+ (padRadio naturalHeight)
 		+ 20.
-	spec minorDirectionPadding: #top.
+	spec offAxisEdgeWeight: #leftOrTop.
 			
 	"Setup"
 	padEntry := SimpleNumberEntryMorph realFactor: 1.0 maxNumChars: 3.
 	row := (padRadio rowFor: #Specify).
 	row addMorph: padEntry.
-	padEntry valueAccessor: [ :myModel | myModel minorDirectionPadding ].
+	padEntry valueAccessor: [ :myModel | myModel offAxisEdgeWeight ].
 	padEntry valueUpdator: [ :newPad | self modelPadding: newPad ].
 	padEntry refreshValueFrom: self editModel.
 	self setPadRadio: padRadio fromPadFactor: padEntry value.
@@ -2921,13 +2922,13 @@ newPaddingArea
 	^ padArea
 		layoutSpec: spec;
 		color: Color  transparent ;
-		separation: 4;
+		separation: 2;
 		addMorph: label;
 		addMorph: padRadio;
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:55:22'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 14:57:30'!
 newWidthArea
 	"Answer a FramedLayoutMorph with controls for Width"
 	
@@ -2945,7 +2946,7 @@ newWidthArea
 		
 	^ widthRegion
 		color: Color  transparent ;
-		separation: 4;
+		separation: 2;
 		addMorph: label;
 		addMorph: radio;
 		addMorph: ((selected == #Proportional)
@@ -3106,7 +3107,7 @@ showHaloButtonClicked
 
 	self showHalo! !
 
-!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 3/9/2020 12:52:29'!
+!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 5/22/2020 13:38:43'!
 updateMasterFromCopy
 	"Update model from editModel"
 	
@@ -3123,7 +3124,7 @@ updateMasterFromCopy
 		original proportionalWidth: editCopy privateProportionalWidth 
 				  minimum: editCopy privateFixedWidth
 	].
-	original minorDirectionPadding: editCopy minorDirectionPadding.
+	original offAxisEdgeWeight: editCopy offAxisEdgeWeight.
 	self editModel: nil.
 	"My containing LayoutMorph may need to recalculate & redisplay"
 	original morph containingLayout 
@@ -3145,17 +3146,17 @@ cancel
 
 	self delete! !
 
-!ValueEntryPanel methodsFor: 'GUI building' stamp: 'KenD 12/22/2016 14:24:09'!
+!ValueEntryPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:35:58'!
 buildMorphicWindow
 
 	self layoutMorph 
 		separation: self defaultSeparation;
 		addMorph: self newEntryArea;
 		addMorph: self newButtonArea;
-		padding: #center;
+		axisEdgeWeight: #center;
 		color: (Color white)! !
 
-!ValueEntryPanel methodsFor: 'GUI building' stamp: 'KenD 12/22/2016 18:34:07'!
+!ValueEntryPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:46:16'!
 newButtonArea
 	"Add ACCEPT and CANCEL buttons"
 
@@ -3170,7 +3171,7 @@ newButtonArea
 			layoutSpec: (LayoutSpec new ::
 							proportionalWidth: 0.4 minimum: 100;
 							proportionalHeight:  1;
-							minorDirectionPadding: #center);
+							offAxisEdgeWeight: #center);
 		addMorph: (PluggableButtonMorph 
 				model: self 
 				action:  #cancel
@@ -3178,8 +3179,8 @@ newButtonArea
 			layoutSpec: (LayoutSpec new ::
 							proportionalWidth: 0.4 minimum: 100;
 							proportionalHeight:  1;
-							minorDirectionPadding: #center);
-		padding: #center;
+							offAxisEdgeWeight: #center);
+		axisEdgeWeight: #center;
 		color: (Color transparent).
 		
 	^ buttonArea ! !
@@ -3233,14 +3234,14 @@ initialize
 	super initialize.
 ! !
 
-!CharacterEntryPanel methodsFor: 'initialization' stamp: 'KenD 3/29/2017 13:46:50'!
+!CharacterEntryPanel methodsFor: 'initialization' stamp: 'KenD 5/31/2020 17:25:38'!
 newEntryArea
 
 	| entryLayout |
 	entryLayout := LayoutMorph newRow.
 	entryLayout 
 		separation: self defaultSeparation;
-		padding: #center;
+		axisEdgeWeight: #center;
 		addMorph: characterEditMorph ; "set in #initialize"
 		color: (Color transparent).
 	
@@ -3296,14 +3297,14 @@ initialize
 	super initialize.
 ! !
 
-!PointEntryPanel methodsFor: 'GUI building' stamp: 'KenD 12/22/2016 14:24:56'!
+!PointEntryPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:34:22'!
 newEntryArea
 
 	| entryLayout |
 	entryLayout := LayoutMorph newRow.
 	entryLayout 
 		separation: self defaultSeparation;
-		padding: #center;
+		axisEdgeWeight: #center;
 		addMorph: xEntryMorph; "set in #initialize"
 		addMorph: (LabelMorph new :: contents: '@' );
 		addMorph: yEntryMorph;
@@ -3368,14 +3369,14 @@ initialize
 	super initialize.
 ! !
 
-!PositiveIntegerEntryPanel methodsFor: 'GUI building' stamp: 'KenD 12/22/2016 17:15:30'!
+!PositiveIntegerEntryPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:34:30'!
 newEntryArea
 
 	| entryLayout |
 	entryLayout := LayoutMorph newRow.
 	entryLayout 
 		separation: self defaultSeparation;
-		padding: #center;
+		axisEdgeWeight: #center;
 		addMorph: numberEntryMorph ; "set in #initialize"
 		color: (Color transparent).
 	
@@ -3432,14 +3433,14 @@ initialize
 	super initialize.
 ! !
 
-!StringEntryPanel methodsFor: 'GUI building' stamp: 'KenD 12/23/2016 10:00:43'!
+!StringEntryPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:35:50'!
 newEntryArea
 
 	| entryLayout |
 	entryLayout := FramedLayoutMorph newRow.
 	entryLayout 
 		separation: self defaultSeparation;
-		padding: #left;
+		axisEdgeWeight: #rowLeft;
 		addMorph: stringEditMorph ; "set in #initialize"
 		color: Color transparent;
 		borderColor: Color black.
@@ -4334,7 +4335,7 @@ allowsSubmorphDrag
 
 	^ true! !
 
-!PalletLayoutMorph methodsFor: 'layout' stamp: 'KenD 11/24/2016 08:31:32'!
+!PalletLayoutMorph methodsFor: 'layout' stamp: 'KenD 5/31/2020 17:40:07'!
 shrinkWrap
 	"Resize self to minimally contain submorphs with specified separation"
 	
@@ -4355,7 +4356,7 @@ shrinkWrap
 					(LayoutSpec 
 							fixedWidth: width
 							fixedHeight: height
-							minorDirectionPadding: #left)
+							offAxisEdgeWeight: #rowTop)
 		]
 		ifFalse: [ " vertical  (a column)"
 			sep := 2 * self xSeparation.
@@ -4372,7 +4373,7 @@ shrinkWrap
 					(LayoutSpec 
 							fixedWidth: width 
 							fixedHeight: height
-							minorDirectionPadding: #top)
+							offAxisEdgeWeight: #columnLeft)
 		].
 
 	self morphExtent: width @ height.
@@ -4423,7 +4424,7 @@ list
 
 	^ list! !
 
-!RadioGroup methodsFor: 'accessing' stamp: 'jmv 4/25/2019 10:07:57'!
+!RadioGroup methodsFor: 'accessing' stamp: 'KenD 6/1/2020 15:09:50'!
 list: arrayOfSymbols
 	"Set up my submorphs from arrayOfSymbols"
 
@@ -4435,7 +4436,7 @@ list: arrayOfSymbols
 	labelList    := OrderedCollection new.
 	arrayOfSymbols do: [ :labelSym | | newRow label button |
 		newRow := LayoutMorph newRow.
-		newRow separation: 2; color: Color transparent; padding: #left.
+		newRow separation: 2; color: Color transparent; axisEdgeWeight: #rowLeft.
 		button := (RadioButtonMorph ofSize: RadioButtonMorph defaultDiameter).
 		button layoutSpec: (LayoutSpec keepMorphExtent).
 		label := StringMorph contents: labelSym asString font: self font.
@@ -4456,7 +4457,7 @@ list: arrayOfSymbols
 	labelLayout := LayoutSpec 
 			fixedWidth: maxStringWidth + 4
 			fixedHeight: (RadioButtonMorph defaultDiameter max: self font lineSpacing) + 4
-			minorDirectionPadding: #left.
+			offAxisEdgeWeight: #center.
 	labelList do: [ :label | label layoutSpec: labelLayout ].
 "	self layoutSpec: (LayoutSpec fixedHeight: self naturalHeight). "
 
@@ -4486,7 +4487,7 @@ fromList: arrayOfSymbols
 
 	self list: arrayOfSymbols ! !
 
-!RadioGroup methodsFor: 'initialization' stamp: 'KenD 9/17/2016 13:12:26'!
+!RadioGroup methodsFor: 'initialization' stamp: 'KenD 6/1/2020 15:05:24'!
 initialize
 	"Initialize self to harmless values"
 	
@@ -4494,7 +4495,7 @@ initialize
 	self setList: #(); "see #list: setter"
 		 setFont: Preferences standardButtonFont;
 		 buttonOnLeft: true;
-		 separation: 4@4;
+		 separation: 2@2;
 		 color: Color transparent! !
 
 !RadioGroup methodsFor: 'initialization' stamp: 'KenD 11/20/2013 15:06'!
@@ -4520,7 +4521,7 @@ naturalHeight
 	
 	^ 4 + ((self list size) * (2 + ((self font lineSpacing) max: (RadioButtonMorph defaultDiameter))))! !
 
-!RadioGroup methodsFor: 'events-processing' stamp: 'jmv 4/25/2019 10:07:51'!
+!RadioGroup methodsFor: 'events-processing' stamp: 'KenD 5/22/2020 13:52:21'!
 fontPreferenceChanged
 
 	| labelStrings maxStringWidth labelLayoutSpec |
@@ -4535,7 +4536,7 @@ fontPreferenceChanged
 			LayoutSpec 
 					fixedWidth: maxStringWidth + 4
 					fixedHeight: self font lineSpacing + 2
-					minorDirectionPadding: #center. 
+					offAxisEdgeWeight: #center. 
 	self submorphsDo: [ :selectLine |
 		selectLine submorphsDo: [ :aMorph |
 			(aMorph respondsTo: #setFont:)
@@ -4681,14 +4682,14 @@ titleString: aString
 	titleString := aString.
 	self reset! !
 
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/28/2019 18:55:49'!
+!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 5/25/2020 14:09:43'!
 titleStringForDisplay
 	"Answer a string scaled to fit"
 	
 	| titleWidth desiredWidth myTitleString |
 	myTitleString := self titleString.
 	titleWidth := Preferences windowTitleFont widthOfString: myTitleString.
-	desiredWidth := (self morphWidth - (self boxExtent x * self buttonNamesShown size)) max: 20.
+	desiredWidth := (self morphWidth - (self minimumButtonsExtent x)) max: 20.
 	^ (titleWidth <= desiredWidth)
 		ifTrue: [ myTitleString ]
 		ifFalse: [ myTitleString squeezedTo: (myTitleString size * (desiredWidth / titleWidth)) rounded]! !
@@ -4703,13 +4704,14 @@ buttonSeparation
 
 	^ 4@0! !
 
-!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 11/23/2016 14:51:32'!
+!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 5/25/2020 14:13:49'!
 minimumButtonsExtent
 
-	| width height |
+	| width height numButtons |
+	numButtons := self buttonNamesShown size.
 	height := self boxExtent y + 4.
-	width := (self boxExtent x + self buttonSeparation x)
-				* (self buttonNamesShown size).
+	"Note: separation between each button + two ends"
+	width := (numButtons * self boxExtent x) + (numButtons + 2 * self buttonSeparation x).
 	^ width @ height! !
 
 !WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 11/23/2016 14:52:05'!
@@ -5060,23 +5062,43 @@ valueUpdator: aOneArgBlock
 	
 	valueUpdator := aOneArgBlock! !
 
-!SimpleNumberEntryMorph methodsFor: 'drawing' stamp: 'KenD 10/29/2015 14:16'!
+!SimpleNumberEntryMorph methodsFor: 'drawing' stamp: 'KenD 6/1/2020 15:39:06'!
+displayTextCursorAtX: x top: top bottom: bottom emphasis: anEmphasis on: aCanvas
+
+	"Displace my text 4@4 from parent"
+	super displayTextCursorAtX: x + 4 top: top + 2 bottom: bottom + 2 emphasis: anEmphasis on: aCanvas! !
+
+!SimpleNumberEntryMorph methodsFor: 'drawing' stamp: 'KenD 6/1/2020 15:29:07'!
 drawOn: aCanvas
 
 	self hasSelection     ifTrue: [ self drawSelectionOn: aCanvas ].
 	self hasTextCursor ifTrue: [ self drawTextCursorOn: aCanvas ].
 	aCanvas
 		drawString: contents
-		at: 2@2
+		at: 4@4
 		font: self fontToUse
 		color: color.
 		
 	aCanvas
-		frameRectangle: (-2@-2 extent: self morphExtent)
+		frameRectangle: (0@0 extent: self morphExtent)
 		color: Color black
 		borderWidth: 2
 		borderStyleSymbol: #simple
 ! !
+
+!SimpleNumberEntryMorph methodsFor: 'drawing' stamp: 'KenD 6/1/2020 15:47:50'!
+drawSelectionOn: aCanvas
+	| rightX leftX bottom |
+
+	bottom _ self baseFont lineSpacing.
+	leftX _ self fontToUse widthOfString: contents from: 1 to: editor startIndex-1.
+	leftX _ leftX min: extent x.
+	rightX _ self fontToUse widthOfString: contents from: 1 to: editor stopIndex-1.
+	rightX _ rightX min: extent x.
+
+	aCanvas
+		fillRectangle: (leftX+4 @ 4 corner: (rightX + 4) @ (bottom + 3)) "displace from parent"
+		color: (Theme current textHighlightFocused: self hasKeyboardFocus)! !
 
 !SimpleNumberEntryMorph methodsFor: 'geometry' stamp: 'KenD 8/26/2015 13:38'!
 extentBorder
@@ -5131,7 +5153,7 @@ refreshValueFrom: model
 				self redrawNeeded
 	]! !
 
-!SimpleNumberEntryMorph methodsFor: 'initialization' stamp: 'KenD 4/18/2015 19:31'!
+!SimpleNumberEntryMorph methodsFor: 'initialization' stamp: 'KenD 5/22/2020 13:52:45'!
 legalChars: legalEntryChars numCharsToHold: nilOrInteger value: initialValue validator: aClosureToValidate toString: aClosureForString
 
 	entryChars := legalEntryChars.
@@ -5157,7 +5179,7 @@ legalChars: legalEntryChars numCharsToHold: nilOrInteger value: initialValue val
 			self layoutSpec: (LayoutSpec 
 				fixedWidth: desiredExtent x 
 				fixedHeight: desiredExtent y
-				minorDirectionPadding: #center)
+				offAxisEdgeWeight: #center)
 	].
 ! !
 
@@ -5267,7 +5289,7 @@ integerDefault: anInteger  maxNumChars: numChars
 			validator: [ :str |  [ str asNumber ] on: Error do: [ -1 ] ] 
 			toString:  [ :n | n printString ]! !
 
-!SimpleNumberEntryMorph class methodsFor: 'examples' stamp: 'KenD 12/16/2013 17:20'!
+!SimpleNumberEntryMorph class methodsFor: 'examples' stamp: 'KenD 6/1/2020 14:52:10'!
 integerRangeFrom: min to: max maxNumChars: numChars
 	"min..max"
 
@@ -5277,9 +5299,9 @@ integerRangeFrom: min to: max maxNumChars: numChars
 			value: min
 			validator: [ :str | | val | 
 				val := [ str asNumber ] on: Error do: [ -1 ].
-				(val between: min and: max) ifFalse: [ nil ] ifTrue: [ val ]
+				(val between: min and: max) ifFalse: [ nil ] ifTrue: [ val truncated ]
 			] 
-			toString: [ :n | n printString ]! !
+			toString: [ :n | n truncated printString ]! !
 
 !SimpleNumberEntryMorph class methodsFor: 'examples' stamp: 'KenD 11/23/2013 20:01'!
 percent
