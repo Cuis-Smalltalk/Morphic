@@ -1,11 +1,11 @@
-'From Cuis 5.0 [latest update: #4069] on 21 March 2020 at 1:22:58 pm'!
+'From Cuis 5.0 [latest update: #4197] on 1 June 2020 at 4:07:07 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 36!
-!requires: 'Graphics-Files-Additional' 1 nil nil!
-!requires: 'Color-Extras' 1 4 nil!
-!requires: 'Cuis-Base' 50 4069 nil!
-!requires: 'Morphic-Misc1' 1 103 nil!
+!provides: 'Morphic-ColorEditor' 1 37!
 !requires: 'CSS3-NamedColors' 1 0 nil!
+!requires: 'Color-Extras' 1 4 nil!
+!requires: 'Cuis-Base' 50 4197 nil!
+!requires: 'Morphic-Misc1' 1 103 nil!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
 SystemOrganization addCategory: #'Morphic-ColorEditor'!
 
 
@@ -114,7 +114,7 @@ initializedInstance
 
 	^ ImagePallet namedColors! !
 
-!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 10/28/2015 20:34'!
+!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 6/1/2020 16:07:03'!
 initializedInstance
 
 	|  window |
@@ -124,7 +124,7 @@ initializedInstance
 		buildMorphicWindow;
 		setLabel: 'Color Editor';
 		setColor: self defaultColor ;
-		morphExtent: self defaultExtent;
+		morphExtent: window minimumLayoutExtent;
 		yourself
 ! !
 
@@ -226,7 +226,7 @@ sliderColumn
 
 	^ sliderColumn! !
 
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 9/17/2016 21:49:22'!
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 6/1/2020 16:01:28'!
 buildColorPaneColumn
 
 	| selector column hexDisplayLayout |
@@ -244,7 +244,7 @@ buildColorPaneColumn
 	     layoutSpec: (LayoutSpec 
 							proportionalWidth: 0.2 
 							proportionalHeight: 0.1
-							minorDirectionPadding: #left);
+							offAxisEdgeWeight: #rowTop);
 		separation: 1;
 		addMorph: (StringMorph new contents: '16r') layoutSpec: (LayoutSpec keepMorphExtent);
 		addMorph: self rgbString;
@@ -255,19 +255,19 @@ buildColorPaneColumn
 	column
 		addMorph: colorPane;
 		addMorph: hexDisplayLayout;
-		padding: #top;
+		axisEdgeWeight: #columnTop;
 		separation: 4;
 		color: Color transparent.
 	
 	^ column! !
 
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 12/14/2016 09:25:20'!
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 14:45:45'!
 buildMorphicWindow
 	"Create a useful ColorEditor window"
 	
 	self layoutMorph beRow; " A row of columns"
 		 separation: 6;
-		 padding: #left;
+		 axisEdgeWeight: #rowLeft;
 		 addMorph: self buildColorPaneColumn;
 		 addMorph: self buildSliderColumn;
 		 addMorph: self buildRadioButtonColumn;
@@ -279,7 +279,7 @@ buildMorphicWindow
 	^ self
 ! !
 
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 9/17/2016 21:48:58'!
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 14:49:20'!
 buildRadioButtonColumn
 
 	| radioCol setupEntryMorph valueEntryMorph |
@@ -329,7 +329,7 @@ buildRadioButtonColumn
 	radioCol := LayoutMorph newColumn.
 	^ radioCol 
 		separation: 2;
-		padding: #left;
+		axisEdgeWeight: #columnTop;
 		addMorph: rgbRadio;
 		addMorph: hsvRadio;
 		addMorph: self buildSwatchLayout;
@@ -348,7 +348,7 @@ buildSliderColumn
 
 	! !
 
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 12/14/2016 09:29:06'!
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 14:49:50'!
 buildSwatchLayout
 	"Display swatch of current color and closest named color"
 
@@ -366,7 +366,7 @@ buildSwatchLayout
 	labelColumn        := LayoutMorph newColumn.
 	closeColorLabel   := StringMorph new contents: ''.
 	labelColumn
-		padding: #center;
+		axisEdgeWeight: #center;
 		separation: 3;
 		addMorph: closeColorFrame layoutSpec: (LayoutSpec keepMorphExtent);
 		addMorph: closestRGB          layoutSpec: (LayoutSpec keepMorphExtent);
@@ -397,7 +397,7 @@ resetSliderColumn
 
 	self resetSliderColumn: self colorSelectionSymbol! !
 
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 3/21/2020 13:22:00'!
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 6/1/2020 16:04:22'!
 resetSliderColumn: sliderSym
 	"Radio selector changed.."
 
@@ -422,7 +422,7 @@ resetSliderColumn: sliderSym
 						fixedWidth: 4 + (AbstractFont default 
 												widthOfString: 'BrightnessXX') "longest string"
 						fixedHeight: 256  
-						minorDirectionPadding: #top);
+						offAxisEdgeWeight: #columnLeft);
 		addMorph: scrollBar;
 		addMorph: (LabelMorph contents: sliderLabel font: AbstractFont default);
 		yourself
@@ -1216,7 +1216,7 @@ colorPane: aColorPaneMorph
 		refreshColorFromModel; 
 		redrawBackground.! !
 
-!ColorSliderMorph methodsFor: 'initialization' stamp: 'KenD 12/5/2013 19:11'!
+!ColorSliderMorph methodsFor: 'initialization' stamp: 'KenD 5/25/2020 14:47:00'!
 initialize
 
 	super initialize.
@@ -1235,7 +1235,7 @@ initialize
 		layoutSpec: (LayoutSpec 
 							fixedWidth: 28 
 							fixedHeight: 256 
-							minorDirectionPadding: #center);
+							offAxisEdgeWeight: #center);
 		addMorph: sliderMorph.! !
 
 !ColorSliderMorph methodsFor: 'events' stamp: 'KenD 12/5/2013 17:52'!
