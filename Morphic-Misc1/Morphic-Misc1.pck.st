@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4197] on 1 June 2020 at 3:42:08 pm'!
+'From Cuis 5.0 [latest update: #4209] on 5 June 2020 at 8:16:25 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 157!
-!requires: 'Cuis-Base' 50 4197 nil!
+!provides: 'Morphic-Misc1' 1 158!
+!requires: 'Cuis-Base' 50 4209 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -3019,10 +3019,10 @@ widthSelectionSymbol
 		]
 		ifNotNil: [ #Proportional ].! !
 
-!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 12/17/2013 20:22'!
+!LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 6/5/2020 07:49:54'!
 modelPadding: numPixels
 	
-	self editModel minorDirectionPadding: numPixels.
+	self editModel offAxisEdgeWeight: numPixels.
 	self refreshPaddingArea.! !
 
 !LayoutSpecEditPanel methodsFor: 'event handling' stamp: 'KenD 12/18/2013 19:44'!
