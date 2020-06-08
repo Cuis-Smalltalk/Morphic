@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4209] on 5 June 2020 at 8:16:25 am'!
+'From Cuis 5.0 [latest update: #4212] on 8 June 2020 at 12:02:14 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 158!
+!provides: 'Morphic-Misc1' 1 159!
 !requires: 'Cuis-Base' 50 4209 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -6052,13 +6052,6 @@ direction: horizOrVert
 editMe
 
 	LayoutMorphEditPanel open: self! !
-
-!LayoutMorph methodsFor: '*morphic-misc1' stamp: 'KenD 12/24/2013 15:14'!
-padding
-
-	self flag: #jmvVer. "Move to category #accessing"
-
-	^ padding! !
 
 !LayoutSpec methodsFor: '*morphic-misc1' stamp: 'KenD 4/18/2015 20:18'!
 morph
