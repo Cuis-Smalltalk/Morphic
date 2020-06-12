@@ -1,6 +1,6 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:14:43 am'!
+'From Cuis 5.0 [latest update: #4219] on 12 June 2020 at 11:58:06 am'!
 'Description Draw with a pen and messages as go: turn: etc.'!
-!provides: 'Pen' 1 4!
+!provides: 'Pen' 1 5!
 SystemOrganization addCategory: #Pen!
 
 
@@ -126,7 +126,7 @@ place: aPoint
 
 	location _ aPoint! !
 
-!Pen methodsFor: 'operations' stamp: 'jmv 4/25/2019 10:07:44'!
+!Pen methodsFor: 'operations' stamp: 'jmv 6/11/2020 16:50:10'!
 print: str withFont: font
 	"Print the given string in the given font at the current heading"
 	| lineStart scale wasDown |
@@ -163,7 +163,7 @@ wasDown ifTrue: [
 Display restoreAfter:
 [Pen new squareNib: 2; color: Color red; turn: 45;
 	print: 'The owl and the pussycat went to sea
-in a beautiful pea green boat.' withFont: AbstractFont default ]
+in a beautiful pea green boat.' withFont: FontFamily defaultFamilyAndPointSize ]
 "! !
 
 !Pen methodsFor: 'operations'!

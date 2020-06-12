@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4212] on 8 June 2020 at 12:02:14 pm'!
+'From Cuis 5.0 [latest update: #4219] on 12 June 2020 at 11:55:21 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 159!
+!provides: 'Morphic-Misc1' 1 160!
 !requires: 'Cuis-Base' 50 4209 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -489,13 +489,13 @@ For example, TextEmphasis codes are a bit ORing of values:
  2r01000000	64 	with ST-80 Glyphs
  !
 
-!FontMorph commentStamp: '<historical>' prior: 0!
+!FontMorph commentStamp: 'jmv 6/11/2020 16:48:37' prior: 0!
 My instances display 'AbBbCc $123' using my specified font an emphysis.
 
 I am used to display a font, e.g. in a FontPallet.
 
 
-(FontMorph font: AbstractFont default) openInHand.
+(FontMorph font: FontFamily defaultFamilyAndPointSize) openInHand.
 
 ImagePallet systemFonts.!
 
@@ -621,10 +621,10 @@ printOn: aStream
 		print: self label;
 		nextPutAll: ')'! !
 
-!FontMorph class methodsFor: 'defaults' stamp: 'KenD 12/7/2016 08:19:24'!
+!FontMorph class methodsFor: 'defaults' stamp: 'jmv 6/11/2020 16:48:44'!
 initializedInstance
 
-	^ self font: AbstractFont default! !
+	^ self font: FontFamily defaultFamilyAndPointSize! !
 
 !SignMorph methodsFor: 'accessing' stamp: 'KenD 10/5/2013 17:15'!
 name
@@ -4203,22 +4203,22 @@ naturalHeight
 
 	^ (self minimumExtent y) + 4! !
 
-!LabelMorph methodsFor: 'accessing' stamp: 'KenD 12/11/2013 15:27'!
+!LabelMorph methodsFor: 'accessing' stamp: 'jmv 6/11/2020 16:49:46'!
 initWithContents: aString font: aFont emphasis: emphasisCode 
 	self initialize.
 	
-	aFont ifNotNil: [ font := aFont ] ifNil: [ font := AbstractFont default ].
+	aFont ifNotNil: [ font := aFont ] ifNil: [ font := FontFamily defaultFamilyAndPointSize ].
 	(emphasisCode = 0) 
 		ifTrue: [ emphasis := AbstractFont boldCode ] 
 		ifFalse: [ emphasis := emphasisCode ].
 	self contents: aString! !
 
-!LabelMorph methodsFor: 'initialization' stamp: 'KenD 4/18/2015 19:15'!
+!LabelMorph methodsFor: 'initialization' stamp: 'jmv 6/11/2020 16:48:58'!
 initialize
 
 	super initialize.
 	self
-		font: AbstractFont default;
+		font: FontFamily defaultFamilyAndPointSize;
 		color: Color transparent;
 		emphasis: AbstractFont boldCode;
 		layoutSpec: (LayoutSpec keepMorphExtent).! !

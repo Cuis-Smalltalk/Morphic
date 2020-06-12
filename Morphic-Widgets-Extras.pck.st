@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4112] on 21 April 2020 at 8:52:14 pm'!
+'From Cuis 5.0 [latest update: #4219] on 12 June 2020 at 11:56:22 am'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 22!
+!provides: 'Morphic-Widgets-Extras' 1 23!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -796,13 +796,13 @@ aboutToGrab: aMorph
 
 	^aMorph copy! !
 
-!FrameRateMorph methodsFor: 'drawing' stamp: 'jmv 4/15/2014 09:22'!
+!FrameRateMorph methodsFor: 'drawing' stamp: 'jmv 6/11/2020 16:49:32'!
 drawOn: aCanvas
 	super drawOn: aCanvas.
 	meanStepDelta ifNotNil: [
-		aCanvas drawString: lastStepDelta rounded printString at: 0@0 font: AbstractFont default color: Color black.
-		aCanvas drawString: meanStepDelta rounded printString at: 0@14 font: AbstractFont default color: Color black.
-		"aCanvas drawString: lastStepStamp printString at: bounds topLeft + (0@28) font: AbstractFont default color: Color black "
+		aCanvas drawString: lastStepDelta rounded printString at: 0@0 font: FontFamily defaultFamilyAndPointSize color: Color black.
+		aCanvas drawString: meanStepDelta rounded printString at: 0@14 font: FontFamily defaultFamilyAndPointSize color: Color black.
+		"aCanvas drawString: lastStepStamp printString at: bounds topLeft + (0@28) font: FontFamily defaultFamilyAndPointSize color: Color black "
 		]! !
 
 !FrameRateMorph methodsFor: 'stepping' stamp: 'jmv 2/27/2016 19:52'!
@@ -854,7 +854,7 @@ yRange: anInterval
 	yMax _ anInterval last asFloat.
 	yRangeInvalid := false.! !
 
-!FunctionGraphMorph methodsFor: 'drawing' stamp: 'jmv 4/21/2020 20:49:45'!
+!FunctionGraphMorph methodsFor: 'drawing' stamp: 'jmv 6/11/2020 16:49:39'!
 drawOn: aCanvas
 	"
 	| g |
@@ -914,7 +914,7 @@ drawOn: aCanvas
 					fillRectangle: r2
 					color: c ]]]."
 
-	fontToUse _ AbstractFont default.
+	fontToUse _ FontFamily defaultFamilyAndPointSize.
 	aCanvas drawString: xMin printString at: 40@(extent y - 16) font: fontToUse color: Color black.
 	aCanvas drawString: xMax printString at: extent -(32@16) font: fontToUse color: Color black.
 	aCanvas drawString: yMin printString at: 4@(extent y - 32) font: fontToUse color: Color black.
@@ -970,10 +970,10 @@ fitContents
 	"Measures contents later at #minimumExtent"
 	self morphExtent: 0@0! !
 
-!MinimalStringMorph methodsFor: 'accessing' stamp: 'jmv 4/15/2014 09:22'!
+!MinimalStringMorph methodsFor: 'accessing' stamp: 'jmv 6/11/2020 16:49:55'!
 fontToUse
 	| fontToUse |
-	fontToUse := font ifNil: [AbstractFont default].
+	fontToUse := font ifNil: [FontFamily defaultFamilyAndPointSize].
 	^(emphasis isNil or: [emphasis = 0]) 
 		ifTrue: [fontToUse]
 		ifFalse: [fontToUse emphasized: emphasis]! !
@@ -1027,10 +1027,10 @@ contents: aString font: aFont emphasis: emphasisCode
 new
 	^self contents: 'some string'! !
 
-!OneLineEditorMorph methodsFor: 'accessing' stamp: 'jmv 4/15/2014 09:23'!
+!OneLineEditorMorph methodsFor: 'accessing' stamp: 'jmv 6/11/2020 16:50:03'!
 baseFont
 
-	font ifNil: [ font _ AbstractFont default ].
+	font ifNil: [ font _ FontFamily defaultFamilyAndPointSize ].
 	^font! !
 
 !OneLineEditorMorph methodsFor: 'accessing' stamp: 'jmv 3/16/2011 10:34'!
@@ -1474,7 +1474,7 @@ xToMorphic: x
 yToMorphic: y
 	^yMax - y / (yMax - yMin ) * (extent y-20)! !
 
-!SamplePlotterMorph methodsFor: 'drawing' stamp: 'jmv 7/9/2017 22:41:27'!
+!SamplePlotterMorph methodsFor: 'drawing' stamp: 'jmv 6/11/2020 16:50:13'!
 drawOn: aCanvas
 
 	| r xtra fontToUse r2 xMax xMin |
@@ -1511,7 +1511,7 @@ drawOn: aCanvas
 				aCanvas
 					fillRectangle: r2
 					color: c ]]].
-	fontToUse _ AbstractFont default.
+	fontToUse _ FontFamily defaultFamilyAndPointSize.
 	aCanvas drawString: xMin printString at: 40@(extent y - 16) font: fontToUse color: Color black.
 	aCanvas drawString: xMax printString at: extent -(32@16) font: fontToUse color: Color black.
 	aCanvas drawString: yMin printString at: 4@(extent y - 32) font: fontToUse color: Color black.
