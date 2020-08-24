@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4219] on 12 June 2020 at 11:56:22 am'!
+'From Cuis 5.0 [latest update: #4362] on 24 August 2020 at 12:22:09 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 23!
+!provides: 'Morphic-Widgets-Extras' 1 24!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -661,12 +661,12 @@ magnification: aNumber
 	super morphExtent: self defaultExtent.
 	self referencePosition: c.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 10/1/2014 09:47'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:18:02'!
 magnifiedForm
 	| srcRect form neededExtent |
 	lastPos _ self sourcePoint.
 	srcRect _ self sourceRectFrom: lastPos.
-	((srcRect intersects: self morphBoundsInWorld) and: [ RecursionLock == nil ])
+	((srcRect intersects: self displayBounds) and: [ RecursionLock == nil ])
 		ifTrue: [
 			RecursionLock _ self.
 			"try to reuse form if appropriate"
@@ -695,11 +695,11 @@ magnifiedForm
 		copyQuad: form boundingBox innerCorners toRect: magnifiedForm boundingBox.
 	^magnifiedForm.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 9/25/2012 22:24'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:17:56'!
 sourcePoint
 	"If we are being dragged use our center, otherwise use pointer position"
 	^ (trackPointer not or: [owner notNil and: [owner is: #HandMorph]])
-		ifTrue: [ self morphBoundsInWorld center ]
+		ifTrue: [ self displayBounds center ]
 		ifFalse: [ self world activeHand morphPosition ]! !
 
 !MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/4/2012 16:41'!

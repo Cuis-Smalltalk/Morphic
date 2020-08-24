@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4219] on 12 June 2020 at 11:55:21 am'!
+'From Cuis 5.0 [latest update: #4362] on 24 August 2020 at 12:21:52 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 160!
+!provides: 'Morphic-Misc1' 1 161!
 !requires: 'Cuis-Base' 50 4209 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -1561,7 +1561,7 @@ replaceArea: oldArea with: newArea
 
 ! !
 
-!Panel methodsFor: 'drawing' stamp: 'KenD 12/9/2013 17:08'!
+!Panel methodsFor: 'drawing' stamp: 'jmv 8/23/2020 20:18:06'!
 addPossiblyUncoveredAreasIn: aRectangle to: aCollection
 	"Answer an array of rectangles encompassing those areas in aRectangle not completely
 	covered by self. These are the areas that might require further drawing (of morphs below us)
@@ -1574,7 +1574,7 @@ addPossiblyUncoveredAreasIn: aRectangle to: aCollection
 	"Solid rectangle.
 	This will be the fastest in many cases. So, please disable rounded corners if on slow hardware!!"
 	Theme current roundWindowCorners ifFalse: [
-		aRectangle areasOutside: self morphBoundsInWorld do: [ :rr |  aCollection add: rr ].
+		aRectangle areasOutside: self displayBounds do: [ :rr |  aCollection add: rr ].
 		^self ].
 
 	"The solid rectangle does not include the corners.
@@ -1582,7 +1582,7 @@ addPossiblyUncoveredAreasIn: aRectangle to: aCollection
 	We could also try to be more careful and answer each rounded corner...
 	Right now, report top and bottom rows as uncovered areas"
 	r _ Theme current roundedWindowRadius.
-	aRectangle areasOutside: (self morphBoundsInWorld insetBy: 0@r) do: [ :rr |  aCollection add: rr ]! !
+	aRectangle areasOutside: (self displayBounds insetBy: 0@r) do: [ :rr |  aCollection add: rr ]! !
 
 !Panel methodsFor: 'drawing' stamp: 'KenD 12/9/2013 17:08'!
 drawClassicFrameOn: aCanvas color: titleColor
@@ -1632,7 +1632,7 @@ drawRoundedFrameOn: aCanvas color: theWidgetsColor
 		gradientBottom: bottomFactor
 		insideColor: color! !
 
-!Panel methodsFor: 'drawing' stamp: 'KenD 12/9/2013 17:08'!
+!Panel methodsFor: 'drawing' stamp: 'jmv 8/23/2020 20:17:59'!
 makeMeFullyVisible 
 
 	self world extent > (0@0) ifFalse: [^ self].
@@ -1640,7 +1640,7 @@ makeMeFullyVisible
 	(self position >= (0@0) and: [ self position < (self world extent-self extent)]) ifTrue: [
 		^ self "OK -- visible"].
 
-	self position: (RealEstateAgent initialFrameFor: self initialExtent: self morphBoundsInWorld world: self world) topLeft! !
+	self position: (RealEstateAgent initialFrameFor: self initialExtent: self displayBounds world: self world) topLeft! !
 
 !Panel methodsFor: 'drawing' stamp: 'KenD 12/9/2013 17:08'!
 makeMeVisible 
@@ -1669,7 +1669,7 @@ beRow
 			layoutMorph _ LayoutMorph newRow.
 			self addMorphFront: layoutMorph ]! !
 
-!Panel methodsFor: 'layout' stamp: 'KenD 4/24/2015 18:18'!
+!Panel methodsFor: 'layout' stamp: 'jmv 8/23/2020 20:43:06'!
 layoutSubmorphs
 	"Compute a new layout of submorphs based on the given layout bounds."
 
@@ -1682,7 +1682,7 @@ layoutSubmorphs
 	].
 	titleMorph ifNotNil: [ titleMorph layoutSubmorphs ].
 	
-	layoutNeeded _ false! !
+	self layoutNeeded: false! !
 
 !Panel methodsFor: 'geometry' stamp: 'jmv 4/25/2019 10:07:34'!
 boxExtent
