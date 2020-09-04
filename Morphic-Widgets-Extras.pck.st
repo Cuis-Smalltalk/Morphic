@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4362] on 24 August 2020 at 12:22:09 pm'!
+'From Cuis 5.0 [latest update: #4370] on 4 September 2020 at 11:15:44 am'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 24!
+!provides: 'Morphic-Widgets-Extras' 1 25!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
@@ -1444,10 +1444,10 @@ contents: aString font: aFont emphasis: emphasisCode
 new
 	^self contents: 'some string'! !
 
-!SamplePlotterMorph methodsFor: 'accessing' stamp: 'jmv 7/9/2017 20:14:25'!
+!SamplePlotterMorph methodsFor: 'accessing' stamp: 'jmv 9/3/2020 18:39:17'!
 addSamples: aCollection color: aColor
 
-	sampleSequences add: aCollection asFloatArray.
+	sampleSequences add: aCollection asFloat32Array.
 	colors add: aColor! !
 
 !SamplePlotterMorph methodsFor: 'accessing' stamp: 'jmv 7/9/2017 20:01:57'!
