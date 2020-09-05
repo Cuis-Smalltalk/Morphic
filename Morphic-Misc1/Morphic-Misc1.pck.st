@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4362] on 24 August 2020 at 12:21:52 pm'!
+'From Cuis 5.0 [latest update: #4365] on 5 September 2020 at 2:08:31 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 161!
-!requires: 'Cuis-Base' 50 4209 nil!
+!provides: 'Morphic-Misc1' 1 163!
+!requires: 'Cuis-Base' 50 4365 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -1561,12 +1561,14 @@ replaceArea: oldArea with: newArea
 
 ! !
 
-!Panel methodsFor: 'drawing' stamp: 'jmv 8/23/2020 20:18:06'!
+!Panel methodsFor: 'drawing' stamp: 'KenD 9/5/2020 14:04:08'!
 addPossiblyUncoveredAreasIn: aRectangle to: aCollection
 	"Answer an array of rectangles encompassing those areas in aRectangle not completely
 	covered by self. These are the areas that might require further drawing (of morphs below us)
 	All areas that might possibly be uncovered must be included."
 	 | r |
+	self visible ifFalse: [ ^self ].
+	
 	color mightBeTranslucent ifTrue: [
 		aCollection add: aRectangle.
 		^self ].
@@ -2592,7 +2594,7 @@ setPadRadio: radio fromPadFactor: factor
 		[1.0] -> [ (radio buttons at: 3) select ].
 	} otherwise: [ (radio buttons at: 4) select ]! !
 
-!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 5/31/2020 17:36:09'!
+!LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 9/5/2020 14:08:22'!
 addFixedHeightEntryMorphTo: radio
 	"Add entry field to #Fixed radioButton row"
 
@@ -2609,7 +2611,7 @@ addFixedHeightEntryMorphTo: radio
 	rowForFixed := (radio rowFor: #Fixed).
 	rowForFixed
 			layoutSpec proportionalWidth: 0.4;
-			offAxisEdgeWeight:  #rowLeft.
+			offAxisEdgeWeight:  #leftOrTop.
 	rowForFixed 
 			addMorph: fixEntry.
 ! !
