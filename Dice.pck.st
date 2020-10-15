@@ -2,7 +2,7 @@
 'Description A morph simulating a dice with an arbitrary number of faces, bellow 9.'!
 !provides: 'Dice' 1 0!
 !classDefinition: #DiceMorph category: #Dice!
-RectangleLikeMorph subclass: #DiceMorph
+WidgetMorph subclass: #DiceMorph
 	instanceVariableNames: 'faces value isRolling'
 	classVariableNames: ''
 	poolDictionaries: ''
