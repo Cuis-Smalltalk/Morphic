@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4413] on 15 October 2020 at 3:37:10 pm'!
+'From Cuis 5.0 [latest update: #4413] on 15 October 2020 at 3:44:49 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 28!
+!provides: 'Morphic-Widgets-Extras' 1 30!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
 
@@ -833,11 +833,12 @@ initialize
 	magnification _ 2.
 	self morphExtent: 128@128! !
 
-!MagnifierMorph methodsFor: 'drawing' stamp: 'jmv 4/9/2015 09:43'!
+!MagnifierMorph methodsFor: 'drawing' stamp: 'jmv 10/15/2020 15:44:41'!
 drawOn: aCanvas
 	RecursionLock == self ifFalse: [
 		super drawOn: aCanvas.		"border and fill"
-		aCanvas image: self magnifiedForm at: borderWidth@borderWidth]! !
+		self magnifiedForm ifNotNil: [ :f |
+			aCanvas image: f at: borderWidth@borderWidth ]]! !
 
 !MagnifierMorph methodsFor: 'event handling testing' stamp: 'jmv 1/17/2013 17:27'!
 handlesMouseDown: aMouseButtonEvent
@@ -879,9 +880,10 @@ magnification: aNumber
 	super morphExtent: self defaultExtent.
 	self referencePosition: c.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:18:02'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 10/15/2020 15:44:20'!
 magnifiedForm
 	| srcRect form neededExtent |
+	self displayBounds ifNil: [ ^nil ].
 	lastPos _ self sourcePoint.
 	srcRect _ self sourceRectFrom: lastPos.
 	((srcRect intersects: self displayBounds) and: [ RecursionLock == nil ])
@@ -913,12 +915,12 @@ magnifiedForm
 		copyQuad: form boundingBox innerCorners toRect: magnifiedForm boundingBox.
 	^magnifiedForm.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:17:56'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 10/15/2020 15:40:20'!
 sourcePoint
 	"If we are being dragged use our center, otherwise use pointer position"
-	^ (trackPointer not or: [owner notNil and: [owner is: #HandMorph]])
-		ifTrue: [ self displayBounds center ]
-		ifFalse: [ self world activeHand morphPosition ]! !
+	(trackPointer not or: [owner notNil and: [owner is: #HandMorph]])
+		ifTrue: [ self displayBounds ifNotNil: [ :r | ^r center ]].
+	^self world activeHand morphPosition! !
 
 !MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/4/2012 16:41'!
 sourceRect
