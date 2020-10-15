@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4365] on 5 September 2020 at 2:08:31 pm'!
+'From Cuis 5.0 [latest update: #4365] on 15 October 2020 at 3:53:06 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 163!
+!provides: 'Morphic-Misc1' 1 164!
 !requires: 'Cuis-Base' 50 4365 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -231,7 +231,7 @@ MultiSelectMenu class
 	instanceVariableNames: ''!
 
 !classDefinition: #FontMorph category: #'Morphic-Misc1'!
-BorderedRectMorph subclass: #FontMorph
+WidgetMorph subclass: #FontMorph
 	instanceVariableNames: 'labelMorph'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -241,7 +241,7 @@ FontMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FrameMorph category: #'Morphic-Misc1'!
-BorderedRectMorph subclass: #FrameMorph
+WidgetMorph subclass: #FrameMorph
 	instanceVariableNames: 'colorIndex frameSelector'
 	classVariableNames: 'Colors'
 	poolDictionaries: ''
@@ -252,7 +252,7 @@ FrameMorph class
 
 !classDefinition: #BorderedImageMorph category: #'Morphic-Misc1'!
 ImageMorph subclass: #BorderedImageMorph
-	instanceVariableNames: 'borderWidth borderColor borderStyle'
+	instanceVariableNames: 'borderStyle'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
@@ -280,19 +280,19 @@ ImageMorph subclass: #DropColorMorph
 DropColorMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #LabelMorph category: #'Morphic-Misc1'!
-StringMorph subclass: #LabelMorph
+!classDefinition: #LabelMorphX category: #'Morphic-Misc1'!
+LabelMorph subclass: #LabelMorphX
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'LabelMorph class' category: #'Morphic-Misc1'!
-LabelMorph class
+!classDefinition: 'LabelMorphX class' category: #'Morphic-Misc1'!
+LabelMorphX class
 	instanceVariableNames: ''!
 
 !classDefinition: #FramedLayoutMorph category: #'Morphic-Misc1'!
 LayoutMorph subclass: #FramedLayoutMorph
-	instanceVariableNames: 'borderWidth borderColor frameSelector'
+	instanceVariableNames: 'frameSelector'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
@@ -340,16 +340,6 @@ HoverHelpMorph subclass: #SignMorph
 SignMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #SimpleNumberEntryMorph category: #'Morphic-Misc1'!
-OneLineEditorMorph subclass: #SimpleNumberEntryMorph
-	instanceVariableNames: 'entryChars numCharsToHold theValue validator toString valueAccessor valueUpdator'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'SimpleNumberEntryMorph class' category: #'Morphic-Misc1'!
-SimpleNumberEntryMorph class
-	instanceVariableNames: ''!
-
 !classDefinition: #LineMorph category: #'Morphic-Misc1'!
 Morph subclass: #LineMorph
 	instanceVariableNames: 'color extent startPointSelector endPointSelector lineWidth'
@@ -368,6 +358,16 @@ LineMorph subclass: #PointerLineMorph
 	category: 'Morphic-Misc1'!
 !classDefinition: 'PointerLineMorph class' category: #'Morphic-Misc1'!
 PointerLineMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #SimpleNumberEntryMorph category: #'Morphic-Misc1'!
+OneLineEditorMorph subclass: #SimpleNumberEntryMorph
+	instanceVariableNames: 'entryChars numCharsToHold theValue validator toString valueAccessor valueUpdator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'SimpleNumberEntryMorph class' category: #'Morphic-Misc1'!
+SimpleNumberEntryMorph class
 	instanceVariableNames: ''!
 
 
@@ -521,7 +521,7 @@ See method #dropAction:
 
 Note: To click-select a color, see ClickColorMorph!
 
-!LabelMorph commentStamp: '<historical>' prior: 0!
+!LabelMorphX commentStamp: '<historical>' prior: 0!
 I am a StringMorph used as a label!
 
 !FramedLayoutMorph commentStamp: '<historical>' prior: 0!
@@ -573,6 +573,12 @@ Examples:
   EllipseMorph initializedInstance signMorphForMe.
 !
 
+!LineMorph commentStamp: '<historical>' prior: 0!
+I am a line from my start point to my end point.!
+
+!PointerLineMorph commentStamp: '<historical>' prior: 0!
+I am a LineMorph which has a "pointer" morph which I maintain in position at my endpoint.!
+
 !SimpleNumberEntryMorph commentStamp: '<historical>' prior: 0!
 I am a simple numeric entry form.  I display and accept numeric values.
 
@@ -590,12 +596,6 @@ iVars
 
 The validator is applied on return and if nil, the old value is redisplayed and the field flashed,
 else the new value is remembered and displayed.!
-
-!LineMorph commentStamp: '<historical>' prior: 0!
-I am a line from my start point to my end point.!
-
-!PointerLineMorph commentStamp: '<historical>' prior: 0!
-I am a LineMorph which has a "pointer" morph which I maintain in position at my endpoint.!
 
 !PickAColorPallet class methodsFor: 'instance creation' stamp: 'KenD 12/7/2016 08:24:49'!
 initializedInstance
@@ -2373,13 +2373,13 @@ updateMasterFromCopy
 		ifTrue: [ self refreshView ]
 ! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 15:26:57'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'jmv 10/15/2020 15:51:28'!
 newColorArea
 	"Answer a FramedLayoutMorph showing color swatch and hex RGB entry"
 	
 	| newColorArea label  colorRGB hexEntry |
 	newColorArea := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'Color'.
+	label := LabelMorphX contents: 'Color'.
 	colorRGB := SimpleNumberEntryMorph hexRGBEntry.
 	colorRGB layoutSpec: (LayoutSpec keepMorphExtent offAxisEdgeWeight: #center).
 		
@@ -2387,9 +2387,9 @@ newColorArea
 	hexEntry
 		separation: 2; axisEdgeWeight: #rowLeft;
 		color: Color transparent;
-		addMorph: (StringMorph contents: '16r');
+		addMorph: (LabelMorph contents: '16r');
 		addMorph: colorRGB;
-		addMorph: (StringMorph contents: 'hexRGB').
+		addMorph: (LabelMorph contents: 'hexRGB').
 		
 	"Setup"
 	colorRGB valueAccessor: [ :someModel | | backgroundColor |
@@ -2415,13 +2415,13 @@ newColorArea
 	
 	! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:22:53'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'jmv 10/15/2020 15:51:28'!
 newDirectionArea
 	"Answer a FramedLayoutMorph with controls for Direction (Row,Column)"
 	
 	| dirArea label radio direction |
 	dirArea := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'Direction'.
+	label := LabelMorphX contents: 'Direction'.
 	radio := RadioGroup fromList: #(Row Column).
 		
 	"Setup"
@@ -2441,13 +2441,13 @@ newDirectionArea
 	
 	! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 5/22/2020 13:27:02'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'jmv 10/15/2020 15:51:28'!
 newPaddingArea
 	"Answer a FramedLayoutMorph with controls for Padding"
 	
 	| padArea label direction |
 	padArea := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'EdgeWeight'.
+	label := LabelMorphX contents: 'EdgeWeight'.
 	direction := self editModel direction.
 	padRadio := RadioGroup fromList: ( 
 		(direction = #horizontal)
@@ -2490,13 +2490,13 @@ newPaddingSelection: padSym
 
 ! !
 
-!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'KenD 3/9/2020 13:24:09'!
+!LayoutMorphEditPanel methodsFor: 'area layouts' stamp: 'jmv 10/15/2020 15:51:28'!
 newSeparationtionArea
 	"Answer a FramedLayoutMorph with controls for x & y separation"
 	
 	| sepArea label xArea yArea xSep ySep |
 	sepArea := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'Separation'.
+	label := LabelMorphX contents: 'Separation'.
 		
 	"Setup"
 	xSep := SimpleNumberEntryMorph 
@@ -2507,9 +2507,9 @@ newSeparationtionArea
 	xArea 
 		color: Color  transparent;
 		separation: 2;
-		addMorph: (LabelMorph contents: '  X ');
+		addMorph: (LabelMorphX contents: '  X ');
 		addMorph: xSep;
-		addMorph: (StringMorph contents: 'pixels').
+		addMorph: (LabelMorph contents: 'pixels').
 		
 	ySep := SimpleNumberEntryMorph 
 			integerRangeFrom: 0 
@@ -2519,9 +2519,9 @@ newSeparationtionArea
 	yArea 
 		color: Color  transparent;
 		separation: 2;
-		addMorph: (LabelMorph contents: '  Y ');
+		addMorph: (LabelMorphX contents: '  Y ');
 		addMorph: ySep;
-		addMorph: (StringMorph contents: 'pixels').
+		addMorph: (LabelMorph contents: 'pixels').
 
 	"Value flow"
 	xSep valueAccessor: [ :myModel | myModel xSeparation ].
@@ -2683,9 +2683,9 @@ propHeightMinimum
 	minEntry refreshValueFrom: self editModel.
 	^ row
 		color: Color transparent;
-		addMorph: (StringMorph contents: 'minimum  ');
+		addMorph: (LabelMorph contents: 'minimum  ');
 		addMorph: minEntry;
-		addMorph: (StringMorph contents: ' pixels');
+		addMorph: (LabelMorph contents: ' pixels');
 		yourself! !
 
 !LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:41:37'!
@@ -2704,9 +2704,9 @@ propHeightPercent
 	propEntry refreshValueFrom: self editModel.
 	^ row
 		color: Color transparent;
-		addMorph: (StringMorph contents: '        ');
+		addMorph: (LabelMorph contents: '        ');
 		addMorph: propEntry;
-		addMorph: (StringMorph contents: '%');
+		addMorph: (LabelMorph contents: '%');
 		yourself! !
 
 !LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:42:05'!
@@ -2728,9 +2728,9 @@ propWidthMinimum
 	minEntry refreshValueFrom: self editModel.
 	^ row
 		color: Color transparent;
-		addMorph: (StringMorph contents: 'minimum  ');
+		addMorph: (LabelMorph contents: 'minimum  ');
 		addMorph: minEntry;
-		addMorph: (StringMorph contents: ' pixels');
+		addMorph: (LabelMorph contents: ' pixels');
 		yourself! !
 
 !LayoutSpecEditPanel methodsFor: 'entry morphs' stamp: 'KenD 4/28/2019 18:42:30'!
@@ -2749,9 +2749,9 @@ propWidthPercent
 	propEntry refreshValueFrom: self editModel.
 	^ row
 		color: Color transparent;
-		addMorph: (StringMorph contents: '        ');
+		addMorph: (LabelMorph contents: '        ');
 		addMorph: propEntry;
-		addMorph: (StringMorph contents: '%');
+		addMorph: (LabelMorph contents: '%');
 		yourself! !
 
 !LayoutSpecEditPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:34:07'!
@@ -2863,13 +2863,13 @@ newEmptyAuxArea
 		separation: self defaultSeparation;"
 		yourself! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 14:56:23'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'jmv 10/15/2020 15:51:28'!
 newHeightArea
 	"Answer a FramedLayoutMorph with controls for Height"
 	
 	| heightRegion label spec radio selected |
 	heightRegion := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'Height'.
+	label := LabelMorphX contents: 'Height'.
 	radio := RadioGroup fromList: #( 'use morph height' Fixed Proportional ).
 	selected := self heightSelectionSymbol.
 
@@ -2894,13 +2894,13 @@ newHeightArea
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 14:57:09'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'jmv 10/15/2020 15:51:28'!
 newPaddingArea
 	"Answer a FramedLayoutMorph with controls for Padding"
 	
 	| padArea label spec row |
 	padArea := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'offAxis EdgeWeight'.
+	label := LabelMorphX contents: 'offAxis EdgeWeight'.
 	padRadio := RadioGroup fromList:  #('Left/Top' Center 'Right/Bottom' Specify) .
 	
 	spec := LayoutSpec fixedHeight:
@@ -2930,13 +2930,13 @@ newPaddingArea
 		yourself 
 ! !
 
-!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'KenD 6/1/2020 14:57:30'!
+!LayoutSpecEditPanel methodsFor: 'area layouts' stamp: 'jmv 10/15/2020 15:51:28'!
 newWidthArea
 	"Answer a FramedLayoutMorph with controls for Width"
 	
 	| widthRegion label radio selected |
 	widthRegion := FramedLayoutMorph newColumn.
-	label := LabelMorph contents: 'Width'.
+	label := LabelMorphX contents: 'Width'.
 	radio := RadioGroup fromList: #( 'use morph width' Fixed Proportional ).
 	selected := self widthSelectionSymbol.
 			
@@ -3299,7 +3299,7 @@ initialize
 	super initialize.
 ! !
 
-!PointEntryPanel methodsFor: 'GUI building' stamp: 'KenD 5/22/2020 13:34:22'!
+!PointEntryPanel methodsFor: 'GUI building' stamp: 'jmv 10/15/2020 15:51:28'!
 newEntryArea
 
 	| entryLayout |
@@ -3308,7 +3308,7 @@ newEntryArea
 		separation: self defaultSeparation;
 		axisEdgeWeight: #center;
 		addMorph: xEntryMorph; "set in #initialize"
-		addMorph: (LabelMorph new :: contents: '@' );
+		addMorph: (LabelMorphX new :: contents: '@' );
 		addMorph: yEntryMorph;
 		color: (Color transparent).
 	
@@ -3665,12 +3665,12 @@ font: aFont emphasis: emphasisCode
 
 	self font: aFont emphasis: emphasisCode string: self class defaultString ! !
 
-!FontMorph methodsFor: 'initialization' stamp: 'KenD 11/29/2016 10:54:13'!
+!FontMorph methodsFor: 'initialization' stamp: 'jmv 10/15/2020 15:51:28'!
 font: aFont emphasis: emphasisCode string: aString
-	"I am a BorderedRectMorph showing a LabelMorph.
+	"I am a WidgetMorph showing a LabelMorph.
 	Make it so."
 	
-	labelMorph := LabelMorph new
+	labelMorph := LabelMorphX new
 				initWithContents: aString 
 				font: aFont 
 				emphasis: emphasisCode.
@@ -4183,29 +4183,29 @@ includeInNewMorphMenu
 	
 	^ false! !
 
-!LabelMorph methodsFor: 'geometry' stamp: 'KenD 8/26/2015 12:37'!
+!LabelMorphX methodsFor: 'geometry' stamp: 'KenD 8/26/2015 12:37'!
 extentBorder
 	"Add the number of pixels to add to my interior minimumExtent".
 
 	^ 1! !
 
-!LabelMorph methodsFor: 'geometry' stamp: 'KenD 8/24/2015 19:53'!
+!LabelMorphX methodsFor: 'geometry' stamp: 'KenD 8/24/2015 19:53'!
 minimumExtent
 
 	^ self measureContents + self extentBorder.! !
 
-!LabelMorph methodsFor: 'geometry' stamp: 'KenD 12/24/2013 16:33'!
+!LabelMorphX methodsFor: 'geometry' stamp: 'KenD 12/24/2013 16:33'!
 morphExtent: aPoint 
 	"Set the receiver's extent to value provided. Honor my minimumExtent."
 
 	super morphExtent: (aPoint max: self minimumExtent)! !
 
-!LabelMorph methodsFor: 'geometry' stamp: 'KenD 9/17/2016 10:15:31'!
+!LabelMorphX methodsFor: 'geometry' stamp: 'KenD 9/17/2016 10:15:31'!
 naturalHeight
 
 	^ (self minimumExtent y) + 4! !
 
-!LabelMorph methodsFor: 'accessing' stamp: 'jmv 6/11/2020 16:49:46'!
+!LabelMorphX methodsFor: 'accessing' stamp: 'jmv 6/11/2020 16:49:46'!
 initWithContents: aString font: aFont emphasis: emphasisCode 
 	self initialize.
 	
@@ -4215,7 +4215,7 @@ initWithContents: aString font: aFont emphasis: emphasisCode
 		ifFalse: [ emphasis := emphasisCode ].
 	self contents: aString! !
 
-!LabelMorph methodsFor: 'initialization' stamp: 'jmv 6/11/2020 16:48:58'!
+!LabelMorphX methodsFor: 'initialization' stamp: 'jmv 6/11/2020 16:48:58'!
 initialize
 
 	super initialize.
@@ -4441,7 +4441,7 @@ list: arrayOfSymbols
 		newRow separation: 2; color: Color transparent; axisEdgeWeight: #rowLeft.
 		button := (RadioButtonMorph ofSize: RadioButtonMorph defaultDiameter).
 		button layoutSpec: (LayoutSpec keepMorphExtent).
-		label := StringMorph contents: labelSym asString font: self font.
+		label := LabelMorph contents: labelSym asString font: self font.
 		maxStringWidth := maxStringWidth max: (self font widthOfString: labelSym).
 		(self buttonOnLeft)
 			ifTrue: [ newRow  addMorph: button; addMorph: label ] 
@@ -4545,7 +4545,7 @@ fontPreferenceChanged
 				ifTrue: [ aMorph setFont: Preferences standardButtonFont ].
 			(aMorph respondsTo: #font:)
 				ifTrue: [ aMorph font: Preferences standardButtonFont ].
-			((aMorph isKindOf: StringMorph)
+			((aMorph isKindOf: LabelMorph)
 			  and: [labelStrings includes: aMorph contents])
 				ifTrue: [ aMorph layoutSpec: labelLayoutSpec ].
 		]
@@ -4793,7 +4793,7 @@ reset
 		self perform: #addButton:action:baloonText:themeName: 
 		withArguments: rowArgs ].
 	
-	self addMorph: (StringMorph 
+	self addMorph: (LabelMorph 
 						contents: self titleStringForDisplay 
 						font: Preferences windowTitleFont ).
 	
@@ -4989,6 +4989,242 @@ example4
 includeInNewMorphMenu 
 
 	^ false! !
+
+!LineMorph methodsFor: 'private' stamp: 'KenD 9/27/2013 15:36'!
+basicExtent: aPoint
+
+	extent := aPoint! !
+
+!LineMorph methodsFor: 'private' stamp: 'KenD 9/27/2013 16:28'!
+minimumExtent
+
+	^ 0 @ 0 ! !
+
+!LineMorph methodsFor: 'private' stamp: 'KenD 9/27/2013 15:45'!
+rect
+
+	^ Rectangle origin: 0@0 corner: extent! !
+
+!LineMorph methodsFor: 'private' stamp: 'KenD 9/30/2013 15:29'!
+setPointSelectorsFromStartPoint: startPoint endPoint: endPoint
+	"Reset both my start and end points -- points in owner coordinates"
+
+	| origin corner rect |
+	origin  := ((startPoint x) min: (endPoint x)) @ ((startPoint y) min: (endPoint y)).
+	corner := ((startPoint x) max: (endPoint x)) @ ((startPoint y) max: (endPoint y)).
+	
+	rect := Rectangle origin: origin corner: corner. "Owner coordinates"
+
+	(startPoint = rect topLeft)        ifTrue: [ startPointSelector := #topLeft ].
+	(startPoint = rect topRight)       ifTrue: [ startPointSelector := #topRight ].
+	(startPoint = rect bottomLeft)  ifTrue: [ startPointSelector := #bottomLeft ].
+	(startPoint = rect bottomRight) ifTrue: [ startPointSelector := #bottomRight ].
+	
+	(endPoint = rect topLeft)         ifTrue: [ endPointSelector   := #topLeft ].
+	(endPoint = rect topRight)        ifTrue: [ endPointSelector   := #topRight ].
+	(endPoint = rect bottomLeft)   ifTrue: [ endPointSelector   := #bottomLeft ].
+	(endPoint = rect bottomRight)  ifTrue: [ endPointSelector   := #bottomRight ].
+
+	self basicExtent: rect extent.
+	self morphPosition: rect topLeft.
+	"@@DEBUG@@"
+"	('SetArgs: startPoint: ', startPoint asString, ' endPoint: ', endPoint asString) print.
+	('Result:    startPoint: ', self startPoint asString, ' endPoint: ', self endPoint asString) print.
+"! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/27/2013 15:32'!
+color
+
+	^ color! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/27/2013 16:35'!
+color: aColor
+
+	(aColor class = Color) ifFalse: [ Error signal: 'Not a color: ', aColor printString ].
+
+	color := aColor.
+	self redrawNeeded ! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 19:11'!
+endPoint
+	"Answer my endPoint in owner's coordinates"
+
+	^ (self rect perform: endPointSelector) + (self morphPosition) truncated ! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'jmv 9/29/2013 22:47'!
+endPoint: aPoint
+	"aPoint is in owner coordinates.  Set my startPoint in own coordinates"
+	
+	(aPoint isKindOf: Point) ifFalse: [ Error signal: 'Not a Point: ', aPoint printString ].
+		
+	self redrawNeeded.
+	self setPointSelectorsFromStartPoint: self startPoint 
+		  endPoint: aPoint.
+	self redrawNeeded.! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 18:55'!
+length
+
+	^ self startPoint dist: self endPoint! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 16:23'!
+lineWidth
+
+	^ lineWidth ! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/30/2013 14:36'!
+lineWidth: newWidthInPixels
+
+	self redrawNeeded.
+	lineWidth := newWidthInPixels.
+	self redrawNeeded ! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 19:11'!
+startPoint
+	"Answer my startPoint in owner's coordinates"
+	
+	^ (self rect perform: startPointSelector) + (self morphPosition) truncated! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/30/2013 14:36'!
+startPoint: aPoint
+	"aPoint is in owner coordinates.  Set my startPoint in own coordinates"
+	
+	(aPoint isKindOf: Point) ifFalse: [ Error signal: 'Not a Point: ', aPoint printString ].
+	
+	self redrawNeeded.
+	self setPointSelectorsFromStartPoint: aPoint 
+		 endPoint: self endPoint.
+	self redrawNeeded.! !
+
+!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/30/2013 14:36'!
+startPoint: newStart endPoint: newEnd
+	"Reset my start and end points (Nota Bene: points in owner coordinates)"
+
+	(newStart isKindOf: Point)
+		ifFalse: [ Error signal: 'Not a Point: ', newStart printString ].
+	(newEnd isKindOf: Point)
+		ifFalse: [ Error signal: 'Not a Point: ', newEnd printString ].
+
+	self redrawNeeded.	
+	self setPointSelectorsFromStartPoint: newStart endPoint: newEnd.
+	self redrawNeeded.! !
+
+!LineMorph methodsFor: 'drawing' stamp: 'KenD 9/27/2013 15:55'!
+drawOn: aCanvas
+	"Draw self in own coordinates"
+	
+	| rect |
+	rect := self rect.
+	aCanvas
+		line: (rect perform: startPointSelector)
+		to:  (rect perform: endPointSelector)
+		width: lineWidth
+		color: color! !
+
+!LineMorph methodsFor: 'initialization' stamp: 'KenD 9/27/2013 15:54'!
+initialize
+
+	super initialize.
+	extent := 100@180.
+	startPointSelector := #topLeft.
+	endPointSelector   := #bottomRight.
+	lineWidth := 6.
+	color := Color cyan.
+	! !
+
+!LineMorph methodsFor: 'geometry testing' stamp: 'KenD 9/26/2013 15:39'!
+isOrthoRectangularMorph
+
+	^ false! !
+
+!LineMorph methodsFor: 'geometry' stamp: 'KenD 9/27/2013 16:29'!
+morphExtent
+	"Answer an extent which includes me, taking into account my lineWidth"
+
+	^ extent + lineWidth + lineWidth! !
+
+!LineMorph methodsFor: 'geometry' stamp: 'KenD 9/27/2013 16:28'!
+morphExtent: aPoint 
+	"Set the receiver's extent to value provided. Honor my minimumExtent."
+
+	| innerExtent |
+	innerExtent := aPoint - lineWidth - lineWidth.
+	extent = innerExtent ifTrue: [^ self ].
+	self redrawNeeded.
+	extent _ (innerExtent max: self minimumExtent).
+	self redrawNeeded! !
+
+!LineMorph methodsFor: 'geometry' stamp: 'KenD 2/28/2015 11:31'!
+morphExtentInWorld: newExtent
+	"world coordinates"
+	self flag: #jmvVer2.
+	self morphExtent: (self internalizeDistanceFromWorld: newExtent)! !
+
+!LineMorph methodsFor: 'initialize-release' stamp: 'KenD 9/30/2013 15:25'!
+startPoint: startPoint endPoint: endPoint width: numPixels color: aColor
+
+	lineWidth := numPixels.
+	color       := aColor.
+	self setPointSelectorsFromStartPoint: startPoint endPoint: endPoint.
+	! !
+
+!LineMorph class methodsFor: 'instance creation' stamp: 'KenD 9/26/2013 18:51'!
+startPoint: start endPoint: end
+
+	^ self new startPoint: start endPoint: end! !
+
+!LineMorph class methodsFor: 'instance creation' stamp: 'KenD 9/26/2013 16:21'!
+startPoint: start endPoint: end width: numPixels color: aColor
+
+	^ self new startPoint: start endPoint: end width: numPixels color: aColor! !
+
+!PointerLineMorph methodsFor: 'accessing' stamp: 'KenD 9/15/2016 16:25:30'!
+endPointMorph
+	
+	^ endPointMorph! !
+
+!PointerLineMorph methodsFor: 'accessing' stamp: 'KenD 12/12/2016 15:15:59'!
+endPointMorph: aMorph
+	
+	self endPointMorph ifNotNil: [ :pointer | self removeMorph: pointer ].
+	endPointMorph := aMorph.
+	self addMorphFront: aMorph.
+	self updateEndPoint.
+! !
+
+!PointerLineMorph methodsFor: 'initialization' stamp: 'KenD 9/15/2016 16:40:58'!
+initialize
+
+	super initialize.
+	self endPointMorph:
+		(WidgetMorph new 
+			:: color: Color yellow; 
+			borderColor: Color red; 
+			borderWidth: 3; 
+			morphExtent: 16@16; 
+			yourself).
+	self updateEndPoint.! !
+
+!PointerLineMorph methodsFor: 'geometry' stamp: 'KenD 9/15/2016 16:28:43'!
+morphExtent: newExtent
+
+	super morphExtent: newExtent.
+	self updateEndPoint.! !
+
+!PointerLineMorph methodsFor: 'geometry' stamp: 'KenD 12/12/2016 15:21:19'!
+setPointSelectorsFromStartPoint: startPoint endPoint: endPoint
+
+	super setPointSelectorsFromStartPoint: startPoint endPoint: endPoint.
+	self updateEndPoint ! !
+
+!PointerLineMorph methodsFor: 'geometry' stamp: 'KenD 9/15/2016 17:01:11'!
+updateEndPoint
+	"Place my pointer morph at my endpoint, centered"
+	
+	| pointMorphCenter endPointOffset |
+	pointMorphCenter := (self endPointMorph morphExtent) / 2.
+	endPointOffset := (self rect perform: endPointSelector) + (self lineWidth / 2).
+	self endPointMorph morphPosition: endPointOffset - pointMorphCenter.! !
 
 !SimpleNumberEntryMorph methodsFor: 'accessing' stamp: 'KenD 2/28/2015 11:04'!
 disablesEdition
@@ -5442,242 +5678,6 @@ includeInNewMorphMenu
 legalChars: entryChars numCharsToHold: nilOrInteger value: initialValue validator: aClosureToValidate toString: aClosureForString
 
 	self new legalChars: entryChars numCharsToHold: nilOrInteger value: initialValue validator: aClosureToValidate toString: aClosureForString! !
-
-!LineMorph methodsFor: 'private' stamp: 'KenD 9/27/2013 15:36'!
-basicExtent: aPoint
-
-	extent := aPoint! !
-
-!LineMorph methodsFor: 'private' stamp: 'KenD 9/27/2013 16:28'!
-minimumExtent
-
-	^ 0 @ 0 ! !
-
-!LineMorph methodsFor: 'private' stamp: 'KenD 9/27/2013 15:45'!
-rect
-
-	^ Rectangle origin: 0@0 corner: extent! !
-
-!LineMorph methodsFor: 'private' stamp: 'KenD 9/30/2013 15:29'!
-setPointSelectorsFromStartPoint: startPoint endPoint: endPoint
-	"Reset both my start and end points -- points in owner coordinates"
-
-	| origin corner rect |
-	origin  := ((startPoint x) min: (endPoint x)) @ ((startPoint y) min: (endPoint y)).
-	corner := ((startPoint x) max: (endPoint x)) @ ((startPoint y) max: (endPoint y)).
-	
-	rect := Rectangle origin: origin corner: corner. "Owner coordinates"
-
-	(startPoint = rect topLeft)        ifTrue: [ startPointSelector := #topLeft ].
-	(startPoint = rect topRight)       ifTrue: [ startPointSelector := #topRight ].
-	(startPoint = rect bottomLeft)  ifTrue: [ startPointSelector := #bottomLeft ].
-	(startPoint = rect bottomRight) ifTrue: [ startPointSelector := #bottomRight ].
-	
-	(endPoint = rect topLeft)         ifTrue: [ endPointSelector   := #topLeft ].
-	(endPoint = rect topRight)        ifTrue: [ endPointSelector   := #topRight ].
-	(endPoint = rect bottomLeft)   ifTrue: [ endPointSelector   := #bottomLeft ].
-	(endPoint = rect bottomRight)  ifTrue: [ endPointSelector   := #bottomRight ].
-
-	self basicExtent: rect extent.
-	self morphPosition: rect topLeft.
-	"@@DEBUG@@"
-"	('SetArgs: startPoint: ', startPoint asString, ' endPoint: ', endPoint asString) print.
-	('Result:    startPoint: ', self startPoint asString, ' endPoint: ', self endPoint asString) print.
-"! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/27/2013 15:32'!
-color
-
-	^ color! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/27/2013 16:35'!
-color: aColor
-
-	(aColor class = Color) ifFalse: [ Error signal: 'Not a color: ', aColor printString ].
-
-	color := aColor.
-	self redrawNeeded ! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 19:11'!
-endPoint
-	"Answer my endPoint in owner's coordinates"
-
-	^ (self rect perform: endPointSelector) + (self morphPosition) truncated ! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'jmv 9/29/2013 22:47'!
-endPoint: aPoint
-	"aPoint is in owner coordinates.  Set my startPoint in own coordinates"
-	
-	(aPoint isKindOf: Point) ifFalse: [ Error signal: 'Not a Point: ', aPoint printString ].
-		
-	self redrawNeeded.
-	self setPointSelectorsFromStartPoint: self startPoint 
-		  endPoint: aPoint.
-	self redrawNeeded.! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 18:55'!
-length
-
-	^ self startPoint dist: self endPoint! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 16:23'!
-lineWidth
-
-	^ lineWidth ! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/30/2013 14:36'!
-lineWidth: newWidthInPixels
-
-	self redrawNeeded.
-	lineWidth := newWidthInPixels.
-	self redrawNeeded ! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/26/2013 19:11'!
-startPoint
-	"Answer my startPoint in owner's coordinates"
-	
-	^ (self rect perform: startPointSelector) + (self morphPosition) truncated! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/30/2013 14:36'!
-startPoint: aPoint
-	"aPoint is in owner coordinates.  Set my startPoint in own coordinates"
-	
-	(aPoint isKindOf: Point) ifFalse: [ Error signal: 'Not a Point: ', aPoint printString ].
-	
-	self redrawNeeded.
-	self setPointSelectorsFromStartPoint: aPoint 
-		 endPoint: self endPoint.
-	self redrawNeeded.! !
-
-!LineMorph methodsFor: 'accessing' stamp: 'KenD 9/30/2013 14:36'!
-startPoint: newStart endPoint: newEnd
-	"Reset my start and end points (Nota Bene: points in owner coordinates)"
-
-	(newStart isKindOf: Point)
-		ifFalse: [ Error signal: 'Not a Point: ', newStart printString ].
-	(newEnd isKindOf: Point)
-		ifFalse: [ Error signal: 'Not a Point: ', newEnd printString ].
-
-	self redrawNeeded.	
-	self setPointSelectorsFromStartPoint: newStart endPoint: newEnd.
-	self redrawNeeded.! !
-
-!LineMorph methodsFor: 'drawing' stamp: 'KenD 9/27/2013 15:55'!
-drawOn: aCanvas
-	"Draw self in own coordinates"
-	
-	| rect |
-	rect := self rect.
-	aCanvas
-		line: (rect perform: startPointSelector)
-		to:  (rect perform: endPointSelector)
-		width: lineWidth
-		color: color! !
-
-!LineMorph methodsFor: 'initialization' stamp: 'KenD 9/27/2013 15:54'!
-initialize
-
-	super initialize.
-	extent := 100@180.
-	startPointSelector := #topLeft.
-	endPointSelector   := #bottomRight.
-	lineWidth := 6.
-	color := Color cyan.
-	! !
-
-!LineMorph methodsFor: 'geometry testing' stamp: 'KenD 9/26/2013 15:39'!
-isOrthoRectangularMorph
-
-	^ false! !
-
-!LineMorph methodsFor: 'geometry' stamp: 'KenD 9/27/2013 16:29'!
-morphExtent
-	"Answer an extent which includes me, taking into account my lineWidth"
-
-	^ extent + lineWidth + lineWidth! !
-
-!LineMorph methodsFor: 'geometry' stamp: 'KenD 9/27/2013 16:28'!
-morphExtent: aPoint 
-	"Set the receiver's extent to value provided. Honor my minimumExtent."
-
-	| innerExtent |
-	innerExtent := aPoint - lineWidth - lineWidth.
-	extent = innerExtent ifTrue: [^ self ].
-	self redrawNeeded.
-	extent _ (innerExtent max: self minimumExtent).
-	self redrawNeeded! !
-
-!LineMorph methodsFor: 'geometry' stamp: 'KenD 2/28/2015 11:31'!
-morphExtentInWorld: newExtent
-	"world coordinates"
-	self flag: #jmvVer2.
-	self morphExtent: (self internalizeDistanceFromWorld: newExtent)! !
-
-!LineMorph methodsFor: 'initialize-release' stamp: 'KenD 9/30/2013 15:25'!
-startPoint: startPoint endPoint: endPoint width: numPixels color: aColor
-
-	lineWidth := numPixels.
-	color       := aColor.
-	self setPointSelectorsFromStartPoint: startPoint endPoint: endPoint.
-	! !
-
-!LineMorph class methodsFor: 'instance creation' stamp: 'KenD 9/26/2013 18:51'!
-startPoint: start endPoint: end
-
-	^ self new startPoint: start endPoint: end! !
-
-!LineMorph class methodsFor: 'instance creation' stamp: 'KenD 9/26/2013 16:21'!
-startPoint: start endPoint: end width: numPixels color: aColor
-
-	^ self new startPoint: start endPoint: end width: numPixels color: aColor! !
-
-!PointerLineMorph methodsFor: 'accessing' stamp: 'KenD 9/15/2016 16:25:30'!
-endPointMorph
-	
-	^ endPointMorph! !
-
-!PointerLineMorph methodsFor: 'accessing' stamp: 'KenD 12/12/2016 15:15:59'!
-endPointMorph: aMorph
-	
-	self endPointMorph ifNotNil: [ :pointer | self removeMorph: pointer ].
-	endPointMorph := aMorph.
-	self addMorphFront: aMorph.
-	self updateEndPoint.
-! !
-
-!PointerLineMorph methodsFor: 'initialization' stamp: 'KenD 9/15/2016 16:40:58'!
-initialize
-
-	super initialize.
-	self endPointMorph:
-		(BorderedRectMorph new 
-			:: color: Color yellow; 
-			borderColor: Color red; 
-			borderWidth: 3; 
-			morphExtent: 16@16; 
-			yourself).
-	self updateEndPoint.! !
-
-!PointerLineMorph methodsFor: 'geometry' stamp: 'KenD 9/15/2016 16:28:43'!
-morphExtent: newExtent
-
-	super morphExtent: newExtent.
-	self updateEndPoint.! !
-
-!PointerLineMorph methodsFor: 'geometry' stamp: 'KenD 12/12/2016 15:21:19'!
-setPointSelectorsFromStartPoint: startPoint endPoint: endPoint
-
-	super setPointSelectorsFromStartPoint: startPoint endPoint: endPoint.
-	self updateEndPoint ! !
-
-!PointerLineMorph methodsFor: 'geometry' stamp: 'KenD 9/15/2016 17:01:11'!
-updateEndPoint
-	"Place my pointer morph at my endpoint, centered"
-	
-	| pointMorphCenter endPointOffset |
-	pointMorphCenter := (self endPointMorph morphExtent) / 2.
-	endPointOffset := (self rect perform: endPointSelector) + (self lineWidth / 2).
-	self endPointMorph morphPosition: endPointOffset - pointMorphCenter.! !
 
 !String methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 11:56:12'!
 asTextEmphasis
