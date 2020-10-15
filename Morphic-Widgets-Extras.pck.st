@@ -1,117 +1,117 @@
-'From Cuis 5.0 [latest update: #4370] on 4 September 2020 at 11:15:44 am'!
+'From Cuis 5.0 [latest update: #4413] on 15 October 2020 at 3:37:10 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 25!
-SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
-SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
+!provides: 'Morphic-Widgets-Extras' 1 28!
+SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
+SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
 
 
-!classDefinition: #SimpleEditor category: #'Morphic-Widgets-Extras'!
+!classDefinition: #SimpleEditor category: 'Morphic-Widgets-Extras'!
 Editor subclass: #SimpleEditor
 	instanceVariableNames: 'string pointIndex markIndex'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'SimpleEditor class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'SimpleEditor class' category: 'Morphic-Widgets-Extras'!
 SimpleEditor class
 	instanceVariableNames: ''!
 
-!classDefinition: #LimitedHeightTextMorph category: #'Morphic-Widgets-Extras'!
+!classDefinition: #LimitedHeightTextMorph category: 'Morphic-Widgets-Extras'!
 TextModelMorph subclass: #LimitedHeightTextMorph
 	instanceVariableNames: 'maxHeight'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'LimitedHeightTextMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'LimitedHeightTextMorph class' category: 'Morphic-Widgets-Extras'!
 LimitedHeightTextMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #MagnifierMorph category: #'Morphic-Widgets-Extras'!
-BorderedRectMorph subclass: #MagnifierMorph
-	instanceVariableNames: 'magnification trackPointer lastPos srcExtent auxCanvas magnifiedForm'
-	classVariableNames: 'RecursionLock'
-	poolDictionaries: ''
-	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'MagnifierMorph class' category: #'Morphic-Widgets-Extras'!
-MagnifierMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #DragAndDropAreaMorph category: #'Morphic-Widgets-Extras'!
-RectangleLikeMorph subclass: #DragAndDropAreaMorph
+!classDefinition: #DragAndDropAreaMorph category: 'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #DragAndDropAreaMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'DragAndDropAreaMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'DragAndDropAreaMorph class' category: 'Morphic-Widgets-Extras'!
 DragAndDropAreaMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #PartsBinMorph category: #'Morphic-Widgets-Extras'!
+!classDefinition: #PartsBinMorph category: 'Morphic-Widgets-Extras'!
 DragAndDropAreaMorph subclass: #PartsBinMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'PartsBinMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'PartsBinMorph class' category: 'Morphic-Widgets-Extras'!
 PartsBinMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FrameRateMorph category: #'Morphic-Widgets-Extras'!
-RectangleLikeMorph subclass: #FrameRateMorph
+!classDefinition: #FrameRateMorph category: 'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #FrameRateMorph
 	instanceVariableNames: 'lastStepDelta meanStepDelta'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'FrameRateMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'FrameRateMorph class' category: 'Morphic-Widgets-Extras'!
 FrameRateMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FunctionGraphMorph category: #'Morphic-Widgets-Extras'!
-RectangleLikeMorph subclass: #FunctionGraphMorph
+!classDefinition: #FunctionGraphMorph category: 'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #FunctionGraphMorph
 	instanceVariableNames: 'xMin xMax yMin yMax functions colors yRangeInvalid'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'FunctionGraphMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'FunctionGraphMorph class' category: 'Morphic-Widgets-Extras'!
 FunctionGraphMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #MinimalStringMorph category: #'Morphic-Widgets-Extras'!
-RectangleLikeMorph subclass: #MinimalStringMorph
+!classDefinition: #MagnifierMorph category: 'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #MagnifierMorph
+	instanceVariableNames: 'magnification trackPointer lastPos srcExtent auxCanvas magnifiedForm'
+	classVariableNames: 'RecursionLock'
+	poolDictionaries: ''
+	category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'MagnifierMorph class' category: 'Morphic-Widgets-Extras'!
+MagnifierMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #MinimalStringMorph category: 'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #MinimalStringMorph
 	instanceVariableNames: 'font emphasis contents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'MinimalStringMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'MinimalStringMorph class' category: 'Morphic-Widgets-Extras'!
 MinimalStringMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #OneLineEditorMorph category: #'Morphic-Widgets-Extras'!
-RectangleLikeMorph subclass: #OneLineEditorMorph
+!classDefinition: #OneLineEditorMorph category: 'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #OneLineEditorMorph
 	instanceVariableNames: 'font emphasis contents editor showTextCursor pauseBlinking textCursorRect keyboardFocusWatcher crAction'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'OneLineEditorMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'OneLineEditorMorph class' category: 'Morphic-Widgets-Extras'!
 OneLineEditorMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #SamplePlotterMorph category: #'Morphic-Widgets-Extras'!
-RectangleLikeMorph subclass: #SamplePlotterMorph
+!classDefinition: #SamplePlotterMorph category: 'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #SamplePlotterMorph
 	instanceVariableNames: 'domain sampleSequences colors yMax yMin'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'SamplePlotterMorph class' category: #'Morphic-Widgets-Extras'!
+!classDefinition: 'SamplePlotterMorph class' category: 'Morphic-Widgets-Extras'!
 SamplePlotterMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #TextEditorTest category: #'Morphic-Widgets-Extras-Tests'!
+!classDefinition: #TextEditorTest category: 'Morphic-Widgets-Extras-Tests'!
 TestCase subclass: #TextEditorTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras-Tests'!
-!classDefinition: 'TextEditorTest class' category: #'Morphic-Widgets-Extras-Tests'!
+!classDefinition: 'TextEditorTest class' category: 'Morphic-Widgets-Extras-Tests'!
 TextEditorTest class
 	instanceVariableNames: ''!
 
@@ -127,16 +127,13 @@ LimitedHeightTextMorph new
 	model: (TextModel new contents: 'This is some text to test the morph.');
 	openInWorld!
 
-!MagnifierMorph commentStamp: '<historical>' prior: 0!
-Provides a magnifying glass. Magnifies the morphs below (if grabbed) or the area around the mouse pointer.!
-
 !DragAndDropAreaMorph commentStamp: '<historical>' prior: 0!
 A simple morph that allows dragging submorphs, and dropping other morphs on it. It is provided as an example, and also as a reference of the methods you might need to implement in your morphs to handle drag and drop.
 
 | m |
 m _ DragAndDropAreaMorph new.
 m openInWorld.
-m addMorph: EllipseMorph new.
+m addMorph: WidgetMorph new.
 m morphExtent: 320@240!
 
 !PartsBinMorph commentStamp: '<historical>' prior: 0!
@@ -189,6 +186,9 @@ g addFunction: [ :x | ((3* x *x)) / (x+2) ] color: Color red.
 g addFunction: [ :x | ((3* x *x*x) - (6*x*x)) / (x squared -4) ] color: Color green.
 (g embeddedInMorphicWindowLabeled: 'graph') openInWorld.
 !
+
+!MagnifierMorph commentStamp: '<historical>' prior: 0!
+Provides a magnifying glass. Magnifies the morphs below (if grabbed) or the area around the mouse pointer.!
 
 !MinimalStringMorph commentStamp: 'jmv 4/1/2009 21:43' prior: 0!
 A greatly reduced StringMorph. May be of some use.!
@@ -541,200 +541,6 @@ privateExtent: aPoint
 maxHeight: aNumber
 	maxHeight _ aNumber! !
 
-!MagnifierMorph methodsFor: 'menu' stamp: 'di 9/28/1999 23:06'!
-addCustomMenuItems: aCustomMenu hand: aHandMorph
-	super addCustomMenuItems: aCustomMenu hand: aHandMorph.
-	aCustomMenu
-		addLine;
-		add: 'magnification...' action: #chooseMagnification;
-		addUpdating: #trackingPointerString action: #toggleTrackingPointer;
-		addUpdating: #toggleRoundString action: #toggleRoundness.! !
-
-!MagnifierMorph methodsFor: 'menu' stamp: 'jmv 8/21/2012 21:53'!
-chooseMagnification
-	| result |
-	result _ (SelectionMenu selections: #(1.5 2 4 8))
-		startUpWithCaption: 'Choose magnification
-(currently ', magnification printString, ')'.
-	(result == nil or: [ result = magnification ]) ifTrue: [ ^ self ].
-	magnification _ result.
-	self morphExtent: extent. "round to new magnification"
-	self redrawNeeded. "redraw even if extent wasn't changed"! !
-
-!MagnifierMorph methodsFor: 'menu' stamp: 'jmv 9/22/2012 15:35'!
-chooseMagnification: evt
-	| handle origin aHand currentMag |
-	currentMag _ magnification.
-	aHand _ evt ifNil: [ self world activeHand ] ifNotNil: [evt hand].
-	origin _ aHand morphPosition y.
-	handle _ HandleMorph new forEachPointDo:
-		[ :newPoint | self magnification: (newPoint y - origin) / 8.0 + currentMag ].
-	aHand attachMorph: handle.
-	handle startStepping.
-	self redrawNeeded. ! !
-
-!MagnifierMorph methodsFor: 'menu' stamp: 'bf 9/20/1999 15:48'!
-toggleTrackingPointer
-	trackPointer _ trackPointer not! !
-
-!MagnifierMorph methodsFor: 'menu' stamp: 'bf 9/20/1999 15:49'!
-trackingPointerString
-	^trackPointer
-		ifTrue: ['stop tracking pointer']
-		ifFalse: ['start tracking pointer']! !
-
-!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 12/16/2011 10:28'!
-borderWidth: anInteger
-	"Grow outwards preserving innerBounds"
-	| c |  
-	c _ self referencePosition.
-	super borderWidth: anInteger.
-	super morphExtent: self defaultExtent.
-	self referencePosition: c.! !
-
-!MagnifierMorph methodsFor: 'geometry' stamp: 'bf 9/21/1999 09:22'!
-defaultExtent
-	^(srcExtent * magnification) truncated + (2 * borderWidth)! !
-
-!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 6/6/2014 18:06'!
-privateExtent: aPoint
-	"Round to multiples of magnification"
-
-	srcExtent _ (aPoint - (2 * borderWidth)) // magnification.
-	^ super privateExtent: self defaultExtent! !
-
-!MagnifierMorph methodsFor: 'initialization' stamp: 'jmv 12/2/2011 10:20'!
-defaultBorderWidth
-	"answer the default border width for the receiver"
-	^ 1! !
-
-!MagnifierMorph methodsFor: 'initialization' stamp: 'jmv 9/13/2013 10:02'!
-initialize
-	super initialize.
-	trackPointer _ true.
-	magnification _ 2.
-	self morphExtent: 128@128! !
-
-!MagnifierMorph methodsFor: 'drawing' stamp: 'jmv 4/9/2015 09:43'!
-drawOn: aCanvas
-	RecursionLock == self ifFalse: [
-		super drawOn: aCanvas.		"border and fill"
-		aCanvas image: self magnifiedForm at: borderWidth@borderWidth]! !
-
-!MagnifierMorph methodsFor: 'event handling testing' stamp: 'jmv 1/17/2013 17:27'!
-handlesMouseDown: aMouseButtonEvent
-
-	^aMouseButtonEvent mouseButton2Pressed! !
-
-!MagnifierMorph methodsFor: 'round view' stamp: 'jmv 12/10/2010 09:25'!
-isRound
-
-	^ "owner isMemberOf: ScreeningMorph" false! !
-
-!MagnifierMorph methodsFor: 'round view' stamp: 'di 9/28/1999 23:17'!
-toggleRoundString
-	^ self isRound
-		ifTrue: ['be square']
-		ifFalse: ['be round']! !
-
-!MagnifierMorph methodsFor: 'round view' stamp: 'jmv 12/11/2011 23:35'!
-toggleRoundness
-	| |
-"	w _ self world.
-	self isRound
-		ifTrue: [owner delete.
-				w addMorph: self]
-		ifFalse: [sm _ ScreeningMorph new position: self zzposition.
-				sm addMorph: self.
-				sm addMorph: (EllipseMorph newBounds: self bounds).
-				w addMorph: sm]
-			"! !
-
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 12/16/2011 10:28'!
-magnification: aNumber
-	| c |  
-	magnification _ aNumber min: 8 max: 0.5.
-	magnification _ magnification roundTo:
-		(magnification < 3 ifTrue: [0.5] ifFalse: [1]).
-	srcExtent _ srcExtent min: (512@512) // magnification. "to prevent accidents"
-	c _ self referencePosition.
-	super morphExtent: self defaultExtent.
-	self referencePosition: c.! !
-
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:18:02'!
-magnifiedForm
-	| srcRect form neededExtent |
-	lastPos _ self sourcePoint.
-	srcRect _ self sourceRectFrom: lastPos.
-	((srcRect intersects: self displayBounds) and: [ RecursionLock == nil ])
-		ifTrue: [
-			RecursionLock _ self.
-			"try to reuse form if appropriate"
-			auxCanvas _ (auxCanvas notNil and: [ auxCanvas extent = srcExtent ])
-				ifTrue: [
-					"Just in case we go out of the Display"
-					srcRect origin > (0@0) ifFalse: [
-						auxCanvas form fillBlack ].
-					BitBltCanvas on: auxCanvas form over: srcRect ]
-				ifFalse: [ BitBltCanvas depth: 32 over: srcRect ].
-			auxCanvas fullDraw: self world.
-			form _ auxCanvas form.
-			RecursionLock _ nil]
-		ifFalse: [
-			"cheaper method if the source is not occluded"
-			form _ Display copy: srcRect].
-	"smooth if non-integer scale"
-	neededExtent _ (srcExtent * magnification ) truncated.
-	(magnifiedForm isNil or: [ magnifiedForm extent ~=  neededExtent ])
-		ifTrue: [ magnifiedForm _ Form extent: neededExtent depth: 32 ].
-	(WarpBlt toForm: magnifiedForm)
-		sourceForm: form;
-		colorMap: (form colormapIfNeededFor: magnifiedForm);
-		cellSize: (magnification isInteger ifTrue: [1] ifFalse: [2]);  "installs a new colormap if cellSize > 1"
-		combinationRule: 3;
-		copyQuad: form boundingBox innerCorners toRect: magnifiedForm boundingBox.
-	^magnifiedForm.! !
-
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:17:56'!
-sourcePoint
-	"If we are being dragged use our center, otherwise use pointer position"
-	^ (trackPointer not or: [owner notNil and: [owner is: #HandMorph]])
-		ifTrue: [ self displayBounds center ]
-		ifFalse: [ self world activeHand morphPosition ]! !
-
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/4/2012 16:41'!
-sourceRect
-	"world global coordinates, etc"
-	self flag: #jmvVer2.
-	^self sourceRectFrom: self sourcePoint! !
-
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/17/2012 18:52'!
-sourceRectFrom: aPoint
-	^ (aPoint extent: srcExtent) translatedBy: (srcExtent // -2) + 1.
-! !
-
-!MagnifierMorph methodsFor: 'events' stamp: 'jmv 1/14/2013 22:45'!
-mouseButton2Down: aMouseButtonEvent localPosition: localEventPosition
-
-	self chooseMagnification: aMouseButtonEvent! !
-
-!MagnifierMorph methodsFor: 'stepping' stamp: 'jmv 2/27/2016 19:53'!
-stepAt: millisecondSinceLast
-
-	self redrawNeeded! !
-
-!MagnifierMorph methodsFor: 'stepping' stamp: 'jmv 6/11/2012 23:32'!
-stepTime
-	"Update very often. Very short steptimes should only be used for morphs that are not stepping all the time!!"
-	^ 20! !
-
-!MagnifierMorph methodsFor: 'stepping' stamp: 'jmv 6/11/2012 09:58'!
-wantsSteps
-	"Return true if the receiver wants to its #step or #stepAt: methods be run ALL THE TIME.
-	Morphs that send #startStepping and #stopStepping at appropriate times (i.e. when they are already in the world!!) don't need to answer true to this message"
-
-	^true! !
-
 !DragAndDropAreaMorph methodsFor: 'drag and drop us' stamp: 'jmv 1/24/2013 22:53'!
 aboutToBeGrabbedBy: aHand
 	"The receiver is being grabbed by a hand.
@@ -952,6 +758,200 @@ xToMorphic: x
 !FunctionGraphMorph methodsFor: 'geometry' stamp: 'jmv 11/25/2016 11:03:27'!
 yToMorphic: y
 	^yMax - y / (yMax - yMin ) * (extent y-20)! !
+
+!MagnifierMorph methodsFor: 'menu' stamp: 'di 9/28/1999 23:06'!
+addCustomMenuItems: aCustomMenu hand: aHandMorph
+	super addCustomMenuItems: aCustomMenu hand: aHandMorph.
+	aCustomMenu
+		addLine;
+		add: 'magnification...' action: #chooseMagnification;
+		addUpdating: #trackingPointerString action: #toggleTrackingPointer;
+		addUpdating: #toggleRoundString action: #toggleRoundness.! !
+
+!MagnifierMorph methodsFor: 'menu' stamp: 'jmv 8/21/2012 21:53'!
+chooseMagnification
+	| result |
+	result _ (SelectionMenu selections: #(1.5 2 4 8))
+		startUpWithCaption: 'Choose magnification
+(currently ', magnification printString, ')'.
+	(result == nil or: [ result = magnification ]) ifTrue: [ ^ self ].
+	magnification _ result.
+	self morphExtent: extent. "round to new magnification"
+	self redrawNeeded. "redraw even if extent wasn't changed"! !
+
+!MagnifierMorph methodsFor: 'menu' stamp: 'jmv 9/22/2012 15:35'!
+chooseMagnification: evt
+	| handle origin aHand currentMag |
+	currentMag _ magnification.
+	aHand _ evt ifNil: [ self world activeHand ] ifNotNil: [evt hand].
+	origin _ aHand morphPosition y.
+	handle _ HandleMorph new forEachPointDo:
+		[ :newPoint | self magnification: (newPoint y - origin) / 8.0 + currentMag ].
+	aHand attachMorph: handle.
+	handle startStepping.
+	self redrawNeeded. ! !
+
+!MagnifierMorph methodsFor: 'menu' stamp: 'bf 9/20/1999 15:48'!
+toggleTrackingPointer
+	trackPointer _ trackPointer not! !
+
+!MagnifierMorph methodsFor: 'menu' stamp: 'bf 9/20/1999 15:49'!
+trackingPointerString
+	^trackPointer
+		ifTrue: ['stop tracking pointer']
+		ifFalse: ['start tracking pointer']! !
+
+!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 12/16/2011 10:28'!
+borderWidth: anInteger
+	"Grow outwards preserving innerBounds"
+	| c |  
+	c _ self referencePosition.
+	super borderWidth: anInteger.
+	super morphExtent: self defaultExtent.
+	self referencePosition: c.! !
+
+!MagnifierMorph methodsFor: 'geometry' stamp: 'bf 9/21/1999 09:22'!
+defaultExtent
+	^(srcExtent * magnification) truncated + (2 * borderWidth)! !
+
+!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 6/6/2014 18:06'!
+privateExtent: aPoint
+	"Round to multiples of magnification"
+
+	srcExtent _ (aPoint - (2 * borderWidth)) // magnification.
+	^ super privateExtent: self defaultExtent! !
+
+!MagnifierMorph methodsFor: 'initialization' stamp: 'jmv 12/2/2011 10:20'!
+defaultBorderWidth
+	"answer the default border width for the receiver"
+	^ 1! !
+
+!MagnifierMorph methodsFor: 'initialization' stamp: 'jmv 9/13/2013 10:02'!
+initialize
+	super initialize.
+	trackPointer _ true.
+	magnification _ 2.
+	self morphExtent: 128@128! !
+
+!MagnifierMorph methodsFor: 'drawing' stamp: 'jmv 4/9/2015 09:43'!
+drawOn: aCanvas
+	RecursionLock == self ifFalse: [
+		super drawOn: aCanvas.		"border and fill"
+		aCanvas image: self magnifiedForm at: borderWidth@borderWidth]! !
+
+!MagnifierMorph methodsFor: 'event handling testing' stamp: 'jmv 1/17/2013 17:27'!
+handlesMouseDown: aMouseButtonEvent
+
+	^aMouseButtonEvent mouseButton2Pressed! !
+
+!MagnifierMorph methodsFor: 'round view' stamp: 'jmv 12/10/2010 09:25'!
+isRound
+
+	^ "owner isMemberOf: ScreeningMorph" false! !
+
+!MagnifierMorph methodsFor: 'round view' stamp: 'di 9/28/1999 23:17'!
+toggleRoundString
+	^ self isRound
+		ifTrue: ['be square']
+		ifFalse: ['be round']! !
+
+!MagnifierMorph methodsFor: 'round view' stamp: 'jmv 12/11/2011 23:35'!
+toggleRoundness
+	| |
+"	w _ self world.
+	self isRound
+		ifTrue: [owner delete.
+				w addMorph: self]
+		ifFalse: [sm _ ScreeningMorph new position: self zzposition.
+				sm addMorph: self.
+				sm addMorph: (EllipseMorph newBounds: self bounds).
+				w addMorph: sm]
+			"! !
+
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 12/16/2011 10:28'!
+magnification: aNumber
+	| c |  
+	magnification _ aNumber min: 8 max: 0.5.
+	magnification _ magnification roundTo:
+		(magnification < 3 ifTrue: [0.5] ifFalse: [1]).
+	srcExtent _ srcExtent min: (512@512) // magnification. "to prevent accidents"
+	c _ self referencePosition.
+	super morphExtent: self defaultExtent.
+	self referencePosition: c.! !
+
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:18:02'!
+magnifiedForm
+	| srcRect form neededExtent |
+	lastPos _ self sourcePoint.
+	srcRect _ self sourceRectFrom: lastPos.
+	((srcRect intersects: self displayBounds) and: [ RecursionLock == nil ])
+		ifTrue: [
+			RecursionLock _ self.
+			"try to reuse form if appropriate"
+			auxCanvas _ (auxCanvas notNil and: [ auxCanvas extent = srcExtent ])
+				ifTrue: [
+					"Just in case we go out of the Display"
+					srcRect origin > (0@0) ifFalse: [
+						auxCanvas form fillBlack ].
+					BitBltCanvas on: auxCanvas form over: srcRect ]
+				ifFalse: [ BitBltCanvas depth: 32 over: srcRect ].
+			auxCanvas fullDraw: self world.
+			form _ auxCanvas form.
+			RecursionLock _ nil]
+		ifFalse: [
+			"cheaper method if the source is not occluded"
+			form _ Display copy: srcRect].
+	"smooth if non-integer scale"
+	neededExtent _ (srcExtent * magnification ) truncated.
+	(magnifiedForm isNil or: [ magnifiedForm extent ~=  neededExtent ])
+		ifTrue: [ magnifiedForm _ Form extent: neededExtent depth: 32 ].
+	(WarpBlt toForm: magnifiedForm)
+		sourceForm: form;
+		colorMap: (form colormapIfNeededFor: magnifiedForm);
+		cellSize: (magnification isInteger ifTrue: [1] ifFalse: [2]);  "installs a new colormap if cellSize > 1"
+		combinationRule: 3;
+		copyQuad: form boundingBox innerCorners toRect: magnifiedForm boundingBox.
+	^magnifiedForm.! !
+
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/23/2020 20:17:56'!
+sourcePoint
+	"If we are being dragged use our center, otherwise use pointer position"
+	^ (trackPointer not or: [owner notNil and: [owner is: #HandMorph]])
+		ifTrue: [ self displayBounds center ]
+		ifFalse: [ self world activeHand morphPosition ]! !
+
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/4/2012 16:41'!
+sourceRect
+	"world global coordinates, etc"
+	self flag: #jmvVer2.
+	^self sourceRectFrom: self sourcePoint! !
+
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/17/2012 18:52'!
+sourceRectFrom: aPoint
+	^ (aPoint extent: srcExtent) translatedBy: (srcExtent // -2) + 1.
+! !
+
+!MagnifierMorph methodsFor: 'events' stamp: 'jmv 1/14/2013 22:45'!
+mouseButton2Down: aMouseButtonEvent localPosition: localEventPosition
+
+	self chooseMagnification: aMouseButtonEvent! !
+
+!MagnifierMorph methodsFor: 'stepping' stamp: 'jmv 2/27/2016 19:53'!
+stepAt: millisecondSinceLast
+
+	self redrawNeeded! !
+
+!MagnifierMorph methodsFor: 'stepping' stamp: 'jmv 6/11/2012 23:32'!
+stepTime
+	"Update very often. Very short steptimes should only be used for morphs that are not stepping all the time!!"
+	^ 20! !
+
+!MagnifierMorph methodsFor: 'stepping' stamp: 'jmv 6/11/2012 09:58'!
+wantsSteps
+	"Return true if the receiver wants to its #step or #stepAt: methods be run ALL THE TIME.
+	Morphs that send #startStepping and #stopStepping at appropriate times (i.e. when they are already in the world!!) don't need to answer true to this message"
+
+	^true! !
 
 !MinimalStringMorph methodsFor: 'accessing' stamp: 'jmv 6/6/2014 10:58'!
 contents: newContents 
