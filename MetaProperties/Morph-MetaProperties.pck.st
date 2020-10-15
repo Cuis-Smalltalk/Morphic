@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #3901] on 3 October 2019 at 8:28:39 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 80!
+!provides: 'Morph-MetaProperties' 1 81!
 !requires: 'Cuis-Base' 50 3878 nil!
 !requires: 'Morphic-Misc1' 1 142 nil!
 !requires: 'Morphic-ColorEditor' 1 31 nil!
@@ -621,12 +621,10 @@ initialize
 	classDict := MetaProperty metaPropsDictForClass: Morph.
 	classDict at: #layoutSpec   put: (propsDict at: #acceptsLayoutSpec). 
 
-	classDict := MetaProperty metaPropsDictForClass: RectangleLikeMorph.
+	classDict := MetaProperty metaPropsDictForClass: WidgetMorph.
 	classDict at: #morphExtent   put: (propsDict at: #acceptsPositivePoint). 
 	classDict at: #morphPosition put: (propsDict at: #acceptsPoint). 
 	classDict at: #color put: (propsDict at: #acceptsColor). 
-
-	classDict := MetaProperty metaPropsDictForClass: BorderedRectMorph.
 	classDict at: #borderColor put: (propsDict at: #acceptsColor). 
 	classDict at: #borderWidth put: (propsDict at: #acceptsPositiveInteger).
 	
@@ -676,7 +674,7 @@ initialize
 	classDict := MetaProperty metaPropsDictForClass: WindowTitleMorph.
 	classDict at: #titleString put: (propsDict at: #acceptsString).
 	
-	classDict := MetaProperty metaPropsDictForClass: StringMorph.
+	classDict := MetaProperty metaPropsDictForClass: LabelMorph.
 	classDict at: #contents put: (propsDict at: #acceptsString).
 	classDict at: #font put: (propsDict at: #acceptsFont).
 	classDict at: #emphasis put: (propsDict at: #acceptsEmphasis). 
@@ -1888,7 +1886,7 @@ addToInitialDictionaries
 						(newVal isKindOf: Morph)
 						ifTrue: [ newVal ]
 						ifFalse: [ (newVal isKindOf: String)
-							ifTrue: [ StringMorph contents: newVal ]
+							ifTrue: [ LabelMorph contents: newVal ]
 							ifFalse: [ (newVal isKindOf: Form)
 								ifTrue:  [ ImageMorph new image: newVal ]
 								ifFalse: [ self error: 'Expected a Morph/Form/String got: ',
@@ -2288,17 +2286,17 @@ valueWhenDropped
 	
 	^ self form! !
 
-!StringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:16:32'!
+!LabelMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:16:32'!
 emphasis
 
 	^ emphasis! !
 
-!StringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:15:33'!
+!LabelMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:15:33'!
 emphasis: emphasisCode
 
 	self font: font emphasis: emphasisCode! !
 
-!StringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:14:22'!
+!LabelMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:14:22'!
 font: aFont
 
 	emphasis ifNil: [ emphasis := 0 ].

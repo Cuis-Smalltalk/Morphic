@@ -51,7 +51,7 @@ AddedCursors class
 	instanceVariableNames: ''!
 
 !classDefinition: #RadioButtonMorph category: #'Morphic-Misc1'!
-EllipseMorph subclass: #RadioButtonMorph
+WidgetMorph subclass: #RadioButtonMorph
 	instanceVariableNames: 'isSelected'
 	classVariableNames: 'DefaultDiameter'
 	poolDictionaries: ''
