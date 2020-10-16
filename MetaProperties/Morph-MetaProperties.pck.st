@@ -1,121 +1,121 @@
-'From Cuis 5.0 [latest update: #3901] on 3 October 2019 at 8:28:39 pm'!
+'From Cuis 5.0 [latest update: #4413] on 16 October 2020 at 3:54:20 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 81!
-!requires: 'Cuis-Base' 50 3878 nil!
-!requires: 'Morphic-Misc1' 1 142 nil!
-!requires: 'Morphic-ColorEditor' 1 31 nil!
+!provides: 'Morph-MetaProperties' 1 82!
+!requires: 'Cuis-Base' 50 4413 nil!
+!requires: 'Morphic-Misc1' 1 167 nil!
+!requires: 'Morphic-ColorEditor' 1 39 nil!
 !requires: 'Complex' 1 0 nil!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
-SystemOrganization addCategory: #'Morph-MetaProperties'!
+SystemOrganization addCategory: 'Morph-MetaProperties'!
 
 
-!classDefinition: #VisualPropertyEditor category: #'Morph-MetaProperties'!
+!classDefinition: #VisualPropertyEditor category: 'Morph-MetaProperties'!
 MenuMorph subclass: #VisualPropertyEditor
 	instanceVariableNames: 'targetMorph metaProps showAllIvars showAllProps'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'VisualPropertyEditor class' category: #'Morph-MetaProperties'!
+!classDefinition: 'VisualPropertyEditor class' category: 'Morph-MetaProperties'!
 VisualPropertyEditor class
 	instanceVariableNames: ''!
 
-!classDefinition: #VisualPropertyMenuItem category: #'Morph-MetaProperties'!
+!classDefinition: #VisualPropertyMenuItem category: 'Morph-MetaProperties'!
 UpdatingMenuItemMorph subclass: #VisualPropertyMenuItem
 	instanceVariableNames: 'metaProperty name prevValue targetMorph accessProc updateProc'
 	classVariableNames: 'BlankIcon BoolIcon CharIcon ChronIcon ClassIcon ClosureIcon CollectIcon CpxIcon FalseIcon FileIcon FloatIcon FolderIcon FontIcon FracIcon IntIcon NilIcon ObjIcon OneOfIcon PtIcon RngIcon StrIcon StreamIcon SymIcon TrueIcon WindowIcon'
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'VisualPropertyMenuItem class' category: #'Morph-MetaProperties'!
+!classDefinition: 'VisualPropertyMenuItem class' category: 'Morph-MetaProperties'!
 VisualPropertyMenuItem class
 	instanceVariableNames: ''!
 
-!classDefinition: #OrdinaryPropertyMenuItem category: #'Morph-MetaProperties'!
+!classDefinition: #OrdinaryPropertyMenuItem category: 'Morph-MetaProperties'!
 MenuItemMorph subclass: #OrdinaryPropertyMenuItem
 	instanceVariableNames: 'accessKind name targetMorph'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'OrdinaryPropertyMenuItem class' category: #'Morph-MetaProperties'!
+!classDefinition: 'OrdinaryPropertyMenuItem class' category: 'Morph-MetaProperties'!
 OrdinaryPropertyMenuItem class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaPropertyTests category: #'Morph-MetaProperties'!
+!classDefinition: #MetaPropertyTests category: 'Morph-MetaProperties'!
 TestCase subclass: #MetaPropertyTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaPropertyTests class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaPropertyTests class' category: 'Morph-MetaProperties'!
 MetaPropertyTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaProperty category: #'Morph-MetaProperties'!
+!classDefinition: #MetaProperty category: 'Morph-MetaProperties'!
 Object subclass: #MetaProperty
 	instanceVariableNames: 'kind editProc'
 	classVariableNames: 'MetaPropDict PreDefinedPropsDict PredrfinedPropsDict'
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaProperty class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaProperty class' category: 'Morph-MetaProperties'!
 MetaProperty class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaPropertyFrom category: #'Morph-MetaProperties'!
+!classDefinition: #MetaPropertyFrom category: 'Morph-MetaProperties'!
 MetaProperty subclass: #MetaPropertyFrom
 	instanceVariableNames: 'minValue'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaPropertyFrom class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaPropertyFrom class' category: 'Morph-MetaProperties'!
 MetaPropertyFrom class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaPropertyOneOf category: #'Morph-MetaProperties'!
+!classDefinition: #MetaPropertyOneOf category: 'Morph-MetaProperties'!
 MetaProperty subclass: #MetaPropertyOneOf
 	instanceVariableNames: 'choiceCollection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaPropertyOneOf class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaPropertyOneOf class' category: 'Morph-MetaProperties'!
 MetaPropertyOneOf class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaPropertyMultiSelect category: #'Morph-MetaProperties'!
+!classDefinition: #MetaPropertyMultiSelect category: 'Morph-MetaProperties'!
 MetaPropertyOneOf subclass: #MetaPropertyMultiSelect
 	instanceVariableNames: 'maxValue encodeProc decodeProc'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaPropertyMultiSelect class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaPropertyMultiSelect class' category: 'Morph-MetaProperties'!
 MetaPropertyMultiSelect class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaPropertyRange category: #'Morph-MetaProperties'!
+!classDefinition: #MetaPropertyRange category: 'Morph-MetaProperties'!
 MetaProperty subclass: #MetaPropertyRange
 	instanceVariableNames: 'minValue maxValue'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaPropertyRange class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaPropertyRange class' category: 'Morph-MetaProperties'!
 MetaPropertyRange class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaPropertyTransducer category: #'Morph-MetaProperties'!
+!classDefinition: #MetaPropertyTransducer category: 'Morph-MetaProperties'!
 MetaProperty subclass: #MetaPropertyTransducer
 	instanceVariableNames: 'kinds transformProc'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaPropertyTransducer class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaPropertyTransducer class' category: 'Morph-MetaProperties'!
 MetaPropertyTransducer class
 	instanceVariableNames: ''!
 
-!classDefinition: #MetaPropertyViaTest category: #'Morph-MetaProperties'!
+!classDefinition: #MetaPropertyViaTest category: 'Morph-MetaProperties'!
 MetaProperty subclass: #MetaPropertyViaTest
 	instanceVariableNames: 'testClosure'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morph-MetaProperties'!
-!classDefinition: 'MetaPropertyViaTest class' category: #'Morph-MetaProperties'!
+!classDefinition: 'MetaPropertyViaTest class' category: 'Morph-MetaProperties'!
 MetaPropertyViaTest class
 	instanceVariableNames: ''!
 
@@ -604,7 +604,7 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	^ false! !
 
-!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 12/24/2016 18:06:03'!
+!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 10/16/2020 15:48:39'!
 initialize
 "
 	VisualPropertyEditor initialize.
@@ -655,13 +655,11 @@ initialize
 
 	classDict := MetaProperty metaPropsDictForClass: ImageMorph.
 	classDict at: #image put: (propsDict at: #acceptsForm).
-
-	classDict := MetaProperty metaPropsDictForClass: BorderedImageMorph.
 	classDict at: #borderColor put: (propsDict at: #acceptsColor).
 	classDict at: #borderWidth put: (propsDict at: #acceptsPositiveInteger).
 	classDict at: #borderStyle put: (propsDict at: #acceptsBorderStyle).
 
-	classDict := MetaProperty metaPropsDictForClass: FramedLayoutMorph.
+	classDict := MetaProperty metaPropsDictForClass: LayoutMorph.
 	classDict at: #borderColor put: (propsDict at: #acceptsColor).
 	classDict at: #borderWidth put: (propsDict at: #acceptsPositiveInteger).
 	classDict at: #frameSelector put: (propsDict at: #acceptsBorderStyle).
@@ -1968,6 +1966,85 @@ morphForDrag
 	^ SignMorph forObject: self
 ! !
 
+!Collection methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:54'!
+icon
+
+	^ VisualPropertyMenuItem collectionIcon ! !
+
+!String methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:57'!
+icon
+
+	^ VisualPropertyMenuItem stringIcon ! !
+
+!Symbol methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
+icon
+
+	^ VisualPropertyMenuItem symbolIcon ! !
+
+!Stream methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
+icon
+
+	^ VisualPropertyMenuItem streamIcon ! !
+
+!Form methodsFor: '*morph-metaproperties' stamp: 'KenD 12/6/2016 19:39:56'!
+morphForDrag
+	"Answer a morph suitable for DragNDrop"
+	
+	^ ImageMorph new image: self
+! !
+
+!Point methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem pointIcon ! !
+
+!AbstractFont methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem fontIcon ! !
+
+!AbstractFont methodsFor: '*morph-metaproperties' stamp: 'KenD 12/6/2016 18:48:32'!
+morphForDrag
+	"Answer a morph suitable for DragNDrop"
+	
+	^ FontMorph font: self
+! !
+
+!Timespan methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem chronIcon ! !
+
+!Magnitude methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem integerIcon ! !
+
+!Time methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem chronIcon ! !
+
+!Float methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
+icon
+
+	^ VisualPropertyMenuItem floatIcon ! !
+
+!Fraction methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:54'!
+icon
+
+	^ VisualPropertyMenuItem fractionIcon ! !
+
+!Integer methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:54'!
+icon
+
+	^ VisualPropertyMenuItem integerIcon ! !
+
+!BlockClosure methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem closureIcon ! !
+
 !Boolean methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
 icon
 
@@ -1995,109 +2072,10 @@ icon
 
 	^ VisualPropertyMenuItem nilIcon ! !
 
-!Magnitude methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem integerIcon ! !
-
-!Float methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
-icon
-
-	^ VisualPropertyMenuItem floatIcon ! !
-
-!Fraction methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:54'!
-icon
-
-	^ VisualPropertyMenuItem fractionIcon ! !
-
-!Integer methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:54'!
-icon
-
-	^ VisualPropertyMenuItem integerIcon ! !
-
-!Time methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem chronIcon ! !
-
 !Character methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:57'!
 icon
 
 	^ VisualPropertyMenuItem charIcon ! !
-
-!Timespan methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem chronIcon ! !
-
-!BlockClosure methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem closureIcon ! !
-
-!Collection methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:54'!
-icon
-
-	^ VisualPropertyMenuItem collectionIcon ! !
-
-!String methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:57'!
-icon
-
-	^ VisualPropertyMenuItem stringIcon ! !
-
-!Symbol methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
-icon
-
-	^ VisualPropertyMenuItem symbolIcon ! !
-
-!Stream methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
-icon
-
-	^ VisualPropertyMenuItem streamIcon ! !
-
-!FileIOAccessor methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
-icon
-
-	^ VisualPropertyMenuItem fileIcon ! !
-
-!FileSystemEntry methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem fileIcon ! !
-
-!DirectoryEntry methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem folderIcon ! !
-
-!FileEntry methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem fileIcon ! !
-
-!Form methodsFor: '*morph-metaproperties' stamp: 'KenD 12/6/2016 19:39:56'!
-morphForDrag
-	"Answer a morph suitable for DragNDrop"
-	
-	^ ImageMorph new image: self
-! !
-
-!Point methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem pointIcon ! !
-
-!AbstractFont methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
-icon
-
-	^ VisualPropertyMenuItem fontIcon ! !
-
-!AbstractFont methodsFor: '*morph-metaproperties' stamp: 'KenD 12/6/2016 18:48:32'!
-morphForDrag
-	"Answer a morph suitable for DragNDrop"
-	
-	^ FontMorph font: self
-! !
 
 !Morph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/11/2016 15:40:47'!
 morphForDrag
@@ -2129,21 +2107,6 @@ valueWhenDropped
 	"Subclasses which wrap values should override (e.g. SignMorph, DropColorMorph)"
 	
 	^ self copy! !
-
-!ImagePallet methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:55'!
-icon
-
-	^ VisualPropertyMenuItem windowIcon ! !
-
-!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 12/24/2016 18:05:09'!
-labelString
-
-	^ self label! !
-
-!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 12/24/2016 18:05:25'!
-labelString: aString
-
-	^ self setLabel: aString! !
 
 !MenuMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 16:12:18'!
 aboutToGrab: aMorph
@@ -2302,6 +2265,21 @@ font: aFont
 	emphasis ifNil: [ emphasis := 0 ].
 	self font: aFont emphasis: emphasis! !
 
+!ImagePallet methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:55'!
+icon
+
+	^ VisualPropertyMenuItem windowIcon ! !
+
+!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 12/24/2016 18:05:09'!
+labelString
+
+	^ self label! !
+
+!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 12/24/2016 18:05:25'!
+labelString: aString
+
+	^ self setLabel: aString! !
+
 !MinimalStringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 14:56:55'!
 contents
 
@@ -2359,6 +2337,26 @@ front: fontToUse
 			ifFalse: [fontToUse emphasized: emphasis].
 	self fitContents.
 	self redrawNeeded ! !
+
+!FileIOAccessor methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:58'!
+icon
+
+	^ VisualPropertyMenuItem fileIcon ! !
+
+!FileSystemEntry methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem fileIcon ! !
+
+!DirectoryEntry methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem folderIcon ! !
+
+!FileEntry methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:56'!
+icon
+
+	^ VisualPropertyMenuItem fileIcon ! !
 
 !Complex methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:55'!
 icon
