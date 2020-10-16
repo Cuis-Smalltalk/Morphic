@@ -1,123 +1,141 @@
-'From Cuis 5.0 [latest update: #4413] on 15 October 2020 at 3:44:49 pm'!
+'From Cuis 5.0 [latest update: #4413] on 16 October 2020 at 3:30:22 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 30!
-SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
-SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
+!provides: 'Morphic-Widgets-Extras' 1 32!
+!requires: 'Cuis-Base' 50 4413 nil!
+SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
+SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
 
-!classDefinition: #SimpleEditor category: 'Morphic-Widgets-Extras'!
-Editor subclass: #SimpleEditor
-	instanceVariableNames: 'string pointIndex markIndex'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'SimpleEditor class' category: 'Morphic-Widgets-Extras'!
-SimpleEditor class
-	instanceVariableNames: ''!
-
-!classDefinition: #LimitedHeightTextMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #LimitedHeightTextMorph category: #'Morphic-Widgets-Extras'!
 TextModelMorph subclass: #LimitedHeightTextMorph
 	instanceVariableNames: 'maxHeight'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'LimitedHeightTextMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'LimitedHeightTextMorph class' category: #'Morphic-Widgets-Extras'!
 LimitedHeightTextMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #DragAndDropAreaMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #DragAndDropAreaMorph category: #'Morphic-Widgets-Extras'!
 WidgetMorph subclass: #DragAndDropAreaMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'DragAndDropAreaMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'DragAndDropAreaMorph class' category: #'Morphic-Widgets-Extras'!
 DragAndDropAreaMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #PartsBinMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #PartsBinMorph category: #'Morphic-Widgets-Extras'!
 DragAndDropAreaMorph subclass: #PartsBinMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'PartsBinMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'PartsBinMorph class' category: #'Morphic-Widgets-Extras'!
 PartsBinMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FrameRateMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #EllipseMorph category: #'Morphic-Widgets-Extras'!
+WidgetMorph subclass: #EllipseMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'EllipseMorph class' category: #'Morphic-Widgets-Extras'!
+EllipseMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #HandleMorph category: #'Morphic-Widgets-Extras'!
+EllipseMorph subclass: #HandleMorph
+	instanceVariableNames: 'pointBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'HandleMorph class' category: #'Morphic-Widgets-Extras'!
+HandleMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #FrameRateMorph category: #'Morphic-Widgets-Extras'!
 WidgetMorph subclass: #FrameRateMorph
 	instanceVariableNames: 'lastStepDelta meanStepDelta'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'FrameRateMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'FrameRateMorph class' category: #'Morphic-Widgets-Extras'!
 FrameRateMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FunctionGraphMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #FunctionGraphMorph category: #'Morphic-Widgets-Extras'!
 WidgetMorph subclass: #FunctionGraphMorph
 	instanceVariableNames: 'xMin xMax yMin yMax functions colors yRangeInvalid'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'FunctionGraphMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'FunctionGraphMorph class' category: #'Morphic-Widgets-Extras'!
 FunctionGraphMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #MagnifierMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #MagnifierMorph category: #'Morphic-Widgets-Extras'!
 WidgetMorph subclass: #MagnifierMorph
 	instanceVariableNames: 'magnification trackPointer lastPos srcExtent auxCanvas magnifiedForm'
 	classVariableNames: 'RecursionLock'
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'MagnifierMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'MagnifierMorph class' category: #'Morphic-Widgets-Extras'!
 MagnifierMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #MinimalStringMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #MinimalStringMorph category: #'Morphic-Widgets-Extras'!
 WidgetMorph subclass: #MinimalStringMorph
 	instanceVariableNames: 'font emphasis contents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'MinimalStringMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'MinimalStringMorph class' category: #'Morphic-Widgets-Extras'!
 MinimalStringMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #OneLineEditorMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #OneLineEditorMorph category: #'Morphic-Widgets-Extras'!
 WidgetMorph subclass: #OneLineEditorMorph
 	instanceVariableNames: 'font emphasis contents editor showTextCursor pauseBlinking textCursorRect keyboardFocusWatcher crAction'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'OneLineEditorMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'OneLineEditorMorph class' category: #'Morphic-Widgets-Extras'!
 OneLineEditorMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #SamplePlotterMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #SamplePlotterMorph category: #'Morphic-Widgets-Extras'!
 WidgetMorph subclass: #SamplePlotterMorph
 	instanceVariableNames: 'domain sampleSequences colors yMax yMin'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'SamplePlotterMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'SamplePlotterMorph class' category: #'Morphic-Widgets-Extras'!
 SamplePlotterMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #TextEditorTest category: 'Morphic-Widgets-Extras-Tests'!
+!classDefinition: #SimpleEditor category: #'Morphic-Widgets-Extras'!
+Editor subclass: #SimpleEditor
+	instanceVariableNames: 'string pointIndex markIndex'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'SimpleEditor class' category: #'Morphic-Widgets-Extras'!
+SimpleEditor class
+	instanceVariableNames: ''!
+
+!classDefinition: #TextEditorTest category: #'Morphic-Widgets-Extras-Tests'!
 TestCase subclass: #TextEditorTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras-Tests'!
-!classDefinition: 'TextEditorTest class' category: 'Morphic-Widgets-Extras-Tests'!
+!classDefinition: 'TextEditorTest class' category: #'Morphic-Widgets-Extras-Tests'!
 TextEditorTest class
 	instanceVariableNames: ''!
 
-
-!SimpleEditor commentStamp: '<historical>' prior: 0!
-See comment in Editor!
 
 !LimitedHeightTextMorph commentStamp: '<historical>' prior: 0!
 A TextMorph that will expand and contract vertically to adjust for the contents, but limited to a specific max height. If contents are larger, a scrollbar will be used.
@@ -144,6 +162,15 @@ m _ PartsBinMorph new.
 m openInWorld.
 m addMorph: EllipseMorph new.
 m morphExtent: 120@240!
+
+!EllipseMorph commentStamp: '<historical>' prior: 0!
+A round bordered Morph. Supports borderWidth and borderColor. 
+
+EllipseMorph new borderWidth:10; borderColor: Color green; openInWorld.
+!
+
+!HandleMorph commentStamp: '<historical>' prior: 0!
+A HandleMorph provides mouse-up control behavior.!
 
 !FrameRateMorph commentStamp: 'jmv 6/11/2012 10:14' prior: 0!
 A very simple morph to demo stepping, and for knowing about stepping (and world update) frame rates.
@@ -218,6 +245,9 @@ Would be cool to add other interpolators. So far, we only have Nearest Neighbor.
 Check SignalProcessing.pck.st for other 1D interpolators: Linear, Cubic, Splines, Beziers, Lanczos...
 !
 
+!SimpleEditor commentStamp: '<historical>' prior: 0!
+See comment in Editor!
+
 !LimitedHeightTextMorph class methodsFor: 'instance creation' stamp: 'jmv 11/14/2011 16:32'!
 initializedInstance
 	^self new
@@ -235,290 +265,6 @@ initializedInstance
 	g addFunction: [ :x | x cos ] color: Color green.
 	g addFunction: [ :x | (x + 1) squared - 3 ] color: Color red. "parabola with vertex at (-1,-3)"
 	^ g! !
-
-!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 12/19/2011 12:24'!
-addString: aString
-	"Think of a better name"
-
-	self replaceSelectionWith: aString! !
-
-!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 12/19/2011 12:24'!
-backTo: startIndex
-	"During typing, backspace to startIndex."
-
-	self markIndex: startIndex.
-	self replaceSelectionWith: ''.
-	self markIndex: self pointIndex! !
-
-!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 6/10/2012 11:14'!
-dispatchOn: aKeyboardEvent
-	"Carry out the action associated with this character, if any."
-	| asciiValue |
-	asciiValue _ aKeyboardEvent keyValue.
-	"Control keys are handled by #shortcuts even if they have any modifiers"
-	(asciiValue >= 32 and: [
-		aKeyboardEvent commandAltKeyPressed ]) ifTrue: [
-		^self perform: (self cmdShortcuts at: asciiValue + 1) with: aKeyboardEvent ].
-
-	"We don't support multiple lines. Therefore, we don't process return as a #normalCharacter:"
-	aKeyboardEvent isReturnKey ifTrue: [
-		^ true].
-
-	^ self perform: (self shortcuts at: asciiValue + 1) with: aKeyboardEvent! !
-
-!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 9/19/2011 09:47'!
-processKeyStroke: aKeyboardEvent
-
-	"Key struck on the keyboard. Find out which one and, if special, carry 
-	out the associated special action. Otherwise, add the character to the 
-	stream of characters."
-
-	(self dispatchOn: aKeyboardEvent) ifTrue: [
-		^self].
-	self markIndex: self pointIndex! !
-
-!SimpleEditor methodsFor: 'initialization' stamp: 'jmv 11/4/2008 13:08'!
-changeString: aString
-	"Install aString as the one to be edited by the receiver."
-
-	string _ aString.
-	self resetState! !
-
-!SimpleEditor methodsFor: 'initialization' stamp: 'jmv 11/4/2008 13:42'!
-initialize
-	"Initialize the state of the receiver. Subclasses should include 'super 
-	initialize' when redefining this message to insure proper initialization."
-
-	super initialize.
-	self changeString: ''! !
-
-!SimpleEditor methodsFor: 'initialization' stamp: 'jmv 10/16/2013 22:37'!
-resetState 
-	"Establish the initial conditions for editing the paragraph: place text cursor 
-	before first character, set the emphasis to that of the first character,
-	and save the paragraph for purposes of canceling."
-
-	pointIndex _ 1.	"Like pointBlock in TextEditor"
-	markIndex _ 1.	"Like markBlock in TextEditor"! !
-
-!SimpleEditor methodsFor: 'events' stamp: 'jmv 8/21/2012 08:42'!
-clickAndHalf
-
-	| here |
-	here _ self pointIndex.
-	(here between: 2 and: string size)
-		ifTrue: [ self selectWord ]
-		ifFalse: [
-			"if at beginning or end, select entire string"
-			self selectAll ].! !
-
-!SimpleEditor methodsFor: 'events' stamp: 'jmv 12/29/2011 14:51'!
-mouseDown: evt index: index
-
-	evt shiftPressed
-		ifFalse: [
-			self markIndex: index pointIndex: index ]
-		ifTrue: [
-			self mouseMove: evt index: index ]! !
-
-!SimpleEditor methodsFor: 'events' stamp: 'jmv 5/27/2011 15:23'!
-mouseMove: evt index: index
-	"Change the selection in response to mouse-down drag"
-
-	self pointIndex: index! !
-
-!SimpleEditor methodsFor: 'menu messages' stamp: 'jmv 10/16/2013 22:37'!
-copySelection
-	"Copy the current selection and store it in the Clipboard, unless empty."
-
-	self lineSelectAndEmptyCheck: [^ self].
-	self clipboardTextPut: self selection! !
-
-!SimpleEditor methodsFor: 'menu messages' stamp: 'jmv 9/22/2011 17:09'!
-cut
-	"Cut out the current selection and redisplay the paragraph if necessary."
-
-	| selection |
-	self lineSelectAndEmptyCheck: [^ self].
-	selection _ self selection.
-	self replaceSelectionWith: ''. 
-	self clipboardTextPut: selection! !
-
-!SimpleEditor methodsFor: 'nonediting/nontyping keys' stamp: 'jmv 9/19/2011 09:12'!
-cursorEnd: aKeyboardEvent
-	"Private - Move cursor end of current line."
-
-	self
-		moveCursor: [ :dummy | self endOfText ]
-		forward: true
-		event: aKeyboardEvent.
-	^ true.! !
-
-!SimpleEditor methodsFor: 'nonediting/nontyping keys' stamp: 'jmv 9/17/2010 13:42'!
-cursorHome: aKeyboardEvent 
-
-	"Private - Move cursor from position in current line to beginning of
-	current line. If control key is pressed put cursor at beginning of text"
-
-	self
-		moveCursor:  [ :dummy | self beginningOfText ]
-		forward: false
-		event: aKeyboardEvent.
-	^true! !
-
-!SimpleEditor methodsFor: 'typing/selecting keys' stamp: 'jmv 12/19/2011 12:24'!
-forwardDelete: aKeyboardEvent
-	"Delete forward over the next character."
-
-	| startIndex stopIndex |
-	startIndex _ self markIndex.
-	startIndex > string size ifTrue: [
-		^ false].
-	self hasSelection ifTrue: [
-		"there was a selection"
-		self replaceSelectionWith: ''.
-		^ false].
-	"Null selection - do the delete forward"
-	stopIndex := startIndex.
-	(aKeyboardEvent keyValue = 127 and: [ aKeyboardEvent shiftPressed ])
-		ifTrue: [ stopIndex := (self nextWordStart: stopIndex) - 1 ].
-	self selectFrom: startIndex to: stopIndex.
-	self replaceSelectionWith: ''.
-	self deselectAndPlaceCursorAt: startIndex.
-	^false! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 10/16/2013 22:17'!
-hasSelection
-	^markIndex ~= pointIndex! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:57'!
-markIndex
-	^markIndex! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/5/2008 11:41'!
-markIndex: anIndex
-	markIndex _ anIndex min: string size + 1 max: 1! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 5/27/2011 15:25'!
-markIndex: anIndex pointIndex: anotherIndex
-	markIndex _ anIndex min: string size + 1 max: 1.
-	pointIndex _ anotherIndex min: string size + 1 max: 1! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:57'!
-pointIndex
-	^ pointIndex! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/5/2008 11:41'!
-pointIndex: anIndex
-	pointIndex _ anIndex min: string size + 1 max: 1! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 1/31/2013 21:09'!
-selection
-
-	| firstIndex lastIndex |
-	firstIndex _ self startIndex.
-	lastIndex _ self stopIndex - 1.
-
-	(firstIndex = 1 and: [ lastIndex = string size ])
-		ifTrue: [ ^string ].
-
-	^string copyFrom: firstIndex to: lastIndex! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:55'!
-startIndex
-	^ pointIndex min: markIndex! !
-
-!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:55'!
-stopIndex
-	^ pointIndex max: markIndex! !
-
-!SimpleEditor methodsFor: 'testing' stamp: 'jmv 11/17/2008 17:01'!
-isAtEnd
-	^pointIndex = (string size + 1)! !
-
-!SimpleEditor methodsFor: 'testing' stamp: 'jmv 11/17/2008 17:01'!
-isAtStart
-	^pointIndex = 1! !
-
-!SimpleEditor methodsFor: 'editing keys' stamp: 'jmv 9/2/2009 12:40'!
-makeCapitalized: aKeyboardEvent
-	"Force the current selection to uppercase.  Triggered by Cmd-X."
-	| prev |
-	prev _ $-.  "not a letter"
-	self replaceSelectionWith:
-		(self selection collect: [:c |
-			prev _ prev isLetter ifTrue: [c asLowercase] ifFalse: [c asUppercase]]).
-	^ true! !
-
-!SimpleEditor methodsFor: 'editing keys' stamp: 'jmv 12/19/2011 12:22'!
-makeLowercase: aKeyboardEvent
-	"Force the current selection to lowercase.  Triggered by Cmd-X."
-
-	self replaceSelectionWith: self selection asLowercase.
-	^ true! !
-
-!SimpleEditor methodsFor: 'editing keys' stamp: 'jmv 12/19/2011 12:22'!
-makeUppercase: aKeyboardEvent
-	"Force the current selection to uppercase.  Triggered by Cmd-Y."
-
-	self replaceSelectionWith: self selection asUppercase.
-	^ true! !
-
-!SimpleEditor methodsFor: 'private' stamp: 'jmv 9/20/2011 08:46'!
-privateCurrentString
-	"Answer the string I'm editing. Private. Just for internal Editor use."
-
-	^string! !
-
-!SimpleEditor methodsFor: 'private' stamp: 'jmv 3/16/2011 10:44'!
-sameColumn: start newLine: lineBlock forward: isForward
-	"See comment in other implementors."
-	^start! !
-
-!SimpleEditor methodsFor: 'accessing' stamp: 'jmv 9/6/2017 10:02:17'!
-replaceSelectionWith: aString
-	"Deselect, and replace the selection text by aText."
-
-	| start stop |
-	morph disablesEditing ifTrue: [
-		^ self ].
-	start _ self startIndex.
-	stop _ self stopIndex.
-	(start = stop and: [aString size = 0]) ifFalse: [
-		string _ string copyReplaceFrom: start to: stop-1 with: aString.	
-		self deselectAndPlaceCursorAt:  start + aString size.
-		self userHasEdited  " -- note text now dirty" ]! !
-
-!SimpleEditor methodsFor: 'accessing' stamp: 'jmv 9/22/2011 16:52'!
-string
-	^string! !
-
-!SimpleEditor methodsFor: 'new selection' stamp: 'jmv 9/19/2011 09:12'!
-selectFrom: start to: stop
-
-	"Select the specified characters inclusive."
-	self selectInvisiblyFrom: start to: stop! !
-
-!SimpleEditor methodsFor: 'new selection' stamp: 'jmv 10/16/2013 22:10'!
-selectLine
-	"Make the receiver's selection, if currently empty, encompass the current line."
-	self hasSelection ifTrue:[^self].
-	self selectAll! !
-
-!SimpleEditor class methodsFor: 'keyboard shortcut tables' stamp: 'jmv 6/10/2012 11:07'!
-cmdShortcutsSpec
-	"
-	Editor initialize
-	"
-	"arranged in QWERTY keyboard order"
-	^#(
-		#(		$a 	#selectAll:				'Select all')
-
-		#(		$x 	#cut:						'Cut selection and store it in the Clipboard')
-		#(		$c 	#copySelection:			'Copy selection to the Clipboard')
-		#(		$v 	#paste:					'Paste Clipboard contents')
-		#(		$ 	#selectWord:			'Select the current word as with double clicking')
-	)! !
 
 !LimitedHeightTextMorph methodsFor: 'initialization' stamp: 'jmv 8/21/2012 21:59'!
 initialize
@@ -601,6 +347,89 @@ aboutToGrab: aMorph
 	Answer nil to reject the drag."
 
 	^aMorph copy! !
+
+!EllipseMorph methodsFor: 'drawing' stamp: 'jmv 4/9/2015 09:43'!
+drawOn: aCanvas 
+
+	| rx ry |
+	self revisar. "The morph should be specified better!!"
+	rx _ extent x //2.
+	ry _ extent y // 2.
+	aCanvas ellipseCenterX: rx y: ry rx: rx ry: ry borderWidth: borderWidth borderColor: borderColor fillColor: color! !
+
+!EllipseMorph methodsFor: 'geometry testing' stamp: 'jmv 10/7/2009 23:21'!
+isOrthoRectangularMorph
+	^false! !
+
+!EllipseMorph methodsFor: 'geometry testing' stamp: 'pb 3/17/2020 13:36:07'!
+morphContainsPoint: aLocalPoint
+
+	| radius other delta xOverY |
+	(self morphLocalBounds containsPoint: aLocalPoint) ifFalse: [^ false].  "quick elimination"
+	extent > `1@1`
+		ifFalse: [^ true].  "Degenerate case -- code below fails by a bit"
+
+	radius _ extent y asFloat / 2.
+	other _ extent x asFloat / 2.
+	delta _ aLocalPoint - (other@radius).
+	xOverY _ extent x asFloat / extent y asFloat.
+	^ (delta x asFloat / xOverY) squared + delta y squared <= radius squared! !
+
+!EllipseMorph methodsFor: 'initialization' stamp: 'dgd 2/14/2003 22:37'!
+defaultBorderWidth
+	"answer the default border width for the receiver"
+	^ 1! !
+
+!EllipseMorph methodsFor: 'visual properties' stamp: 'jmv 3/10/2018 22:24:29'!
+defaultColor
+	"Return the default fill style for the receiver"
+	^ `Color yellow`! !
+
+!EllipseMorph class methodsFor: 'new-morph participation' stamp: 'pb 6/8/2017 23:50:14'!
+categoryInNewMorphMenu
+	^ 'Basic'! !
+
+!HandleMorph methodsFor: 'events' stamp: 'jmv 3/12/2018 15:51:54'!
+keyStroke: aKeyboardEvent
+	"Check for cursor keys"
+	| keyValue |
+	(owner is: #HandMorph) ifFalse: [ ^self ].
+	keyValue _ aKeyboardEvent keyValue.
+	keyValue = 28 ifTrue: [ ^self morphPosition: self morphPosition - `1@0` ].
+	keyValue = 29 ifTrue: [ ^self morphPosition: self morphPosition + `1@0` ].
+	keyValue = 30 ifTrue: [ ^self morphPosition: self morphPosition - `0@1` ].
+	keyValue = 31 ifTrue: [ ^self morphPosition: self morphPosition + `0@1` ].
+	"Special case for return"
+	aKeyboardEvent isReturnKey ifTrue:[
+		"Drop the receiver and be done"
+	self flag: #arNote. "Probably unnecessary"
+		owner releaseKeyboardFocus: self.
+		self delete ]! !
+
+!HandleMorph methodsFor: 'initialization' stamp: 'di 11/3/97 16:34'!
+forEachPointDo: aBlock
+	pointBlock _ aBlock! !
+
+!HandleMorph methodsFor: 'initialization' stamp: 'jmv 3/12/2018 15:51:51'!
+initialize
+	"initialize the state of the receiver"
+	super initialize.
+	extent _ `12@12`! !
+
+!HandleMorph methodsFor: 'stepping and presenter' stamp: 'jmv 7/22/2020 23:08:01'!
+stepAt: millisecondSinceLast
+
+	pointBlock value: self displayBounds center! !
+
+!HandleMorph methodsFor: 'testing' stamp: 'jmv 6/11/2012 23:32'!
+stepTime
+	"Update very often. Very short steptimes should only be used for morphs that are not stepping all the time!!"
+	^ 20! !
+
+!HandleMorph class methodsFor: 'new-morph participation' stamp: 'jmv 4/3/2011 22:43'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	^ false! !
 
 !FrameRateMorph methodsFor: 'drawing' stamp: 'jmv 6/11/2020 16:49:32'!
 drawOn: aCanvas
@@ -1539,6 +1368,290 @@ iterate: aBlock
 	sampleSequences with: colors do: [ :seq :c |
 		domain with: seq do: [ :x :y |
 			aBlock value: x value: y value: c ]]! !
+
+!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 12/19/2011 12:24'!
+addString: aString
+	"Think of a better name"
+
+	self replaceSelectionWith: aString! !
+
+!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 12/19/2011 12:24'!
+backTo: startIndex
+	"During typing, backspace to startIndex."
+
+	self markIndex: startIndex.
+	self replaceSelectionWith: ''.
+	self markIndex: self pointIndex! !
+
+!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 6/10/2012 11:14'!
+dispatchOn: aKeyboardEvent
+	"Carry out the action associated with this character, if any."
+	| asciiValue |
+	asciiValue _ aKeyboardEvent keyValue.
+	"Control keys are handled by #shortcuts even if they have any modifiers"
+	(asciiValue >= 32 and: [
+		aKeyboardEvent commandAltKeyPressed ]) ifTrue: [
+		^self perform: (self cmdShortcuts at: asciiValue + 1) with: aKeyboardEvent ].
+
+	"We don't support multiple lines. Therefore, we don't process return as a #normalCharacter:"
+	aKeyboardEvent isReturnKey ifTrue: [
+		^ true].
+
+	^ self perform: (self shortcuts at: asciiValue + 1) with: aKeyboardEvent! !
+
+!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 9/19/2011 09:47'!
+processKeyStroke: aKeyboardEvent
+
+	"Key struck on the keyboard. Find out which one and, if special, carry 
+	out the associated special action. Otherwise, add the character to the 
+	stream of characters."
+
+	(self dispatchOn: aKeyboardEvent) ifTrue: [
+		^self].
+	self markIndex: self pointIndex! !
+
+!SimpleEditor methodsFor: 'initialization' stamp: 'jmv 11/4/2008 13:08'!
+changeString: aString
+	"Install aString as the one to be edited by the receiver."
+
+	string _ aString.
+	self resetState! !
+
+!SimpleEditor methodsFor: 'initialization' stamp: 'jmv 11/4/2008 13:42'!
+initialize
+	"Initialize the state of the receiver. Subclasses should include 'super 
+	initialize' when redefining this message to insure proper initialization."
+
+	super initialize.
+	self changeString: ''! !
+
+!SimpleEditor methodsFor: 'initialization' stamp: 'jmv 10/16/2013 22:37'!
+resetState 
+	"Establish the initial conditions for editing the paragraph: place text cursor 
+	before first character, set the emphasis to that of the first character,
+	and save the paragraph for purposes of canceling."
+
+	pointIndex _ 1.	"Like pointBlock in TextEditor"
+	markIndex _ 1.	"Like markBlock in TextEditor"! !
+
+!SimpleEditor methodsFor: 'events' stamp: 'jmv 8/21/2012 08:42'!
+clickAndHalf
+
+	| here |
+	here _ self pointIndex.
+	(here between: 2 and: string size)
+		ifTrue: [ self selectWord ]
+		ifFalse: [
+			"if at beginning or end, select entire string"
+			self selectAll ].! !
+
+!SimpleEditor methodsFor: 'events' stamp: 'jmv 12/29/2011 14:51'!
+mouseDown: evt index: index
+
+	evt shiftPressed
+		ifFalse: [
+			self markIndex: index pointIndex: index ]
+		ifTrue: [
+			self mouseMove: evt index: index ]! !
+
+!SimpleEditor methodsFor: 'events' stamp: 'jmv 5/27/2011 15:23'!
+mouseMove: evt index: index
+	"Change the selection in response to mouse-down drag"
+
+	self pointIndex: index! !
+
+!SimpleEditor methodsFor: 'menu messages' stamp: 'jmv 10/16/2013 22:37'!
+copySelection
+	"Copy the current selection and store it in the Clipboard, unless empty."
+
+	self lineSelectAndEmptyCheck: [^ self].
+	self clipboardTextPut: self selection! !
+
+!SimpleEditor methodsFor: 'menu messages' stamp: 'jmv 9/22/2011 17:09'!
+cut
+	"Cut out the current selection and redisplay the paragraph if necessary."
+
+	| selection |
+	self lineSelectAndEmptyCheck: [^ self].
+	selection _ self selection.
+	self replaceSelectionWith: ''. 
+	self clipboardTextPut: selection! !
+
+!SimpleEditor methodsFor: 'nonediting/nontyping keys' stamp: 'jmv 9/19/2011 09:12'!
+cursorEnd: aKeyboardEvent
+	"Private - Move cursor end of current line."
+
+	self
+		moveCursor: [ :dummy | self endOfText ]
+		forward: true
+		event: aKeyboardEvent.
+	^ true.! !
+
+!SimpleEditor methodsFor: 'nonediting/nontyping keys' stamp: 'jmv 9/17/2010 13:42'!
+cursorHome: aKeyboardEvent 
+
+	"Private - Move cursor from position in current line to beginning of
+	current line. If control key is pressed put cursor at beginning of text"
+
+	self
+		moveCursor:  [ :dummy | self beginningOfText ]
+		forward: false
+		event: aKeyboardEvent.
+	^true! !
+
+!SimpleEditor methodsFor: 'typing/selecting keys' stamp: 'jmv 12/19/2011 12:24'!
+forwardDelete: aKeyboardEvent
+	"Delete forward over the next character."
+
+	| startIndex stopIndex |
+	startIndex _ self markIndex.
+	startIndex > string size ifTrue: [
+		^ false].
+	self hasSelection ifTrue: [
+		"there was a selection"
+		self replaceSelectionWith: ''.
+		^ false].
+	"Null selection - do the delete forward"
+	stopIndex := startIndex.
+	(aKeyboardEvent keyValue = 127 and: [ aKeyboardEvent shiftPressed ])
+		ifTrue: [ stopIndex := (self nextWordStart: stopIndex) - 1 ].
+	self selectFrom: startIndex to: stopIndex.
+	self replaceSelectionWith: ''.
+	self deselectAndPlaceCursorAt: startIndex.
+	^false! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 10/16/2013 22:17'!
+hasSelection
+	^markIndex ~= pointIndex! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:57'!
+markIndex
+	^markIndex! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/5/2008 11:41'!
+markIndex: anIndex
+	markIndex _ anIndex min: string size + 1 max: 1! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 5/27/2011 15:25'!
+markIndex: anIndex pointIndex: anotherIndex
+	markIndex _ anIndex min: string size + 1 max: 1.
+	pointIndex _ anotherIndex min: string size + 1 max: 1! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:57'!
+pointIndex
+	^ pointIndex! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/5/2008 11:41'!
+pointIndex: anIndex
+	pointIndex _ anIndex min: string size + 1 max: 1! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 1/31/2013 21:09'!
+selection
+
+	| firstIndex lastIndex |
+	firstIndex _ self startIndex.
+	lastIndex _ self stopIndex - 1.
+
+	(firstIndex = 1 and: [ lastIndex = string size ])
+		ifTrue: [ ^string ].
+
+	^string copyFrom: firstIndex to: lastIndex! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:55'!
+startIndex
+	^ pointIndex min: markIndex! !
+
+!SimpleEditor methodsFor: 'accessing-selection' stamp: 'jmv 11/4/2008 13:55'!
+stopIndex
+	^ pointIndex max: markIndex! !
+
+!SimpleEditor methodsFor: 'testing' stamp: 'jmv 11/17/2008 17:01'!
+isAtEnd
+	^pointIndex = (string size + 1)! !
+
+!SimpleEditor methodsFor: 'testing' stamp: 'jmv 11/17/2008 17:01'!
+isAtStart
+	^pointIndex = 1! !
+
+!SimpleEditor methodsFor: 'editing keys' stamp: 'jmv 9/2/2009 12:40'!
+makeCapitalized: aKeyboardEvent
+	"Force the current selection to uppercase.  Triggered by Cmd-X."
+	| prev |
+	prev _ $-.  "not a letter"
+	self replaceSelectionWith:
+		(self selection collect: [:c |
+			prev _ prev isLetter ifTrue: [c asLowercase] ifFalse: [c asUppercase]]).
+	^ true! !
+
+!SimpleEditor methodsFor: 'editing keys' stamp: 'jmv 12/19/2011 12:22'!
+makeLowercase: aKeyboardEvent
+	"Force the current selection to lowercase.  Triggered by Cmd-X."
+
+	self replaceSelectionWith: self selection asLowercase.
+	^ true! !
+
+!SimpleEditor methodsFor: 'editing keys' stamp: 'jmv 12/19/2011 12:22'!
+makeUppercase: aKeyboardEvent
+	"Force the current selection to uppercase.  Triggered by Cmd-Y."
+
+	self replaceSelectionWith: self selection asUppercase.
+	^ true! !
+
+!SimpleEditor methodsFor: 'private' stamp: 'jmv 9/20/2011 08:46'!
+privateCurrentString
+	"Answer the string I'm editing. Private. Just for internal Editor use."
+
+	^string! !
+
+!SimpleEditor methodsFor: 'private' stamp: 'jmv 3/16/2011 10:44'!
+sameColumn: start newLine: lineBlock forward: isForward
+	"See comment in other implementors."
+	^start! !
+
+!SimpleEditor methodsFor: 'accessing' stamp: 'jmv 9/6/2017 10:02:17'!
+replaceSelectionWith: aString
+	"Deselect, and replace the selection text by aText."
+
+	| start stop |
+	morph disablesEditing ifTrue: [
+		^ self ].
+	start _ self startIndex.
+	stop _ self stopIndex.
+	(start = stop and: [aString size = 0]) ifFalse: [
+		string _ string copyReplaceFrom: start to: stop-1 with: aString.	
+		self deselectAndPlaceCursorAt:  start + aString size.
+		self userHasEdited  " -- note text now dirty" ]! !
+
+!SimpleEditor methodsFor: 'accessing' stamp: 'jmv 9/22/2011 16:52'!
+string
+	^string! !
+
+!SimpleEditor methodsFor: 'new selection' stamp: 'jmv 9/19/2011 09:12'!
+selectFrom: start to: stop
+
+	"Select the specified characters inclusive."
+	self selectInvisiblyFrom: start to: stop! !
+
+!SimpleEditor methodsFor: 'new selection' stamp: 'jmv 10/16/2013 22:10'!
+selectLine
+	"Make the receiver's selection, if currently empty, encompass the current line."
+	self hasSelection ifTrue:[^self].
+	self selectAll! !
+
+!SimpleEditor class methodsFor: 'keyboard shortcut tables' stamp: 'jmv 6/10/2012 11:07'!
+cmdShortcutsSpec
+	"
+	Editor initialize
+	"
+	"arranged in QWERTY keyboard order"
+	^#(
+		#(		$a 	#selectAll:				'Select all')
+
+		#(		$x 	#cut:						'Cut selection and store it in the Clipboard')
+		#(		$c 	#copySelection:			'Copy selection to the Clipboard')
+		#(		$v 	#paste:					'Paste Clipboard contents')
+		#(		$ 	#selectWord:			'Select the current word as with double clicking')
+	)! !
 
 !TextEditorTest methodsFor: 'as yet unclassified' stamp: 'jmv 12/28/2017 16:11:57'!
 testSimpleEditor
