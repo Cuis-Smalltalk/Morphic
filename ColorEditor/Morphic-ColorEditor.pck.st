@@ -1,74 +1,64 @@
-'From Cuis 5.0 [latest update: #4219] on 12 June 2020 at 11:52:45 am'!
+'From Cuis 5.0 [latest update: #4413] on 16 October 2020 at 3:44:36 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 38!
-!requires: 'Cuis-Base' 50 4197 nil!
-!requires: 'Color-Extras' 1 4 nil!
-!requires: 'Graphics-Files-Additional' 1 nil nil!
-!requires: 'CSS3-NamedColors' 1 0 nil!
+!provides: 'Morphic-ColorEditor' 1 39!
 !requires: 'Morphic-Misc1' 1 103 nil!
-SystemOrganization addCategory: #'Morphic-ColorEditor'!
+!requires: 'Color-Extras' 1 4 nil!
+!requires: 'Cuis-Base' 50 4413 nil!
+!requires: 'CSS3-NamedColors' 1 0 nil!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
+SystemOrganization addCategory: 'Morphic-ColorEditor'!
 
 
-!classDefinition: #ColorPallet category: #'Morphic-ColorEditor'!
-ImagePallet subclass: #ColorPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorPallet class' category: #'Morphic-ColorEditor'!
-ColorPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #ColorEditorPanel category: #'Morphic-ColorEditor'!
-Panel subclass: #ColorEditorPanel
-	instanceVariableNames: 'colorPane colorSwatch sliderColumn closeColorSwatch closeColorLabel closestRGB radioSelection rgbRadio hsvRadio closestColordictColor rgbString'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorEditorPanel class' category: #'Morphic-ColorEditor'!
-ColorEditorPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #ColorPaneMorph category: #'Morphic-ColorEditor'!
+!classDefinition: #ColorPaneMorph category: 'Morphic-ColorEditor'!
 ImageMorph subclass: #ColorPaneMorph
 	instanceVariableNames: 'zeroPlaneForm zIndex zValue colorPoint focusMorph'
 	classVariableNames: 'BlueIndex BrightnessForm BrightnessIndex BrightnessOverlay GBForm GreenIndex HueIndex HueOverlay RBForm RGForm RedIndex SaturationForm SaturationIndex SaturationOverlay'
 	poolDictionaries: ''
 	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorPaneMorph class' category: #'Morphic-ColorEditor'!
+!classDefinition: 'ColorPaneMorph class' category: 'Morphic-ColorEditor'!
 ColorPaneMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #ColorSliderMorph category: #'Morphic-ColorEditor'!
+!classDefinition: #ColorSliderMorph category: 'Morphic-ColorEditor'!
 ImageMorph subclass: #ColorSliderMorph
 	instanceVariableNames: 'colorPane sliderMorph maxZValue'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorSliderMorph class' category: #'Morphic-ColorEditor'!
+!classDefinition: 'ColorSliderMorph class' category: 'Morphic-ColorEditor'!
 ColorSliderMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #ColorEditorModel category: #'Morphic-ColorEditor'!
+!classDefinition: #ColorEditorPanel category: 'Morphic-ColorEditor'!
+Panel subclass: #ColorEditorPanel
+	instanceVariableNames: 'colorPane colorSwatch sliderColumn closeColorSwatch closeColorLabel closestRGB radioSelection rgbRadio hsvRadio closestColordictColor rgbString'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-ColorEditor'!
+!classDefinition: 'ColorEditorPanel class' category: 'Morphic-ColorEditor'!
+ColorEditorPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #ColorPallet category: 'Morphic-ColorEditor'!
+ImagePallet subclass: #ColorPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-ColorEditor'!
+!classDefinition: 'ColorPallet class' category: 'Morphic-ColorEditor'!
+ColorPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #ColorEditorModel category: 'Morphic-ColorEditor'!
 Object subclass: #ColorEditorModel
 	instanceVariableNames: 'color'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorEditorModel class' category: #'Morphic-ColorEditor'!
+!classDefinition: 'ColorEditorModel class' category: 'Morphic-ColorEditor'!
 ColorEditorModel class
 	instanceVariableNames: ''!
 
-
-!ColorPallet commentStamp: '<historical>' prior: 0!
-I am just a way to get a Color pallet.  See my class side.!
-
-!ColorEditorPanel commentStamp: '<historical>' prior: 0!
-I present the ColorEditor UI
-
-Usage: 
-	ColorEditorPanel open.
-	ColorEditorPanel openColor: Color forestGreen.!
 
 !ColorPaneMorph commentStamp: '<historical>' prior: 0!
 I present a plane in a color cube.
@@ -106,13 +96,18 @@ The associated ColorPane has a Focus Color (x,y) at constant z.
 This pane shows the range of color of z at the focus point -- constant (x,y)
 !
 
+!ColorEditorPanel commentStamp: '<historical>' prior: 0!
+I present the ColorEditor UI
+
+Usage: 
+	ColorEditorPanel open.
+	ColorEditorPanel openColor: Color forestGreen.!
+
+!ColorPallet commentStamp: '<historical>' prior: 0!
+I am just a way to get a Color pallet.  See my class side.!
+
 !ColorEditorModel commentStamp: '<historical>' prior: 0!
 I am the model (state holder) for a ColorEditor.!
-
-!ColorPallet class methodsFor: 'instance creation' stamp: 'KenD 12/24/2013 17:57'!
-initializedInstance
-
-	^ ImagePallet namedColors! !
 
 !ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 6/1/2020 16:07:03'!
 initializedInstance
@@ -128,483 +123,10 @@ initializedInstance
 		yourself
 ! !
 
-!ColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/24/2013 17:55'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ true! !
+!ColorPallet class methodsFor: 'instance creation' stamp: 'KenD 12/24/2013 17:57'!
+initializedInstance
 
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
-useCSS3ColorDict
-"
-	self useCSS3ColorDict.
-"
-	Feature require: 'CSS3-NamedColors'.
-	Color setColorNamesDict: Color css3ColorDictionary.! !
-
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 7/24/2015 11:33'!
-useCrayonColorDict
-"
-	ColorPallet useCrayonColorDict.
-"
-
-	Feature require: 'Crayon-NamedColors'.
-	Color setColorNamesDict: Color crayonColorDictionary.! !
-
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
-useNBSISCCColorDict
-"
-	self useNBSISCCColorDict.
-"
-	Feature require: 'NBSISCC-NamedColors'.
-	Color setColorNamesDict: Color nbsisccColorDictionary.! !
-
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
-useSmallColorDict
-
-	Color setColorNamesDict: Color defaultColorNamesDictionary.! !
-
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
-useXKCDColorDict
-"
-	self useXKCDColorDict.
-"
-
-	Feature require: 'XKCD-NamedColors'.
-	Color setColorNamesDict: Color xkcdColorDictionary.! !
-
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:59'!
-useXKCDFirst48ColorDict
-"
-	self useXKCDFirst48ColorDict.
-"
-
-	Color setColorNamesDict: Color xkcdFirst48ColorNamesDictionary.! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 10/29/2015 15:16'!
-backgroundColor
-
-	^ Color veryVeryLightGray! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/26/2013 21:27'!
-colorPane
-
-	^ colorPane ! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 10/29/2015 08:57'!
-colorSelectionSymbol
-
-	^ radioSelection ! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 10/29/2015 08:57'!
-colorSelectionSymbol: aSym
-
-	radioSelection := aSym! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/19/2013 21:15'!
-colorSwatch
-
-	^ colorSwatch! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/19/2013 21:14'!
-hsvRadio
-
-	^ hsvRadio! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/19/2013 21:14'!
-rgbRadio
-
-	^ rgbRadio! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/24/2013 08:48'!
-rgbString
-	"Answer my rgbString StringMorph"
-	^ rgbString! !
-
-!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/25/2013 19:12'!
-sliderColumn
-
-	^ sliderColumn! !
-
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 6/1/2020 16:01:28'!
-buildColorPaneColumn
-
-	| selector column hexDisplayLayout |
-	selector := self defaultRadioSelector asLowercase asSymbol.
-	colorPane := (ColorPaneMorph 
-								zSelector: self defaultRadioSelector 
-								zValue:  (self model perform: selector)
-								colorPoint: 10@10).
-	colorPane updateColorFromModel: self model.
-	colorPane when: #colorChanged send: #updateColorFromPane to: self.
-	colorPane layoutSpec: (LayoutSpec keepMorphExtent).
-	
-	hexDisplayLayout := LayoutMorph newRow.
-	hexDisplayLayout
-	     layoutSpec: (LayoutSpec 
-							proportionalWidth: 0.2 
-							proportionalHeight: 0.1
-							offAxisEdgeWeight: #rowTop);
-		separation: 1;
-		addMorph: (StringMorph new contents: '16r') layoutSpec: (LayoutSpec keepMorphExtent);
-		addMorph: self rgbString;
-		addMorph: (StringMorph new contents: ' hexRGB');
-		color: self backgroundColor.
-	
-	column := LayoutMorph newColumn.
-	column
-		addMorph: colorPane;
-		addMorph: hexDisplayLayout;
-		axisEdgeWeight: #columnTop;
-		separation: 4;
-		color: Color transparent.
-	
-	^ column! !
-
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 14:45:45'!
-buildMorphicWindow
-	"Create a useful ColorEditor window"
-	
-	self layoutMorph beRow; " A row of columns"
-		 separation: 6;
-		 axisEdgeWeight: #rowLeft;
-		 addMorph: self buildColorPaneColumn;
-		 addMorph: self buildSliderColumn;
-		 addMorph: self buildRadioButtonColumn;
-		 color: self backgroundColor.
-		
-	self model when: #colorChanged send: #refreshColor to: self.
-	self makeColorSwatchDroppable.
-	
-	^ self
-! !
-
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 14:49:20'!
-buildRadioButtonColumn
-
-	| radioCol setupEntryMorph valueEntryMorph |
-	rgbRadio := RadioGroup fromList: #(Red Green Blue).
-	rgbRadio separation: 2.
-	hsvRadio := RadioGroup fromList: #(Hue Saturation Brightness).
-	hsvRadio separation: 2.
-	rgbRadio when: #informRadioSelection send: #newRadioSelection: to: self.
-	hsvRadio when: #informRadioSelection send: #newRadioSelection: to: self.
-	setupEntryMorph := [ :sym :entryMorph | | selector |
-		selector := sym asLowercase asSymbol.
-		entryMorph valueAccessor: [ :myModel | myModel perform: selector ].
-		entryMorph valueUpdator: [ :myValue | 
-					self model perform: ( selector , ':' ) asSymbol with: myValue ].
-		entryMorph refreshValueFrom: self model.
-		self model when: #colorChanged 
-			send: #refreshValueFrom: 
-			to: entryMorph.
-	].
-	
-	#(Red Green Blue) do: [ :sym | | entryMorph |
-		entryMorph := SimpleNumberEntryMorph rgbOneOf.
-		setupEntryMorph value: sym value: entryMorph.
-		(rgbRadio rowFor: sym) addMorph: entryMorph.
-	].
-	valueEntryMorph := SimpleNumberEntryMorph circleDegreesExact.
-	setupEntryMorph value: #Hue value: valueEntryMorph.
-	(hsvRadio rowFor: #Hue) 
-		addMorph: valueEntryMorph;
-		addMorph: (StringMorph contents: 'deg').
-.
-	#(Saturation Brightness) do:  [ :sym | | entryMorph |
-		entryMorph := SimpleNumberEntryMorph percentExact.
-		setupEntryMorph value: sym value: entryMorph.
-		(hsvRadio rowFor: sym) 
-			addMorph: entryMorph;
-			addMorph: (StringMorph contents: '%').
-	].
-	(rgbRadio buttonFor: self defaultRadioSelector) select.
-
-	self rgbString 
-		valueAccessor: [ :myModel | myModel rgbValue ];
-		valueUpdator: [ :myValue | self model setRGBColorFromInteger: myValue ];
-		refreshValueFrom: self model.
-	self model when: #colorChanged send: #refreshValueFrom: to: rgbString.
-
-	radioCol := LayoutMorph newColumn.
-	^ radioCol 
-		separation: 2;
-		axisEdgeWeight: #columnTop;
-		addMorph: rgbRadio;
-		addMorph: hsvRadio;
-		addMorph: self buildSwatchLayout;
-		color: Color transparent;
-		yourself
-	! !
-
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 9/17/2016 21:48:35'!
-buildSliderColumn
-
-	sliderColumn := LayoutMorph newColumn.
-	sliderColumn color: Color transparent.
-	self resetSliderColumn.
-	
-	^ sliderColumn 
-
-	! !
-
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 14:49:50'!
-buildSwatchLayout
-	"Display swatch of current color and closest named color"
-
-	| swatchLayout labelColumn colorFrame closeColorFrame |
-	closeColorSwatch := DropColorMorph fromColor: model color.
-	closeColorFrame := FrameMorph new ::
-		morphExtent: closeColorSwatch morphExtent + 4;
-		borderColor: Color black; 
-		borderWidth: 2; 	
-		"Make color swatch draggable"
-		setProperty: #allowsSubmorphDrag toValue: true;
-		yourself.
-	closeColorFrame addMorph: closeColorSwatch.
-	closeColorSwatch morphPosition: 2@2.
-	labelColumn        := LayoutMorph newColumn.
-	closeColorLabel   := StringMorph new contents: ''.
-	labelColumn
-		axisEdgeWeight: #center;
-		separation: 3;
-		addMorph: closeColorFrame layoutSpec: (LayoutSpec keepMorphExtent);
-		addMorph: closestRGB          layoutSpec: (LayoutSpec keepMorphExtent);
-		addMorph: closeColorLabel   layoutSpec: (LayoutSpec keepMorphExtent);
-		color: self backgroundColor.
-		
-	colorFrame := FrameMorph new ::
-		morphExtent: colorSwatch morphExtent + 4;
-		borderColor: Color black; 
-		borderWidth: 2; 	
-		"Make color swatch draggable"
-		setProperty: #allowsSubmorphDrag toValue: true;
-		yourself.
-	colorFrame addMorph: colorSwatch.
-	colorSwatch morphPosition: 2@2.
-
-	swatchLayout := LayoutMorph newRow.
-	^ swatchLayout 
-		separation: 6;
-		addMorph: colorFrame layoutSpec: (LayoutSpec keepMorphExtent);
-		addMorph: labelColumn;
-		color: Color transparent;
-		yourself
-	! !
-
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 10/29/2015 09:01'!
-resetSliderColumn
-
-	self resetSliderColumn: self colorSelectionSymbol! !
-
-!ColorEditorPanel methodsFor: 'GUI building' stamp: 'jmv 6/11/2020 16:48:27'!
-resetSliderColumn: sliderSym
-	"Radio selector changed.."
-
-	| scrollBar sliderLabel |
-	"#(Red Green Blue Hue Saturation Brightness) inclides: sliderSym"
-	scrollBar := ColorSliderMorph colorPane: self colorPane.
-	
-	(self sliderColumn submorphs 
-					detect: [ :s | s class == ColorSliderMorph ] 
-					ifNone: [ nil ]) 
-		ifNotNil: [ :sb | self colorPane removeDependent: sb ].
-		
-	self colorPane when: #colorChanged send: #refreshColorFromModel to: scrollBar.
-	self colorPane when: #resetFocus     send: #redrawBackground         to: scrollBar.
-
-	sliderLabel := sliderSym asString.
-	
-	^self sliderColumn 
-		removeAllMorphs;
-		separation: 6;
-		layoutSpec: (LayoutSpec 
-						fixedWidth: 4 + (FontFamily defaultFamilyAndPointSize 
-												widthOfString: 'BrightnessXX') "longest string"
-						fixedHeight: 256  
-						offAxisEdgeWeight: #columnLeft);
-		addMorph: scrollBar;
-		addMorph: (LabelMorph contents: sliderLabel font: FontFamily defaultFamilyAndPointSize);
-		yourself
-	! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 11/23/2013 17:09'!
-colorSwatchExtent
-
-	^ 64 @ 64! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 10/29/2015 13:40'!
-defaultExtent
-
-	^ 660@380! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 11/24/2013 18:58'!
-defaultRadioSelector
-
-	^ #Green! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 12/24/2013 16:19'!
-initialExtent
-
-	^ self defaultExtent! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 12/11/2016 20:27:29'!
-initialize
-
-	super initialize.
-	self color: Color veryVeryLightGray.
-	self titleMorph showButtonsNamed: #( close collapse ).
-	model          := ColorEditorModel new.
-	colorSwatch := DropColorMorph fromColor: model color.
-	rgbString     := SimpleNumberEntryMorph hexRGBEntry.
-	closestRGB  := StringMorph new contents: ''.
-	self colorSelectionSymbol: self defaultRadioSelector.
-	self refreshColorSwatch.
-
-
-	! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 12/13/2016 19:54:33'!
-makeColorSwatchDroppable
-
-	self colorSwatch 
-		setProperty:  #'allowsMorphDrop' toValue: true;
-		setProperty: #dropAction toValue: [ :aMorph :colorValue |
-			(colorValue isKindOf: Color)
-				ifTrue: [ self setColor: colorValue ]. "else ignore"
-		].
-	
-	self colorPane 
-		setProperty:  #'allowsMorphDrop' toValue: true;
-		setProperty: #dropAction toValue: [ :aMorph :colorValue |
-			(colorValue isKindOf: Color)
-				ifTrue: [ self setColor: colorValue ]. "else ignore"
-		].! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 4/28/2019 19:10:45'!
-openInWorld: aWorld extent: myExtent
-	"Open me in the current world"
-	
-	aWorld addMorph: self.
-	self morphPosition: (RealEstateAgent initialFrameFor: self world: aWorld) 
-		 	topLeft; morphExtent: self minimumExtent. "?? defaultExtent??"
-	"aWorld startSteppingSubmorphsOf: self."
-! !
-
-!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 10/29/2015 13:33'!
-setColor: aColor
-
-	self model setColor: aColor.
-	self refreshColorSwatch.
-! !
-
-!ColorEditorPanel methodsFor: 'events-processing' stamp: 'KenD 10/29/2015 09:02'!
-fontPreferenceChanged
-
-	super fontPreferenceChanged.
-	self resetSliderColumn.! !
-
-!ColorEditorPanel methodsFor: 'events-processing' stamp: 'KenD 10/29/2015 09:01'!
-newRadioSelection: selectionSymbol
-
-	"Only one radio group can be selected at a time"
-	( #(Red, Green, Blue) includes: selectionSymbol ) 
-		ifTrue: [ self hsvRadio unselectAll ].
-	( #(Hue Saturation Brightness) includes: selectionSymbol ) 
-		ifTrue: [ self rgbRadio unselectAll ].
-		
-	self colorSelectionSymbol: selectionSymbol.
-	self resetSliderColumn.
-	self colorPane fromModel: self model selector: selectionSymbol.
-	self colorPane resetFocus.
-
-	
-	! !
-
-!ColorEditorPanel methodsFor: 'events-processing' stamp: 'KenD 11/27/2013 16:02'!
-updateColorFromPane
-	"Someone changed color in colorPane.  Update my model"
-	
-	self model setColor: self colorPane focusColor! !
-
-!ColorEditorPanel methodsFor: 'color updating' stamp: 'jmv 2/13/2014 13:43'!
-refreshCloseColor
-	"model color has changed.  Refresh my views."
-	
-	| closeAssoc closeColor |
-	closeAssoc := self model color closestAssocFrom: Color css3ColorDictionary.
-	closeColor := closeAssoc value.
-	closeColorSwatch 
-		image: (closeColor iconOrThumbnailOfSize: 32);
-		color: closeColor.
-	closeColorLabel 
-		contents: closeAssoc key asString; 
-		fitContents.
-	closestRGB 
-		contents: '16r', (closeColor hexStringRGB);
-		fitContents! !
-
-!ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 12/5/2013 21:57'!
-refreshColor
-	"model color has changed.  Refresh my views."
-	
-	self 
-		refreshColorSwatch;
-		refreshColorPane;
-		refreshCloseColor! !
-
-!ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 11/27/2013 14:43'!
-refreshColorPane
-	"When selector changes.."
-
-	self colorPane updateColorFromModel: self model.! !
-
-!ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 11/30/2013 19:38'!
-refreshColorSwatch
-	"When color changes"
-	
-	colorSwatch image: (model color iconOrThumbnailOfSize: self colorSwatchExtent).
-	colorSwatch color: self model color! !
-
-!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 11/24/2013 16:47'!
-open
-"
-	self open.
-"	
-	^ self openColor: self defaultColor! !
-
-!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 11/24/2013 09:21'!
-openColor: aColor
-"
-	self openColor: Color purple.
-	self openColor: Color forestGreen.
-"	
-	|  window |
-	window _ self new.
-	^ window
-		model: (ColorEditorModel new);
-		buildMorphicWindow;
-		setLabel: 'Color Editor';
-		setColor: aColor;
-		openInWorld: self runningWorld extent: self defaultExtent;
-		yourself
-! !
-
-!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 12/24/2013 09:26'!
-defaultColor
-
-	^ Color  r: 16r40/255 g: 16rA5/255 b: 16rD0/255.! !
-
-!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 9/17/2016 21:24:54'!
-defaultExtent
-
-	^ 660@330! !
-
-!ColorEditorPanel class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:09'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ true! !
+	^ ImagePallet namedColors! !
 
 !ColorPaneMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 11/30/2013 19:33'!
 aboutToGrab: aMorph
@@ -1216,11 +738,11 @@ colorPane: aColorPaneMorph
 		refreshColorFromModel; 
 		redrawBackground.! !
 
-!ColorSliderMorph methodsFor: 'initialization' stamp: 'KenD 5/25/2020 14:47:00'!
+!ColorSliderMorph methodsFor: 'initialization' stamp: 'KenD 10/16/2020 15:38:33'!
 initialize
 
 	super initialize.
-	sliderMorph := BorderedRectMorph new.
+	sliderMorph := WidgetMorph new.
 	sliderMorph 
 		color: Color transparent;
 		borderColor: Color black;
@@ -1316,6 +838,486 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	
 	^ false! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 10/29/2015 15:16'!
+backgroundColor
+
+	^ Color veryVeryLightGray! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/26/2013 21:27'!
+colorPane
+
+	^ colorPane ! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 10/29/2015 08:57'!
+colorSelectionSymbol
+
+	^ radioSelection ! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 10/29/2015 08:57'!
+colorSelectionSymbol: aSym
+
+	radioSelection := aSym! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/19/2013 21:15'!
+colorSwatch
+
+	^ colorSwatch! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/19/2013 21:14'!
+hsvRadio
+
+	^ hsvRadio! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/19/2013 21:14'!
+rgbRadio
+
+	^ rgbRadio! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/24/2013 08:48'!
+rgbString
+	"Answer my rgbString StringMorph"
+	^ rgbString! !
+
+!ColorEditorPanel methodsFor: 'private' stamp: 'KenD 11/25/2013 19:12'!
+sliderColumn
+
+	^ sliderColumn! !
+
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 10/16/2020 15:35:38'!
+buildColorPaneColumn
+
+	| selector column hexDisplayLayout |
+	selector := self defaultRadioSelector asLowercase asSymbol.
+	colorPane := (ColorPaneMorph 
+								zSelector: self defaultRadioSelector 
+								zValue:  (self model perform: selector)
+								colorPoint: 10@10).
+	colorPane updateColorFromModel: self model.
+	colorPane when: #colorChanged send: #updateColorFromPane to: self.
+	colorPane layoutSpec: (LayoutSpec keepMorphExtent).
+	
+	hexDisplayLayout := LayoutMorph newRow.
+	hexDisplayLayout
+	     layoutSpec: (LayoutSpec 
+							proportionalWidth: 0.2 
+							proportionalHeight: 0.1
+							offAxisEdgeWeight: #rowTop);
+		separation: 1;
+		addMorph: (LabelMorph new contents: '16r') layoutSpec: (LayoutSpec keepMorphExtent);
+		addMorph: self rgbString;
+		addMorph: (LabelMorph new contents: ' hexRGB');
+		color: self backgroundColor.
+	
+	column := LayoutMorph newColumn.
+	column
+		addMorph: colorPane;
+		addMorph: hexDisplayLayout;
+		axisEdgeWeight: #columnTop;
+		separation: 4;
+		color: Color transparent.
+	
+	^ column! !
+
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 10/16/2020 15:42:49'!
+buildMorphicWindow
+	"Create a useful ColorEditor window"
+	
+	self layoutMorph beRow; " A row of columns"
+		 separation: 6;
+		 axisEdgeWeight: #rowLeft;
+		 borderWidth: 2;
+		 color: Color white;
+		 addMorph: self buildColorPaneColumn;
+		 addMorph: self buildSliderColumn;
+		 addMorph: self buildRadioButtonColumn;
+		 color: self backgroundColor.
+		
+	self model when: #colorChanged send: #refreshColor to: self.
+	self makeColorSwatchDroppable.
+	
+	^ self
+! !
+
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 10/16/2020 15:35:57'!
+buildRadioButtonColumn
+
+	| radioCol setupEntryMorph valueEntryMorph |
+	rgbRadio := RadioGroup fromList: #(Red Green Blue).
+	rgbRadio separation: 2.
+	hsvRadio := RadioGroup fromList: #(Hue Saturation Brightness).
+	hsvRadio separation: 2.
+	rgbRadio when: #informRadioSelection send: #newRadioSelection: to: self.
+	hsvRadio when: #informRadioSelection send: #newRadioSelection: to: self.
+	setupEntryMorph := [ :sym :entryMorph | | selector |
+		selector := sym asLowercase asSymbol.
+		entryMorph valueAccessor: [ :myModel | myModel perform: selector ].
+		entryMorph valueUpdator: [ :myValue | 
+					self model perform: ( selector , ':' ) asSymbol with: myValue ].
+		entryMorph refreshValueFrom: self model.
+		self model when: #colorChanged 
+			send: #refreshValueFrom: 
+			to: entryMorph.
+	].
+	
+	#(Red Green Blue) do: [ :sym | | entryMorph |
+		entryMorph := SimpleNumberEntryMorph rgbOneOf.
+		setupEntryMorph value: sym value: entryMorph.
+		(rgbRadio rowFor: sym) addMorph: entryMorph.
+	].
+	valueEntryMorph := SimpleNumberEntryMorph circleDegreesExact.
+	setupEntryMorph value: #Hue value: valueEntryMorph.
+	(hsvRadio rowFor: #Hue) 
+		addMorph: valueEntryMorph;
+		addMorph: (LabelMorph contents: 'deg').
+.
+	#(Saturation Brightness) do:  [ :sym | | entryMorph |
+		entryMorph := SimpleNumberEntryMorph percentExact.
+		setupEntryMorph value: sym value: entryMorph.
+		(hsvRadio rowFor: sym) 
+			addMorph: entryMorph;
+			addMorph: (LabelMorph contents: '%').
+	].
+	(rgbRadio buttonFor: self defaultRadioSelector) select.
+
+	self rgbString 
+		valueAccessor: [ :myModel | myModel rgbValue ];
+		valueUpdator: [ :myValue | self model setRGBColorFromInteger: myValue ];
+		refreshValueFrom: self model.
+	self model when: #colorChanged send: #refreshValueFrom: to: rgbString.
+
+	radioCol := LayoutMorph newColumn.
+	^ radioCol 
+		separation: 2;
+		axisEdgeWeight: #columnTop;
+		addMorph: rgbRadio;
+		addMorph: hsvRadio;
+		addMorph: self buildSwatchLayout;
+		color: Color transparent;
+		yourself
+	! !
+
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 9/17/2016 21:48:35'!
+buildSliderColumn
+
+	sliderColumn := LayoutMorph newColumn.
+	sliderColumn color: Color transparent.
+	self resetSliderColumn.
+	
+	^ sliderColumn 
+
+	! !
+
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 10/16/2020 15:36:09'!
+buildSwatchLayout
+	"Display swatch of current color and closest named color"
+
+	| swatchLayout labelColumn colorFrame closeColorFrame |
+	closeColorSwatch := DropColorMorph fromColor: model color.
+	closeColorFrame := FrameMorph new ::
+		morphExtent: closeColorSwatch morphExtent + 4;
+		borderColor: Color black; 
+		borderWidth: 2; 	
+		"Make color swatch draggable"
+		setProperty: #allowsSubmorphDrag toValue: true;
+		yourself.
+	closeColorFrame addMorph: closeColorSwatch.
+	closeColorSwatch morphPosition: 2@2.
+	labelColumn        := LayoutMorph newColumn.
+	closeColorLabel   := LabelMorph new contents: ''.
+	labelColumn
+		axisEdgeWeight: #center;
+		separation: 3;
+		addMorph: closeColorFrame layoutSpec: (LayoutSpec keepMorphExtent);
+		addMorph: closestRGB          layoutSpec: (LayoutSpec keepMorphExtent);
+		addMorph: closeColorLabel   layoutSpec: (LayoutSpec keepMorphExtent);
+		color: self backgroundColor.
+		
+	colorFrame := FrameMorph new ::
+		morphExtent: colorSwatch morphExtent + 4;
+		borderColor: Color black; 
+		borderWidth: 2; 	
+		"Make color swatch draggable"
+		setProperty: #allowsSubmorphDrag toValue: true;
+		yourself.
+	colorFrame addMorph: colorSwatch.
+	colorSwatch morphPosition: 2@2.
+
+	swatchLayout := LayoutMorph newRow.
+	^ swatchLayout 
+		separation: 6;
+		addMorph: colorFrame layoutSpec: (LayoutSpec keepMorphExtent);
+		addMorph: labelColumn;
+		color: Color transparent;
+		yourself
+	! !
+
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'KenD 10/29/2015 09:01'!
+resetSliderColumn
+
+	self resetSliderColumn: self colorSelectionSymbol! !
+
+!ColorEditorPanel methodsFor: 'GUI building' stamp: 'jmv 6/11/2020 16:48:27'!
+resetSliderColumn: sliderSym
+	"Radio selector changed.."
+
+	| scrollBar sliderLabel |
+	"#(Red Green Blue Hue Saturation Brightness) inclides: sliderSym"
+	scrollBar := ColorSliderMorph colorPane: self colorPane.
+	
+	(self sliderColumn submorphs 
+					detect: [ :s | s class == ColorSliderMorph ] 
+					ifNone: [ nil ]) 
+		ifNotNil: [ :sb | self colorPane removeDependent: sb ].
+		
+	self colorPane when: #colorChanged send: #refreshColorFromModel to: scrollBar.
+	self colorPane when: #resetFocus     send: #redrawBackground         to: scrollBar.
+
+	sliderLabel := sliderSym asString.
+	
+	^self sliderColumn 
+		removeAllMorphs;
+		separation: 6;
+		layoutSpec: (LayoutSpec 
+						fixedWidth: 4 + (FontFamily defaultFamilyAndPointSize 
+												widthOfString: 'BrightnessXX') "longest string"
+						fixedHeight: 256  
+						offAxisEdgeWeight: #columnLeft);
+		addMorph: scrollBar;
+		addMorph: (LabelMorph contents: sliderLabel font: FontFamily defaultFamilyAndPointSize);
+		yourself
+	! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 11/23/2013 17:09'!
+colorSwatchExtent
+
+	^ 64 @ 64! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 10/29/2015 13:40'!
+defaultExtent
+
+	^ 660@380! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 11/24/2013 18:58'!
+defaultRadioSelector
+
+	^ #Green! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 12/24/2013 16:19'!
+initialExtent
+
+	^ self defaultExtent! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 10/16/2020 15:38:18'!
+initialize
+
+	super initialize.
+	self color: Color veryVeryLightGray.
+	self titleMorph showButtonsNamed: #( close collapse ).
+	model          := ColorEditorModel new.
+	colorSwatch := DropColorMorph fromColor: model color.
+	rgbString     := SimpleNumberEntryMorph hexRGBEntry.
+	closestRGB  := LabelMorph new contents: ''.
+	self colorSelectionSymbol: self defaultRadioSelector.
+	self refreshColorSwatch.
+
+
+	! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 12/13/2016 19:54:33'!
+makeColorSwatchDroppable
+
+	self colorSwatch 
+		setProperty:  #'allowsMorphDrop' toValue: true;
+		setProperty: #dropAction toValue: [ :aMorph :colorValue |
+			(colorValue isKindOf: Color)
+				ifTrue: [ self setColor: colorValue ]. "else ignore"
+		].
+	
+	self colorPane 
+		setProperty:  #'allowsMorphDrop' toValue: true;
+		setProperty: #dropAction toValue: [ :aMorph :colorValue |
+			(colorValue isKindOf: Color)
+				ifTrue: [ self setColor: colorValue ]. "else ignore"
+		].! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 4/28/2019 19:10:45'!
+openInWorld: aWorld extent: myExtent
+	"Open me in the current world"
+	
+	aWorld addMorph: self.
+	self morphPosition: (RealEstateAgent initialFrameFor: self world: aWorld) 
+		 	topLeft; morphExtent: self minimumExtent. "?? defaultExtent??"
+	"aWorld startSteppingSubmorphsOf: self."
+! !
+
+!ColorEditorPanel methodsFor: 'initialization' stamp: 'KenD 10/29/2015 13:33'!
+setColor: aColor
+
+	self model setColor: aColor.
+	self refreshColorSwatch.
+! !
+
+!ColorEditorPanel methodsFor: 'events-processing' stamp: 'KenD 10/29/2015 09:02'!
+fontPreferenceChanged
+
+	super fontPreferenceChanged.
+	self resetSliderColumn.! !
+
+!ColorEditorPanel methodsFor: 'events-processing' stamp: 'KenD 10/29/2015 09:01'!
+newRadioSelection: selectionSymbol
+
+	"Only one radio group can be selected at a time"
+	( #(Red, Green, Blue) includes: selectionSymbol ) 
+		ifTrue: [ self hsvRadio unselectAll ].
+	( #(Hue Saturation Brightness) includes: selectionSymbol ) 
+		ifTrue: [ self rgbRadio unselectAll ].
+		
+	self colorSelectionSymbol: selectionSymbol.
+	self resetSliderColumn.
+	self colorPane fromModel: self model selector: selectionSymbol.
+	self colorPane resetFocus.
+
+	
+	! !
+
+!ColorEditorPanel methodsFor: 'events-processing' stamp: 'KenD 11/27/2013 16:02'!
+updateColorFromPane
+	"Someone changed color in colorPane.  Update my model"
+	
+	self model setColor: self colorPane focusColor! !
+
+!ColorEditorPanel methodsFor: 'color updating' stamp: 'jmv 2/13/2014 13:43'!
+refreshCloseColor
+	"model color has changed.  Refresh my views."
+	
+	| closeAssoc closeColor |
+	closeAssoc := self model color closestAssocFrom: Color css3ColorDictionary.
+	closeColor := closeAssoc value.
+	closeColorSwatch 
+		image: (closeColor iconOrThumbnailOfSize: 32);
+		color: closeColor.
+	closeColorLabel 
+		contents: closeAssoc key asString; 
+		fitContents.
+	closestRGB 
+		contents: '16r', (closeColor hexStringRGB);
+		fitContents! !
+
+!ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 12/5/2013 21:57'!
+refreshColor
+	"model color has changed.  Refresh my views."
+	
+	self 
+		refreshColorSwatch;
+		refreshColorPane;
+		refreshCloseColor! !
+
+!ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 11/27/2013 14:43'!
+refreshColorPane
+	"When selector changes.."
+
+	self colorPane updateColorFromModel: self model.! !
+
+!ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 11/30/2013 19:38'!
+refreshColorSwatch
+	"When color changes"
+	
+	colorSwatch image: (model color iconOrThumbnailOfSize: self colorSwatchExtent).
+	colorSwatch color: self model color! !
+
+!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 11/24/2013 16:47'!
+open
+"
+	self open.
+"	
+	^ self openColor: self defaultColor! !
+
+!ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 11/24/2013 09:21'!
+openColor: aColor
+"
+	self openColor: Color purple.
+	self openColor: Color forestGreen.
+"	
+	|  window |
+	window _ self new.
+	^ window
+		model: (ColorEditorModel new);
+		buildMorphicWindow;
+		setLabel: 'Color Editor';
+		setColor: aColor;
+		openInWorld: self runningWorld extent: self defaultExtent;
+		yourself
+! !
+
+!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 12/24/2013 09:26'!
+defaultColor
+
+	^ Color  r: 16r40/255 g: 16rA5/255 b: 16rD0/255.! !
+
+!ColorEditorPanel class methodsFor: 'initialization' stamp: 'KenD 9/17/2016 21:24:54'!
+defaultExtent
+
+	^ 660@330! !
+
+!ColorEditorPanel class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:09'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ true! !
+
+!ColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/24/2013 17:55'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ true! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
+useCSS3ColorDict
+"
+	self useCSS3ColorDict.
+"
+	Feature require: 'CSS3-NamedColors'.
+	Color setColorNamesDict: Color css3ColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 7/24/2015 11:33'!
+useCrayonColorDict
+"
+	ColorPallet useCrayonColorDict.
+"
+
+	Feature require: 'Crayon-NamedColors'.
+	Color setColorNamesDict: Color crayonColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
+useNBSISCCColorDict
+"
+	self useNBSISCCColorDict.
+"
+	Feature require: 'NBSISCC-NamedColors'.
+	Color setColorNamesDict: Color nbsisccColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
+useSmallColorDict
+
+	Color setColorNamesDict: Color defaultColorNamesDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
+useXKCDColorDict
+"
+	self useXKCDColorDict.
+"
+
+	Feature require: 'XKCD-NamedColors'.
+	Color setColorNamesDict: Color xkcdColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:59'!
+useXKCDFirst48ColorDict
+"
+	self useXKCDFirst48ColorDict.
+"
+
+	Color setColorNamesDict: Color xkcdFirst48ColorNamesDictionary.! !
 
 !ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/22/2013 20:53'!
 blue
