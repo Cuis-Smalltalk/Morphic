@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4428] on 26 October 2020 at 11:29:24 am'!
+'From Cuis 5.0 [latest update: #4430] on 26 October 2020 at 12:26:38 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 33!
-!requires: 'Cuis-Base' 50 4413 nil!
+!provides: 'Morphic-Widgets-Extras' 1 34!
+!requires: 'Cuis-Base' 50 4430 nil!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
 
@@ -1497,10 +1497,10 @@ updateFromContents
 	contents _ self editor string.
 	self redrawNeeded! !
 
-!OneLineEditorMorph methodsFor: 'geometry' stamp: 'jmv 3/6/2015 08:52'!
+!OneLineEditorMorph methodsFor: 'geometry' stamp: 'KenD 10/26/2020 12:18:58'!
 minimumExtent
 
-	^ self measureContents! !
+	^ self measureContents + self extentBorder ! !
 
 !OneLineEditorMorph methodsFor: 'blink cursor' stamp: 'jmv 7/18/2014 14:53'!
 onBlinkCursor
