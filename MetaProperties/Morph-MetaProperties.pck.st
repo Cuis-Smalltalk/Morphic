@@ -1,11 +1,11 @@
-'From Cuis 5.0 [latest update: #4434] on 27 October 2020 at 7:03:02 am'!
+'From Cuis 5.0 [latest update: #4437] on 29 October 2020 at 1:20:00 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 83!
+!provides: 'Morph-MetaProperties' 1 84!
 !requires: 'Cuis-Base' 50 4413 nil!
-!requires: 'Graphics-Files-Additional' 1 18 nil!
+!requires: 'Complex' 1 0 nil!
 !requires: 'Morphic-ColorEditor' 1 39 nil!
 !requires: 'Morphic-Misc1' 1 167 nil!
-!requires: 'Complex' 1 0 nil!
+!requires: 'Graphics-Files-Additional' 1 18 nil!
 SystemOrganization addCategory: 'Morph-MetaProperties'!
 
 
@@ -1133,7 +1133,7 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	^ false! !
 
-!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 10/27/2020 07:02:16'!
+!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 10/29/2020 13:10:24'!
 initialize
 "
 	VisualPropertyEditor initialize.
@@ -1186,7 +1186,7 @@ initialize
 	classDict at: #image put: (propsDict at: #acceptsForm).
 	classDict at: #borderColor put: (propsDict at: #acceptsColor).
 	classDict at: #borderWidth put: (propsDict at: #acceptsPositiveInteger).
-	classDict at: #borderStyle put: (propsDict at: #acceptsBorderStyle).
+	"classDict at: #borderStyle put: (propsDict at: #acceptsBorderStyle)."
 
 	classDict := MetaProperty metaPropsDictForClass: LayoutMorph.
 	classDict at: #borderColor put: (propsDict at: #acceptsColor).
