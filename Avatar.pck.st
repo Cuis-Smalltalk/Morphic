@@ -1,7 +1,7 @@
 'From Cuis 5.0 of 7 November 2016 [latest update: #3190] on 20 October 2017 at 9:37:21 pm'!
 'Description A blinking avatar with eyes following the mouse cursor.'!
-!provides: 'Avatar' 1 4!
-!requires: 'Morphic-Deprecated' 1 0 nil!
+!provides: 'Avatar' 1 5!
+!requires: 'Morphic-Widgets-Extras' 1 0 nil!
 !classDefinition: #AvatarMorph category: #Avatar!
 EllipseMorph subclass: #AvatarMorph
 	instanceVariableNames: 'blink'
