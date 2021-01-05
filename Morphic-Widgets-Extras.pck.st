@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4430] on 26 October 2020 at 12:26:38 pm'!
+'From Cuis 5.0 [latest update: #4519] on 5 January 2021 at 3:00:42 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 34!
+!provides: 'Morphic-Widgets-Extras' 1 35!
 !requires: 'Cuis-Base' 50 4430 nil!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
@@ -296,8 +296,8 @@ dispatchOn: aKeyboardEvent
 
 	^ self perform: (self shortcuts at: asciiValue + 1) with: aKeyboardEvent! !
 
-!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 9/19/2011 09:47'!
-processKeyStroke: aKeyboardEvent
+!SimpleEditor methodsFor: 'typing support' stamp: 'jmv 1/5/2021 14:34:14'!
+processKeystrokeEvent: aKeyboardEvent
 
 	"Key struck on the keyboard. Find out which one and, if special, carry 
 	out the associated special action. Otherwise, add the character to the 
@@ -1311,7 +1311,7 @@ drawTextCursorOn: aCanvas
 clickAndHalf: aMouseButtonEvent localPosition: localEventPosition
 	self handleInteraction: [ self editor clickAndHalf ]! !
 
-!OneLineEditorMorph methodsFor: 'events' stamp: 'jmv 4/12/2019 16:12:44'!
+!OneLineEditorMorph methodsFor: 'events' stamp: 'jmv 1/5/2021 14:34:30'!
 keyStroke: aKeyboardEvent
 	"Handle a keystroke event."
 
@@ -1329,7 +1329,7 @@ keyStroke: aKeyboardEvent
 			^crAction value ]].
 
 	self pauseBlinking.
-	self handleInteraction: [ self editor processKeyStroke: aKeyboardEvent ].
+	self handleInteraction: [ self editor processKeystrokeEvent: aKeyboardEvent ].
 	self updateFromContents.
 	super keyStroke: aKeyboardEvent  "sends to keyStroke event handler, if any"! !
 

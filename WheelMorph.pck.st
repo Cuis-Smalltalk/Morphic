@@ -1,27 +1,27 @@
-'From Cuis 5.0 [latest update: #4126] on 28 April 2020 at 5:12:51 pm'!
+'From Cuis 5.0 [latest update: #4519] on 5 January 2021 at 3:00:09 pm'!
 'Description A WheelMorph is a mouse based "thumb wheel" for adjusting a value.
 '!
-!provides: 'WheelMorph' 1 5!
-SystemOrganization addCategory: #WheelMorph!
+!provides: 'WheelMorph' 1 6!
+SystemOrganization addCategory: 'WheelMorph'!
 
 
-!classDefinition: #WheelMorph category: #WheelMorph!
+!classDefinition: #WheelMorph category: 'WheelMorph'!
 WidgetMorph subclass: #WheelMorph
 	instanceVariableNames: 'target actionSelector factor circular old angle maxAngle lastRedraw isHorizontal'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'WheelMorph'!
-!classDefinition: 'WheelMorph class' category: #WheelMorph!
+!classDefinition: 'WheelMorph class' category: 'WheelMorph'!
 WheelMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #ScrollWheelMorph category: #WheelMorph!
+!classDefinition: #ScrollWheelMorph category: 'WheelMorph'!
 WheelMorph subclass: #ScrollWheelMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'WheelMorph'!
-!classDefinition: 'ScrollWheelMorph class' category: #WheelMorph!
+!classDefinition: 'ScrollWheelMorph class' category: 'WheelMorph'!
 ScrollWheelMorph class
 	instanceVariableNames: ''!
 
@@ -234,7 +234,7 @@ target: aTarget actionSelector: aSymbol
 	^ self new :: target: aTarget; actionSelector: aSymbol
 ! !
 
-!ScrollWheelMorph methodsFor: 'event handling' stamp: 'KenD 4/28/2020 17:13:05'!
+!ScrollWheelMorph methodsFor: 'event handling' stamp: 'jmv 1/5/2021 14:30:51'!
 doTargetAction: cursorPoint
 	| new delta mouseScrollDirection |
 	self isHorizontal
@@ -268,7 +268,7 @@ doTargetAction: cursorPoint
 						stamp: Time localMillisecondClock.
 
 		Cursor normalCursor showWhile: [ "Send a scrollEvent for each 'tick' "
-			1 to: (delta abs) do: [ :count | scrollEvent sentTo: target localPosition: wheelPosition]
+			1 to: (delta abs) do: [ :count | scrollEvent sendEventTo: target ]
 		]
 	]
 

@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4464] on 19 November 2020 at 2:46:54 pm'!
+'From Cuis 5.0 [latest update: #4519] on 5 January 2021 at 3:01:24 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 170!
+!provides: 'Morphic-Misc1' 1 171!
 !requires: 'Cuis-Base' 50 4430 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -1534,12 +1534,12 @@ handlesMouseDown: aMouseButtonEvent
 	"Do I want to receive mouseDown events (mouseDown:, mouseMove:, mouseUp:)?"
 	^true! !
 
-!ClickColorMorph methodsFor: 'event handling' stamp: 'KenD 2/29/2020 13:41:30'!
+!ClickColorMorph methodsFor: 'event handling' stamp: 'jmv 1/5/2021 14:26:15'!
 mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
 
 	| colorSetters choices |
 
-	(self morphContainsPoint: localEventPosition)
+	(self containsGlobalPoint: aMouseButtonEvent eventPosition)
 		ifFalse: [ ^self ]. "Stay up"
 			
 	colorSetters := (((colorTargetMorph class withAllSuperclasses 
@@ -5360,10 +5360,10 @@ toggleSelection
 	self isSelected: self isSelected not
 ! !
 
-!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 11/20/2013 15:09'!
+!RadioButtonMorph methodsFor: 'event handling' stamp: 'jmv 1/5/2021 14:26:03'!
 mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
 
-	((self morphContainsPoint: localEventPosition) and: [self isSelected not])
+	((self containsGlobalPoint: aMouseButtonEvent eventPosition) and: [self isSelected not])
 		ifTrue: [ self isSelected: true ]
 ! !
 
