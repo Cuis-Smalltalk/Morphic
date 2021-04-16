@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4519] on 5 January 2021 at 3:01:24 pm'!
+'From Cuis 5.0 [latest update: #4568] on 16 April 2021 at 1:03:26 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 171!
-!requires: 'Cuis-Base' 50 4430 nil!
+!provides: 'Morphic-Misc1' 1 173!
+!requires: 'Cuis-Base' 50 4568 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -98,6 +98,16 @@ LayoutMorph subclass: #WindowTitleMorph
 	category: 'Morphic-Misc1'!
 !classDefinition: 'WindowTitleMorph class' category: 'Morphic-Misc1'!
 WindowTitleMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #BorderedImageMorph category: 'Morphic-Misc1'!
+ImageMorph subclass: #BorderedImageMorph
+	instanceVariableNames: 'borderStyle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedImageMorph class' category: 'Morphic-Misc1'!
+BorderedImageMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #ClickColorMorph category: 'Morphic-Misc1'!
@@ -380,6 +390,11 @@ As my instances are created before my owner is set, I delegate events to my owne
 To simplify management, all buttons are present but hidden unless requested.
 
 See Panel, LayoutMorphEditPanel and LayoutSpecEditPanel as usage examples!
+
+!BorderedImageMorph commentStamp: '<historical>' prior: 0!
+I am an ImageMorph with a border.
+
+borderStyle may be #simple, #raised, or #inset!
 
 !ClickColorMorph commentStamp: '<historical>' prior: 0!
 I am clicked upon to set my colorTargetMorph to my color.
@@ -1529,6 +1544,56 @@ title: aString buttonsNamed: aSymbolCollection
 	^ (self newRow) title: aString buttonsNamed: aSymbolCollection
 ! !
 
+!BorderedImageMorph methodsFor: 'accessing' stamp: 'KenD 4/16/2021 12:49:08'!
+borderStyle
+
+	^ borderStyle! !
+
+!BorderedImageMorph methodsFor: 'accessing' stamp: 'KenD 4/16/2021 12:49:27'!
+borderStyle: aSymbol
+
+	( #(simple raised inset) includes: aSymbol )
+		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
+		
+	borderStyle := aSymbol! !
+
+!BorderedImageMorph methodsFor: 'drawing' stamp: 'KenD 4/16/2021 12:57:57'!
+drawOn: aCanvas
+	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
+	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
+	
+	aCanvas  "My image is inset from the border."
+	     image: image
+		at: borderWidth @ borderWidth.
+
+	aCanvas "The border is drawn around the image."
+		frameRectangle: (0@0  extent: self morphExtent) 
+		color: borderColor 
+		borderWidth: borderWidth 
+		borderStyleSymbol: borderStyle.
+! !
+
+!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 4/16/2021 12:58:58'!
+minimumExtent
+	"Answer an extent which includes me, taking into account my borderWidth"
+
+	^ extent + borderWidth + borderWidth ! !
+
+!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 4/16/2021 12:59:10'!
+morphExtent
+	"Answer an extent which includes me, taking into account my borderWidth"
+
+	^ extent + borderWidth + borderWidth ! !
+
+!BorderedImageMorph methodsFor: 'initialization' stamp: 'KenD 4/16/2021 12:52:26'!
+initialize
+	"Set my defaults"
+
+	super initialize.
+	borderWidth := 4.
+	borderColor := Color orange.
+	borderStyle := #raised.! !
+
 !ClickColorMorph methodsFor: 'event handling testing' stamp: 'KenD 2/29/2020 09:22:26'!
 handlesMouseDown: aMouseButtonEvent
 	"Do I want to receive mouseDown events (mouseDown:, mouseMove:, mouseUp:)?"
@@ -1779,10 +1844,11 @@ Transcript show: 'calculatedExtent: ', (self calculatedExtent asString)
 
 ! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 3/19/2016 18:59'!
+!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 4/9/2021 15:44:21'!
 initialize
 
 	super initialize.
+	imageFilter := [:any| any].
 	(self scroller)
 		color: Theme current background;
 		layoutSpec: LayoutSpec useAll.
@@ -1790,7 +1856,7 @@ initialize
 		layoutSpec: LayoutSpec useAll;
 		yourself! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 5/31/2020 17:32:15'!
+!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 4/9/2021 16:01:52'!
 layoutImages: numAcross extent: layoutExtent
 
 	"Lay out images in self"
@@ -1810,7 +1876,7 @@ layoutImages: numAcross extent: layoutExtent
 			| name image imageMorph |
 		     name  := nameImageAssoc key.
 			image := nameImageAssoc value.
-			count := count + 1.  "Row count"
+			count := count + 1.  "Image count"
 			(count \\ numAcross) isZero ifTrue: [ "Start a new Row"
 				nextRow := PalletLayoutMorph newRow separation: (self spaceWidth @ 0).
 				nextRow layoutSpec: rowLayoutSpec.
@@ -1837,6 +1903,11 @@ layoutImages: numAcross extent: layoutExtent
 getMenu
 
 	^ nil! !
+
+!ImagePallet methodsFor: 'accessing' stamp: 'KenD 4/9/2021 15:59:25'!
+imageExtent
+
+	^imageExtent ! !
 
 !ImagePallet methodsFor: 'accessing' stamp: 'KenD 11/23/2016 19:40:19'!
 imageExtent: aPointExtent
@@ -2569,10 +2640,10 @@ layoutBounds
 
 	^  (0@0 extent: self morphExtent) insetBy: (0 @ (self labelHeight) corner: 0 @ 0)! !
 
-!Panel methodsFor: 'geometry' stamp: 'KenD 12/9/2013 17:06'!
+!Panel methodsFor: 'geometry' stamp: 'KenD 4/10/2021 08:48:50'!
 minPaneHeightForReframe
 
-	^ StrikeFont default height + 10! !
+	^ self boxExtent y + 10! !
 
 !Panel methodsFor: 'geometry' stamp: 'KenD 12/9/2013 17:06'!
 minPaneWidthForReframe
