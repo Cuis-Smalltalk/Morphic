@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4568] on 16 April 2021 at 1:03:26 pm'!
+'From Cuis 5.0 [latest update: #4578] on 29 April 2021 at 2:14:02 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 173!
+!provides: 'Morphic-Misc1' 1 174!
 !requires: 'Cuis-Base' 50 4568 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -320,6 +320,16 @@ OneLineEditorMorph subclass: #SimpleNumberEntryMorph
 SimpleNumberEntryMorph class
 	instanceVariableNames: ''!
 
+!classDefinition: #BorderedRectMorph category: 'Morphic-Misc1'!
+WidgetMorph subclass: #BorderedRectMorph
+	instanceVariableNames: 'borderStyle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedRectMorph class' category: 'Morphic-Misc1'!
+BorderedRectMorph class
+	instanceVariableNames: ''!
+
 !classDefinition: #FontMorph category: 'Morphic-Misc1'!
 WidgetMorph subclass: #FontMorph
 	instanceVariableNames: 'labelMorph'
@@ -392,7 +402,7 @@ To simplify management, all buttons are present but hidden unless requested.
 See Panel, LayoutMorphEditPanel and LayoutSpecEditPanel as usage examples!
 
 !BorderedImageMorph commentStamp: '<historical>' prior: 0!
-I am an ImageMorph with a border.
+I am an WidgetMorph with a borderStyle.
 
 borderStyle may be #simple, #raised, or #inset!
 
@@ -554,6 +564,11 @@ iVars
 
 The validator is applied on return and if nil, the old value is redisplayed and the field flashed,
 else the new value is remembered and displayed.!
+
+!BorderedRectMorph commentStamp: '<historical>' prior: 0!
+I am a WidgetMorph (rect) with a borderStyle.
+
+borderStyle may be #simple, #raised, or #inset.!
 
 !FontMorph commentStamp: 'jmv 6/11/2020 16:48:37' prior: 0!
 My instances display 'AbBbCc $123' using my specified font an emphysis.
@@ -5098,6 +5113,54 @@ includeInNewMorphMenu
 legalChars: entryChars numCharsToHold: nilOrInteger value: initialValue validator: aClosureToValidate toString: aClosureForString
 
 	self new legalChars: entryChars numCharsToHold: nilOrInteger value: initialValue validator: aClosureToValidate toString: aClosureForString! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
+borderStyle
+
+	^ borderStyle! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:51'!
+borderStyle: aSymbol
+
+	( #(simple raised inset) includes: aSymbol )
+		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
+		
+	borderStyle := aSymbol! !
+
+!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
+drawOn: aCanvas
+	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
+	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
+	
+	aCanvas
+		fillRectangle: self morphLocalBounds
+		color: color
+		borderWidth: borderWidth
+		borderStyleSymbol: borderStyle
+		baseColorForBorder: borderColor.
+
+! !
+
+!BorderedRectMorph methodsFor: 'geometry' stamp: 'KenD 4/29/2021 14:10:19'!
+minimumExtent
+	"Answer an extent which includes me, taking into account my borderWidth"
+
+	^ extent + borderWidth + borderWidth ! !
+
+!BorderedRectMorph methodsFor: 'geometry' stamp: 'KenD 4/29/2021 14:10:41'!
+morphExtent
+	"Answer an extent which includes me, taking into account my borderWidth"
+
+	^ extent + borderWidth + borderWidth ! !
+
+!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
+initialize
+	"Set my defaults"
+
+	super initialize.
+	borderWidth := 4.
+	borderColor := Color brown.
+	borderStyle := #raised.! !
 
 !FontMorph methodsFor: 'geometry' stamp: 'KenD 3/7/2019 13:40:47'!
 adjustExtent 
