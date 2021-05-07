@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4578] on 29 April 2021 at 2:14:02 pm'!
+'From Cuis 5.0 [latest update: #4587] on 7 May 2021 at 7:11:59 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 174!
+!provides: 'Morphic-Misc1' 1 175!
 !requires: 'Cuis-Base' 50 4568 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
@@ -5119,13 +5119,14 @@ borderStyle
 
 	^ borderStyle! !
 
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:51'!
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
 borderStyle: aSymbol
 
 	( #(simple raised inset) includes: aSymbol )
 		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
 		
-	borderStyle := aSymbol! !
+	borderStyle := aSymbol.
+	self redrawNeeded! !
 
 !BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
 drawOn: aCanvas
@@ -5140,18 +5141,6 @@ drawOn: aCanvas
 		baseColorForBorder: borderColor.
 
 ! !
-
-!BorderedRectMorph methodsFor: 'geometry' stamp: 'KenD 4/29/2021 14:10:19'!
-minimumExtent
-	"Answer an extent which includes me, taking into account my borderWidth"
-
-	^ extent + borderWidth + borderWidth ! !
-
-!BorderedRectMorph methodsFor: 'geometry' stamp: 'KenD 4/29/2021 14:10:41'!
-morphExtent
-	"Answer an extent which includes me, taking into account my borderWidth"
-
-	^ extent + borderWidth + borderWidth ! !
 
 !BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
 initialize
