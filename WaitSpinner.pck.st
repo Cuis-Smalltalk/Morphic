@@ -1,17 +1,17 @@
-'From Cuis 5.0 [latest update: #4112] on 21 April 2020 at 9:50:35 pm'!
+'From Cuis 5.0 [latest update: #4689] on 1 August 2021 at 12:30:37 pm'!
 'Description '!
-!provides: 'WaitSpinner' 1 1!
+!provides: 'WaitSpinner' 1 2!
 !requires: 'Graphics-Files-Additional' 1 23 nil!
-SystemOrganization addCategory: #WaitSpinner!
+SystemOrganization addCategory: 'WaitSpinner'!
 
 
-!classDefinition: #WaitSpinner category: #WaitSpinner!
+!classDefinition: #WaitSpinner category: 'WaitSpinner'!
 Object subclass: #WaitSpinner
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: 'nil'
 	category: 'WaitSpinner'!
-!classDefinition: 'WaitSpinner class' category: #WaitSpinner!
+!classDefinition: 'WaitSpinner class' category: 'WaitSpinner'!
 WaitSpinner class
 	instanceVariableNames: 'spinners isSpinnerRunning process'!
 
@@ -118,10 +118,11 @@ formFromPNG: anArray
 	^ PNGReadWriter formFromStream: anArray asByteArray readStream
 ! !
 
-!WaitSpinner class methodsFor: 'class initialization' stamp: 'hlsf 4/21/2020 21:50:15'!
+!WaitSpinner class methodsFor: 'class initialization' stamp: 'hlsf 8/1/2021 12:30:09'!
 initialize
 	spinners _ Array new: self spinnerQty.
 	1 to: self spinnerQty do: [:i | |form|
 		form _ self formFromPNG: (self perform: ('spinner', i asString, 'Contents') asSymbol).
-		spinners at: i put: (self decorate: form)]! !
+		spinners at: i put: (self decorate: form)].
+	isSpinnerRunning _ false! !
 WaitSpinner initialize!
