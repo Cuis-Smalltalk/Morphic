@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4519] on 5 January 2021 at 3:00:42 pm'!
+'From Cuis 5.0 [latest update: #4810] on 26 August 2021 at 5:47:42 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 35!
+!provides: 'Morphic-Widgets-Extras' 1 36!
 !requires: 'Cuis-Base' 50 4430 nil!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
@@ -993,7 +993,7 @@ magnification: aNumber
 	super morphExtent: self defaultExtent.
 	self referencePosition: c.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 10/15/2020 15:44:20'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/26/2021 17:39:10'!
 magnifiedForm
 	| srcRect form neededExtent |
 	self displayBounds ifNil: [ ^nil ].
@@ -1008,7 +1008,7 @@ magnifiedForm
 					"Just in case we go out of the Display"
 					srcRect origin > (0@0) ifFalse: [
 						auxCanvas form fillBlack ].
-					BitBltCanvas on: auxCanvas form over: srcRect ]
+					BitBltCanvas onForm: auxCanvas form over: srcRect ]
 				ifFalse: [ BitBltCanvas depth: 32 over: srcRect ].
 			auxCanvas fullDraw: self world.
 			form _ auxCanvas form.
