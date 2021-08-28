@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4810] on 26 August 2021 at 5:47:42 pm'!
+'From Cuis 5.0 [latest update: #4815] on 28 August 2021 at 7:38:23 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 36!
+!provides: 'Morphic-Widgets-Extras' 1 37!
 !requires: 'Cuis-Base' 50 4430 nil!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
@@ -914,14 +914,12 @@ trackingPointerString
 		ifTrue: ['stop tracking pointer']
 		ifFalse: ['start tracking pointer']! !
 
-!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 12/16/2011 10:28'!
+!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 8/28/2021 19:34:31'!
 borderWidth: anInteger
 	"Grow outwards preserving innerBounds"
-	| c |  
-	c _ self referencePosition.
+
 	super borderWidth: anInteger.
-	super morphExtent: self defaultExtent.
-	self referencePosition: c.! !
+	self morphExtent: self defaultExtent.! !
 
 !MagnifierMorph methodsFor: 'geometry' stamp: 'bf 9/21/1999 09:22'!
 defaultExtent
@@ -982,16 +980,14 @@ toggleRoundness
 				w addMorph: sm]
 			"! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 12/16/2011 10:28'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/28/2021 19:34:57'!
 magnification: aNumber
-	| c |  
+
 	magnification _ aNumber min: 8 max: 0.5.
 	magnification _ magnification roundTo:
 		(magnification < 3 ifTrue: [0.5] ifFalse: [1]).
 	srcExtent _ srcExtent min: (512@512) // magnification. "to prevent accidents"
-	c _ self referencePosition.
-	super morphExtent: self defaultExtent.
-	self referencePosition: c.! !
+	self morphExtent: self defaultExtent.! !
 
 !MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/26/2021 17:39:10'!
 magnifiedForm
