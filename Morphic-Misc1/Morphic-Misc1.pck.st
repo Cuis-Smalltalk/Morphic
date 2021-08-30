@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4587] on 7 May 2021 at 7:11:59 am'!
+'From Cuis 5.0 [latest update: #4815] on 30 August 2021 at 1:51:31 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 175!
-!requires: 'Cuis-Base' 50 4568 nil!
+!provides: 'Morphic-Misc1' 1 176!
+!requires: 'Cuis-Base' 50 4815 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -170,6 +170,16 @@ ImagePallet subclass: #PickALargerIconPallet
 PickALargerIconPallet class
 	instanceVariableNames: ''!
 
+!classDefinition: #PluggableScrollBar category: 'Morphic-Misc1'!
+ScrollBar subclass: #PluggableScrollBar
+	instanceVariableNames: 'refreshValueSelector'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PluggableScrollBar class' category: 'Morphic-Misc1'!
+PluggableScrollBar class
+	instanceVariableNames: ''!
+
 !classDefinition: #MorphMessageBox category: 'Morphic-Misc1'!
 WorkspaceWindow subclass: #MorphMessageBox
 	instanceVariableNames: ''
@@ -188,16 +198,6 @@ SystemWindow subclass: #DropTargetMorph
 	category: 'Morphic-Misc1'!
 !classDefinition: 'DropTargetMorph class' category: 'Morphic-Misc1'!
 DropTargetMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #PluggableScrollBar category: 'Morphic-Misc1'!
-ScrollBar subclass: #PluggableScrollBar
-	instanceVariableNames: 'refreshValueSelector'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PluggableScrollBar class' category: 'Morphic-Misc1'!
-PluggableScrollBar class
 	instanceVariableNames: ''!
 
 !classDefinition: #Panel category: 'Morphic-Misc1'!
@@ -445,6 +445,9 @@ I am just a way of getting an initializedInstance from the New Morph.. menu..
 
 See my class side.!
 
+!PluggableScrollBar commentStamp: '<historical>' prior: 0!
+I am a ScrollBar which can get new values from my model.!
+
 !MorphMessageBox commentStamp: '<historical>' prior: 0!
 I am a Workspace specialized to send a message to a Morph.!
 
@@ -454,9 +457,6 @@ I am a transcient drop target for a morph.
 I allow one to drop morphs which make changes to myMorph.
 Each such morph has property DropActionMorph set to true.
 !
-
-!PluggableScrollBar commentStamp: '<historical>' prior: 0!
-I am a ScrollBar which can get new values from my model.!
 
 !Panel commentStamp: '<historical>' prior: 0!
 I am a very simple window with a label.
@@ -1283,6 +1283,26 @@ addButton: nameSym action: actionSym baloonText: toolHelpString themeName: iconN
 	self addMorph: button
 	! !
 
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 8/30/2021 13:33:55'!
+addButton: nameSym 
+action: actionSym 
+baloonText: toolHelpString 
+themeName: iconName
+drawAction: drawSelector
+
+	"add a a button morph to me"
+	| button |
+	button := PluggableButtonMorph model: self action: actionSym.
+	button
+		icon: ((Theme current perform: iconName) magnifyTo: self boxExtent) ;
+		setBalloonText: toolHelpString;
+		iconName: nameSym;
+		morphExtent: self boxExtent;
+		iconDrawSelector: drawSelector.
+		
+	self addMorph: button
+	! !
+
 !WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 4/24/2015 08:01'!
 buttonNamesShown
 
@@ -1461,7 +1481,7 @@ pinButtonClicked
 	self owner pinButtonClicked 
 	! !
 
-!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/30/2015 08:02'!
+!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 8/30/2021 13:42:35'!
 reset
 	"Remove old and place new tItle and button Morphs"
 	
@@ -1469,14 +1489,14 @@ reset
 	buttonsShown := self buttonNamesShown.
 	self removeAllMorphs. "Clear out old morphs"
 	
-   #( ( close  closeButtonClicked 'close this window' closeIcon )
-	   ( collapse collapseButtonClicked 'collapse this window' collapseIcon )
-	   ( expand expandButtonClicked 'expand this window' expandIcon )
-	   ( windowMenu windowMenuButtonClicked 'window menu' windowMenuIcon )
-	   ( showHalo showHaloButtonClicked 'show target halo' doItIcon  )
-"	   ( pin pinButtonClicked 'pin me (don''t close)' pushPinIcon )  ADD AFTER TLTLE (below)"
+   #( ( close  closeButtonClicked 'close this window' closeIcon drawCloseIcon )
+	   ( collapse collapseButtonClicked 'collapse this window' collapseIcon drawCollapseIcon )
+	   ( expand expandButtonClicked 'expand this window' expandIcon drawExpandIcon )
+	   ( windowMenu windowMenuButtonClicked 'window menu' windowMenuIcon drawMenuIcon )
+	   ( showHalo showHaloButtonClicked 'show target halo' doItIcon drawUpIcon  )
+"	   ( pin pinButtonClicked 'pin me (don''t close)' pushPinIcon drawPushPinIcon )  ADD AFTER TLTLE (below)"
 	) do: [ :rowArgs | 
-		self perform: #addButton:action:baloonText:themeName: 
+		self perform: #addButton:action:baloonText:themeName:drawAction:
 		withArguments: rowArgs ].
 	
 	self addMorph: (LabelMorph 
@@ -1487,7 +1507,8 @@ reset
 		addButton: #pin 
 		action: #pinButtonClicked 
 		baloonText:  'pin (keep) this window' 
-		themeName: #pushPinIcon .
+		themeName: #pushPinIcon 
+		drawAction: #drawPushPinIcon.
 		
 	self hideButtons.
 	self showButtonsNamed: buttonsShown.
@@ -2240,6 +2261,38 @@ includeInNewMorphMenu
 	
 	^ true! !
 
+!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:27'!
+fontPreferenceChanged
+
+	super fontPreferenceChanged.
+	slider morphExtent: self buttonExtent @ self buttonExtent.! !
+
+!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 11/26/2013 21:12'!
+initialize
+
+	super initialize.
+	slider morphExtent: self buttonExtent @ self buttonExtent.! !
+
+!PluggableScrollBar methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:44'!
+model: thang setValueSelector: setValueSym refreshValueSelector: getValueSym
+
+	model := thang.
+	setValueSelector := setValueSym.
+	refreshValueSelector := getValueSym ! !
+
+!PluggableScrollBar methodsFor: 'model access' stamp: 'KenD 11/25/2013 18:42'!
+refreshValueFromModel
+	"Called externally to reset value from model"
+
+	refreshValueSelector ifNotNil: [
+		self value:  (model perform: refreshValueSelector) ]! !
+
+!PluggableScrollBar class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ false! !
+
 !MorphMessageBox methodsFor: 'initialization' stamp: 'KenD 9/30/2016 15:28:45'!
 initialize
 
@@ -2404,38 +2457,6 @@ includeInNewMorphMenu
 openFor: aMorph
 
 	^ self basicNew initialize openFor: aMorph ! !
-
-!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:27'!
-fontPreferenceChanged
-
-	super fontPreferenceChanged.
-	slider morphExtent: self buttonExtent @ self buttonExtent.! !
-
-!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 11/26/2013 21:12'!
-initialize
-
-	super initialize.
-	slider morphExtent: self buttonExtent @ self buttonExtent.! !
-
-!PluggableScrollBar methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:44'!
-model: thang setValueSelector: setValueSym refreshValueSelector: getValueSym
-
-	model := thang.
-	setValueSelector := setValueSym.
-	refreshValueSelector := getValueSym ! !
-
-!PluggableScrollBar methodsFor: 'model access' stamp: 'KenD 11/25/2013 18:42'!
-refreshValueFromModel
-	"Called externally to reset value from model"
-
-	refreshValueSelector ifNotNil: [
-		self value:  (model perform: refreshValueSelector) ]! !
-
-!PluggableScrollBar class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ false! !
 
 !Panel methodsFor: 'submorphs-add/remove' stamp: 'KenD 12/9/2013 16:44'!
 addMorph: aMorph 
