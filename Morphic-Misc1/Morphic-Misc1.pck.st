@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4815] on 30 August 2021 at 1:51:31 pm'!
+'From Cuis 5.0 [latest update: #4856] on 12 September 2021 at 4:16:01 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 176!
-!requires: 'Cuis-Base' 50 4815 nil!
+!provides: 'Morphic-Misc1' 1 178!
+!requires: 'Cuis-Base' 50 4856 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -1268,21 +1268,6 @@ includeInNewMorphMenu
 	
 	^ false! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 3/9/2020 16:20:33'!
-addButton: nameSym action: actionSym baloonText: toolHelpString themeName: iconName
-
-	"add a a button morph to me"
-	| button |
-	button := PluggableButtonMorph model: self action: actionSym.
-	button
-		icon: ((Theme current perform: iconName) magnifyTo: self boxExtent) ;
-		setBalloonText: toolHelpString;
-		iconName: nameSym;
-		morphExtent: self boxExtent.
-		
-	self addMorph: button
-	! !
-
 !WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 8/30/2021 13:33:55'!
 addButton: nameSym 
 action: actionSym 
@@ -1333,6 +1318,11 @@ rescaleButtons
 	].
 ! !
 
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 9/12/2021 15:47:46'!
+showButtons
+
+	self submorphsDo: [ :m | (m isKindOf: PluggableButtonMorph) ifTrue: [ m show ] ]! !
+
 !WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 4/24/2015 07:56'!
 showButtonsNamed: aSymbolColleciton
 
@@ -1343,13 +1333,13 @@ showButtonsNamed: aSymbolColleciton
 			].
 ! !
 
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 3/9/2020 16:09:20'!
+!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 9/12/2021 16:14:28'!
 boxExtent
 	"answer the extent to use in all the buttons. 
 	 
 	the label height is used to be proportional to the fonts preferences"
 	| e |
-	e _ Preferences windowTitleFont pointSize.
+	e _ Preferences windowTitleFont lineSpacing.
 	^e@e! !
 
 !WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/23/2015 17:01'!
@@ -1593,7 +1583,7 @@ borderStyle: aSymbol
 		
 	borderStyle := aSymbol! !
 
-!BorderedImageMorph methodsFor: 'drawing' stamp: 'KenD 4/16/2021 12:57:57'!
+!BorderedImageMorph methodsFor: 'drawing' stamp: 'KenD 9/12/2021 15:08:04'!
 drawOn: aCanvas
 	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
 	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
@@ -1603,32 +1593,21 @@ drawOn: aCanvas
 		at: borderWidth @ borderWidth.
 
 	aCanvas "The border is drawn around the image."
-		frameRectangle: (0@0  extent: self morphExtent) 
+		frameRectangle: (`0@0`  extent: self morphExtent) 
 		color: borderColor 
 		borderWidth: borderWidth 
 		borderStyleSymbol: borderStyle.
 ! !
 
-!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 4/16/2021 12:58:58'!
-minimumExtent
-	"Answer an extent which includes me, taking into account my borderWidth"
-
-	^ extent + borderWidth + borderWidth ! !
-
-!BorderedImageMorph methodsFor: 'geometry' stamp: 'KenD 4/16/2021 12:59:10'!
-morphExtent
-	"Answer an extent which includes me, taking into account my borderWidth"
-
-	^ extent + borderWidth + borderWidth ! !
-
-!BorderedImageMorph methodsFor: 'initialization' stamp: 'KenD 4/16/2021 12:52:26'!
+!BorderedImageMorph methodsFor: 'initialization' stamp: 'KenD 9/12/2021 15:14:08'!
 initialize
 	"Set my defaults"
 
 	super initialize.
 	borderWidth := 4.
 	borderColor := Color orange.
-	borderStyle := #raised.! !
+	borderStyle := #raised.
+	self morphExtent: (2 * borderWidth +image extent).! !
 
 !ClickColorMorph methodsFor: 'event handling testing' stamp: 'KenD 2/29/2020 09:22:26'!
 handlesMouseDown: aMouseButtonEvent
