@@ -1,11 +1,11 @@
-'From Cuis 5.0 [latest update: #4519] on 5 January 2021 at 3:02:01 pm'!
+'From Cuis 5.0 [latest update: #4856] on 12 September 2021 at 3:44:17 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 40!
-!requires: 'Cuis-Base' 50 4413 nil!
-!requires: 'Color-Extras' 1 4 nil!
-!requires: 'Graphics-Files-Additional' 1 nil nil!
-!requires: 'Morphic-Misc1' 1 103 nil!
+!provides: 'Morphic-ColorEditor' 1 42!
 !requires: 'CSS3-NamedColors' 1 0 nil!
+!requires: 'Color-Extras' 1 4 nil!
+!requires: 'Cuis-Base' 50 4856 nil!
+!requires: 'Morphic-Misc1' 1 103 nil!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
 SystemOrganization addCategory: 'Morphic-ColorEditor'!
 
 
@@ -1240,7 +1240,7 @@ updateColorFromPane
 	
 	self model setColor: self colorPane focusColor! !
 
-!ColorEditorPanel methodsFor: 'color updating' stamp: 'jmv 2/13/2014 13:43'!
+!ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 9/12/2021 15:41:40'!
 refreshCloseColor
 	"model color has changed.  Refresh my views."
 	
@@ -1255,7 +1255,11 @@ refreshCloseColor
 		fitContents.
 	closestRGB 
 		contents: '16r', (closeColor hexStringRGB);
-		fitContents! !
+		fitContents.
+	"I may have changed extent a bit.
+	Make sure it all still fits."
+	self morphExtent: self minimumExtent.
+! !
 
 !ColorEditorPanel methodsFor: 'color updating' stamp: 'KenD 12/5/2013 21:57'!
 refreshColor
