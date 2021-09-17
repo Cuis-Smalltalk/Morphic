@@ -1,10 +1,10 @@
-'From Cuis 5.0 [latest update: #4856] on 12 September 2021 at 3:44:35 pm'!
+'From Cuis 5.0 [latest update: #4868] on 17 September 2021 at 1:52:43 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 87!
-!requires: 'Morphic-Misc1' 1 167 nil!
+!provides: 'Morph-MetaProperties' 1 90!
 !requires: 'Cuis-Base' 50 4856 nil!
-!requires: 'Morphic-ColorEditor' 1 39 nil!
 !requires: 'Complex' 1 0 nil!
+!requires: 'Morphic-ColorEditor' 1 39 nil!
+!requires: 'Morphic-Misc1' 1 167 nil!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
 SystemOrganization addCategory: 'Morph-MetaProperties'!
 
@@ -558,10 +558,10 @@ windowIcon
 
 	^WindowIcon! !
 
-!VisualPropertyMenuItem class methodsFor: 'class initialization' stamp: 'KenD 3/9/2018 16:14:52'!
+!VisualPropertyMenuItem class methodsFor: 'class initialization' stamp: 'KenD 9/17/2021 12:28:55'!
 initialize
 "
-	VirtualPropertyMenuItem initialize.
+	VisualPropertyMenuItem initialize.
 "
 	| dirName |
 	dirName :=  ((self package) fullFileName upToLastPathSeparator), '/Icons/'.
@@ -1133,7 +1133,7 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	^ false! !
 
-!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 9/12/2021 15:27:10'!
+!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 9/17/2021 13:39:22'!
 initialize
 "
 	VisualPropertyEditor initialize.
@@ -2159,20 +2159,20 @@ font: aFont
 	emphasis ifNil: [ emphasis := 0 ].
 	self font: aFont emphasis: emphasis! !
 
-!ImagePallet methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:55'!
-icon
-
-	^ VisualPropertyMenuItem windowIcon ! !
-
-!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 12/24/2016 18:05:09'!
+!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 9/17/2021 13:40:28'!
 labelString
 
 	^ self label! !
 
-!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 12/24/2016 18:05:25'!
+!SystemWindow methodsFor: '*morph-metaproperties' stamp: 'KenD 9/17/2021 13:41:00'!
 labelString: aString
 
-	^ self setLabel: aString! !
+	self setLabel: aString! !
+
+!Panel methodsFor: '*morph-metaproperties' stamp: 'KenD 9/17/2021 12:26:44'!
+icon
+
+	^ VisualPropertyMenuItem windowIcon ! !
 
 !MenuMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 16:12:18'!
 aboutToGrab: aMorph
@@ -2303,69 +2303,6 @@ targetMorph
 valueWhenDropped
 
 	^nil! !
-
-!MinimalStringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 14:56:55'!
-contents
-
-	^ contents ! !
-
-!MinimalStringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:05:14'!
-emphasis
-
-	^ emphasis! !
-
-!MinimalStringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 14:59:08'!
-emphasis: emphasisCode
-
-	emphasis := emphasisCode.
-	self fitContents.
-	self redrawNeeded ! !
-
-!MinimalStringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:05:49'!
-front
-
-	^ self fontToUse! !
-
-!MinimalStringMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:07:11'!
-front: fontToUse
-
-	font :=
-		(emphasis isNil or: [emphasis = 0]) 
-			ifTrue: [fontToUse]
-			ifFalse: [fontToUse emphasized: emphasis].
-	self fitContents.
-	self redrawNeeded ! !
-
-!OneLineEditorMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:01:56'!
-emphasis
-
-	^ emphasis ! !
-
-!OneLineEditorMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:09:45'!
-emphasis: emphasisCode
-
-	emphasis := emphasisCode.
-	self font: self font  "resets old font emphasis and redraws" ! !
-
-!OneLineEditorMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:01:15'!
-font
-
-	^ self baseFont! !
-
-!OneLineEditorMorph methodsFor: '*morph-metaproperties' stamp: 'KenD 12/5/2016 15:07:26'!
-front: fontToUse
-
-	font :=
-		(emphasis isNil or: [emphasis = 0]) 
-			ifTrue: [fontToUse]
-			ifFalse: [fontToUse emphasized: emphasis].
-	self fitContents.
-	self redrawNeeded ! !
-
-!Complex methodsFor: '*morph-metaproperties' stamp: 'KenD 4/12/2019 15:45:55'!
-icon
-
-	^ VisualPropertyMenuItem complexIcon ! !
 VisualPropertyMenuItem initialize!
 VisualPropertyEditor initialize!
 MetaProperty initialize!

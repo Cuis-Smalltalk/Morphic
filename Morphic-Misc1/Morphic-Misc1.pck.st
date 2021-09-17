@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4856] on 12 September 2021 at 4:16:01 pm'!
+'From Cuis 5.0 [latest update: #4868] on 17 September 2021 at 12:59:01 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 178!
-!requires: 'Cuis-Base' 50 4856 nil!
+!provides: 'Morphic-Misc1' 1 186!
+!requires: 'Cuis-Base' 50 4863 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -130,44 +130,24 @@ ImageMorph subclass: #DropColorMorph
 DropColorMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #ImagePallet category: 'Morphic-Misc1'!
-PluggableScrollPane subclass: #ImagePallet
+!classDefinition: #InnerPluggableImagePallet category: 'Morphic-Misc1'!
+InnerPluggableMorph subclass: #InnerPluggableImagePallet
 	instanceVariableNames: 'nameImageCollection imageFilter imageExtent calculatedExtent'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'ImagePallet class' category: 'Morphic-Misc1'!
-ImagePallet class
+!classDefinition: 'InnerPluggableImagePallet class' category: 'Morphic-Misc1'!
+InnerPluggableImagePallet class
 	instanceVariableNames: ''!
 
-!classDefinition: #PickAColorPallet category: 'Morphic-Misc1'!
-ImagePallet subclass: #PickAColorPallet
+!classDefinition: #PluggableImagePallet category: 'Morphic-Misc1'!
+PluggableScrollPane subclass: #PluggableImagePallet
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'PickAColorPallet class' category: 'Morphic-Misc1'!
-PickAColorPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickAIconPallet category: 'Morphic-Misc1'!
-ImagePallet subclass: #PickAIconPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickAIconPallet class' category: 'Morphic-Misc1'!
-PickAIconPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickALargerIconPallet category: 'Morphic-Misc1'!
-ImagePallet subclass: #PickALargerIconPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickALargerIconPallet class' category: 'Morphic-Misc1'!
-PickALargerIconPallet class
+!classDefinition: 'PluggableImagePallet class' category: 'Morphic-Misc1'!
+PluggableImagePallet class
 	instanceVariableNames: ''!
 
 !classDefinition: #PluggableScrollBar category: 'Morphic-Misc1'!
@@ -238,6 +218,46 @@ EditPanel subclass: #LayoutSpecEditPanel
 	category: 'Morphic-Misc1'!
 !classDefinition: 'LayoutSpecEditPanel class' category: 'Morphic-Misc1'!
 LayoutSpecEditPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #ImagePickerPanel category: 'Morphic-Misc1'!
+Panel subclass: #ImagePickerPanel
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'ImagePickerPanel class' category: 'Morphic-Misc1'!
+ImagePickerPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickAColorPallet category: 'Morphic-Misc1'!
+ImagePickerPanel subclass: #PickAColorPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickAColorPallet class' category: 'Morphic-Misc1'!
+PickAColorPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickAIconPallet category: 'Morphic-Misc1'!
+ImagePickerPanel subclass: #PickAIconPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickAIconPallet class' category: 'Morphic-Misc1'!
+PickAIconPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickALargerIconPallet category: 'Morphic-Misc1'!
+ImagePickerPanel subclass: #PickALargerIconPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickALargerIconPallet class' category: 'Morphic-Misc1'!
+PickALargerIconPallet class
 	instanceVariableNames: ''!
 
 !classDefinition: #ValueEntryPanel category: 'Morphic-Misc1'!
@@ -420,30 +440,8 @@ See method #dropAction:
 
 Note: To click-select a color, see ClickColorMorph!
 
-!ImagePallet commentStamp: '<historical>' prior: 0!
-I Display a pallet of widgets to grab a copy of to drop on something else
-
-See my class examples:
-	ImagePallet namedColors.
-	ImagePallet namedIcons.
- 	ImagePallet strikeFonts.
-	ImagePallet largerIcons.
-!
-
-!PickAColorPallet commentStamp: '<historical>' prior: 0!
-I am just a way of getting an initializedInstance from the New Morph.. menu..  
-
-See my class side.!
-
-!PickAIconPallet commentStamp: '<historical>' prior: 0!
-I am just a way of getting an initializedInstance from the New Morph.. menu..  
-
-See my class side.!
-
-!PickALargerIconPallet commentStamp: '<historical>' prior: 0!
-I am just a way of getting an initializedInstance from the New Morph.. menu..  
-
-See my class side.!
+!InnerPluggableImagePallet commentStamp: '<historical>' prior: 0!
+I display pick/clone-able images in a PluggableImagePallet which is a PluggableScrollPane!
 
 !PluggableScrollBar commentStamp: '<historical>' prior: 0!
 I am a ScrollBar which can get new values from my model.!
@@ -459,9 +457,7 @@ Each such morph has property DropActionMorph set to true.
 !
 
 !Panel commentStamp: '<historical>' prior: 0!
-I am a very simple window with a label.
-
-You need to add buttons, drop-downs, fill-ins to make me useful 
+I present a view of pickable images
 !
 
 !EditPanel commentStamp: '<historical>' prior: 0!
@@ -489,6 +485,26 @@ LayoutMorphEditPanel open: (LayoutMorph newRow).!
 I am a simple editor for a LayoutSpec.
 
 !
+
+!ImagePickerPanel commentStamp: '<historical>' prior: 0!
+I present a scrollable view of images to pick from. 
+(Note PartsBinMorph and it parent, DragAndDropAreaMorph)
+!
+
+!PickAColorPallet commentStamp: '<historical>' prior: 0!
+I am just a way of getting an initializedInstance from the New Morph.. menu..  
+
+See my class side.!
+
+!PickAIconPallet commentStamp: '<historical>' prior: 0!
+I am just a way of getting an initializedInstance from the New Morph.. menu..  
+
+See my class side.!
+
+!PickALargerIconPallet commentStamp: '<historical>' prior: 0!
+I am just a way of getting an initializedInstance from the New Morph.. menu..  
+
+See my class side.!
 
 !ValueEntryPanel commentStamp: '<historical>' prior: 0!
 I am an abstract class for editing simple values.!
@@ -601,6 +617,15 @@ initializedInstance
 	newInst updateEndPoint.
 	^newInst! !
 
+!Panel methodsFor: 'printing' stamp: 'KenD 4/24/2015 16:04'!
+printOn: aStream 
+
+	super printOn: aStream.
+	aStream nextPutAll: '('.
+	aStream
+		print: self label;
+		nextPutAll: ')'! !
+
 !PickAColorPallet class methodsFor: 'instance creation' stamp: 'KenD 12/7/2016 08:24:49'!
 initializedInstance
 
@@ -615,15 +640,6 @@ initializedInstance
 initializedInstance
 
 	^ super largerIcons ! !
-
-!Panel methodsFor: 'printing' stamp: 'KenD 4/24/2015 16:04'!
-printOn: aStream 
-
-	super printOn: aStream.
-	aStream nextPutAll: '('.
-	aStream
-		print: self label;
-		nextPutAll: ')'! !
 
 !SignMorph methodsFor: 'accessing' stamp: 'KenD 10/5/2013 17:15'!
 name
@@ -1789,47 +1805,59 @@ includeInNewMorphMenu
 	
 	^ false! !
 
-!ImagePallet methodsFor: 'private' stamp: 'KenD 11/23/2016 14:19:14'!
-calculatedExtent
-
-	^ calculatedExtent! !
-
-!ImagePallet methodsFor: 'private' stamp: 'KenD 11/24/2016 09:07:36'!
-calculatedExtent: aPointExtent
-
-	calculatedExtent := aPointExtent.
-	self morphExtent: calculatedExtent ! !
-
-!ImagePallet methodsFor: 'private' stamp: 'KenD 9/13/2013 20:08'!
-processImage: anImage
-
-	^ imageFilter value: anImage
-
-	! !
-
-!ImagePallet methodsFor: 'private' stamp: 'KenD 11/23/2016 19:28:26'!
-spaceWidth
-	"Answer the space in pixels between images"
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:42:54'!
+adjustExtent
 	
-	^ 2! !
+	"Nothing to do here"! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 9/14/2013 16:04'!
-collection: aNameImageCollection
-	"The default filter is the identity function"
-	
-	self collection: aNameImageCollection filter: [ :any | any ] 
-! !
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:37:56'!
+getMenu
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 5/12/2020 16:46:58'!
-collection: aNameImageCollection filter: imageSelector
+	^ nil! !
+
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:39:10'!
+imageExtent
+	"Answer extent of an image contained in me.
+	Assume all images of same extent"
+	^imageExtent ! !
+
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:38:18'!
+imageExtent: aPointExtent
+
+	imageExtent := aPointExtent ! !
+
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:39:16'!
+imageHeight
+
+	^ imageExtent y! !
+
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:39:21'!
+imageWidth
+
+	^ imageExtent x! !
+
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:37:45'!
+minimumExtent
+
+	^self calculatedExtent ! !
+
+!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:39:40'!
+nameImageCollection
+
+	^ nameImageCollection ! !
+
+!InnerPluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/15/2021 15:37:55'!
+collection: aNameImageCollection filter: imageTransducer
 
 	| numImages maxWidth numAcross numDown spacedExtent |
 	nameImageCollection := aNameImageCollection.
-	imageFilter := imageSelector.
+	imageFilter := imageTransducer.
 	
 	numImages := aNameImageCollection size.
-	numImages isZero ifTrue: [Error signal: 'I require a non-empty collection to display!!'].
-	numImages> 1000 ifTrue: [Error signal: 'Collection too large to display safely'].
+	numImages isZero 
+		ifTrue: [Error signal: 'I require a non-empty collection to display!!'].
+	numImages> 1000 
+		ifTrue: [Error signal: 'Collection too large to display safely'].
 	"@@FIXME: assumes all images same size@@"
 	self imageExtent: 
 		(self processImage: (aNameImageCollection anyOne value)) morphExtent.
@@ -1841,40 +1869,42 @@ collection: aNameImageCollection filter: imageSelector
 						max: 1) min: numImages.
 	numDown := (numImages / numAcross) ceiling.
 	((numDown < 3) and: [numAcross > 40])
-		ifTrue: [ numAcross := 40. numDown := (numImages / numAcross) ceiling.].
+		ifTrue: [ 
+			numAcross := 40. 
+			numDown := (numImages / numAcross) ceiling.
+		].
 "
 Transcript show: 'numAcross: ', (numAcross asString), '  numDown: ', (numDown asString)
 	; newLine.
 "
 	self calculatedExtent:  
 			(((self imageWidth + self spaceWidth) * numAcross)
-							@ ((self imageHeight + self spaceWidth) * numDown))
+			@ ((self imageHeight + self spaceWidth) * numDown))
 							+ (2 * self spaceWidth). "frame"
 "
 Transcript show: 'calculatedExtent: ', (self calculatedExtent asString)
 	; newLine.
 "
-	self layoutImages: numAcross extent: self calculatedExtent.
+	"Answer LayoutMorph with images"
+	^ self layoutImages: numAcross extent: self calculatedExtent.
+
 
 
 ! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 4/9/2021 15:44:21'!
+!InnerPluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/16/2021 13:18:54'!
 initialize
 
 	super initialize.
 	imageFilter := [:any| any].
-	(self scroller)
-		color: Theme current background;
-		layoutSpec: LayoutSpec useAll.
-	self 
+	^ self 
 		layoutSpec: LayoutSpec useAll;
 		yourself! !
 
-!ImagePallet methodsFor: 'initialize-release' stamp: 'KenD 4/9/2021 16:01:52'!
+!InnerPluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/16/2021 13:11:57'!
 layoutImages: numAcross extent: layoutExtent
-
-	"Lay out images in self"
+	"Lay out images in a LayoutMorph and return it."
+	
 	| column nextRow count rowLayoutSpec |
 	rowLayoutSpec := LayoutSpec 
 							fixedWidth: layoutExtent x  
@@ -1882,9 +1912,10 @@ layoutImages: numAcross extent: layoutExtent
 							offAxisEdgeWeight: #columnLeft.
 							
 	column := LayoutMorph newColumn.
-	column separation:    self spaceWidth;
-			 morphExtent: self calculatedExtent;
-			 axisEdgeWeight: #columnTop.
+	column 
+		separation:    self spaceWidth;
+		morphExtent: self calculatedExtent;
+		axisEdgeWeight: #columnTop.
 
 	count := -1.
 	self nameImageCollection do: [ :nameImageAssoc |
@@ -1893,7 +1924,8 @@ layoutImages: numAcross extent: layoutExtent
 			image := nameImageAssoc value.
 			count := count + 1.  "Image count"
 			(count \\ numAcross) isZero ifTrue: [ "Start a new Row"
-				nextRow := PalletLayoutMorph newRow separation: (self spaceWidth @ 0).
+				nextRow := PalletLayoutMorph newRow 
+							separation: (self spaceWidth @ 0).
 				nextRow layoutSpec: rowLayoutSpec.
 				column addMorph: nextRow.
 			].
@@ -1903,342 +1935,49 @@ layoutImages: numAcross extent: layoutExtent
 	].
 	"Don't spread out morphs in the last row"
 	((nextRow submorphs size) > 0) ifTrue: [ nextRow shrinkWrap.].
-	column addMorph: nextRow. "add last row"
-	column layoutSpec: (LayoutSpec
+	column 
+		color: `Color orange`;
+		addMorph: nextRow; "add last row"
+		layoutSpec: (LayoutSpec
 							fixedWidth: self imageWidth
-							fixedHeight: layoutExtent y 
-							offAxisEdgeWeight: #columnLeft).
-	self addToScroller: column.
-	self hideOrShowScrollBars.
-
-
+							fixedHeight: layoutExtent y). 
+	^ column
 ! !
 
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 12/6/2016 19:04:41'!
-getMenu
+!InnerPluggableImagePallet methodsFor: 'private' stamp: 'KenD 9/15/2021 14:37:02'!
+calculatedExtent
 
-	^ nil! !
+	^ calculatedExtent! !
 
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 4/9/2021 15:59:25'!
-imageExtent
+!InnerPluggableImagePallet methodsFor: 'private' stamp: 'KenD 9/15/2021 14:36:55'!
+calculatedExtent: aPointExtent
 
-	^imageExtent ! !
+	calculatedExtent := aPointExtent.
+	self morphExtent: calculatedExtent ! !
 
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 11/23/2016 19:40:19'!
-imageExtent: aPointExtent
+!InnerPluggableImagePallet methodsFor: 'private' stamp: 'KenD 9/15/2021 14:37:10'!
+processImage: anImage
 
-	imageExtent := aPointExtent ! !
+	^ imageFilter value: anImage
+! !
 
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 11/23/2016 19:39:55'!
-imageHeight
-
-	^ imageExtent y! !
-
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 11/23/2016 19:39:46'!
-imageWidth
-
-	^ imageExtent x! !
-
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 3/9/2020 14:33:58'!
-minimumExtent
-
-	"Widen calculated extent to avoid showing scroll bars"
-	^ self calculatedExtent ifNil: [1@1] ifNotNil: [ :ext | ext + (Theme current scrollbarThickness // 2) ] ! !
-
-!ImagePallet methodsFor: 'accessing' stamp: 'KenD 9/14/2013 16:33'!
-nameImageCollection
-
-	^ nameImageCollection ! !
-
-!ImagePallet class methodsFor: 'instance creation' stamp: 'KenD 10/12/2013 17:24'!
-fromCollection: nameImageAssociations
-
-	^ self basicNew initialize collection: nameImageAssociations! !
-
-!ImagePallet class methodsFor: 'instance creation' stamp: 'KenD 9/14/2013 16:31'!
-fromCollection: nameImageAssociations imageFilter: aClosure
-
-	^ self basicNew initialize collection: nameImageAssociations filter: aClosure ! !
-
-!ImagePallet class methodsFor: 'instance creation' stamp: 'KenD 9/13/2013 16:10'!
-new
-
-	Error signal: self name asString, ' requires a collection of name->image associations to instantiate'! !
-
-!ImagePallet class methodsFor: 'new-morph participation' stamp: 'KenD 9/15/2013 16:40'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	^ false! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 2/29/2020 13:11:26'!
-clickSelectColorsFor: aMorph
-	"Click-Select from a ClickColorPallet"
+!InnerPluggableImagePallet methodsFor: 'private' stamp: 'KenD 9/15/2021 14:37:16'!
+spaceWidth
+	"Answer the space in pixels between images"
 	
-	| pallet imagePanel sortedColors  |
-	sortedColors := SortedCollection sortBlock: 
-		 [ :aAssoc :bAssoc | | a b |
-			a := aAssoc value.
-			b := bAssoc value.
-			(a hue < b hue) or: [(a hue = b hue) and: [a saturation < b saturation ]]
-		].
-	Color colorNamesDict associationsDo: [ :assoc | sortedColors add: assoc ].
-	
-	pallet := ImagePallet 
-			fromCollection: sortedColors
-			imageFilter: [:color | | clickColorMorph |
-				clickColorMorph := ClickColorMorph fromColor: color forTarget: aMorph.
-				clickColorMorph image: (color icon "magnifyTo: 20 @ 20");
-					color: color;
-					yourself
-			].
+	^ 2! !
 
-	imagePanel := Panel new.
-	pallet color: imagePanel windowColor paler.
-	imagePanel addMorph: pallet;
-		setLabel: 'Click to Select a Color for ', aMorph printString ;
-	     showButtonsNamed: #( close  ).
-	pallet hideOrShowScrollBars.
-	imagePanel openInWorld. 
-	"openInWorld resets extent"
-	imagePanel morphExtent: (imagePanel minimumExtent).  "openInWorld resets extent"
-	^ imagePanel! !
+!InnerPluggableImagePallet class methodsFor: 'instance creation' stamp: 'KenD 9/16/2021 11:58:06'!
+fromCollection: sortedColors imageFilter: colorTransducer
 
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 3/9/2020 14:37:33'!
-largerIcons
-"
-	ImagePallet largerIcons.
-"
-	| ip sw sortedCollection someIcons |
-	
-	sortedCollection := SortedCollection sortBlock: [ :a :b | a key < b key].
+		^ self basicNew initialize 
+			collection: sortedColors 
+			filter: colorTransducer ! !
 
-	{ 'actions'. 'apps'. 'categories'. 'devices'. 'emblems'. 'emotes'. 
-			'mimetypes'. 'places'. 'smalltalk'. 'status'. } 
-		do: [ :category |
-			someIcons := Theme content from: 'Theme' get: {'16x16'. category}.
-			someIcons ifNotNil: [someIcons associationsDo: [:assoc| sortedCollection add: assoc]].
-		].
+!PluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/15/2021 08:31:54'!
+innerMorphClass
 
-	someIcons := (Theme content from: 'Theme' get: {'14x14'. 'buttons'}).
-	someIcons ifNotNil: [someIcons associationsDo: [:assoc| sortedCollection add: assoc]].
-"	sortedCollection addAll: (iconsCollection select: [ :assoc | assoc isNil not]).
-"	
-	ip := ImagePallet 
-			fromCollection: (sortedCollection collect: [ :assoc | 
-				Association key: (assoc key) value: assoc value
-			])
-			imageFilter: [:form | ImageMorph new image: (form magnifyTo: 32 @ 32)].
-
-	sw := Panel new.
-	sw addMorph: ip.
-	ip color: sw windowColor paler.
-	sw setLabel: 'Pick an Icon';
-	showButtonsNamed: #( close collapse ).
-	sw openInWorld.
-	sw morphExtent: sw minimumExtent. "openInWorld resets extent" 
-	^ sw! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 11/24/2016 08:52:03'!
-namedColors
-"	'Pick a ColorPallet'
-	ImagePallet useCSS3ColorDict.                  
-	ImagePallet useXKCDColorDict.
-	ImagePallet useSmallColorDict.
-	ImagePallet useCrayonColorDict.
-	'Open a view on it'
-	ImagePallet namedColors.
-"
-	| pallet imagePanel sortedColors  |
-	sortedColors := SortedCollection sortBlock: 
-		 [ :aAssoc :bAssoc | | a b |
-			a := aAssoc value.
-			b := bAssoc value.
-			(a hue < b hue) or: [(a hue = b hue) and: [a saturation < b saturation ]]
-		].
-	Color colorNamesDict associationsDo: [ :assoc | sortedColors add: assoc ].
-	
-	pallet := ImagePallet 
-			fromCollection: sortedColors
-			imageFilter: [:color | | dropColorMorph |
-				dropColorMorph := DropColorMorph new.
-				dropColorMorph image: (color icon "magnifyTo: 20 @ 20");
-					color: color;
-					yourself
-			].
-
-	imagePanel := Panel new.
-	pallet color: imagePanel windowColor paler.
-	imagePanel addMorph: pallet;
-		setLabel: 'Pick a Color';
-	     showButtonsNamed: #( close collapse ).
-	pallet hideOrShowScrollBars.
-	imagePanel openInWorld. 
-	"openInWorld resets extent"
-	imagePanel morphExtent: (imagePanel minimumExtent).  "openInWorld resets extent"
-	^ imagePanel! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 10/17/2018 22:58:59'!
-namedIcons
-"
-	ImagePallet namedIcons.
-"
-	| ip sw iconsCollection sortedCollection |
-	iconsCollection := OrderedCollection new. 
-	{ 'actions'. 'apps'. 'categories'. 'devices'. 'emblems'. 'emotes'.
-	  'mimetypes'. 'places'. 'smalltalk'. 'status'. } do: [ :category |
-		iconsCollection addAll: (Theme content from: 'Theme' get: {'16x16'. category}) array.
-	].
-	sortedCollection := SortedCollection sortBlock: [ :a :b | a key < b key].
-	sortedCollection addAll: (iconsCollection select: [ :assoc | assoc isNil not]).
-	
-	ip := ImagePallet 
-			fromCollection: (sortedCollection collect: [ :assoc | 
-				Association key: (assoc key) value: assoc value
-			])
-			imageFilter: [:form | ImageMorph new image: form].
-
-	sw := Panel new.
-	sw addMorph: ip.
-	ip color: sw windowColor paler.
-	sw setLabel: 'Pick an Icon';
-	showButtonsNamed: #( close collapse ).
-	sw openInWorld.
-	sw 	morphExtent: sw minimumExtent.   "openInWorld algorithm resets extent"
-	^ sw! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'jmv 5/5/2019 16:19:08'!
-strikeFonts
-"
-	ImagePallet strikeFonts.
-	
-	More StrikeFonts can be imported via 
-		Feature require:  #'SF2-Import'.
-	See Cuis-Smalltalk-SF2-Import file README.md for usage.
-"
-	| ip sw fontsCollection maxExtent aFont |
-	fontsCollection := OrderedCollection new. 
-	FontFamily familyNames do: [ :familyName |
-		(FontFamily pointSizesFor: familyName) do: [ :aSize |
-			aFont _ FontFamily familyName: familyName pointSize: aSize.
-			(aSize <= 24) ifTrue: [
-				fontsCollection add: 
-					(Association 
-						key: aFont name
-						value: (FontMorph font: aFont))
-			]
-		]
-	].
-
-	maxExtent := 0@0.
-	fontsCollection do: [ :assoc | maxExtent := maxExtent max: assoc value minimumExtent ].
-	fontsCollection do: [ :assoc | |m | 
-		m := assoc value. 
-		m  morphExtent: maxExtent "(maxExtent x) @ (m morphExtent y)"
-	].
-
-	ip := ImagePallet 
-			fromCollection: fontsCollection.
-	sw := Panel new.
-	sw addMorph: ip.
-	ip color: sw windowColor paler.
-	sw setLabel: 'Pick a Font';
-	showButtonsNamed: #( close collapse ).
-	sw openInWorld.
-	sw 	morphExtent: sw minimumExtent.   "openInWorld algorithm resets extent"
-	^ sw! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 5/10/2019 15:56:54'!
-systemFonts
-"
-	ImagePallet  systemFonts.
-"
-	| ip sw fontsCollection maxExtent |
-	fontsCollection := OrderedCollection new. 
-	FontFamily familyNames do: [ :familyName |
-		fontsCollection add: 
-					(Association 
-						key: familyName
-						value: (FontMorph 
-							font: (FontFamily familyName: familyName 
-												  pointSize: FontFamily defaultPointSize)))
-		
-	].
-
-	maxExtent := 0@0.
-	fontsCollection do: [ :assoc | maxExtent := maxExtent max: assoc value minimumExtent ].
-	fontsCollection do: [ :assoc | |m | 
-		m := assoc value. 
-		m  morphExtent: maxExtent "(maxExtent x) @ (m morphExtent y)"
-	].
-
-	ip := ImagePallet 
-			fromCollection: fontsCollection.
-	sw := Panel new.
-	sw addMorph: ip.
-	ip color: sw windowColor paler.
-	sw setLabel: 'Pick a Font';
-	showButtonsNamed: #( close collapse ).
-	sw openInWorld.
-	sw 	morphExtent: sw minimumExtent.   "openInWorld algorithm resets extent"
-	^ sw! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 11/23/2016 15:09:28'!
-useCSS3ColorDict
-"
-	ImagePallet useCSS3ColorDict.
-"
-	Feature require: 'CSS3-NamedColors'.
-	Color setColorNamesDict: Color css3ColorDictionary.! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 11/23/2016 15:10:34'!
-useCrayonColorDict
-"
-	ImagePallet useCrayonColorDict.
-"
-	Feature require: 'Crayon-NamedColors'.
-	Color setColorNamesDict: Color crayonColorDictionary.! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 11/23/2016 15:10:51'!
-useNBSISCCColorDict
-"
-	ImagePallet useNBSISCCColorDict.
-"
-
-	Feature require: 'NBSISCC-NamedColors'.
-	Color setColorNamesDict: Color nbsisccColorDictionary.! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 1/28/2016 15:10'!
-useSmallColorDict
-"
-	ImagePallet useSmallColorDict.
-"
-	Color setColorNamesDict: Color defaultColorNamesDictionary.! !
-
-!ImagePallet class methodsFor: 'examples' stamp: 'KenD 11/23/2016 15:11:25'!
-useXKCDColorDict
-"
-	ImagePallet useXKCDColorDict.
-"
-	Feature require: 'XKCD-NamedColors'.
-	Color setColorNamesDict: Color xkcdColorDictionary.! !
-
-!PickAColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:28:49'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ true! !
-
-!PickAIconPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:29:03'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ true! !
-
-!PickALargerIconPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:29:12'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ true! !
+	^ InnerPluggableImagePallet! !
 
 !PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:27'!
 fontPreferenceChanged
@@ -4046,6 +3785,219 @@ updateMasterFromCopy
 		ifFalse: [ self delete ] 
 		ifTrue: [ self refreshView ]! !
 
+!ImagePickerPanel methodsFor: 'initialization' stamp: 'KenD 9/15/2021 14:29:33'!
+initialize
+
+	super initialize.
+	"imageFilter := [:any| any].
+	(self scroller)
+		color: Theme current background;
+		layoutSpec: LayoutSpec useAll."
+	^ self 
+		layoutSpec: LayoutSpec useAll;
+		yourself! !
+
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:50:34'!
+largerIcons
+"
+	ImagePickerPanel largerIcons.
+"
+	| iconsCollection sortedCollection |
+	iconsCollection := OrderedCollection new. 
+	{ 'actions'. 'apps'. 'categories'. 'devices'. 'emblems'. 'emotes'.
+	  'mimetypes'. 'places'. 'smalltalk'. 'status'. } do: [ :category |
+		iconsCollection addAll: (Theme content from: 'Theme' get: {'16x16'. category}) array.
+	].
+	sortedCollection := SortedCollection sortBlock: [ :a :b | a key < b key].
+	sortedCollection addAll: (iconsCollection select: [ :assoc | assoc isNil not]).
+	
+	^ self
+		privateBuildPanelLabel:  'Pick a Icon' 
+		collection: sortedCollection
+		transducer:  [:form | ImageMorph new 
+			image: (form magnifyTo: 32@32)
+		]
+
+! !
+
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:46:52'!
+namedColors
+"	'Pick a ColorPallet'
+	ImagePickerPanel useCSS3ColorDict.                  
+	ImagePickerPanel useXKCDColorDict.
+	ImagePickerPanel useSmallColorDict.
+	ImagePickerPanel useCrayonColorDict.
+	'Open a view on it'
+	ImagePickerPanel namedColors.
+"
+	| sortedColors |
+	sortedColors := SortedCollection sortBlock: 
+		 [ :aAssoc :bAssoc | | a b |
+			a := aAssoc value.
+			b := bAssoc value.
+			(a hue < b hue) 
+				or: [(a hue = b hue) 
+				and: [a saturation < b saturation ]]
+		].
+	Color colorNamesDict associationsDo: [ :assoc | 
+		sortedColors add: assoc
+	].
+	
+	^ self
+		privateBuildPanelLabel:  'Pick a Color' 
+		collection: sortedColors
+		transducer: [:color | | dropColorMorph |
+					dropColorMorph := DropColorMorph new.
+					dropColorMorph image: (color icon "magnifyTo: 20 @ 20");
+					color: color.
+		] 
+! !
+
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:49:04'!
+namedIcons
+"
+	ImagePickerPanel namedIcons.
+"
+	| iconsCollection sortedCollection |
+	iconsCollection := OrderedCollection new. 
+	{ 'actions'. 'apps'. 'categories'. 'devices'. 'emblems'. 'emotes'.
+	  'mimetypes'. 'places'. 'smalltalk'. 'status'. } do: [ :category |
+		iconsCollection addAll: (Theme content from: 'Theme' get: {'16x16'. category}) array.
+	].
+	sortedCollection := SortedCollection sortBlock: [ :a :b | a key < b key].
+	sortedCollection addAll: (iconsCollection select: [ :assoc | assoc isNil not]).
+	
+	^ self
+		privateBuildPanelLabel:  'Pick a Icon' 
+		collection: sortedCollection
+		transducer:  [:form | ImageMorph new image: form]
+! !
+
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:55:33'!
+systemFonts
+"
+	ImagePickerPanel systemFonts.
+"
+	| fontsCollection maxExtent |
+	fontsCollection := OrderedCollection new. 
+	FontFamily familyNames do: [ :familyName |
+		fontsCollection add: 
+			(Association 
+				key: familyName
+				value: (FontMorph 
+						font: (FontFamily familyName: familyName 
+								  pointSize: FontFamily defaultPointSize)))
+		
+	].
+
+	maxExtent := 0@0.
+	fontsCollection do: [ :assoc | maxExtent := maxExtent max: assoc value minimumExtent ].
+	fontsCollection do: [ :assoc | |m | 
+		m := assoc value. 
+		m  morphExtent: maxExtent "(maxExtent x) @ (m morphExtent y)"
+	].
+
+	
+	^ self
+		privateBuildPanelLabel:  'Pick a Font' 
+		collection: fontsCollection
+		transducer:  [:form | form]
+! !
+
+!ImagePickerPanel class methodsFor: 'new-morph participation' stamp: 'KenD 9/16/2021 14:05:33'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	^ false! !
+
+!ImagePickerPanel class methodsFor: 'utility' stamp: 'KenD 9/16/2021 13:49:40'!
+useCSS3ColorDict
+"
+	ImagePickerPanel useCSS3ColorDict.
+"
+	Feature require: 'CSS3-NamedColors'.
+	Color setColorNamesDict: Color css3ColorDictionary.! !
+
+!ImagePickerPanel class methodsFor: 'utility' stamp: 'KenD 9/16/2021 13:48:35'!
+useCrayonColorDict
+"
+	ImagePickerPanel useCrayonColorDict.
+"
+	Feature require: 'Crayon-NamedColors'.
+	Color setColorNamesDict: Color crayonColorDictionary.! !
+
+!ImagePickerPanel class methodsFor: 'utility' stamp: 'KenD 9/16/2021 13:51:38'!
+useNBSISCCColorDict
+"
+	self useNBSISCCColorDict.
+"
+	Feature require: 'NBSISCC-NamedColors'.
+	Color setColorNamesDict: Color nbsisccColorDictionary.! !
+
+!ImagePickerPanel class methodsFor: 'utility' stamp: 'KenD 9/16/2021 13:51:54'!
+useXKCDColorDict
+"
+	self useXKCDColorDict.
+"
+
+	Feature require: 'XKCD-NamedColors'.
+	Color setColorNamesDict: Color xkcdColorDictionary.! !
+
+!ImagePickerPanel class methodsFor: 'private' stamp: 'KenD 9/17/2021 12:41:56'!
+privateBuildPanelLabel: aStringLabel 
+collection: sortedNameImageCollection
+transducer: imageProcessor
+	"Common code for ImagePickerPanels"
+	
+	| picker scrollPane  |
+	picker := Panel new.
+	picker 
+		color: Panel windowColor paler;
+		setLabel: aStringLabel;
+		showButtonsNamed: #( close collapse ).
+
+	"Panel contains scroll-pane containes image selections"
+	
+	scrollPane := PluggableImagePallet new.
+	"scrollPane 		model: scrollPane scroller."
+	scrollPane 
+		color: `Color orange` ;
+		layoutSpec: LayoutSpec useAll;
+		addToScroller: "set up pickable images"
+			(scrollPane scroller 
+				collection: sortedNameImageCollection
+				filter: imageProcessor ) .
+	scrollPane scroller borderWidth: 0.
+	
+		picker  layoutMorph 
+		addMorph: scrollPane;
+		color: `Color orange`.
+
+	^ picker 
+		openInWorld; "NB: openInWorld resets morphExtent"
+		morphExtent: scrollPane scroller morphExtent 
+			+ (0 @ picker titleMorph morphExtent y)
+			+ (8@4); "interior border"
+		yourself
+		! !
+
+!PickAColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:28:49'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ true! !
+
+!PickAIconPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:29:03'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ true! !
+
+!PickALargerIconPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/7/2016 08:29:12'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ true! !
+
 !ValueEntryPanel methodsFor: 'events' stamp: 'KenD 12/22/2016 14:05:30'!
 accept
 
@@ -5720,12 +5672,12 @@ boxExtent
 	e _ Preferences windowTitleFont lineSpacing.
 	^e@e! !
 
-!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 3/9/2020 12:59:53'!
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 9/16/2021 14:13:31'!
 changeColor
 	"Change the color of the receiver -- triggered, e.g. from a menu"
 
 	"Override default method"
-	ImagePallet clickSelectColorsFor: self! !
+	ImagePickerPanel clickSelectColorsFor: self! !
 
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 9/17/2016 10:08:23'!
 colorizeLayouts
