@@ -1,67 +1,64 @@
-'From Cuis 5.0 [latest update: #4863] on 16 September 2021 at 2:17:38 pm'!
+'From Cuis 5.0 [latest update: #4868] on 20 September 2021 at 4:54:37 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 43!
+!provides: 'Morphic-ColorEditor' 1 45!
 !requires: 'Cuis-Base' 50 4863 nil!
 !requires: 'Color-Extras' 1 4 nil!
-!requires: 'Morphic-Misc1' 1 185 nil!
+!requires: 'Morphic-Misc1' 1 187 nil!
 !requires: 'CSS3-NamedColors' 1 1 nil!
 !requires: 'Graphics-Files-Additional' 1 nil nil!
-SystemOrganization addCategory: #'Morphic-ColorEditor'!
+SystemOrganization addCategory: 'Morphic-ColorEditor'!
 
 
-!classDefinition: #ColorEditorModel category: #'Morphic-ColorEditor'!
-Object subclass: #ColorEditorModel
-	instanceVariableNames: 'color'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorEditorModel class' category: #'Morphic-ColorEditor'!
-ColorEditorModel class
-	instanceVariableNames: ''!
-
-!classDefinition: #ColorPaneMorph category: #'Morphic-ColorEditor'!
+!classDefinition: #ColorPaneMorph category: 'Morphic-ColorEditor'!
 ImageMorph subclass: #ColorPaneMorph
 	instanceVariableNames: 'zeroPlaneForm zIndex zValue colorPoint focusMorph'
 	classVariableNames: 'BlueIndex BrightnessForm BrightnessIndex BrightnessOverlay GBForm GreenIndex HueIndex HueOverlay RBForm RGForm RedIndex SaturationForm SaturationIndex SaturationOverlay'
 	poolDictionaries: ''
 	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorPaneMorph class' category: #'Morphic-ColorEditor'!
+!classDefinition: 'ColorPaneMorph class' category: 'Morphic-ColorEditor'!
 ColorPaneMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #ColorSliderMorph category: #'Morphic-ColorEditor'!
+!classDefinition: #ColorSliderMorph category: 'Morphic-ColorEditor'!
 ImageMorph subclass: #ColorSliderMorph
 	instanceVariableNames: 'colorPane sliderMorph maxZValue'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorSliderMorph class' category: #'Morphic-ColorEditor'!
+!classDefinition: 'ColorSliderMorph class' category: 'Morphic-ColorEditor'!
 ColorSliderMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #ColorEditorPanel category: #'Morphic-ColorEditor'!
-Panel subclass: #ColorEditorPanel
-	instanceVariableNames: 'colorPane colorSwatch sliderColumn closeColorSwatch closeColorLabel closestRGB radioSelection rgbRadio hsvRadio closestColordictColor rgbString'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorEditorPanel class' category: #'Morphic-ColorEditor'!
-ColorEditorPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #ColorPallet category: #'Morphic-ColorEditor'!
+!classDefinition: #ColorPallet category: 'Morphic-ColorEditor'!
 ImagePickerPanel subclass: #ColorPallet
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-ColorEditor'!
-!classDefinition: 'ColorPallet class' category: #'Morphic-ColorEditor'!
+!classDefinition: 'ColorPallet class' category: 'Morphic-ColorEditor'!
 ColorPallet class
 	instanceVariableNames: ''!
 
+!classDefinition: #ColorEditorPanel category: 'Morphic-ColorEditor'!
+Panel subclass: #ColorEditorPanel
+	instanceVariableNames: 'colorPane colorSwatch sliderColumn closeColorSwatch closeColorLabel closestRGB radioSelection rgbRadio hsvRadio closestColordictColor rgbString'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-ColorEditor'!
+!classDefinition: 'ColorEditorPanel class' category: 'Morphic-ColorEditor'!
+ColorEditorPanel class
+	instanceVariableNames: ''!
 
-!ColorEditorModel commentStamp: '<historical>' prior: 0!
-I am the model (state holder) for a ColorEditor.!
+!classDefinition: #ColorEditorModel category: 'Morphic-ColorEditor'!
+Object subclass: #ColorEditorModel
+	instanceVariableNames: 'color'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-ColorEditor'!
+!classDefinition: 'ColorEditorModel class' category: 'Morphic-ColorEditor'!
+ColorEditorModel class
+	instanceVariableNames: ''!
+
 
 !ColorPaneMorph commentStamp: '<historical>' prior: 0!
 I present a plane in a color cube.
@@ -99,6 +96,9 @@ The associated ColorPane has a Focus Color (x,y) at constant z.
 This pane shows the range of color of z at the focus point -- constant (x,y)
 !
 
+!ColorPallet commentStamp: '<historical>' prior: 0!
+I am just a way to get a Color pallet.  See my class side.!
+
 !ColorEditorPanel commentStamp: '<historical>' prior: 0!
 I present the ColorEditor UI
 
@@ -106,8 +106,13 @@ Usage:
 	ColorEditorPanel open.
 	ColorEditorPanel openColor: Color forestGreen.!
 
-!ColorPallet commentStamp: '<historical>' prior: 0!
-I am just a way to get a Color pallet.  See my class side.!
+!ColorEditorModel commentStamp: '<historical>' prior: 0!
+I am the model (state holder) for a ColorEditor.!
+
+!ColorPallet class methodsFor: 'instance creation' stamp: 'KenD 9/16/2021 14:15:59'!
+initializedInstance
+
+	^ ImagePickerPanel namedColors! !
 
 !ColorEditorPanel class methodsFor: 'instance creation' stamp: 'KenD 6/1/2020 16:07:03'!
 initializedInstance
@@ -122,243 +127,6 @@ initializedInstance
 		morphExtent: window minimumLayoutExtent;
 		yourself
 ! !
-
-!ColorPallet class methodsFor: 'instance creation' stamp: 'KenD 9/16/2021 14:15:59'!
-initializedInstance
-
-	^ ImagePickerPanel namedColors! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/22/2013 20:53'!
-blue
-	"Answer my blue component 0..255"
-
-	^ (self color blue * 255) rounded! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:42'!
-blue: zeroTo255
-
-	self setColor: (Color 
-		r: self color red
-		g: self color green
-		b: (zeroTo255 / 255) asFloat)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:52'!
-blueFactor
-	"Answer my blueness 0..1"
-
-	^ self color blue! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:05'!
-blueFactor: zeroToOne
-
-	self setColor: (Color 
-		r: self color red
-		g: self color green
-		b: (zeroToOne * 255 / 255) asFloat)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:44'!
-brightness
-	"Answer percent brightness"
-
-	^ (self color brightness * 100) rounded! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:43'!
-brightness: aPercent
-
-	self setColor: (Color
-		h: self color hue
-		s: self color saturation
-		v: (aPercent / 100) asFloat)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:53'!
-brightnessFactor
-	"Answer my brightness 0..1"
-
-	^ self color brightness! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:04'!
-brightnessFactor: zeroToOne
-
-	self setColor: (Color
-		h: self color hue
-		s: self color saturation
-		v: zeroToOne asFloat)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 15:54'!
-color
-
-	^ color! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/22/2013 20:53'!
-green
-	"Answer my green component 0..255"
-
-	^ (self color green * 255) rounded! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:41'!
-green: zeroTo255
-
-	self setColor: (Color 
-		r: self color red
-		g: (zeroTo255 / 255) asFloat 
-		b: self color blue)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:51'!
-greenFactor
-	"Answer my greenness 0..1"
-
-	^ self color green! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/27/2013 20:09'!
-greenFactor: zeroToOne
-
-	self setColor: (Color 
-		r: self color red
-		g: (zeroToOne * 255 / 255) asFloat 
-		b: self color blue)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:44'!
-hue
-	"Answer my hue 0..360 (degrees)"
-
-	^ self color hue rounded! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:40'!
-hue: zeroTo360
-
-	self setColor: (Color 
-		h: zeroTo360
-		s: (self color saturation) 
-		v: (self color brightness) )! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:55'!
-hueFactor
-	"Answer my hue 0..1"
-
-	^ (self color hue / 360) asFloat! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:02'!
-hueFactor: zeroToOne
-
-	self setColor: (Color 
-		h: (zeroToOne * 360) asFloat
-		s: (self color saturation) 
-		v: (self color brightness) )! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/22/2013 20:53'!
-red
-	"Answer my red component 0..255"
-
-	^ (self color red * 255) rounded! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:42'!
-red: zeroTo255
-
-	self setColor: (Color 
-		r: (zeroTo255 / 255) asFloat 
-		g: self color green 
-		b: self color blue)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:51'!
-redFactor
-	"Answer my redness 0..1"
-
-	^ self color red! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:06'!
-redFactor: zeroToOne
-
-	self setColor: (Color 
-		r: (zeroToOne * 255 / 255) asFloat 
-		g: self color green 
-		b: self color blue)! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:45'!
-saturation
-	"Answer my percent saturation"
-
-	^ (self color saturation * 100) rounded! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:42'!
-saturation: aPercent
-
-	self setColor: (Color 
-		h: (self color hue) 
-		s: (aPercent / 100) asFloat
-		v: (self color brightness) )! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:56'!
-saturationFactor
-	"Answer my saturation 0..1"
-
-	^ self color saturation ! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:01'!
-saturationFactor: zeroToOne
-
-	self setColor: (Color 
-		h: (self color hue) 
-		s: zeroToOne asFloat
-		v: (self color brightness) )! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 20:59'!
-setColor: aColor
-	"Set my color and trigger #colorChanged passing me (the model)"
-	
-	(color == aColor) ifTrue: [ ^self ].
-	color := aColor.
-	self triggerEvent: #colorChanged with: self.
-	^ self
-
-! !
-
-!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 12/2/2013 16:24'!
-setRGBColorFromInteger: anInteger
-	"Set my color from integer interpreted as RGB value"
-	
-	| aColor |
-	aColor := Color 
-					r: ((anInteger bitShift: -16) bitAnd: 255)	/ 255
-					g: ((anInteger bitShift: -8) bitAnd: 255) / 255
-					b: (anInteger bitAnd: 255) / 255.
-			
-	^ self setColor: aColor
-
-! !
-
-!ColorEditorModel methodsFor: 'initialization' stamp: 'KenD 11/19/2013 19:09'!
-defaultColor
-
-	^ Color teal
-	! !
-
-!ColorEditorModel methodsFor: 'initialization' stamp: 'KenD 11/23/2013 15:55'!
-initialize
-
-	super initialize.
-	self setColor: self defaultColor.
-	! !
-
-!ColorEditorModel methodsFor: 'printing' stamp: 'jmv 2/13/2014 13:42'!
-hexStringRGB
-	"Answer my RGB as hex but with no 16r prefix"
-
-"	^ (self red    printPaddedWith: $0 to: 2 base: 16) , 
-	  (self green printPaddedWith: $0 to: 2 base: 16) , 
-	  (self blue   printPaddedWith: $0 to: 2 base: 16)
-	"
-	^ self color hexStringRGB! !
-
-!ColorEditorModel methodsFor: 'printing' stamp: 'jmv 2/13/2014 13:45'!
-rgbValue
-	"Answer my RGB as an integer"
-
-	^ ( '16r',  self color hexStringRGB) asNumber! !
-
-!ColorEditorModel class methodsFor: 'instance creation' stamp: 'KenD 11/23/2013 15:55'!
-color: aColor
-
-	^ self new setColor: aColor! !
 
 !ColorPaneMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 11/30/2013 19:33'!
 aboutToGrab: aMorph
@@ -1071,6 +839,59 @@ includeInNewMorphMenu
 	
 	^ false! !
 
+!ColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/24/2013 17:55'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ true! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
+useCSS3ColorDict
+"
+	self useCSS3ColorDict.
+"
+	Feature require: 'CSS3-NamedColors'.
+	Color setColorNamesDict: Color css3ColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 7/24/2015 11:33'!
+useCrayonColorDict
+"
+	ColorPallet useCrayonColorDict.
+"
+
+	Feature require: 'Crayon-NamedColors'.
+	Color setColorNamesDict: Color crayonColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
+useNBSISCCColorDict
+"
+	self useNBSISCCColorDict.
+"
+	Feature require: 'NBSISCC-NamedColors'.
+	Color setColorNamesDict: Color nbsisccColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
+useSmallColorDict
+
+	Color setColorNamesDict: Color defaultColorNamesDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
+useXKCDColorDict
+"
+	self useXKCDColorDict.
+"
+
+	Feature require: 'XKCD-NamedColors'.
+	Color setColorNamesDict: Color xkcdColorDictionary.! !
+
+!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:59'!
+useXKCDFirst48ColorDict
+"
+	self useXKCDFirst48ColorDict.
+"
+
+	Color setColorNamesDict: Color xkcdFirst48ColorNamesDictionary.! !
+
 !ColorEditorPanel methodsFor: 'private' stamp: 'KenD 10/29/2015 15:16'!
 backgroundColor
 
@@ -1502,60 +1323,239 @@ includeInNewMorphMenu
 	
 	^ true! !
 
-!ColorPallet class methodsFor: 'new-morph participation' stamp: 'KenD 12/24/2013 17:55'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/22/2013 20:53'!
+blue
+	"Answer my blue component 0..255"
+
+	^ (self color blue * 255) rounded! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:42'!
+blue: zeroTo255
+
+	self setColor: (Color 
+		r: self color red
+		g: self color green
+		b: (zeroTo255 / 255) asFloat)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:52'!
+blueFactor
+	"Answer my blueness 0..1"
+
+	^ self color blue! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:05'!
+blueFactor: zeroToOne
+
+	self setColor: (Color 
+		r: self color red
+		g: self color green
+		b: (zeroToOne * 255 / 255) asFloat)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:44'!
+brightness
+	"Answer percent brightness"
+
+	^ (self color brightness * 100) rounded! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:43'!
+brightness: aPercent
+
+	self setColor: (Color
+		h: self color hue
+		s: self color saturation
+		v: (aPercent / 100) asFloat)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:53'!
+brightnessFactor
+	"Answer my brightness 0..1"
+
+	^ self color brightness! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:04'!
+brightnessFactor: zeroToOne
+
+	self setColor: (Color
+		h: self color hue
+		s: self color saturation
+		v: zeroToOne asFloat)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 15:54'!
+color
+
+	^ color! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/22/2013 20:53'!
+green
+	"Answer my green component 0..255"
+
+	^ (self color green * 255) rounded! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:41'!
+green: zeroTo255
+
+	self setColor: (Color 
+		r: self color red
+		g: (zeroTo255 / 255) asFloat 
+		b: self color blue)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:51'!
+greenFactor
+	"Answer my greenness 0..1"
+
+	^ self color green! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/27/2013 20:09'!
+greenFactor: zeroToOne
+
+	self setColor: (Color 
+		r: self color red
+		g: (zeroToOne * 255 / 255) asFloat 
+		b: self color blue)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:44'!
+hue
+	"Answer my hue 0..360 (degrees)"
+
+	^ self color hue rounded! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:40'!
+hue: zeroTo360
+
+	self setColor: (Color 
+		h: zeroTo360
+		s: (self color saturation) 
+		v: (self color brightness) )! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:55'!
+hueFactor
+	"Answer my hue 0..1"
+
+	^ (self color hue / 360) asFloat! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:02'!
+hueFactor: zeroToOne
+
+	self setColor: (Color 
+		h: (zeroToOne * 360) asFloat
+		s: (self color saturation) 
+		v: (self color brightness) )! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/22/2013 20:53'!
+red
+	"Answer my red component 0..255"
+
+	^ (self color red * 255) rounded! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:42'!
+red: zeroTo255
+
+	self setColor: (Color 
+		r: (zeroTo255 / 255) asFloat 
+		g: self color green 
+		b: self color blue)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:51'!
+redFactor
+	"Answer my redness 0..1"
+
+	^ self color red! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:06'!
+redFactor: zeroToOne
+
+	self setColor: (Color 
+		r: (zeroToOne * 255 / 255) asFloat 
+		g: self color green 
+		b: self color blue)! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:45'!
+saturation
+	"Answer my percent saturation"
+
+	^ (self color saturation * 100) rounded! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 16:42'!
+saturation: aPercent
+
+	self setColor: (Color 
+		h: (self color hue) 
+		s: (aPercent / 100) asFloat
+		v: (self color brightness) )! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:56'!
+saturationFactor
+	"Answer my saturation 0..1"
+
+	^ self color saturation ! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/24/2013 19:01'!
+saturationFactor: zeroToOne
+
+	self setColor: (Color 
+		h: (self color hue) 
+		s: zeroToOne asFloat
+		v: (self color brightness) )! !
+
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 11/23/2013 20:59'!
+setColor: aColor
+	"Set my color and trigger #colorChanged passing me (the model)"
 	
-	^ true! !
+	(color == aColor) ifTrue: [ ^self ].
+	color := aColor.
+	self triggerEvent: #colorChanged with: self.
+	^ self
 
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
-useCSS3ColorDict
-"
-	self useCSS3ColorDict.
-"
-	Feature require: 'CSS3-NamedColors'.
-	Color setColorNamesDict: Color css3ColorDictionary.! !
+! !
 
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 7/24/2015 11:33'!
-useCrayonColorDict
-"
-	ColorPallet useCrayonColorDict.
-"
+!ColorEditorModel methodsFor: 'accessing' stamp: 'KenD 12/2/2013 16:24'!
+setRGBColorFromInteger: anInteger
+	"Set my color from integer interpreted as RGB value"
+	
+	| aColor |
+	aColor := Color 
+					r: ((anInteger bitShift: -16) bitAnd: 255)	/ 255
+					g: ((anInteger bitShift: -8) bitAnd: 255) / 255
+					b: (anInteger bitAnd: 255) / 255.
+			
+	^ self setColor: aColor
 
-	Feature require: 'Crayon-NamedColors'.
-	Color setColorNamesDict: Color crayonColorDictionary.! !
+! !
 
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:57'!
-useNBSISCCColorDict
-"
-	self useNBSISCCColorDict.
-"
-	Feature require: 'NBSISCC-NamedColors'.
-	Color setColorNamesDict: Color nbsisccColorDictionary.! !
+!ColorEditorModel methodsFor: 'initialization' stamp: 'KenD 11/19/2013 19:09'!
+defaultColor
 
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
-useSmallColorDict
+	^ Color teal
+	! !
 
-	Color setColorNamesDict: Color defaultColorNamesDictionary.! !
+!ColorEditorModel methodsFor: 'initialization' stamp: 'KenD 11/23/2013 15:55'!
+initialize
 
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:56'!
-useXKCDColorDict
-"
-	self useXKCDColorDict.
-"
+	super initialize.
+	self setColor: self defaultColor.
+	! !
 
-	Feature require: 'XKCD-NamedColors'.
-	Color setColorNamesDict: Color xkcdColorDictionary.! !
+!ColorEditorModel methodsFor: 'printing' stamp: 'jmv 2/13/2014 13:42'!
+hexStringRGB
+	"Answer my RGB as hex but with no 16r prefix"
 
-!ColorPallet class methodsFor: 'color dictionary' stamp: 'KenD 12/24/2013 19:59'!
-useXKCDFirst48ColorDict
-"
-	self useXKCDFirst48ColorDict.
-"
+"	^ (self red    printPaddedWith: $0 to: 2 base: 16) , 
+	  (self green printPaddedWith: $0 to: 2 base: 16) , 
+	  (self blue   printPaddedWith: $0 to: 2 base: 16)
+	"
+	^ self color hexStringRGB! !
 
-	Color setColorNamesDict: Color xkcdFirst48ColorNamesDictionary.! !
+!ColorEditorModel methodsFor: 'printing' stamp: 'jmv 2/13/2014 13:45'!
+rgbValue
+	"Answer my RGB as an integer"
 
-!Color class methodsFor: '*morphic-coloreditor' stamp: 'KenD 9/16/2021 14:13:00'!
+	^ ( '16r',  self color hexStringRGB) asNumber! !
+
+!ColorEditorModel class methodsFor: 'instance creation' stamp: 'KenD 11/23/2013 15:55'!
+color: aColor
+
+	^ self new setColor: aColor! !
+
+!Color class methodsFor: '*morphic-coloreditor' stamp: 'KenD 9/20/2021 16:52:24'!
 colorSelectionMenu
 	"Open a popUp menu and let user select color selection option"
 "
@@ -1582,9 +1582,12 @@ colorSelectionMenu
 	(selectedIndex = 5)
 		ifTrue: [ ColorEditorPanel initializedInstance openInWorld ].
 	((selectedIndex > 0) and: [selectedIndex < 5])
-		ifTrue: [
+		ifTrue: [ | pickerPanel savedExtent |
 			ColorPallet perform: ( choicesSetter at: selectedIndex ).
-			ImagePickerPanel namedColors
+			pickerPanel := ImagePickerPanel namedColors. 
+			savedExtent := pickerPanel morphExtent. 
+			pickerPanel openInWorld. "#openInWorld resets morphExtent!!"
+			pickerPanel morphExtent: savedExtent. 
 		].
 	"else cancel -> no action"
 
