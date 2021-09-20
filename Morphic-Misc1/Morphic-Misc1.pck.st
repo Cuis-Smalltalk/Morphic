@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4868] on 17 September 2021 at 12:59:01 pm'!
+'From Cuis 5.0 [latest update: #4868] on 20 September 2021 at 7:11:59 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 186!
-!requires: 'Cuis-Base' 50 4863 nil!
+!provides: 'Morphic-Misc1' 1 187!
+!requires: 'Cuis-Base' 50 4868 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 3 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -3797,10 +3797,12 @@ initialize
 		layoutSpec: LayoutSpec useAll;
 		yourself! !
 
-!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:50:34'!
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/20/2021 07:05:56'!
 largerIcons
 "
-	ImagePickerPanel largerIcons.
+	ImagePickerPanel largerIcons openInHand.
+	   @@@ NB: openInWorld resets morphExtent @@@
+	[|m x| m := ImagePickerPanel largerIcons. x := m morphExtent. m openInWorld. m morphExtent: x] value. 
 "
 	| iconsCollection sortedCollection |
 	iconsCollection := OrderedCollection new. 
@@ -3820,7 +3822,7 @@ largerIcons
 
 ! !
 
-!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:46:52'!
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/20/2021 07:09:04'!
 namedColors
 "	'Pick a ColorPallet'
 	ImagePickerPanel useCSS3ColorDict.                  
@@ -3828,7 +3830,9 @@ namedColors
 	ImagePickerPanel useSmallColorDict.
 	ImagePickerPanel useCrayonColorDict.
 	'Open a view on it'
-	ImagePickerPanel namedColors.
+	ImagePickerPanel namedColors openInHand.
+	   @@@ NB: openInWorld resets morphExtent @@@
+[|m x| m := ImagePickerPanel namedColors. x := m morphExtent. m openInWorld. m morphExtent: x] value. 
 "
 	| sortedColors |
 	sortedColors := SortedCollection sortBlock: 
@@ -3853,10 +3857,12 @@ namedColors
 		] 
 ! !
 
-!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:49:04'!
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/20/2021 07:09:33'!
 namedIcons
 "
-	ImagePickerPanel namedIcons.
+	ImagePickerPanel namedIcons openInHand.
+	   @@@ NB: openInWorld resets morphExtent @@@
+[|m x| m := ImagePickerPanel namedIcons. x := m morphExtent. m openInWorld. m morphExtent: x] value. 
 "
 	| iconsCollection sortedCollection |
 	iconsCollection := OrderedCollection new. 
@@ -3873,10 +3879,12 @@ namedIcons
 		transducer:  [:form | ImageMorph new image: form]
 ! !
 
-!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/17/2021 12:55:33'!
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/20/2021 07:10:26'!
 systemFonts
 "
-	ImagePickerPanel systemFonts.
+	ImagePickerPanel systemFonts 	 openInHand.
+	   @@@ NB: openInWorld resets morphExtent @@@
+[|m x| m := ImagePickerPanel systemFonts. x := m morphExtent. m openInWorld. m morphExtent: x] value. 
 "
 	| fontsCollection maxExtent |
 	fontsCollection := OrderedCollection new. 
@@ -3942,7 +3950,7 @@ useXKCDColorDict
 	Feature require: 'XKCD-NamedColors'.
 	Color setColorNamesDict: Color xkcdColorDictionary.! !
 
-!ImagePickerPanel class methodsFor: 'private' stamp: 'KenD 9/17/2021 12:41:56'!
+!ImagePickerPanel class methodsFor: 'private' stamp: 'KenD 9/20/2021 07:01:42'!
 privateBuildPanelLabel: aStringLabel 
 collection: sortedNameImageCollection
 transducer: imageProcessor
@@ -3973,7 +3981,6 @@ transducer: imageProcessor
 		color: `Color orange`.
 
 	^ picker 
-		openInWorld; "NB: openInWorld resets morphExtent"
 		morphExtent: scrollPane scroller morphExtent 
 			+ (0 @ picker titleMorph morphExtent y)
 			+ (8@4); "interior border"
