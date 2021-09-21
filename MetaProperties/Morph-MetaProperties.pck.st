@@ -1,11 +1,11 @@
-'From Cuis 5.0 [latest update: #4868] on 17 September 2021 at 1:52:43 pm'!
+'From Cuis 5.0 [latest update: #4868] on 20 September 2021 at 5:15:29 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 90!
+!provides: 'Morph-MetaProperties' 1 91!
 !requires: 'Cuis-Base' 50 4856 nil!
-!requires: 'Complex' 1 0 nil!
-!requires: 'Morphic-ColorEditor' 1 39 nil!
-!requires: 'Morphic-Misc1' 1 167 nil!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
+!requires: 'Morphic-ColorEditor' 1 39 nil!
+!requires: 'Complex' 1 0 nil!
+!requires: 'Morphic-Misc1' 1 167 nil!
 SystemOrganization addCategory: 'Morph-MetaProperties'!
 
 
@@ -1133,7 +1133,7 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	^ false! !
 
-!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 9/17/2021 13:39:22'!
+!VisualPropertyEditor class methodsFor: 'class initialization' stamp: 'KenD 9/20/2021 17:11:15'!
 initialize
 "
 	VisualPropertyEditor initialize.
@@ -1181,6 +1181,7 @@ initialize
 	classDict at: #font put: (propsDict at: #acceptsFont).
 	classDict at: #icon put: (propsDict at: #acceptsForm).
 	classDict at: #iconName put: (propsDict at: #acceptsSymbol).
+	classDict at: #iconDrawSelector put: (propsDict at: #acceptsSymbol).
 
 	classDict := MetaProperty metaPropsDictForClass: ImageMorph.
 	classDict at: #image put: (propsDict at: #acceptsForm).
