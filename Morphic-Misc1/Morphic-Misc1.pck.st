@@ -1,9 +1,9 @@
-'From Cuis 5.0 [latest update: #4868] on 20 September 2021 at 7:11:59 am'!
+'From Cuis 5.0 [latest update: #4886] on 25 September 2021 at 2:30:17 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 187!
-!requires: 'Cuis-Base' 50 4868 nil!
+!provides: 'Morphic-Misc1' 1 190!
+!requires: 'Cuis-Base' 50 4886 nil!
 !requires: 'Color-Extras' 1 4 nil!
-!requires: 'Morphic-Widgets-Extras' 1 3 nil!
+!requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
 
 
@@ -330,6 +330,16 @@ MenuMorph subclass: #MultiSelectMenu
 MultiSelectMenu class
 	instanceVariableNames: ''!
 
+!classDefinition: #RadioButtonMorph category: 'Morphic-Misc1'!
+EllipseMorph subclass: #RadioButtonMorph
+	instanceVariableNames: 'isSelected'
+	classVariableNames: 'DefaultDiameter'
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'RadioButtonMorph class' category: 'Morphic-Misc1'!
+RadioButtonMorph class
+	instanceVariableNames: ''!
+
 !classDefinition: #SimpleNumberEntryMorph category: 'Morphic-Misc1'!
 OneLineEditorMorph subclass: #SimpleNumberEntryMorph
 	instanceVariableNames: 'entryChars numCharsToHold theValue validator toString valueAccessor valueUpdator'
@@ -368,16 +378,6 @@ WidgetMorph subclass: #FrameMorph
 	category: 'Morphic-Misc1'!
 !classDefinition: 'FrameMorph class' category: 'Morphic-Misc1'!
 FrameMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #RadioButtonMorph category: 'Morphic-Misc1'!
-WidgetMorph subclass: #RadioButtonMorph
-	instanceVariableNames: 'isSelected'
-	classVariableNames: 'DefaultDiameter'
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'RadioButtonMorph class' category: 'Morphic-Misc1'!
-RadioButtonMorph class
 	instanceVariableNames: ''!
 
 
@@ -563,6 +563,9 @@ For example, TextEmphasis codes are a bit ORing of values:
  2r01000000	64 	with ST-80 Glyphs
  !
 
+!RadioButtonMorph commentStamp: '<historical>' prior: 0!
+I am a very simple radio button.!
+
 !SimpleNumberEntryMorph commentStamp: '<historical>' prior: 0!
 I am a simple numeric entry form.  I display and accept numeric values.
 
@@ -598,9 +601,6 @@ ImagePallet systemFonts.!
 
 !FrameMorph commentStamp: '<historical>' prior: 0!
 I appear as an empty frame!
-
-!RadioButtonMorph commentStamp: '<historical>' prior: 0!
-I am a very simple radio button.!
 
 !LineMorph class methodsFor: 'instance creation' stamp: 'KenD 9/26/2013 16:21'!
 initializedInstance
@@ -1846,7 +1846,7 @@ nameImageCollection
 
 	^ nameImageCollection ! !
 
-!InnerPluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/15/2021 15:37:55'!
+!InnerPluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/22/2021 13:15:45'!
 collection: aNameImageCollection filter: imageTransducer
 
 	| numImages maxWidth numAcross numDown spacedExtent |
@@ -2254,26 +2254,15 @@ drawOn: aCanvas
 
 	self titleMorph ifNotNil: [ :titleM | titleM drawOn: aCanvas ].! !
 
-!Panel methodsFor: 'drawing' stamp: 'KenD 4/28/2019 19:12:43'!
+!Panel methodsFor: 'drawing' stamp: 'KenD 9/25/2021 13:54:42'!
 drawRoundedFrameOn: aCanvas color: theWidgetsColor
 	"Title area is not inside window borders"
-	| bottomFactor topFactor |
-	Theme current useWindowTitleGradient
-		ifTrue: [
-			topFactor _ Theme current titleGradientTopFactor.
-			bottomFactor _ Theme current titleGradientBottomFactor ]
-		ifFalse: [
-			topFactor _ 1.
-			bottomFactor _ 1 ].
 	aCanvas
-		windowFrame: (0@0 extent: extent)
-		color: theWidgetsColor * Theme current titleGradientExtraLightness
-		radius: Theme current roundedWindowRadius
-		border: borderWidth
-		labelHeight: self labelHeight + borderWidth
-		gradientTop: topFactor
-		gradientBottom: bottomFactor
-		insideColor: color! !
+		drawRoundedFrame: (0@0 extent: extent) 
+		border: borderWidth 
+		color: borderColor 
+		insideColor: color 
+		labelHeight: self labelHeight + borderWidth! !
 
 !Panel methodsFor: 'drawing' stamp: 'jmv 8/23/2020 20:17:59'!
 makeMeFullyVisible 
@@ -4625,6 +4614,126 @@ includeInNewMorphMenu
 	
 	^ false! !
 
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 9/25/2021 14:09:46'!
+defaultBorderWidth
+
+	^ 4! !
+
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 11/20/2013 14:05'!
+defaultDiameter
+
+	^ self class defaultDiameter ! !
+
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 9/25/2021 14:10:13'!
+initialize
+
+	super initialize.
+	isSelected := false.
+	self borderColor: Color black.
+	self borderWidth: self defaultBorderWidth.
+	self ofSize: self defaultDiameter! !
+
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 5/22/2020 13:52:10'!
+ofSize: numPixels
+
+	self morphExtent: numPixels @ numPixels.
+	self layoutSpec: (LayoutSpec 
+							fixedWidth: numPixels 
+							fixedHeight: numPixels
+							offAxisEdgeWeight:  #center) ! !
+
+!RadioButtonMorph methodsFor: 'event handling testing' stamp: 'KenD 11/19/2013 20:22'!
+handlesMouseDown: aMouseButtonEvent
+	"Do I want to receive mouseDown events (mouseDown:, mouseMove:, mouseUp:)?"
+	^true! !
+
+!RadioButtonMorph methodsFor: 'event handling testing' stamp: 'KenD 11/19/2013 20:22'!
+handlesMouseOver: evt
+	"Do I want to receive mouseEnter: and mouseLeave: when the button is up and the hand is empty?" 
+	^true! !
+
+!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 9/25/2021 14:15:16'!
+fillColor: aColor
+	"My color is my fillColor"
+	self color: aColor
+	! !
+
+!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 11/19/2013 20:16'!
+isSelected
+
+	^ isSelected ! !
+
+!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 9/25/2021 14:17:05'!
+isSelected: aBoolean
+
+	(isSelected := aBoolean)
+		ifFalse: [self fillColor: self defaultColor] 
+		ifTrue: [self fillColor: Color black. 
+				 self triggerEvent: #radioSelection with: self 
+		]
+! !
+
+!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 11/24/2013 16:56'!
+select
+	"Select me if unselected"
+
+	(self isSelected) ifFalse: [ self isSelected: true ]
+! !
+
+!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 11/19/2013 20:26'!
+toggleSelection
+
+	self isSelected: self isSelected not
+! !
+
+!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 9/25/2021 14:21:18'!
+mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
+
+	((self morphContainsPoint: (self internalizeFromWorld: aMouseButtonEvent eventPosition)) and: [self isSelected not])
+		ifTrue: [ self isSelected: true ]
+! !
+
+!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 9/25/2021 14:15:51'!
+mouseEnter: event
+	"The mouse has entered the area of the receiver"
+
+	self isSelected ifFalse: [ self fillColor: Color green ]! !
+
+!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 9/25/2021 14:16:00'!
+mouseLeave: event
+	"The mouse has left the area of the receiver"
+
+	self isSelected ifFalse: [ self fillColor: self defaultColor ]! !
+
+!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 11/19/2013 20:57'!
+update: aParameter
+
+	self redrawNeeded! !
+
+!RadioButtonMorph class methodsFor: 'accessing' stamp: 'KenD 11/20/2013 14:05'!
+defaultDiameter
+
+	^ DefaultDiameter ! !
+
+!RadioButtonMorph class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ false! !
+
+!RadioButtonMorph class methodsFor: 'class initialization' stamp: 'KenD 11/20/2013 14:09'!
+initialize
+"
+	self initialize.
+"
+
+	DefaultDiameter := 20. "Pixels"! !
+
+!RadioButtonMorph class methodsFor: 'instance creation' stamp: 'KenD 11/19/2013 20:05'!
+ofSize: numPixels
+
+	^ self new ofSize: numPixels! !
+
 !SimpleNumberEntryMorph methodsFor: 'accessing' stamp: 'KenD 2/28/2015 11:04'!
 disablesEdition
 
@@ -4785,7 +4894,7 @@ refreshValueFrom: model
 				self redrawNeeded
 	]! !
 
-!SimpleNumberEntryMorph methodsFor: 'initialization' stamp: 'KenD 5/22/2020 13:52:45'!
+!SimpleNumberEntryMorph methodsFor: 'initialization' stamp: 'KenD 9/25/2021 14:29:02'!
 legalChars: legalEntryChars numCharsToHold: nilOrInteger value: initialValue validator: aClosureToValidate toString: aClosureForString
 
 	entryChars := legalEntryChars.
@@ -4794,7 +4903,7 @@ legalChars: legalEntryChars numCharsToHold: nilOrInteger value: initialValue val
 	validator := aClosureToValidate.
 	toString := aClosureForString.
 	self contents: (self toString value: initialValue).
-	self color: Color transparent.
+	self color: Color black.
 	self crAction: [ | newString newVal |
 		newString := self editor string.
 		(newString size = 0)
@@ -5372,124 +5481,6 @@ initialize
 "
 	Colors := { Color yellow. Color mustard. Color brown. }.! !
 
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 11/20/2013 14:05'!
-defaultDiameter
-
-	^ self class defaultDiameter ! !
-
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 11/20/2013 14:07'!
-initialize
-
-	super initialize.
-	isSelected := false.
-	self borderColor: Color black.
-	self borderWidth: 4.
-	self ofSize: self defaultDiameter! !
-
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 5/22/2020 13:52:10'!
-ofSize: numPixels
-
-	self morphExtent: numPixels @ numPixels.
-	self layoutSpec: (LayoutSpec 
-							fixedWidth: numPixels 
-							fixedHeight: numPixels
-							offAxisEdgeWeight:  #center) ! !
-
-!RadioButtonMorph methodsFor: 'drawing' stamp: 'jmv 10/15/2020 19:21:31'!
-drawOn: aCanvas 
-
-	| rx ry |
-	self revisar. "The morph should be specified better!!"
-	rx _ extent x //2.
-	ry _ extent y // 2.
-	aCanvas ellipseCenterX: rx y: ry rx: rx ry: ry borderWidth: borderWidth borderColor: borderColor fillColor: color! !
-
-!RadioButtonMorph methodsFor: 'event handling testing' stamp: 'KenD 11/19/2013 20:22'!
-handlesMouseDown: aMouseButtonEvent
-	"Do I want to receive mouseDown events (mouseDown:, mouseMove:, mouseUp:)?"
-	^true! !
-
-!RadioButtonMorph methodsFor: 'event handling testing' stamp: 'KenD 11/19/2013 20:22'!
-handlesMouseOver: evt
-	"Do I want to receive mouseEnter: and mouseLeave: when the button is up and the hand is empty?" 
-	^true! !
-
-!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 11/19/2013 20:16'!
-isSelected
-
-	^ isSelected ! !
-
-!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 11/20/2013 14:33'!
-isSelected: aBoolean
-
-	(isSelected := aBoolean)
-		ifFalse: [self color: self defaultColor] 
-		ifTrue: [self color: Color black. 
-				 self triggerEvent: #radioSelection with: self 
-		]
-! !
-
-!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 11/24/2013 16:56'!
-select
-	"Select me if unselected"
-
-	(self isSelected) ifFalse: [ self isSelected: true ]
-! !
-
-!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 11/19/2013 20:26'!
-toggleSelection
-
-	self isSelected: self isSelected not
-! !
-
-!RadioButtonMorph methodsFor: 'event handling' stamp: 'jmv 1/5/2021 14:26:03'!
-mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
-
-	((self containsGlobalPoint: aMouseButtonEvent eventPosition) and: [self isSelected not])
-		ifTrue: [ self isSelected: true ]
-! !
-
-!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 11/20/2013 14:20'!
-mouseEnter: event
-	"The mouse has entered the area of the receiver"
-
-	self isSelected ifFalse: [ self color: Color green ]! !
-
-!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 11/19/2013 20:25'!
-mouseLeave: event
-	"The mouse has left the area of the receiver"
-
-	self isSelected ifFalse: [ self color: self defaultColor ]! !
-
-!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 11/19/2013 20:57'!
-update: aParameter
-
-	self redrawNeeded! !
-
-!RadioButtonMorph class methodsFor: 'accessing' stamp: 'KenD 11/20/2013 14:05'!
-defaultDiameter
-
-	^ DefaultDiameter ! !
-
-!RadioButtonMorph class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ false! !
-
-!RadioButtonMorph class methodsFor: 'class initialization' stamp: 'KenD 11/20/2013 14:09'!
-initialize
-"
-	self initialize.
-"
-
-	DefaultDiameter := 20. "Pixels"! !
-
-!RadioButtonMorph class methodsFor: 'instance creation' stamp: 'KenD 11/19/2013 20:05'!
-ofSize: numPixels
-
-	^ self new ofSize: numPixels! !
-
 !String methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 11:56:12'!
 asTextEmphasis
 
@@ -5891,6 +5882,6 @@ privateProportionalWidth
 
 	^ proportionalWidth ! !
 AddedCursors initialize!
-FrameMorph initialize!
 RadioButtonMorph initialize!
+FrameMorph initialize!
 MorphicMisc1Package postPackageInstall!
