@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4890] on 28 September 2021 at 8:42:04 am'!
+'From Cuis 5.0 [latest update: #4890] on 28 September 2021 at 8:45:35 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 191!
-!requires: 'Cuis-Base' 50 4886 nil!
+!provides: 'Morphic-Misc1' 1 193!
+!requires: 'Cuis-Base' 50 4890 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -1630,12 +1630,12 @@ handlesMouseDown: aMouseButtonEvent
 	"Do I want to receive mouseDown events (mouseDown:, mouseMove:, mouseUp:)?"
 	^true! !
 
-!ClickColorMorph methodsFor: 'event handling' stamp: 'jmv 1/5/2021 14:26:15'!
+!ClickColorMorph methodsFor: 'event handling' stamp: 'KenD 9/28/2021 08:44:22'!
 mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
 
 	| colorSetters choices |
 
-	(self containsGlobalPoint: aMouseButtonEvent eventPosition)
+	(self coversPixel: aMouseButtonEvent eventPosition)
 		ifFalse: [ ^self ]. "Stay up"
 			
 	colorSetters := (((colorTargetMorph class withAllSuperclasses 
