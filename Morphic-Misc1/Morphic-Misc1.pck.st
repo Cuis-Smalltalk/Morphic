@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4886] on 25 September 2021 at 2:30:17 pm'!
+'From Cuis 5.0 [latest update: #4890] on 28 September 2021 at 8:42:04 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 190!
+!provides: 'Morphic-Misc1' 1 191!
 !requires: 'Cuis-Base' 50 4886 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -4686,10 +4686,10 @@ toggleSelection
 	self isSelected: self isSelected not
 ! !
 
-!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 9/25/2021 14:21:18'!
+!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 9/28/2021 08:40:49'!
 mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
 
-	((self morphContainsPoint: (self internalizeFromWorld: aMouseButtonEvent eventPosition)) and: [self isSelected not])
+	((self coversPixel: aMouseButtonEvent eventPosition) and: [self isSelected not])
 		ifTrue: [ self isSelected: true ]
 ! !
 
