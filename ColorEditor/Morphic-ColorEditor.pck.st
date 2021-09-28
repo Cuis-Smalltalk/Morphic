@@ -1,11 +1,11 @@
-'From Cuis 5.0 [latest update: #4868] on 20 September 2021 at 4:54:37 pm'!
+'From Cuis 5.0 [latest update: #4890] on 28 September 2021 at 8:57:09 am'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 45!
-!requires: 'Cuis-Base' 50 4863 nil!
+!provides: 'Morphic-ColorEditor' 1 46!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
 !requires: 'Color-Extras' 1 4 nil!
+!requires: 'Cuis-Base' 50 4890 nil!
 !requires: 'Morphic-Misc1' 1 187 nil!
 !requires: 'CSS3-NamedColors' 1 1 nil!
-!requires: 'Graphics-Files-Additional' 1 nil nil!
 SystemOrganization addCategory: 'Morphic-ColorEditor'!
 
 
@@ -391,10 +391,10 @@ handlesMouseOver: evt
 	
 	^ true! !
 
-!ColorPaneMorph methodsFor: 'events-processing' stamp: 'jmv 1/5/2021 14:26:09'!
+!ColorPaneMorph methodsFor: 'events-processing' stamp: 'KenD 9/28/2021 08:56:44'!
 mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
 
-	(self containsGlobalPoint: aMouseButtonEvent eventPosition)
+	(self coversPixel: aMouseButtonEvent eventPosition)
 		ifTrue: [ 
 				self 
 					colorPoint: localEventPosition;
