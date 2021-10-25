@@ -1,7 +1,7 @@
-'From Cuis 5.0 [latest update: #4890] on 28 September 2021 at 8:45:35 am'!
+'From Cuis 5.0 [latest update: #4946] on 25 October 2021 at 4:21:09 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 193!
-!requires: 'Cuis-Base' 50 4890 nil!
+!provides: 'Morphic-Misc1' 1 194!
+!requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -1284,7 +1284,7 @@ includeInNewMorphMenu
 	
 	^ false! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 8/30/2021 13:33:55'!
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/25/2021 15:10:36'!
 addButton: nameSym 
 action: actionSym 
 baloonText: toolHelpString 
@@ -1295,10 +1295,10 @@ drawAction: drawSelector
 	| button |
 	button := PluggableButtonMorph model: self action: actionSym.
 	button
-		icon: ((Theme current perform: iconName) magnifyTo: self boxExtent) ;
+		icon: ((Theme current perform: iconName) magnifyTo: self buttonExtent) ;
 		setBalloonText: toolHelpString;
 		iconName: nameSym;
-		morphExtent: self boxExtent;
+		morphExtent: self buttonExtent;
 		iconDrawSelector: drawSelector.
 		
 	self addMorph: button
@@ -1323,14 +1323,14 @@ hideButtons
 
 	self submorphsDo: [ :m | (m isKindOf: PluggableButtonMorph) ifTrue: [ m hide ] ]! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 8/25/2015 19:34'!
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/25/2021 15:14:56'!
 rescaleButtons
 	"boxExtent changed.  Update my buttons."
-	| buttonExtent |
-	buttonExtent := self boxExtent .
+	| newExtent |
+	newExtent := self buttonExtent.
 	self submorphsDo: [ :aMorph |
 		(aMorph isKindOf: PluggableButtonMorph) 
-		  ifTrue: [ aMorph morphExtent: buttonExtent ].
+			ifTrue: [ aMorph morphExtent: newExtent ].
 	].
 ! !
 
@@ -1339,7 +1339,7 @@ showButtons
 
 	self submorphsDo: [ :m | (m isKindOf: PluggableButtonMorph) ifTrue: [ m show ] ]! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 4/24/2015 07:56'!
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/25/2021 15:14:21'!
 showButtonsNamed: aSymbolColleciton
 
 	aSymbolColleciton 
@@ -1348,15 +1348,6 @@ showButtonsNamed: aSymbolColleciton
 					ifNotNil: [ :aButton | aButton show ]
 			].
 ! !
-
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 9/12/2021 16:14:28'!
-boxExtent
-	"answer the extent to use in all the buttons. 
-	 
-	the label height is used to be proportional to the fonts preferences"
-	| e |
-	e _ Preferences windowTitleFont lineSpacing.
-	^e@e! !
 
 !WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/23/2015 17:01'!
 buttonNamed: aSymbol
@@ -1413,19 +1404,32 @@ width
 
 	^ self morphExtent x! !
 
-!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 8/26/2015 12:23'!
+!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 10/25/2021 15:10:36'!
+buttonExtent
+	"answer the extent to use in all the buttons. "
+	 
+	^ Theme current titleBarButtonsExtent
+! !
+
+!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 10/25/2021 15:28:13'!
 buttonSeparation
 
-	^ 4@0! !
+	^  (self buttonExtent x) * 4 // 10! !
 
-!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 5/25/2020 14:13:49'!
+!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 10/25/2021 14:27:13'!
+labelHeight
+	"Answer the height for the window label."
+
+	^  Preferences windowTitleFont lineSpacing+1! !
+
+!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 10/25/2021 15:17:28'!
 minimumButtonsExtent
 
 	| width height numButtons |
 	numButtons := self buttonNamesShown size.
-	height := self boxExtent y + 4.
+	height := Theme current titleBarButtonsExtent y.
 	"Note: separation between each button + two ends"
-	width := (numButtons * self boxExtent x) + (numButtons + 2 * self buttonSeparation x).
+	width := (numButtons * self buttonExtent x) + (numButtons + 2 * self buttonSeparation).
 	^ width @ height! !
 
 !WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 11/23/2016 14:52:05'!
@@ -1487,7 +1491,7 @@ pinButtonClicked
 	self owner pinButtonClicked 
 	! !
 
-!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 8/30/2021 13:42:35'!
+!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/25/2021 15:55:23'!
 reset
 	"Remove old and place new tItle and button Morphs"
 	
@@ -1507,7 +1511,9 @@ reset
 	
 	self addMorph: (LabelMorph 
 						contents: self titleStringForDisplay 
-						font: Preferences windowTitleFont ).
+						font: Preferences windowTitleFont
+						:: 
+						color: Color black  ).
 	
 	self  
 		addButton: #pin 
@@ -1538,13 +1544,14 @@ windowMenuButtonClicked
 	self owner windowMenuButtonClicked
 ! !
 
-!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:23'!
+!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/25/2021 15:02:21'!
 initialize
 
 	super initialize.
 	titleString := 'Untitled'.
-	self morphPosition: 0@0;
-	      separation: self buttonSeparation.! !
+	self separation: self buttonSeparation.
+	self rescaleButtons.
+	self morphPosition: 0@0.! !
 
 !WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/30/2015 08:04'!
 title: aString buttonsNamed: aSymbolColleciton
@@ -2497,6 +2504,11 @@ defaultBorderWidth
 		ifTrue: [ 3 ]
 		ifFalse: [ 2 ]! !
 
+!Panel methodsFor: 'initialization' stamp: 'KenD 10/25/2021 16:08:55'!
+defaultColor
+
+	^`(Color r: 0.8 g: 0.6 b: 0.3) lighter`! !
+
 !Panel methodsFor: 'initialization' stamp: 'KenD 12/9/2013 16:43'!
 defaultExtent
 
@@ -2507,12 +2519,13 @@ defaultSeparation
 
 	^ 4 "Pixels between controls/layouts"! !
 
-!Panel methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:40'!
+!Panel methodsFor: 'initialization' stamp: 'KenD 10/25/2021 15:46:25'!
 initialize
 	"Initialize a system window. Add label, stripes, etc., if desired"
 
 	super initialize.
 	titleMorph := WindowTitleMorph title: 'Untitled'.
+	borderColor := self defaultColor.
 	stayUp := false. "UI push pin to change"
 	titleMorph 
 			layoutSpec: (LayoutSpec morphHeightProportionalWidth: 1.0);
@@ -2547,11 +2560,11 @@ label
 
 	^ self titleMorph titleString ! !
 
-!Panel methodsFor: 'label' stamp: 'KenD 12/9/2013 16:49'!
+!Panel methodsFor: 'label' stamp: 'KenD 10/25/2021 14:26:02'!
 labelHeight
 	"Answer the height for the window label."
 
-	^ self boxExtent y+1! !
+	^  Preferences windowTitleFont lineSpacing+1! !
 
 !Panel methodsFor: 'label' stamp: 'KenD 4/25/2015 12:54'!
 relabel
