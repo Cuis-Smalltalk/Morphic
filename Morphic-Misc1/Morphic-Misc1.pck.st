@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4946] on 26 October 2021 at 7:00:10 am'!
+'From Cuis 5.0 [latest update: #4946] on 26 October 2021 at 4:16:17 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 195!
+!provides: 'Morphic-Misc1' 1 196!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -92,7 +92,7 @@ RadioGroup class
 
 !classDefinition: #WindowTitleMorph category: 'Morphic-Misc1'!
 LayoutMorph subclass: #WindowTitleMorph
-	instanceVariableNames: 'titleString'
+	instanceVariableNames: 'titleMorph'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
@@ -1300,26 +1300,6 @@ includeInNewMorphMenu
 	
 	^ false! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/25/2021 15:10:36'!
-addButton: nameSym 
-action: actionSym 
-baloonText: toolHelpString 
-themeName: iconName
-drawAction: drawSelector
-
-	"add a a button morph to me"
-	| button |
-	button := PluggableButtonMorph model: self action: actionSym.
-	button
-		icon: ((Theme current perform: iconName) magnifyTo: self buttonExtent) ;
-		setBalloonText: toolHelpString;
-		iconName: nameSym;
-		morphExtent: self buttonExtent;
-		iconDrawSelector: drawSelector.
-		
-	self addMorph: button
-	! !
-
 !WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 4/24/2015 08:01'!
 buttonNamesShown
 
@@ -1334,35 +1314,27 @@ buttonNamesShown
 
 	^ names! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 4/24/2015 07:52'!
-hideButtons
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/26/2021 11:12:34'!
+hideAllButtons
 
-	self submorphsDo: [ :m | (m isKindOf: PluggableButtonMorph) ifTrue: [ m hide ] ]! !
+	self submorphsDo: [ :m | 
+		(m isKindOf: PluggableButtonMorph) ifTrue: [ m hide ]
+	]! !
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/25/2021 15:14:56'!
-rescaleButtons
-	"boxExtent changed.  Update my buttons."
-	| newExtent |
-	newExtent := self buttonExtent.
-	self submorphsDo: [ :aMorph |
-		(aMorph isKindOf: PluggableButtonMorph) 
-			ifTrue: [ aMorph morphExtent: newExtent ].
-	].
-! !
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/26/2021 11:13:04'!
+showAllButtons
 
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 9/12/2021 15:47:46'!
-showButtons
+	self submorphsDo: [ :m | 
+		(m isKindOf: PluggableButtonMorph) ifTrue: [ m show ] 
+	]! !
 
-	self submorphsDo: [ :m | (m isKindOf: PluggableButtonMorph) ifTrue: [ m show ] ]! !
-
-!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/25/2021 15:14:21'!
+!WindowTitleMorph methodsFor: 'buttons' stamp: 'KenD 10/26/2021 11:13:43'!
 showButtonsNamed: aSymbolColleciton
 
-	aSymbolColleciton 
-			do: [ :aName |
-				(self buttonNamed: aName)
-					ifNotNil: [ :aButton | aButton show ]
-			].
+	aSymbolColleciton  do: [ :aName |
+		(self buttonNamed: aName)
+			ifNotNil: [ :aButton | aButton show ]
+	]
 ! !
 
 !WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/23/2015 17:01'!
@@ -1396,24 +1368,12 @@ titleString
 
 	^ titleString ! !
 
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 4/24/2015 15:51'!
+!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 10/26/2021 11:25:43'!
 titleString: aString
-	"Remember titleString and set up submorphs"
+	"Remember titleString and display it"
 
-	titleString := aString.
-	self reset! !
-
-!WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 5/25/2020 14:09:43'!
-titleStringForDisplay
-	"Answer a string scaled to fit"
-	
-	| titleWidth desiredWidth myTitleString |
-	myTitleString := self titleString.
-	titleWidth := Preferences windowTitleFont widthOfString: myTitleString.
-	desiredWidth := (self morphWidth - (self minimumButtonsExtent x)) max: 20.
-	^ (titleWidth <= desiredWidth)
-		ifTrue: [ myTitleString ]
-		ifFalse: [ myTitleString squeezedTo: (myTitleString size * (desiredWidth / titleWidth)) rounded]! !
+	titleMorph contents: aString
+	! !
 
 !WindowTitleMorph methodsFor: 'accessing' stamp: 'KenD 1/28/2016 16:07'!
 width
@@ -1467,12 +1427,6 @@ minimumTitleExtent
 	^ (8 * (font widthOf: $A)) @ (4 + font lineSpacing)
 	! !
 
-!WindowTitleMorph methodsFor: 'geometry' stamp: 'KenD 8/25/2015 19:45'!
-morphExtent: newExtent
-
-	super morphExtent: newExtent.
-	self reset! !
-
 !WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 4/23/2015 16:21'!
 closeButtonClicked
 	"Delegate action to owner"
@@ -1493,11 +1447,13 @@ expandButtonClicked
 	self owner expandButtonClicked
 ! !
 
-!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/30/2015 08:06'!
+!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/26/2021 16:07:19'!
 fontPreferenceChanged
 
   super fontPreferenceChanged.
-  self reset.
+  self 
+	rescaleButtons;
+	resetTitleFont
 	! !
 
 !WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 4/23/2015 16:21'!
@@ -1507,45 +1463,21 @@ pinButtonClicked
 	self owner pinButtonClicked 
 	! !
 
-!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/26/2021 06:50:43'!
-reset
-	"Remove old and place new tItle and button Morphs"
-	
-	| buttonsShown |
-	buttonsShown := self buttonNamesShown.
-	self removeAllMorphs. "Clear out old morphs"
-	
-   #( ( close  closeButtonClicked 'close this window' closeIcon drawCloseIcon )
-	   ( collapse collapseButtonClicked 'collapse this window' collapseIcon drawCollapseIcon )
-	   ( expand expandButtonClicked 'expand this window' expandIcon drawExpandIcon )
-	   ( windowMenu windowMenuButtonClicked 'window menu' windowMenuIcon drawMenuIcon )
-	   ( showHalo showHaloButtonClicked 'show target halo' doItIcon drawUpIcon  )
-"	   ( pin pinButtonClicked 'pin me (don''t close)' pushPinIcon drawPushPinIcon )  ADD AFTER TLTLE (below)"
-	) do: [ :rowArgs | 
-		self perform: #addButton:action:baloonText:themeName:drawAction:
-		withArguments: rowArgs ].
-	
-	self addMorph: (SqueezeLabelMorph 
-						contents: self titleStringForDisplay 
-						font: Preferences windowTitleFont
-						minCharsToShow: 8
-						:: 
-						color: Color black  ).
-	
-	self  
-		addButton: #pin 
-		action: #pinButtonClicked 
-		baloonText:  'pin (keep) this window' 
-		themeName: #pushPinIcon 
-		drawAction: #drawPushPinIcon.
-		
-	self hideButtons.
-	self showButtonsNamed: buttonsShown.
-	
-	self layoutSpec: (LayoutSpec 
-							proportionalWidth: 1  
-							fixedHeight: (self minimumExtent y) )
-	! !
+!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/25/2021 15:14:56'!
+rescaleButtons
+	"boxExtent changed.  Update my buttons."
+	| newExtent |
+	newExtent := self buttonExtent.
+	self submorphsDo: [ :aMorph |
+		(aMorph isKindOf: PluggableButtonMorph) 
+			ifTrue: [ aMorph morphExtent: newExtent ].
+	].
+! !
+
+!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/26/2021 16:07:19'!
+resetTitleFont
+	"Reset my title font"
+	titleMorph font: Preferences windowTitleFont! !
 
 !WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 7/4/2015 15:22'!
 showHaloButtonClicked
@@ -1561,26 +1493,82 @@ windowMenuButtonClicked
 	self owner windowMenuButtonClicked
 ! !
 
-!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/25/2021 15:02:21'!
+!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/26/2021 16:12:16'!
+addAllButtonsAndTitle
+	"Buttons first"
+   #( ( close  closeButtonClicked 'close this window' closeIcon drawCloseIcon )
+	   ( collapse collapseButtonClicked 'collapse this window' collapseIcon drawCollapseIcon )
+	   ( expand expandButtonClicked 'expand this window' expandIcon drawExpandIcon )
+	   ( windowMenu windowMenuButtonClicked 'window menu' windowMenuIcon drawMenuIcon )
+	   ( showHalo showHaloButtonClicked 'show target halo' doItIcon drawUpIcon  )
+"	   ( pin pinButtonClicked 'pin me (don''t close)' pushPinIcon drawPushPinIcon )  ADD AFTER TLTLE (below)"
+	) do: [ :rowArgs | 
+	  self 
+		perform: #addButton:action:baloonText:themeName:drawAction:
+		withArguments: rowArgs 
+	].
+	
+	"Title next"
+	titleMorph := SqueezeLabelMorph 
+					contents: 'Untitled' 
+					font: Preferences windowTitleFont
+					minCharsToShow: 8
+					:: 
+					color: Color black.
+	self addMorph: titleMorph.
+	
+	"PushPin goes after Title"
+	self  
+		addButton: #pin 
+		action: #pinButtonClicked 
+		baloonText:  'pin (keep) this window' 
+		themeName: #pushPinIcon 
+		drawAction: #drawPushPinIcon.
+		! !
+
+!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/25/2021 15:10:36'!
+addButton: nameSym 
+action: actionSym 
+baloonText: toolHelpString 
+themeName: iconName
+drawAction: drawSelector
+
+	"add a a button morph to me"
+	| button |
+	button := PluggableButtonMorph model: self action: actionSym.
+	button
+		icon: ((Theme current perform: iconName) magnifyTo: self buttonExtent) ;
+		setBalloonText: toolHelpString;
+		iconName: nameSym;
+		morphExtent: self buttonExtent;
+		iconDrawSelector: drawSelector.
+		
+	self addMorph: button
+	! !
+
+!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/26/2021 16:11:47'!
 initialize
 
 	super initialize.
-	titleString := 'Untitled'.
-	self separation: self buttonSeparation.
-	self rescaleButtons.
-	self morphPosition: 0@0.! !
+	self
+		morphPosition: 0@0;
+		separation: self buttonSeparation;
+		layoutSpec: (LayoutSpec 
+						proportionalWidth: 1  
+						fixedHeight: (self minimumExtent y) );
+		addAllButtonsAndTitle.
+! !
 
-!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/30/2015 08:04'!
+!WindowTitleMorph methodsFor: 'initialization' stamp: 'KenD 10/26/2021 11:12:34'!
 title: aString buttonsNamed: aSymbolColleciton
 	"Set me up"
 	
-	self titleString: aString. "places title and buttons"
-	aSymbolColleciton 
-			do: [ :aName |
-				(self buttonNamed: aName)
-					ifNotNil: [ :aButton | aButton show ]
-			].
-	self reset.
+	self titleString: aString.
+	self hideAllButtons.
+	aSymbolColleciton  do: [ :aName |
+		(self buttonNamed: aName)
+			ifNotNil: [ :aButton | aButton show ]
+	].
 ! !
 
 !WindowTitleMorph class methodsFor: 'accessing' stamp: 'KenD 7/4/2015 14:40'!
@@ -2008,7 +1996,7 @@ minCharsToShow: numChars
 
 	minChars := numChars! !
 
-!SqueezeLabelMorph methodsFor: 'drawing' stamp: 'KenD 10/26/2021 06:53:25'!
+!SqueezeLabelMorph methodsFor: 'drawing' stamp: 'KenD 10/26/2021 07:11:07'!
 drawOn: aCanvas
 	| fitString myFont width minWidth widthAvailable center xOffset |
 	myFont := self font.
@@ -2023,7 +2011,7 @@ drawOn: aCanvas
 	].
 	xOffset := (myFont widthOfString: fitString) / 2.
 
-	self drawOn: aCanvas theString: fitString position: ( center x - xOffset @ borderWidth)
+	self drawOn: aCanvas theString: fitString position: ( (center x - xOffset ) @ (2 * borderWidth))
 ! !
 
 !SqueezeLabelMorph methodsFor: 'drawing' stamp: 'KenD 10/26/2021 06:42:50'!
