@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4946] on 25 October 2021 at 4:21:09 pm'!
+'From Cuis 5.0 [latest update: #4946] on 26 October 2021 at 7:00:10 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 194!
+!provides: 'Morphic-Misc1' 1 195!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -138,6 +138,16 @@ InnerPluggableMorph subclass: #InnerPluggableImagePallet
 	category: 'Morphic-Misc1'!
 !classDefinition: 'InnerPluggableImagePallet class' category: 'Morphic-Misc1'!
 InnerPluggableImagePallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #SqueezeLabelMorph category: 'Morphic-Misc1'!
+LabelMorph subclass: #SqueezeLabelMorph
+	instanceVariableNames: 'minChars'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'SqueezeLabelMorph class' category: 'Morphic-Misc1'!
+SqueezeLabelMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #PluggableImagePallet category: 'Morphic-Misc1'!
@@ -442,6 +452,12 @@ Note: To click-select a color, see ClickColorMorph!
 
 !InnerPluggableImagePallet commentStamp: '<historical>' prior: 0!
 I display pick/clone-able images in a PluggableImagePallet which is a PluggableScrollPane!
+
+!SqueezeLabelMorph commentStamp: '<historical>' prior: 0!
+A LabelMorph displays a fixed size string (with font an emphasis).
+I do the same but can be "pinched" to squeeze out letters.
+
+minChars specifies the minimum number of characters I should display.!
 
 !PluggableScrollBar commentStamp: '<historical>' prior: 0!
 I am a ScrollBar which can get new values from my model.!
@@ -1491,7 +1507,7 @@ pinButtonClicked
 	self owner pinButtonClicked 
 	! !
 
-!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/25/2021 15:55:23'!
+!WindowTitleMorph methodsFor: 'event handling' stamp: 'KenD 10/26/2021 06:50:43'!
 reset
 	"Remove old and place new tItle and button Morphs"
 	
@@ -1509,9 +1525,10 @@ reset
 		self perform: #addButton:action:baloonText:themeName:drawAction:
 		withArguments: rowArgs ].
 	
-	self addMorph: (LabelMorph 
+	self addMorph: (SqueezeLabelMorph 
 						contents: self titleStringForDisplay 
 						font: Preferences windowTitleFont
+						minCharsToShow: 8
 						:: 
 						color: Color black  ).
 	
@@ -1980,6 +1997,87 @@ fromCollection: sortedColors imageFilter: colorTransducer
 		^ self basicNew initialize 
 			collection: sortedColors 
 			filter: colorTransducer ! !
+
+!SqueezeLabelMorph methodsFor: 'accessing' stamp: 'KenD 10/26/2021 05:45:41'!
+minCharsToShow
+
+	^minChars! !
+
+!SqueezeLabelMorph methodsFor: 'accessing' stamp: 'KenD 10/26/2021 05:46:01'!
+minCharsToShow: numChars
+
+	minChars := numChars! !
+
+!SqueezeLabelMorph methodsFor: 'drawing' stamp: 'KenD 10/26/2021 06:53:25'!
+drawOn: aCanvas
+	| fitString myFont width minWidth widthAvailable center xOffset |
+	myFont := self font.
+	fitString := self contents.
+	center := extent // 2.
+	width := myFont widthOfString: fitString.
+	minWidth := self measureMinimumContent x.
+	widthAvailable := minWidth max: (extent x). "Don't shrink below min"
+	(widthAvailable < width)
+	ifTrue: [ fitString := 
+			fitString squeezedTo: (fitString size * widthAvailable /width) rounded
+	].
+	xOffset := (myFont widthOfString: fitString) / 2.
+
+	self drawOn: aCanvas theString: fitString position: ( center x - xOffset @ borderWidth)
+! !
+
+!SqueezeLabelMorph methodsFor: 'drawing' stamp: 'KenD 10/26/2021 06:42:50'!
+drawOn: aCanvas theString: aString position: aPoint
+	aCanvas
+		drawString: (aString ifNil: [ '' ])
+		at: aPoint
+		font: self fontToUse
+		color: color.
+	(borderWidth > 0) ifTrue: [
+		aCanvas
+			frameRectangle: (`0@0` extent: extent)
+			color: borderColor
+			borderWidth: borderWidth
+			borderStyleSymbol: #simple ]! !
+
+!SqueezeLabelMorph methodsFor: 'geometry' stamp: 'KenD 10/26/2021 05:29:28'!
+measureMinimumContent
+
+	| f |
+	f _ self font.
+	^((f widthOfString: (contents squeezedTo: minChars)) max: 3)  @ f lineSpacing! !
+
+!SqueezeLabelMorph methodsFor: 'geometry' stamp: 'KenD 10/26/2021 05:27:21'!
+minimumExtent
+
+	^ self measureMinimumContent + self extentBorder! !
+
+!SqueezeLabelMorph methodsFor: 'initialization' stamp: 'KenD 10/26/2021 06:33:31'!
+initialize
+
+	self minCharsToShow: 1. "required for size calc by super"
+	super initialize.
+	self layoutSpec: (LayoutSpec morphHeightProportionalWidth: 1.0).! !
+
+!SqueezeLabelMorph class methodsFor: 'instance creation' stamp: 'KenD 10/26/2021 05:52:29'!
+contents: aString font: aFont emphasis: emphasisCode minCharsToShow: numChars
+
+	^ super contents: aString font: aFont emphasis: emphasisCode :: minCharsToShow: numChars! !
+
+!SqueezeLabelMorph class methodsFor: 'instance creation' stamp: 'KenD 10/26/2021 05:52:00'!
+contents: aString font: aFont minCharsToShow: numChars
+
+	^ super contents: aString font: aFont :: minCharsToShow: numChars! !
+
+!SqueezeLabelMorph class methodsFor: 'instance creation' stamp: 'KenD 10/26/2021 05:50:59'!
+contents: aString minCharsToShow: numChars
+
+	^ super contents: aString :: minCharsToShow: numChars! !
+
+!SqueezeLabelMorph class methodsFor: 'instance creation' stamp: 'KenD 10/26/2021 05:53:29'!
+minCharsToShow: numChars
+
+	^ super new :: minCharsToShow: numChars! !
 
 !PluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/15/2021 08:31:54'!
 innerMorphClass
@@ -2495,6 +2593,11 @@ windowMenuButtonClicked
 	
 	self subclassResponsibility 
 ! !
+
+!Panel methodsFor: 'initialization' stamp: 'KenD 10/26/2021 06:57:59'!
+defaultBorderColor
+
+	^self defaultColor! !
 
 !Panel methodsFor: 'initialization' stamp: 'KenD 12/9/2013 17:05'!
 defaultBorderWidth
@@ -3799,7 +3902,7 @@ initialize
 		layoutSpec: LayoutSpec useAll;
 		yourself! !
 
-!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/20/2021 07:05:56'!
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 10/26/2021 06:59:50'!
 largerIcons
 "
 	ImagePickerPanel largerIcons openInHand.
@@ -3816,7 +3919,7 @@ largerIcons
 	sortedCollection addAll: (iconsCollection select: [ :assoc | assoc isNil not]).
 	
 	^ self
-		privateBuildPanelLabel:  'Pick a Icon' 
+		privateBuildPanelLabel:  'Pick an Icon' 
 		collection: sortedCollection
 		transducer:  [:form | ImageMorph new 
 			image: (form magnifyTo: 32@32)
@@ -3859,7 +3962,7 @@ namedColors
 		] 
 ! !
 
-!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 9/20/2021 07:09:33'!
+!ImagePickerPanel class methodsFor: 'instance creation' stamp: 'KenD 10/26/2021 06:59:32'!
 namedIcons
 "
 	ImagePickerPanel namedIcons openInHand.
@@ -3876,7 +3979,7 @@ namedIcons
 	sortedCollection addAll: (iconsCollection select: [ :assoc | assoc isNil not]).
 	
 	^ self
-		privateBuildPanelLabel:  'Pick a Icon' 
+		privateBuildPanelLabel:  'Pick an Icon' 
 		collection: sortedCollection
 		transducer:  [:form | ImageMorph new image: form]
 ! !
