@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4946] on 27 October 2021 at 1:17:14 pm'!
+'From Cuis 5.0 [latest update: #4946] on 27 October 2021 at 2:03:28 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 197!
+!provides: 'Morphic-Misc1' 1 198!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -1144,7 +1144,7 @@ list
 
 	^ list! !
 
-!RadioGroup methodsFor: 'accessing' stamp: 'KenD 6/1/2020 15:09:50'!
+!RadioGroup methodsFor: 'accessing' stamp: 'KenD 10/27/2021 14:01:27'!
 list: arrayOfSymbols
 	"Set up my submorphs from arrayOfSymbols"
 
@@ -1156,7 +1156,7 @@ list: arrayOfSymbols
 	labelList    := OrderedCollection new.
 	arrayOfSymbols do: [ :labelSym | | newRow label button |
 		newRow := LayoutMorph newRow.
-		newRow separation: 2; color: Color transparent; axisEdgeWeight: #rowLeft.
+		newRow separation: 3; color: Color transparent; axisEdgeWeight: #rowLeft.
 		button := (RadioButtonMorph ofSize: RadioButtonMorph defaultDiameter).
 		button layoutSpec: (LayoutSpec keepMorphExtent).
 		label := LabelMorph contents: labelSym asString font: self font.
@@ -1176,7 +1176,7 @@ list: arrayOfSymbols
 	"Make all labels have same width"
 	labelLayout := LayoutSpec 
 			fixedWidth: maxStringWidth + 4
-			fixedHeight: (RadioButtonMorph defaultDiameter max: self font lineSpacing) + 4
+			fixedHeight: self font lineSpacing + 2
 			offAxisEdgeWeight: #center.
 	labelList do: [ :label | label layoutSpec: labelLayout ].
 "	self layoutSpec: (LayoutSpec fixedHeight: self naturalHeight). "
@@ -1228,18 +1228,12 @@ setList: arrayOfSymbols
 
 	list := arrayOfSymbols ! !
 
-!RadioGroup methodsFor: 'geometry' stamp: 'KenD 4/28/2019 18:54:06'!
-calculateMinimumExtent
-
-	| minExtent |
-	minExtent := super calculateMinimumExtent.
-	^ (minExtent x) @ (minExtent y max: self naturalHeight)! !
-
-!RadioGroup methodsFor: 'geometry' stamp: 'jmv 4/25/2019 10:08:01'!
+!RadioGroup methodsFor: 'geometry' stamp: 'KenD 10/27/2021 13:46:29'!
 naturalHeight
 	"Answer the combined heights of my elements"
 	
-	^ 4 + ((self list size) * (2 + ((self font lineSpacing) max: (RadioButtonMorph defaultDiameter))))! !
+	^ 4  + ((self list size) 
+		* (2 + ((self font lineSpacing) max: (RadioButtonMorph defaultDiameter))))! !
 
 !RadioGroup methodsFor: 'events-processing' stamp: 'KenD 5/22/2020 13:52:21'!
 fontPreferenceChanged
