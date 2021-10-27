@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4946] on 26 October 2021 at 4:16:17 pm'!
+'From Cuis 5.0 [latest update: #4946] on 27 October 2021 at 1:17:14 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 196!
+!provides: 'Morphic-Misc1' 1 197!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -2014,13 +2014,14 @@ drawOn: aCanvas
 	self drawOn: aCanvas theString: fitString position: ( (center x - xOffset ) @ (2 * borderWidth))
 ! !
 
-!SqueezeLabelMorph methodsFor: 'drawing' stamp: 'KenD 10/26/2021 06:42:50'!
+!SqueezeLabelMorph methodsFor: 'drawing' stamp: 'KenD 10/27/2021 12:41:27'!
 drawOn: aCanvas theString: aString position: aPoint
 	aCanvas
 		drawString: (aString ifNil: [ '' ])
 		at: aPoint
 		font: self fontToUse
-		color: color.
+		color: color
+		embossed: (Theme current embossedButtonLabels).
 	(borderWidth > 0) ifTrue: [
 		aCanvas
 			frameRectangle: (`0@0` extent: extent)
@@ -2330,14 +2331,13 @@ drawClassicFrameOn: aCanvas color: titleColor
 	The look is that the title area is inside the window"
 	aCanvas fillRectangle: (borderWidth@borderWidth extent: extent x - (2*borderWidth)@ self labelHeight) color: titleColor! !
 
-!Panel methodsFor: 'drawing' stamp: 'KenD 4/27/2019 13:37:25'!
+!Panel methodsFor: 'drawing' stamp: 'KenD 10/27/2021 12:46:29'!
 drawOn: aCanvas
 
-	| titleColor roundCorners |
+	| titleColor |
 
-	titleColor _ self widgetsColor.
-	roundCorners _ Theme current roundWindowCorners.
-	roundCorners
+	titleColor _ self defaultColor.
+	(Theme current roundWindowCorners)
 		ifTrue: [
 			"Round corners. Optional title gradient."
 			self drawRoundedFrameOn: aCanvas color: titleColor ]
