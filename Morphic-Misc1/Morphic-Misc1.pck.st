@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4946] on 27 October 2021 at 2:03:28 pm'!
+'From Cuis 5.0 [latest update: #4954] on 29 October 2021 at 1:11:37 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 198!
+!provides: 'Morphic-Misc1' 1 199!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -343,7 +343,7 @@ MultiSelectMenu class
 !classDefinition: #RadioButtonMorph category: 'Morphic-Misc1'!
 EllipseMorph subclass: #RadioButtonMorph
 	instanceVariableNames: 'isSelected'
-	classVariableNames: 'DefaultDiameter'
+	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
 !classDefinition: 'RadioButtonMorph class' category: 'Morphic-Misc1'!
@@ -1144,7 +1144,7 @@ list
 
 	^ list! !
 
-!RadioGroup methodsFor: 'accessing' stamp: 'KenD 10/27/2021 14:01:27'!
+!RadioGroup methodsFor: 'accessing' stamp: 'KenD 10/28/2021 14:47:30'!
 list: arrayOfSymbols
 	"Set up my submorphs from arrayOfSymbols"
 
@@ -1157,9 +1157,21 @@ list: arrayOfSymbols
 	arrayOfSymbols do: [ :labelSym | | newRow label button |
 		newRow := LayoutMorph newRow.
 		newRow separation: 3; color: Color transparent; axisEdgeWeight: #rowLeft.
-		button := (RadioButtonMorph ofSize: RadioButtonMorph defaultDiameter).
+		
+		button := RadioButtonMorph 
+				ofSize: RadioButtonMorph defaultDiameter.
 		button layoutSpec: (LayoutSpec keepMorphExtent).
+		"Make button react to label"
 		label := LabelMorph contents: labelSym asString font: self font.
+		label setProperty: #'handlesMouseDown:' toValue: [ :ignored | true ].
+		label setProperty: #'mouseButton1Up:localPosition:'
+			toValue: [ :event :position |  button select ].
+		label setProperty: #'handlesMouseOver:' toValue: [ :ignored | true ].
+		label setProperty: #'mouseEnter:' 
+			toValue: [ :event | button mouseEnter: event ].
+		label setProperty: #'mouseLeave:' 
+			toValue: [ :event | button mouseLeave: event ].
+
 		maxStringWidth := maxStringWidth max: (self font widthOfString: labelSym).
 		(self buttonOnLeft)
 			ifTrue: [ newRow  addMorph: button; addMorph: label ] 
@@ -1179,7 +1191,6 @@ list: arrayOfSymbols
 			fixedHeight: self font lineSpacing + 2
 			offAxisEdgeWeight: #center.
 	labelList do: [ :label | label layoutSpec: labelLayout ].
-"	self layoutSpec: (LayoutSpec fixedHeight: self naturalHeight). "
 
 ! !
 
@@ -1235,7 +1246,7 @@ naturalHeight
 	^ 4  + ((self list size) 
 		* (2 + ((self font lineSpacing) max: (RadioButtonMorph defaultDiameter))))! !
 
-!RadioGroup methodsFor: 'events-processing' stamp: 'KenD 5/22/2020 13:52:21'!
+!RadioGroup methodsFor: 'events-processing' stamp: 'KenD 10/28/2021 14:18:07'!
 fontPreferenceChanged
 
 	| labelStrings maxStringWidth labelLayoutSpec |
@@ -1257,6 +1268,8 @@ fontPreferenceChanged
 				ifTrue: [ aMorph setFont: Preferences standardButtonFont ].
 			(aMorph respondsTo: #font:)
 				ifTrue: [ aMorph font: Preferences standardButtonFont ].
+			(aMorph respondsTo: #ofSize:)
+				ifTrue: [aMorph ofSize: RadioButtonMorph defaultDiameter].
 			((aMorph isKindOf: LabelMorph)
 			  and: [labelStrings includes: aMorph contents])
 				ifTrue: [ aMorph layoutSpec: labelLayoutSpec ].
@@ -4712,33 +4725,41 @@ includeInNewMorphMenu
 	
 	^ false! !
 
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 9/25/2021 14:09:46'!
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'hlsf 10/29/2021 10:45:24'!
 defaultBorderWidth
 
-	^ 4! !
+	^ 3! !
 
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 11/20/2013 14:05'!
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'hlsf 10/29/2021 10:44:31'!
+defaultColor
+
+	^ `Color gray lighter lighter`! !
+
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 10/28/2021 14:01:40'!
 defaultDiameter
 
 	^ self class defaultDiameter ! !
 
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 9/25/2021 14:10:13'!
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'hlsf 10/29/2021 10:35:49'!
 initialize
 
 	super initialize.
 	isSelected := false.
-	self borderColor: Color black.
-	self borderWidth: self defaultBorderWidth.
+	self borderColor: self defaultColor.
 	self ofSize: self defaultDiameter! !
 
-!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 5/22/2020 13:52:10'!
+!RadioButtonMorph methodsFor: 'initialization' stamp: 'KenD 10/28/2021 14:12:25'!
 ofSize: numPixels
 
-	self morphExtent: numPixels @ numPixels.
+	| size scale |
+	scale _  Preferences standardButtonFont pointSize / 14.0.
+	size _ numPixels "* scale".
+	self borderWidth: ((self defaultBorderWidth * scale) max: 1).
+	self morphExtent: size @ size.
 	self layoutSpec: (LayoutSpec 
-							fixedWidth: numPixels 
-							fixedHeight: numPixels
-							offAxisEdgeWeight:  #center) ! !
+							fixedWidth: size 
+							fixedHeight: size
+							offAxisEdgeWeight:  #center)! !
 
 !RadioButtonMorph methodsFor: 'event handling testing' stamp: 'KenD 11/19/2013 20:22'!
 handlesMouseDown: aMouseButtonEvent
@@ -4761,7 +4782,7 @@ isSelected
 
 	^ isSelected ! !
 
-!RadioButtonMorph methodsFor: 'accessing' stamp: 'KenD 9/25/2021 14:17:05'!
+!RadioButtonMorph methodsFor: 'accessing' stamp: 'hlsf 10/29/2021 10:39:59'!
 isSelected: aBoolean
 
 	(isSelected := aBoolean)
@@ -4791,11 +4812,13 @@ mouseButton1Up: aMouseButtonEvent localPosition: localEventPosition
 		ifTrue: [ self isSelected: true ]
 ! !
 
-!RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 9/25/2021 14:15:51'!
+!RadioButtonMorph methodsFor: 'event handling' stamp: 'hlsf 10/29/2021 10:43:47'!
 mouseEnter: event
 	"The mouse has entered the area of the receiver"
 
-	self isSelected ifFalse: [ self fillColor: Color green ]! !
+	self isSelected ifFalse: [ | baseColor | 
+		baseColor _ self defaultColor.
+		self fillColor: ( Color h: baseColor hue s: baseColor saturation * 1.3 v: baseColor brightness * 0.6)]! !
 
 !RadioButtonMorph methodsFor: 'event handling' stamp: 'KenD 9/25/2021 14:16:00'!
 mouseLeave: event
@@ -4808,10 +4831,10 @@ update: aParameter
 
 	self redrawNeeded! !
 
-!RadioButtonMorph class methodsFor: 'accessing' stamp: 'KenD 11/20/2013 14:05'!
+!RadioButtonMorph class methodsFor: 'accessing' stamp: 'KenD 10/28/2021 14:04:40'!
 defaultDiameter
 
-	^ DefaultDiameter ! !
+	^ Preferences standardButtonFont lineSpacing ! !
 
 !RadioButtonMorph class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
 includeInNewMorphMenu
