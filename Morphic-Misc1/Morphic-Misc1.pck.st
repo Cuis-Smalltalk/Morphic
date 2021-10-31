@@ -1,19 +1,19 @@
-'From Cuis 5.0 [latest update: #4954] on 29 October 2021 at 1:11:37 pm'!
+'From Cuis 5.0 [latest update: #4958] on 31 October 2021 at 8:46:44 am'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 199!
+!provides: 'Morphic-Misc1' 1 201!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
-SystemOrganization addCategory: 'Morphic-Misc1'!
+SystemOrganization addCategory: #'Morphic-Misc1'!
 
 
-!classDefinition: #MorphicMisc1Package category: 'Morphic-Misc1'!
+!classDefinition: #MorphicMisc1Package category: #'Morphic-Misc1'!
 CodePackage subclass: #MorphicMisc1Package
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'MorphicMisc1Package class' category: 'Morphic-Misc1'!
+!classDefinition: 'MorphicMisc1Package class' category: #'Morphic-Misc1'!
 MorphicMisc1Package class
 	instanceVariableNames: ''!
 
@@ -40,354 +40,354 @@ prePackageInstall
 				second: 0).
 ! !
 MorphicMisc1Package prePackageInstall!
-!classDefinition: #AddedCursors category: 'Morphic-Misc1'!
+!classDefinition: #AddedCursors category: #'Morphic-Misc1'!
 CursorWithMask subclass: #AddedCursors
 	instanceVariableNames: ''
 	classVariableNames: 'ClosedHand OpenHand'
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'AddedCursors class' category: 'Morphic-Misc1'!
+!classDefinition: 'AddedCursors class' category: #'Morphic-Misc1'!
 AddedCursors class
 	instanceVariableNames: ''!
 
-!classDefinition: #LineMorph category: 'Morphic-Misc1'!
+!classDefinition: #LineMorph category: #'Morphic-Misc1'!
 KernelMorph subclass: #LineMorph
 	instanceVariableNames: 'startPointSelector endPointSelector lineWidth'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'LineMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'LineMorph class' category: #'Morphic-Misc1'!
 LineMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #PointerLineMorph category: 'Morphic-Misc1'!
+!classDefinition: #PointerLineMorph category: #'Morphic-Misc1'!
 LineMorph subclass: #PointerLineMorph
 	instanceVariableNames: 'endPointMorph'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'PointerLineMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'PointerLineMorph class' category: #'Morphic-Misc1'!
 PointerLineMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #PalletLayoutMorph category: 'Morphic-Misc1'!
-LayoutMorph subclass: #PalletLayoutMorph
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PalletLayoutMorph class' category: 'Morphic-Misc1'!
-PalletLayoutMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #RadioGroup category: 'Morphic-Misc1'!
-LayoutMorph subclass: #RadioGroup
-	instanceVariableNames: 'list font buttonOnLeft buttons'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'RadioGroup class' category: 'Morphic-Misc1'!
-RadioGroup class
-	instanceVariableNames: ''!
-
-!classDefinition: #WindowTitleMorph category: 'Morphic-Misc1'!
-LayoutMorph subclass: #WindowTitleMorph
-	instanceVariableNames: 'titleMorph'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'WindowTitleMorph class' category: 'Morphic-Misc1'!
-WindowTitleMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #BorderedImageMorph category: 'Morphic-Misc1'!
-ImageMorph subclass: #BorderedImageMorph
-	instanceVariableNames: 'borderStyle'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'BorderedImageMorph class' category: 'Morphic-Misc1'!
-BorderedImageMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #ClickColorMorph category: 'Morphic-Misc1'!
-ImageMorph subclass: #ClickColorMorph
-	instanceVariableNames: 'colorTargetMorph'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'ClickColorMorph class' category: 'Morphic-Misc1'!
-ClickColorMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #DropColorMorph category: 'Morphic-Misc1'!
-ImageMorph subclass: #DropColorMorph
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'DropColorMorph class' category: 'Morphic-Misc1'!
-DropColorMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #InnerPluggableImagePallet category: 'Morphic-Misc1'!
-InnerPluggableMorph subclass: #InnerPluggableImagePallet
-	instanceVariableNames: 'nameImageCollection imageFilter imageExtent calculatedExtent'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'InnerPluggableImagePallet class' category: 'Morphic-Misc1'!
-InnerPluggableImagePallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #SqueezeLabelMorph category: 'Morphic-Misc1'!
-LabelMorph subclass: #SqueezeLabelMorph
-	instanceVariableNames: 'minChars'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'SqueezeLabelMorph class' category: 'Morphic-Misc1'!
-SqueezeLabelMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #PluggableImagePallet category: 'Morphic-Misc1'!
-PluggableScrollPane subclass: #PluggableImagePallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PluggableImagePallet class' category: 'Morphic-Misc1'!
-PluggableImagePallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PluggableScrollBar category: 'Morphic-Misc1'!
-ScrollBar subclass: #PluggableScrollBar
-	instanceVariableNames: 'refreshValueSelector'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PluggableScrollBar class' category: 'Morphic-Misc1'!
-PluggableScrollBar class
-	instanceVariableNames: ''!
-
-!classDefinition: #MorphMessageBox category: 'Morphic-Misc1'!
-WorkspaceWindow subclass: #MorphMessageBox
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'MorphMessageBox class' category: 'Morphic-Misc1'!
-MorphMessageBox class
-	instanceVariableNames: ''!
-
-!classDefinition: #DropTargetMorph category: 'Morphic-Misc1'!
-SystemWindow subclass: #DropTargetMorph
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'DropTargetMorph class' category: 'Morphic-Misc1'!
-DropTargetMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #Panel category: 'Morphic-Misc1'!
-PluggableMorph subclass: #Panel
-	instanceVariableNames: 'widgetsColor titleMorph layoutMorph stayUp'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'Panel class' category: 'Morphic-Misc1'!
-Panel class
-	instanceVariableNames: ''!
-
-!classDefinition: #EditPanel category: 'Morphic-Misc1'!
-Panel subclass: #EditPanel
-	instanceVariableNames: 'editModel buttonArea'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'EditPanel class' category: 'Morphic-Misc1'!
-EditPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #LayoutMorphEditPanel category: 'Morphic-Misc1'!
-EditPanel subclass: #LayoutMorphEditPanel
-	instanceVariableNames: 'directionArea paddingArea separationArea colorArea padRadio padEntry'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'LayoutMorphEditPanel class' category: 'Morphic-Misc1'!
-LayoutMorphEditPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #LayoutSpecEditPanel category: 'Morphic-Misc1'!
-EditPanel subclass: #LayoutSpecEditPanel
-	instanceVariableNames: 'widthArea heightArea paddingArea padRadio padEntry'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'LayoutSpecEditPanel class' category: 'Morphic-Misc1'!
-LayoutSpecEditPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #ImagePickerPanel category: 'Morphic-Misc1'!
-Panel subclass: #ImagePickerPanel
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'ImagePickerPanel class' category: 'Morphic-Misc1'!
-ImagePickerPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickAColorPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickAColorPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickAColorPallet class' category: 'Morphic-Misc1'!
-PickAColorPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickAIconPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickAIconPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickAIconPallet class' category: 'Morphic-Misc1'!
-PickAIconPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickALargerIconPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickALargerIconPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickALargerIconPallet class' category: 'Morphic-Misc1'!
-PickALargerIconPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #ValueEntryPanel category: 'Morphic-Misc1'!
-Panel subclass: #ValueEntryPanel
-	instanceVariableNames: 'kind'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'ValueEntryPanel class' category: 'Morphic-Misc1'!
-ValueEntryPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #CharacterEntryPanel category: 'Morphic-Misc1'!
-ValueEntryPanel subclass: #CharacterEntryPanel
-	instanceVariableNames: 'characterEditMorph'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'CharacterEntryPanel class' category: 'Morphic-Misc1'!
-CharacterEntryPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #PointEntryPanel category: 'Morphic-Misc1'!
-ValueEntryPanel subclass: #PointEntryPanel
-	instanceVariableNames: 'xEntryMorph yEntryMorph'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PointEntryPanel class' category: 'Morphic-Misc1'!
-PointEntryPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #PositiveIntegerEntryPanel category: 'Morphic-Misc1'!
-ValueEntryPanel subclass: #PositiveIntegerEntryPanel
-	instanceVariableNames: 'numberEntryMorph'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PositiveIntegerEntryPanel class' category: 'Morphic-Misc1'!
-PositiveIntegerEntryPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #StringEntryPanel category: 'Morphic-Misc1'!
-ValueEntryPanel subclass: #StringEntryPanel
-	instanceVariableNames: 'stringEditMorph'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'StringEntryPanel class' category: 'Morphic-Misc1'!
-StringEntryPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #SignMorph category: 'Morphic-Misc1'!
+!classDefinition: #SignMorph category: #'Morphic-Misc1'!
 HoverHelpMorph subclass: #SignMorph
 	instanceVariableNames: 'object'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'SignMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'SignMorph class' category: #'Morphic-Misc1'!
 SignMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #MultiSelectMenu category: 'Morphic-Misc1'!
+!classDefinition: #PalletLayoutMorph category: #'Morphic-Misc1'!
+LayoutMorph subclass: #PalletLayoutMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PalletLayoutMorph class' category: #'Morphic-Misc1'!
+PalletLayoutMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #RadioGroup category: #'Morphic-Misc1'!
+LayoutMorph subclass: #RadioGroup
+	instanceVariableNames: 'list font buttonOnLeft buttons'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'RadioGroup class' category: #'Morphic-Misc1'!
+RadioGroup class
+	instanceVariableNames: ''!
+
+!classDefinition: #WindowTitleMorph category: #'Morphic-Misc1'!
+LayoutMorph subclass: #WindowTitleMorph
+	instanceVariableNames: 'titleMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'WindowTitleMorph class' category: #'Morphic-Misc1'!
+WindowTitleMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #MultiSelectMenu category: #'Morphic-Misc1'!
 MenuMorph subclass: #MultiSelectMenu
 	instanceVariableNames: 'choices seed result'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'MultiSelectMenu class' category: 'Morphic-Misc1'!
+!classDefinition: 'MultiSelectMenu class' category: #'Morphic-Misc1'!
 MultiSelectMenu class
 	instanceVariableNames: ''!
 
-!classDefinition: #RadioButtonMorph category: 'Morphic-Misc1'!
-EllipseMorph subclass: #RadioButtonMorph
-	instanceVariableNames: 'isSelected'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'RadioButtonMorph class' category: 'Morphic-Misc1'!
-RadioButtonMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #SimpleNumberEntryMorph category: 'Morphic-Misc1'!
-OneLineEditorMorph subclass: #SimpleNumberEntryMorph
-	instanceVariableNames: 'entryChars numCharsToHold theValue validator toString valueAccessor valueUpdator'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'SimpleNumberEntryMorph class' category: 'Morphic-Misc1'!
-SimpleNumberEntryMorph class
-	instanceVariableNames: ''!
-
-!classDefinition: #BorderedRectMorph category: 'Morphic-Misc1'!
+!classDefinition: #BorderedRectMorph category: #'Morphic-Misc1'!
 WidgetMorph subclass: #BorderedRectMorph
 	instanceVariableNames: 'borderStyle'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'BorderedRectMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedRectMorph class' category: #'Morphic-Misc1'!
 BorderedRectMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FontMorph category: 'Morphic-Misc1'!
+!classDefinition: #FontMorph category: #'Morphic-Misc1'!
 WidgetMorph subclass: #FontMorph
 	instanceVariableNames: 'labelMorph'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'FontMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'FontMorph class' category: #'Morphic-Misc1'!
 FontMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FrameMorph category: 'Morphic-Misc1'!
+!classDefinition: #FrameMorph category: #'Morphic-Misc1'!
 WidgetMorph subclass: #FrameMorph
 	instanceVariableNames: 'colorIndex frameSelector'
 	classVariableNames: 'Colors'
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'FrameMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'FrameMorph class' category: #'Morphic-Misc1'!
 FrameMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #BorderedImageMorph category: #'Morphic-Misc1'!
+ImageMorph subclass: #BorderedImageMorph
+	instanceVariableNames: 'borderStyle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedImageMorph class' category: #'Morphic-Misc1'!
+BorderedImageMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #ClickColorMorph category: #'Morphic-Misc1'!
+ImageMorph subclass: #ClickColorMorph
+	instanceVariableNames: 'colorTargetMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'ClickColorMorph class' category: #'Morphic-Misc1'!
+ClickColorMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #DropColorMorph category: #'Morphic-Misc1'!
+ImageMorph subclass: #DropColorMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'DropColorMorph class' category: #'Morphic-Misc1'!
+DropColorMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #InnerPluggableImagePallet category: #'Morphic-Misc1'!
+InnerPluggableMorph subclass: #InnerPluggableImagePallet
+	instanceVariableNames: 'nameImageCollection imageFilter imageExtent calculatedExtent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'InnerPluggableImagePallet class' category: #'Morphic-Misc1'!
+InnerPluggableImagePallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #SqueezeLabelMorph category: #'Morphic-Misc1'!
+LabelMorph subclass: #SqueezeLabelMorph
+	instanceVariableNames: 'minChars'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'SqueezeLabelMorph class' category: #'Morphic-Misc1'!
+SqueezeLabelMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #Panel category: #'Morphic-Misc1'!
+PluggableMorph subclass: #Panel
+	instanceVariableNames: 'widgetsColor titleMorph layoutMorph stayUp'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'Panel class' category: #'Morphic-Misc1'!
+Panel class
+	instanceVariableNames: ''!
+
+!classDefinition: #EditPanel category: #'Morphic-Misc1'!
+Panel subclass: #EditPanel
+	instanceVariableNames: 'editModel buttonArea'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'EditPanel class' category: #'Morphic-Misc1'!
+EditPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #LayoutMorphEditPanel category: #'Morphic-Misc1'!
+EditPanel subclass: #LayoutMorphEditPanel
+	instanceVariableNames: 'directionArea paddingArea separationArea colorArea padRadio padEntry'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'LayoutMorphEditPanel class' category: #'Morphic-Misc1'!
+LayoutMorphEditPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #LayoutSpecEditPanel category: #'Morphic-Misc1'!
+EditPanel subclass: #LayoutSpecEditPanel
+	instanceVariableNames: 'widthArea heightArea paddingArea padRadio padEntry'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'LayoutSpecEditPanel class' category: #'Morphic-Misc1'!
+LayoutSpecEditPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #ImagePickerPanel category: #'Morphic-Misc1'!
+Panel subclass: #ImagePickerPanel
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'ImagePickerPanel class' category: #'Morphic-Misc1'!
+ImagePickerPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickAColorPallet category: #'Morphic-Misc1'!
+ImagePickerPanel subclass: #PickAColorPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickAColorPallet class' category: #'Morphic-Misc1'!
+PickAColorPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickAIconPallet category: #'Morphic-Misc1'!
+ImagePickerPanel subclass: #PickAIconPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickAIconPallet class' category: #'Morphic-Misc1'!
+PickAIconPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickALargerIconPallet category: #'Morphic-Misc1'!
+ImagePickerPanel subclass: #PickALargerIconPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickALargerIconPallet class' category: #'Morphic-Misc1'!
+PickALargerIconPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #ValueEntryPanel category: #'Morphic-Misc1'!
+Panel subclass: #ValueEntryPanel
+	instanceVariableNames: 'kind'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'ValueEntryPanel class' category: #'Morphic-Misc1'!
+ValueEntryPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #CharacterEntryPanel category: #'Morphic-Misc1'!
+ValueEntryPanel subclass: #CharacterEntryPanel
+	instanceVariableNames: 'characterEditMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'CharacterEntryPanel class' category: #'Morphic-Misc1'!
+CharacterEntryPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #PointEntryPanel category: #'Morphic-Misc1'!
+ValueEntryPanel subclass: #PointEntryPanel
+	instanceVariableNames: 'xEntryMorph yEntryMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PointEntryPanel class' category: #'Morphic-Misc1'!
+PointEntryPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #PositiveIntegerEntryPanel category: #'Morphic-Misc1'!
+ValueEntryPanel subclass: #PositiveIntegerEntryPanel
+	instanceVariableNames: 'numberEntryMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PositiveIntegerEntryPanel class' category: #'Morphic-Misc1'!
+PositiveIntegerEntryPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #StringEntryPanel category: #'Morphic-Misc1'!
+ValueEntryPanel subclass: #StringEntryPanel
+	instanceVariableNames: 'stringEditMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'StringEntryPanel class' category: #'Morphic-Misc1'!
+StringEntryPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #PluggableImagePallet category: #'Morphic-Misc1'!
+PluggableScrollPane subclass: #PluggableImagePallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PluggableImagePallet class' category: #'Morphic-Misc1'!
+PluggableImagePallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #PluggableScrollBar category: #'Morphic-Misc1'!
+ScrollBar subclass: #PluggableScrollBar
+	instanceVariableNames: 'refreshValueSelector'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PluggableScrollBar class' category: #'Morphic-Misc1'!
+PluggableScrollBar class
+	instanceVariableNames: ''!
+
+!classDefinition: #DropTargetMorph category: #'Morphic-Misc1'!
+SystemWindow subclass: #DropTargetMorph
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'DropTargetMorph class' category: #'Morphic-Misc1'!
+DropTargetMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #MorphMessageBox category: #'Morphic-Misc1'!
+WorkspaceWindow subclass: #MorphMessageBox
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'MorphMessageBox class' category: #'Morphic-Misc1'!
+MorphMessageBox class
+	instanceVariableNames: ''!
+
+!classDefinition: #RadioButtonMorph category: #'Morphic-Misc1'!
+EllipseMorph subclass: #RadioButtonMorph
+	instanceVariableNames: 'isSelected'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'RadioButtonMorph class' category: #'Morphic-Misc1'!
+RadioButtonMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #SimpleNumberEntryMorph category: #'Morphic-Misc1'!
+OneLineEditorMorph subclass: #SimpleNumberEntryMorph
+	instanceVariableNames: 'entryChars numCharsToHold theValue validator toString valueAccessor valueUpdator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'SimpleNumberEntryMorph class' category: #'Morphic-Misc1'!
+SimpleNumberEntryMorph class
 	instanceVariableNames: ''!
 
 
@@ -403,6 +403,24 @@ I am a line from my start point to my end point.!
 !PointerLineMorph commentStamp: '<historical>' prior: 0!
 I am a LineMorph which has a "pointer" morph which I maintain in position at my endpoint.!
 
+!SignMorph commentStamp: '<historical>' prior: 0!
+My instances are visual proxy's for objects which do not have a visual representation.
+
+This is helpful for drag-n-drop.
+
+A sign by its nature points to something else.  Use: 
+	SignMorph forObject: <object>
+
+ivar:
+   object - the object I point-to/denote/stand-for
+
+Examples:
+  (SignMorph forObject: Color green) openInHand.
+  (SignMorph forObject: 4.7) openInHand.
+  (SignMorph forObject: 'Ball of string') openInHand.
+  EllipseMorph initializedInstance signMorphForMe.
+!
+
 !PalletLayoutMorph commentStamp: '<historical>' prior: 0!
 I am a LayoutMorph which allows grabbing (cloning) my submorphs.!
 
@@ -414,7 +432,7 @@ I am a columnMorph
 Each of my submorphs is a row layoutMorph which contains a radio button and a label and may contain other, additional  morphs.
 
 iVars:
- list  an Array of Symbols used as labels
+ list  an Array of Symbols used as labels or an Array of Morphs displayed
  font - font for labels
  buttonOnLeft -- if True, button image then label else label then button image
  buttons - cached array of buttons
@@ -430,6 +448,44 @@ As my instances are created before my owner is set, I delegate events to my owne
 To simplify management, all buttons are present but hidden unless requested.
 
 See Panel, LayoutMorphEditPanel and LayoutSpecEditPanel as usage examples!
+
+!MultiSelectMenu commentStamp: '<historical>' prior: 0!
+I am used to relate a set of names to an integer incoding, where each  symbolic name is realated to a bit.
+
+My instances present the selections to a user with Accept/Cancel.
+
+Cancel returns the seed (which is used to set the initial values), Accept returns the new ORed value.
+
+When the value ranked zero is selected, the other 'bits' are delselected.
+
+For example, TextEmphasis codes are a bit ORing of values:
+ 2r00000000  0  normal
+ 2r00000001	 1	bold
+ 2r00000010	 2	itallic
+ 2r00000100	 4	underlined		
+ 2r00001000	 8	struck out       
+ 2r00010000	16 Superscript 
+ 2r00100000	32 Subscript      
+ 2r01000000	64 	with ST-80 Glyphs
+ !
+
+!BorderedRectMorph commentStamp: '<historical>' prior: 0!
+I am a WidgetMorph (rect) with a borderStyle.
+
+borderStyle may be #simple, #raised, or #inset.!
+
+!FontMorph commentStamp: 'jmv 6/11/2020 16:48:37' prior: 0!
+My instances display 'AbBbCc $123' using my specified font an emphysis.
+
+I am used to display a font, e.g. in a FontPallet.
+
+
+(FontMorph font: FontFamily defaultFamilyAndPointSize) openInHand.
+
+ImagePallet systemFonts.!
+
+!FrameMorph commentStamp: '<historical>' prior: 0!
+I appear as an empty frame!
 
 !BorderedImageMorph commentStamp: '<historical>' prior: 0!
 I am an WidgetMorph with a borderStyle.
@@ -458,19 +514,6 @@ A LabelMorph displays a fixed size string (with font an emphasis).
 I do the same but can be "pinched" to squeeze out letters.
 
 minChars specifies the minimum number of characters I should display.!
-
-!PluggableScrollBar commentStamp: '<historical>' prior: 0!
-I am a ScrollBar which can get new values from my model.!
-
-!MorphMessageBox commentStamp: '<historical>' prior: 0!
-I am a Workspace specialized to send a message to a Morph.!
-
-!DropTargetMorph commentStamp: '<historical>' prior: 0!
-I am a transcient drop target for a morph.
-
-I allow one to drop morphs which make changes to myMorph.
-Each such morph has property DropActionMorph set to true.
-!
 
 !Panel commentStamp: '<historical>' prior: 0!
 I present a view of pickable images
@@ -541,43 +584,18 @@ I edit positive integers!
 !StringEntryPanel commentStamp: '<historical>' prior: 0!
 I allow a user to edit a string!
 
-!SignMorph commentStamp: '<historical>' prior: 0!
-My instances are visual proxy's for objects which do not have a visual representation.
+!PluggableScrollBar commentStamp: '<historical>' prior: 0!
+I am a ScrollBar which can get new values from my model.!
 
-This is helpful for drag-n-drop.
+!DropTargetMorph commentStamp: '<historical>' prior: 0!
+I am a transcient drop target for a morph.
 
-A sign by its nature points to something else.  Use: 
-	SignMorph forObject: <object>
-
-ivar:
-   object - the object I point-to/denote/stand-for
-
-Examples:
-  (SignMorph forObject: Color green) openInHand.
-  (SignMorph forObject: 4.7) openInHand.
-  (SignMorph forObject: 'Ball of string') openInHand.
-  EllipseMorph initializedInstance signMorphForMe.
+I allow one to drop morphs which make changes to myMorph.
+Each such morph has property DropActionMorph set to true.
 !
 
-!MultiSelectMenu commentStamp: '<historical>' prior: 0!
-I am used to relate a set of names to an integer incoding, where each  symbolic name is realated to a bit.
-
-My instances present the selections to a user with Accept/Cancel.
-
-Cancel returns the seed (which is used to set the initial values), Accept returns the new ORed value.
-
-When the value ranked zero is selected, the other 'bits' are delselected.
-
-For example, TextEmphasis codes are a bit ORing of values:
- 2r00000000  0  normal
- 2r00000001	 1	bold
- 2r00000010	 2	itallic
- 2r00000100	 4	underlined		
- 2r00001000	 8	struck out       
- 2r00010000	16 Superscript 
- 2r00100000	32 Subscript      
- 2r01000000	64 	with ST-80 Glyphs
- !
+!MorphMessageBox commentStamp: '<historical>' prior: 0!
+I am a Workspace specialized to send a message to a Morph.!
 
 !RadioButtonMorph commentStamp: '<historical>' prior: 0!
 I am a very simple radio button.!
@@ -600,24 +618,6 @@ iVars
 The validator is applied on return and if nil, the old value is redisplayed and the field flashed,
 else the new value is remembered and displayed.!
 
-!BorderedRectMorph commentStamp: '<historical>' prior: 0!
-I am a WidgetMorph (rect) with a borderStyle.
-
-borderStyle may be #simple, #raised, or #inset.!
-
-!FontMorph commentStamp: 'jmv 6/11/2020 16:48:37' prior: 0!
-My instances display 'AbBbCc $123' using my specified font an emphysis.
-
-I am used to display a font, e.g. in a FontPallet.
-
-
-(FontMorph font: FontFamily defaultFamilyAndPointSize) openInHand.
-
-ImagePallet systemFonts.!
-
-!FrameMorph commentStamp: '<historical>' prior: 0!
-I appear as an empty frame!
-
 !LineMorph class methodsFor: 'instance creation' stamp: 'KenD 9/26/2013 16:21'!
 initializedInstance
 	"Hand out a sample line"
@@ -632,6 +632,16 @@ initializedInstance
 	newInst  := super initializedInstance.
 	newInst updateEndPoint.
 	^newInst! !
+
+!SignMorph methodsFor: 'accessing' stamp: 'KenD 10/5/2013 17:15'!
+name
+
+	^ contents ! !
+
+!FontMorph class methodsFor: 'defaults' stamp: 'jmv 6/11/2020 16:48:44'!
+initializedInstance
+
+	^ self font: FontFamily defaultFamilyAndPointSize! !
 
 !Panel methodsFor: 'printing' stamp: 'KenD 4/24/2015 16:04'!
 printOn: aStream 
@@ -656,16 +666,6 @@ initializedInstance
 initializedInstance
 
 	^ super largerIcons ! !
-
-!SignMorph methodsFor: 'accessing' stamp: 'KenD 10/5/2013 17:15'!
-name
-
-	^ contents ! !
-
-!FontMorph class methodsFor: 'defaults' stamp: 'jmv 6/11/2020 16:48:44'!
-initializedInstance
-
-	^ self font: FontFamily defaultFamilyAndPointSize! !
 
 !AddedCursors class methodsFor: 'constants' stamp: 'KenD 1/17/2016 12:02'!
 closedHand
@@ -1039,6 +1039,123 @@ updateEndPoint
 	endPointOffset := (self rect perform: endPointSelector) + (self lineWidth / 2).
 	self endPointMorph morphPosition: endPointOffset - pointMorphCenter.! !
 
+!SignMorph methodsFor: 'accessing' stamp: 'KenD 10/5/2013 16:58'!
+object
+
+	^ object! !
+
+!SignMorph methodsFor: 'delegation' stamp: 'KenD 10/5/2013 16:58'!
+doesNotUnderstand: aMessage
+	"Delegate operations to the object I represent and Answer the result."
+
+	^ aMessage sendTo: object.! !
+
+!SignMorph methodsFor: 'initialization' stamp: 'KenD 7/17/2015 14:45'!
+forObject: anObject
+
+	| nameString |
+	
+	nameString := anObject name ifNotNil: [ :name | name ] ifNil: [ anObject printString ].
+	super initialize.  "Initialize extent as required by #redrawNeeded"
+	object := anObject.
+	self contents: nameString
+! !
+
+!SignMorph methodsFor: 'initialization' stamp: 'KenD 10/5/2013 17:23'!
+forObject: anObject withName: aString
+
+	super initialize.  "Initialize extent as required by #redrawNeeded"
+	object := anObject.
+	self contents: aString asString
+! !
+
+!SignMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 8/20/2015 08:21'!
+rejectDropMorphEvent: dropEvent
+	"The receiver has been rejected.  Disappear"
+	
+"	Transcript newLine; show: 'SignMorph>>rejectDropMorphEvent'. "
+	self hide; delete.
+	self world ifNotNil: [ :w | w activeHand removeMorph: self ].
+! !
+
+!SignMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/6/2016 18:53:56'!
+valueWhenDropped
+
+	^ self object ! !
+
+!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 16:54'!
+contents: someString
+
+	Error signal: 'USE: ', self name asString, ' forObject: anObject'
+	! !
+
+!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 16:52'!
+forObject: anObject
+
+	^ self basicNew forObject: anObject ! !
+
+!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 17:28'!
+forObject: anObject withName: aString
+
+	^ self basicNew forObject: anObject withName: aString! !
+
+!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 16:54'!
+new
+
+	Error signal: 'USE: ', self name asString, ' forObject: anObject'
+	! !
+
+!SignMorph class methodsFor: 'examples' stamp: 'KenD 10/5/2013 17:03'!
+example1
+"
+	self example1
+"
+	| newInst |
+	newInst := SignMorph forObject: Preferences standardListFont.
+	newInst openInWorld.
+	
+	^ newInst ! !
+
+!SignMorph class methodsFor: 'examples' stamp: 'KenD 10/5/2013 17:27'!
+example2
+"
+	self example2
+"
+	| newInst  |
+	newInst := SignMorph forObject: #giveMeASign .
+	newInst openInWorld.
+	
+	^ newInst ! !
+
+!SignMorph class methodsFor: 'examples' stamp: 'KenD 10/5/2013 17:28'!
+example3
+"
+	self example3
+"
+	| newInst rect |
+	rect := Rectangle origin: 1@2 corner: 2@3.
+	newInst := SignMorph forObject: rect withName: 'aRectangle(' , rect hash asString, ')' .
+	newInst openInWorld.
+	
+	^ newInst ! !
+
+!SignMorph class methodsFor: 'examples' stamp: 'KenD 11/14/2013 14:35'!
+example4
+"
+	self example4
+"
+	| newInst rect |
+	rect := Rectangle origin: 1@2 corner: 2@3.
+	newInst := SignMorph forObject: rect .
+	newInst openInWorld.
+	
+	^ newInst ! !
+
+!SignMorph class methodsFor: 'new-morph participation' stamp: 'KenD 10/5/2013 16:55'!
+includeInNewMorphMenu 
+
+	^ false! !
+
 !PalletLayoutMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 5/11/2019 01:39:50'!
 aboutToGrab: aMorph
 	"submorph is being grabbed by a hand.
@@ -1218,6 +1335,57 @@ fromList: arrayOfSymbols
 
 	self list: arrayOfSymbols ! !
 
+!RadioGroup methodsFor: 'initialization' stamp: 'KenD 10/31/2021 08:41:15'!
+fromMorphDict: morphDict
+	"Set up my submorphs from collectionOfMorphs"
+
+	|  buttonList morphList |
+	buttonList  := OrderedCollection new.
+	morphList    := OrderedCollection new.
+	morphDict keysAndValuesDo: [ :aName :aMorph | | newRow button |
+		newRow := LayoutMorph newRow.
+		newRow 
+			separation: 3;
+			color: Color transparent; 
+			axisEdgeWeight: #rowLeft.
+		
+		button := RadioButtonMorph 
+				ofSize: RadioButtonMorph defaultDiameter.
+		button layoutSpec: (LayoutSpec keepMorphExtent).
+		
+		aMorph setBalloonText: aName.
+		"Make button react to/with graphic"
+		aMorph setProperty: #'handlesMouseDown:' 
+			toValue: [ :ignored | true ].
+		aMorph setProperty: #'mouseButton1Up:localPosition:'
+			toValue: [ :event :position |  button select ].
+		aMorph setProperty: #'handlesMouseOver:' 
+			toValue: [ :ignored | true ].
+		aMorph setProperty: #'mouseEnter:' 
+			toValue: [ :event | button mouseEnter: event ].
+		aMorph setProperty: #'mouseLeave:' 
+			toValue: [ :event | button mouseLeave: event ].
+
+		(self buttonOnLeft)
+			ifTrue: [ newRow  addMorph: button; addMorph: aMorph ] 
+			ifFalse: [ newRow addMorph: aMorph; addMorph: button ].
+		buttonList add: button.
+		morphList add: aName.
+		self 
+			addMorph: newRow
+
+	].
+	self buttons: buttonList asArray.
+	self setList:   morphList asArray.
+	
+	self buttons do: [ :b | 
+		b when: #radioSelection 
+		   send: #newSelection: 
+		   to: self 
+	].
+	
+! !
+
 !RadioGroup methodsFor: 'initialization' stamp: 'KenD 6/1/2020 15:05:24'!
 initialize
 	"Initialize self to harmless values"
@@ -1291,7 +1459,39 @@ unselectAll
 	self redrawNeeded 
 	! !
 
-!RadioGroup class methodsFor: 'class initialization' stamp: 'KenD 11/19/2013 19:38'!
+!RadioGroup class methodsFor: 'examples' stamp: 'KenD 10/31/2021 08:46:21'!
+imageTestPallet
+	"Answer a RadioGroup of images"
+"
+	RadioGroup imageTestPallet openInWorld.
+"
+	| pallet statusLabel radioSelection formsDict morphDict |
+	statusLabel :=  LabelMorph initializedInstance.
+	pallet := LayoutMorph newColumn.
+	pallet addMorph: (WindowTitleMorph 
+					title: 'Radio Graphic' ).
+	formsDict := (Theme content 
+						from: 'Theme' 
+						get: {'16x16'. 'emotes'}
+			      ) asDictionary.
+	morphDict := Dictionary new.
+	formsDict keysAndValuesDo: [ :aName :aForm |
+		morphDict 
+			at: aName 
+			put: (ImageMorph new image: aForm)
+	].
+	radioSelection := RadioGroup fromMorphsDict: morphDict.
+	statusLabel contents: 'unselected'.
+	pallet addMorph: statusLabel.
+	pallet addMorph: radioSelection.
+	radioSelection 
+		when: #informRadioSelection 
+		send: #contents: 
+		to:  statusLabel.
+	
+	^pallet! !
+
+!RadioGroup class methodsFor: 'instance creation' stamp: 'KenD 11/19/2013 19:38'!
 fromList: buttonLables
 	"Add label list as array of symbols to a new instance of me"
 
@@ -1300,6 +1500,12 @@ fromList: buttonLables
 	buttonLables do: [ :each | listOfSymbols add: each asSymbol ].
 	
 	^ self newColumn fromList: listOfSymbols asArray ! !
+
+!RadioGroup class methodsFor: 'instance creation' stamp: 'KenD 10/31/2021 08:46:21'!
+fromMorphsDict: aDictionaryOfMorphs
+	"Add dict of (name->morph) to a new instance of me"
+
+	^ self newColumn fromMorphDict: aDictionaryOfMorphs ! !
 
 !RadioGroup class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:07'!
 includeInNewMorphMenu
@@ -1604,6 +1810,479 @@ title: aString buttonsNamed: aSymbolCollection
 		].
 	^ (self newRow) title: aString buttonsNamed: aSymbolCollection
 ! !
+
+!MultiSelectMenu methodsFor: 'events-processing' stamp: 'KenD 12/17/2016 14:36:43'!
+accept
+
+	self modalSelection: self result! !
+
+!MultiSelectMenu methodsFor: 'events-processing' stamp: 'KenD 12/17/2016 14:33:01'!
+cancel
+
+	self modalSelection: self seed! !
+
+!MultiSelectMenu methodsFor: 'events-processing' stamp: 'KenD 12/17/2016 15:59:22'!
+toggle: nameSymbol
+
+	| index bit |
+	index := self choices indexOf: nameSymbol.
+	bit := index - 1.
+	
+	(index = 1)
+	ifTrue:  [  
+		self result: 0.
+		self clearAllButZero.
+	]
+	ifFalse: [ | menuItem bitClear |
+		menuItem := self itemFor: nameSymbol.
+		bitClear := (self result bitAt: bit) isZero.
+		bitClear 
+			ifTrue: [ "Set bit"
+				self result: (self result bitAt: bit put: 1).
+				menuItem contents: ('<on>', menuItem contents).
+			]
+			ifFalse: [ "Clear bit"
+				self result: (self result bitAt: bit put: 0).
+				menuItem contents: ('<off>', menuItem contents).
+			] 
+	].
+	
+	self updateZeroMarker.! !
+
+!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 13:31:57'!
+choices
+
+	^ choices ! !
+
+!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 14:36:58'!
+result
+
+	^ result ! !
+
+!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 14:37:13'!
+result: newResult
+
+	result := newResult ! !
+
+!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 13:32:09'!
+seed
+
+	^ seed ! !
+
+!MultiSelectMenu methodsFor: 'initialization' stamp: 'KenD 5/15/2018 00:10:12'!
+choices: aSymbolCollection seed: initialValue
+
+	super initialize.
+	self stayUp: true.
+	choices := aSymbolCollection.
+	seed := initialValue.
+	result := seed.
+	"Add my selections" 
+	self choices do: [ :nameSymbol |
+		self add: (self tagFromSeedFor: nameSymbol)
+			  target: self 
+			  action: #toggle: 
+			  argument: nameSymbol.
+	].
+	self updateZeroMarker.
+		
+	self addLine.
+	
+	self add: 'ACCEPT' 
+		  target: self 
+		  action: #accept.
+	self add: 'CANCEL' 
+		  target: self 
+		  action: #cancel.
+! !
+
+!MultiSelectMenu methodsFor: 'initialization' stamp: 'KenD 12/17/2016 14:35:16'!
+choices: aSymbolCollection seed: initialValue title: aString
+
+	self choices: aSymbolCollection seed: initialValue.
+	self addTitle: aString.! !
+
+!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:49:12'!
+clearAllButZero
+	"Set 'zero' selector to '<on>' => everyone else is '<off>'"
+
+	| zeroName |
+	zeroName := self choices at: 1.
+	self submorphsDo: [ :item |
+		((item isKindOf: MenuItemMorph) and: [ self choices includes: item contents ])
+		ifTrue: [ (item contents = zeroName)
+				ifFalse: [ item contents: '<off>', item contents ]
+				ifTrue:  [ item contents: '<on>' , item contents ]. "zero marker"
+		]
+	]  
+! !
+
+!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:12:07'!
+clearForZero
+	"Set 'zero' selector to '<on>'"
+
+	| zeroName zeroItem |
+	zeroName := self choices at: 1.
+	zeroItem := self submorphs detect:
+		[ :item | (item isKindOf: MenuItemMorph) and: [ item contents = zeroName ] ].
+	zeroItem contents: '<off>' , zeroName asString.! !
+
+!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:34:11'!
+itemFor: nameSymbol
+
+	^ self submorphs detect: [ :item |
+			(item isKindOf: MenuItemMorph) 
+				and: [ item contents = nameSymbol ]
+	  ]! !
+
+!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:12:15'!
+setForZero
+	"Set 'zero' selector to '<on>'"
+
+	| zeroName zeroItem |
+	zeroName := self choices at: 1.
+	zeroItem := self submorphs detect:
+		[ :item | (item isKindOf: MenuItemMorph) and: [ item contents = zeroName ] ].
+	zeroItem contents: '<on>' , zeroName asString.! !
+
+!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 14:08:36'!
+tagFromSeedFor: nameSymbol
+	"Answer nameSymbol preceeded by '<on>' or '<off>'"
+
+	| index bit |
+	index := self choices indexOf: nameSymbol.
+	bit := index - 1.
+	
+	^ ((seed bitAt: bit) isZero)
+		ifTrue:   [ '<off>' , nameSymbol asString ]
+		ifFalse:  [ '<on>'  , nameSymbol asString ]! !
+
+!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:24:12'!
+updateZeroMarker
+	"If no choices checked, set zero'th choice, else clear it"
+
+	(self result isZero)
+		ifTrue:  [ self clearAllButZero ]
+		ifFalse: [ self clearForZero ].! !
+
+!MultiSelectMenu class methodsFor: 'instance creation' stamp: 'KenD 12/17/2016 14:01:56'!
+choices: aSymbolCollection seed: initialValue
+"
+	(MultiSelectMenu choices: TextEmphasis choices seed: 3) openInHand.
+"
+	^ self new choices: aSymbolCollection seed: initialValue! !
+
+!MultiSelectMenu class methodsFor: 'instance creation' stamp: 'KenD 12/17/2016 14:39:40'!
+choices: aSymbolCollection seed: initialValue title: aString
+"
+	(MultiSelectMenu choices: TextEmphasis choices seed: 3 title: 'Text Emphasis') invokeModal inspect.
+"
+	^ self new choices: aSymbolCollection seed: initialValue title: aString ! !
+
+!MultiSelectMenu class methodsFor: 'new-morph participation' stamp: 'KenD 12/23/2016 09:13:31'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ false! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
+borderStyle
+
+	^ borderStyle! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
+borderStyle: aSymbol
+
+	( #(simple raised inset) includes: aSymbol )
+		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
+		
+	borderStyle := aSymbol.
+	self redrawNeeded! !
+
+!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
+drawOn: aCanvas
+	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
+	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
+	
+	aCanvas
+		fillRectangle: self morphLocalBounds
+		color: color
+		borderWidth: borderWidth
+		borderStyleSymbol: borderStyle
+		baseColorForBorder: borderColor.
+
+! !
+
+!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
+initialize
+	"Set my defaults"
+
+	super initialize.
+	borderWidth := 4.
+	borderColor := Color brown.
+	borderStyle := #raised.! !
+
+!FontMorph methodsFor: 'geometry' stamp: 'KenD 3/7/2019 13:40:47'!
+adjustExtent 
+	"Some aspect of my font has changed. Don't shrink beyond minimum"
+
+	self morphExtent: (self morphExtent min: self minimumExtent)! !
+
+!FontMorph methodsFor: 'geometry' stamp: 'KenD 3/28/2020 08:18:42'!
+labelMorphOffset
+	"LabelMorph is offset by combinedBorder"
+	| combinedBorder |
+	combinedBorder := self labelMorph extentBorder 
+							+ self borderWidth
+							+ (self font pointSize / 2).
+	
+	^ (combinedBorder)@(combinedBorder)! !
+
+!FontMorph methodsFor: 'initialization' stamp: 'KenD 11/29/2016 09:54:03'!
+defaultColor
+	^ super defaultColor muchLighter ! !
+
+!FontMorph methodsFor: 'initialization' stamp: 'KenD 11/29/2016 10:08:49'!
+font: aFont emphasis: emphasisCode
+
+	self font: aFont emphasis: emphasisCode string: self class defaultString ! !
+
+!FontMorph methodsFor: 'initialization' stamp: 'KenD 10/16/2020 14:54:01'!
+font: aFont emphasis: emphasisCode string: aString
+	"I am a WidgetMorph showing a LabelMorph.
+	Make it so."
+	
+	labelMorph := LabelMorph new
+				initWithContents: aString 
+				font: aFont 
+				emphasis: emphasisCode.
+	self morphExtent: self minimumExtent.
+	self addMorph: labelMorph.
+	labelMorph morphPosition: self labelMorphOffset.! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:53:07'!
+emphasis
+
+	^ self labelMorph emphasis ! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:53:02'!
+emphasis: emphasisCode
+
+	^ self labelMorph emphasis: emphasisCode ! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:52:57'!
+font
+
+	^ self labelMorph font! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:52:52'!
+font: aFont
+
+	self labelMorph font: aFont.
+	self adjustExtent! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:56:44'!
+label
+
+	^ self labelMorph contents! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:26:47'!
+labelMorph
+
+	^ labelMorph! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 5/11/2019 13:33:39'!
+minimumExtent
+
+	^ (2 * self borderWidth) + self labelMorph minimumExtent + 18! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 09:59:09'!
+morphExtent: aPoint 
+	"Set the receiver's extent to value provided. Honor my minimumExtent."
+
+	super morphExtent: (aPoint max: self minimumExtent)! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:56:09'!
+string
+
+	^ self labelMorph contents! !
+
+!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:56:17'!
+string: aString
+
+	self labelMorph contents: aString.
+	self adjustExtent ! !
+
+!FontMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/6/2016 18:56:31'!
+valueWhenDropped
+
+	^ self font! !
+
+!FontMorph class methodsFor: 'defaults' stamp: 'KenD 11/29/2016 09:25:45'!
+defaultEmphasis
+	"Answer the emphasis code  to display in the typical case"
+
+	^  AbstractFont normalCode! !
+
+!FontMorph class methodsFor: 'defaults' stamp: 'KenD 11/29/2016 10:08:34'!
+defaultString
+	"Answer a string to display in the typical case"
+
+	^  'AbBbCc $123'! !
+
+!FontMorph class methodsFor: 'instance creation' stamp: 'KenD 11/29/2016 10:08:53'!
+font: aFont
+
+	^ self new font: aFont emphasis: self defaultEmphasis string: self defaultString! !
+
+!FontMorph class methodsFor: 'instance creation' stamp: 'KenD 11/29/2016 10:08:56'!
+font: aFont emphasis: emphasisCode
+
+	^ self new font: aFont emphasis: emphasisCode string: self defaultString ! !
+
+!FontMorph class methodsFor: 'instance creation' stamp: 'KenD 11/29/2016 09:21:59'!
+font: aFont emphasis: emphasisCode string: aString
+
+	^ self new font: aFont emphasis: emphasisCode string: aString! !
+
+!FrameMorph methodsFor: 'accessing' stamp: 'KenD 9/16/2013 14:58'!
+borderWidth
+
+	^ borderWidth ! !
+
+!FrameMorph methodsFor: 'accessing' stamp: 'KenD 9/15/2013 20:57'!
+frameSelector
+
+	^ frameSelector! !
+
+!FrameMorph methodsFor: 'accessing' stamp: 'KenD 9/15/2013 21:02'!
+frameSelector: aSymbol
+
+	(#(simple inset raised) includes: aSymbol) ifFalse: [
+		 Error signal: aSymbol printString, ' must be #raised, #inset, or #simple'
+	].
+	frameSelector := aSymbol! !
+
+!FrameMorph methodsFor: 'events-processing' stamp: 'KenD 9/15/2013 21:15'!
+cycleBorderColor
+	"Change border color to next in Colors"
+
+	(colorIndex = self class colors size)
+	ifTrue:  [colorIndex := 1]
+	ifFalse: [colorIndex := colorIndex + 1].
+
+	self borderColor: (self class colors at: colorIndex).
+
+	^ self borderColor! !
+
+!FrameMorph methodsFor: 'events-processing' stamp: 'jmv 2/13/2014 14:24'!
+stepAt: millisecondClockValue
+
+	self cycleBorderColor ! !
+
+!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:45'!
+defaultBorderColor
+	"answer the default border color/fill style for the receiver"
+	
+	^  self class colors first! !
+
+!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:41'!
+defaultBorderWidth
+	"answer the default border width for the receiver"
+	
+	^ 8! !
+
+!FrameMorph methodsFor: 'initialization' stamp: 'KenD 9/17/2013 15:25'!
+defaultColor
+
+     ^ Color transparent! !
+
+!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:59'!
+defaultExtent
+
+	^ 100 @ 60! !
+
+!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:41'!
+defaultFrameSelector
+	"answer the default frame selector for the receiver"
+	
+	^ #simple! !
+
+!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:58'!
+initialize
+
+	super initialize.
+
+	colorIndex := 1.
+	self borderColor:    self defaultBorderColor;
+		 frameSelector: self defaultFrameSelector;
+		 borderWidth:    self defaultBorderWidth;
+		 morphExtent:    self defaultExtent.
+! !
+
+!FrameMorph methodsFor: 'drawing' stamp: 'KenD 10/12/2013 17:29'!
+drawOn: aCanvas
+	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
+
+	aCanvas
+		frameRectangle: (0@0 extent: extent)
+		color: borderColor
+		borderWidth: borderWidth
+		borderStyleSymbol: frameSelector
+! !
+
+!FrameMorph methodsFor: 'geometry testing' stamp: 'KenD 9/16/2013 15:03'!
+morphContainsPoint: aPoint
+	"Only the frame contains a point"
+	| outerExtent innerExtent |
+	outerExtent := (0@0 extent: self morphExtent).
+	innerExtent := outerExtent insetBy: self borderWidth.
+	^ (outerExtent containsPoint: aPoint)
+		and: [(innerExtent containsPoint: aPoint) not].! !
+
+!FrameMorph methodsFor: 'events' stamp: 'KenD 9/15/2013 21:35'!
+stopStepping
+
+	self world stopStepping: self.! !
+
+!FrameMorph class methodsFor: 'accessing' stamp: 'KenD 9/15/2013 21:05'!
+colors
+
+	^ Colors ! !
+
+!FrameMorph class methodsFor: 'accessing' stamp: 'KenD 9/15/2016 15:55:19'!
+setColors: colorArray
+"
+	self setColors: (Color orange mix: Color purple shades: 8).
+	self example1.
+"
+
+	Colors := colorArray! !
+
+!FrameMorph class methodsFor: 'examples' stamp: 'KenD 9/17/2013 15:23'!
+example1
+"
+	self example1.
+"
+	| fm |
+	fm := FrameMorph new..
+	"fm cycleBorderColor."
+	fm frameSelector: #simple.
+	fm borderWidth: 8.
+	fm morphPosition: 20@20.
+	fm morphExtent: 200@100.
+	fm openInWorld.
+	fm startStepping.
+"
+	fm stopStepping.
+"! !
+
+!FrameMorph class methodsFor: 'class initialization' stamp: 'KenD 9/29/2013 15:43'!
+initialize
+"
+	self initialize.
+"
+	Colors := { Color yellow. Color mustard. Color brown. }.! !
 
 !BorderedImageMorph methodsFor: 'accessing' stamp: 'KenD 4/16/2021 12:49:08'!
 borderStyle
@@ -2074,208 +2753,6 @@ contents: aString minCharsToShow: numChars
 minCharsToShow: numChars
 
 	^ super new :: minCharsToShow: numChars! !
-
-!PluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/15/2021 08:31:54'!
-innerMorphClass
-
-	^ InnerPluggableImagePallet! !
-
-!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:27'!
-fontPreferenceChanged
-
-	super fontPreferenceChanged.
-	slider morphExtent: self buttonExtent @ self buttonExtent.! !
-
-!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 11/26/2013 21:12'!
-initialize
-
-	super initialize.
-	slider morphExtent: self buttonExtent @ self buttonExtent.! !
-
-!PluggableScrollBar methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:44'!
-model: thang setValueSelector: setValueSym refreshValueSelector: getValueSym
-
-	model := thang.
-	setValueSelector := setValueSym.
-	refreshValueSelector := getValueSym ! !
-
-!PluggableScrollBar methodsFor: 'model access' stamp: 'KenD 11/25/2013 18:42'!
-refreshValueFromModel
-	"Called externally to reset value from model"
-
-	refreshValueSelector ifNotNil: [
-		self value:  (model perform: refreshValueSelector) ]! !
-
-!PluggableScrollBar class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ false! !
-
-!MorphMessageBox methodsFor: 'initialization' stamp: 'KenD 9/30/2016 15:28:45'!
-initialize
-
-	super initialize.
-	self morphExtent: self minimumExtent.! !
-
-!MorphMessageBox methodsFor: 'geometry' stamp: 'KenD 9/30/2016 17:06:54'!
-minimumExtent
-
-	^ 700@(self boxExtent y * 2.3)! !
-
-!MorphMessageBox class methodsFor: 'instance creation' stamp: 'KenD 9/30/2016 16:59:14'!
-openForMorph: aMorph
-"
-	MorphMessageBox openForMorph: EllipseMorph initializedInstance.
-"
-	| morphName win work textModelMorph |
-	morphName := aMorph nameForWorkspace.
-	work := Workspace new contents: ''.
-	win := self editText: work label: 'Message for ', morphName wrap: false.
-	textModelMorph := win layoutMorph submorphs at: 1.
-	win morphExtent: win minimumExtent.
-	textModelMorph editor afterSelectionInsertAndSelect: morphName , ' '; 
-	afterSelectionInsertAndSelect: ' '.
-		"deselectAndPlaceCursorAt: (morphName size + 2) ."
-	(win model  bindingOf: morphName) value: aMorph.
-	win changed: #actualContents.
-	win activateAndSendTopToBack: true.
-	self runningWorld activeHand newMouseFocus: win.
-	^win! !
-
-!DropTargetMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/3/2013 19:33'!
-allowsMorphDrop
-	"Answer whether we accept dropping morphs. By default answer false."
-
-	^ true! !
-
-!DropTargetMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/3/2013 19:32'!
-wantsDroppedMorph: aMorph event: evt
-	"Return true if the receiver wishes to accept the given morph, which is being dropped by a hand in response to the given event. Note that for a successful drop operation both parties need to agree. The symmetric check is done automatically via aMorph wantsToBeDroppedInto: self."
-
-	^ (aMorph hasProperty: #DropActionMorph)! !
-
-!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 1/6/2016 09:56'!
-createHaloBox
-	^ (PluggableButtonMorph model: self action: #showHaloButtonClicked)
-		icon: (Theme current doItIcon magnifyTo: self boxExtent);
-		iconName: #showHalo;
-		setBalloonText: 'show target halo' ;
-		morphExtent: self boxExtent! !
-
-!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 7/4/2015 16:11'!
-createMenuBox
-	"Substitute a different button."
-	"This avoids having a button on top of the window title."
-
-	^ self createHaloBox ! !
-
-!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 12/3/2013 18:25'!
-defaultBorderColor
-
-	^ Color orange! !
-
-!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 12/3/2013 18:25'!
-defaultColor
-	"See through me"
-
-	^ Color transparent! !
-
-!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 7/5/2015 15:20'!
-initialize
-
-	super initialize.
-	self widgetsColor: self defaultBorderColor.
-
-! !
-
-!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 7/24/2015 13:38'!
-openFor: aMorph
-
-	self targetMorph: aMorph.
-	"Don't let Layout obfiscate view below"
-	(self layoutMorph) color: (Color teal alpha: 0.3).
-
-	"Nota Bene: must set my extent before asking about label"
-
-	self 
-		morphExtent: aMorph morphExtent + self boxExtent;
-		setLabel: ('DropTarget: ', (aMorph printStringLimitedTo: 64));
-		openInWorld; "Ignores settings; RESET them!!!!"
-		morphPosition: aMorph morphPositionInWorld - self boxExtent ;
-		morphExtent: aMorph morphExtent + self boxExtent;
-		color: (Color teal alpha: 0.3);
-		refreshSubmorphs;
-		yourself
-	
-! !
-
-!DropTargetMorph methodsFor: 'morphIt' stamp: 'KenD 7/5/2015 07:02'!
-refreshSubmorphs
-	"remove submorphs and get 'em back"
-"
-	| curPos deltaX deltaY myExtent|
-	curPos := self borderWidth @ self borderWidth.
-	deltaX := deltaY := 40.  ""Large Icon Size including border""
-	myExtent := self morphExtent max: 80@240.
-"
-	self layoutMorph removeAllMorphs. 
-	"(MorphMorph modifiersOf: self targetMorph) "
-	(self targetMorph valueOfProperty: #morphModifiers  ifAbsent: [ nil ])
-		ifNotNil: [ :modifiers | modifiers do: 
-			[ :m | 
-				m ifNotNil: [
-					self addMorph: m layoutSpec: LayoutSpec keepMorphExtent .
-					m show.
-"
-					m morphPosition: curPos.
-					(curPos x + deltaX > myExtent x)
-						ifTrue: [ curPos := self borderWidth @ (curPos y + deltaY) ]
-						ifFalse: [ curPos := (curPos x + deltaX) @ curPos y ].
-"
-"					Transcript newLine; show: 'SubM curPos: ', curPos printString .
-"
-				]
-			]
-		].
-	self layoutMorph layoutSubmorphs .
-	self redrawNeeded.
-	! !
-
-!DropTargetMorph methodsFor: 'event handling' stamp: 'KenD 7/27/2015 16:25'!
-showHaloButtonClicked
-
-	| aMorph |
-	aMorph := self model.
-	
-	(aMorph isInWorld)
-	ifTrue: [aMorph show; addHalo ]
-	ifFalse: [
-		(HoverHelpMorph 
-			contents: aMorph printString , ' not shown in world')
-				popUpForHand: self  world activeHand
-	]! !
-
-!DropTargetMorph methodsFor: 'access' stamp: 'KenD 7/4/2015 15:53'!
-targetMorph
-
-	^ self model! !
-
-!DropTargetMorph methodsFor: 'access' stamp: 'KenD 7/4/2015 16:34'!
-targetMorph: aMorph
-
-	self model: aMorph! !
-
-!DropTargetMorph class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
-includeInNewMorphMenu
-	"Return true for all classes that can be instantiated from the menu"
-	
-	^ false! !
-
-!DropTargetMorph class methodsFor: 'instance creation' stamp: 'KenD 12/3/2013 18:40'!
-openFor: aMorph
-
-	^ self basicNew initialize openFor: aMorph ! !
 
 !Panel methodsFor: 'submorphs-add/remove' stamp: 'KenD 12/9/2013 16:44'!
 addMorph: aMorph 
@@ -4434,296 +4911,207 @@ new
 
 	^ self basicNew initialize default: '' label: 'String Value'.! !
 
-!SignMorph methodsFor: 'accessing' stamp: 'KenD 10/5/2013 16:58'!
-object
+!PluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/15/2021 08:31:54'!
+innerMorphClass
 
-	^ object! !
+	^ InnerPluggableImagePallet! !
 
-!SignMorph methodsFor: 'delegation' stamp: 'KenD 10/5/2013 16:58'!
-doesNotUnderstand: aMessage
-	"Delegate operations to the object I represent and Answer the result."
+!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 8/26/2015 12:27'!
+fontPreferenceChanged
 
-	^ aMessage sendTo: object.! !
+	super fontPreferenceChanged.
+	slider morphExtent: self buttonExtent @ self buttonExtent.! !
 
-!SignMorph methodsFor: 'initialization' stamp: 'KenD 7/17/2015 14:45'!
-forObject: anObject
-
-	| nameString |
-	
-	nameString := anObject name ifNotNil: [ :name | name ] ifNil: [ anObject printString ].
-	super initialize.  "Initialize extent as required by #redrawNeeded"
-	object := anObject.
-	self contents: nameString
-! !
-
-!SignMorph methodsFor: 'initialization' stamp: 'KenD 10/5/2013 17:23'!
-forObject: anObject withName: aString
-
-	super initialize.  "Initialize extent as required by #redrawNeeded"
-	object := anObject.
-	self contents: aString asString
-! !
-
-!SignMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 8/20/2015 08:21'!
-rejectDropMorphEvent: dropEvent
-	"The receiver has been rejected.  Disappear"
-	
-"	Transcript newLine; show: 'SignMorph>>rejectDropMorphEvent'. "
-	self hide; delete.
-	self world ifNotNil: [ :w | w activeHand removeMorph: self ].
-! !
-
-!SignMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/6/2016 18:53:56'!
-valueWhenDropped
-
-	^ self object ! !
-
-!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 16:54'!
-contents: someString
-
-	Error signal: 'USE: ', self name asString, ' forObject: anObject'
-	! !
-
-!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 16:52'!
-forObject: anObject
-
-	^ self basicNew forObject: anObject ! !
-
-!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 17:28'!
-forObject: anObject withName: aString
-
-	^ self basicNew forObject: anObject withName: aString! !
-
-!SignMorph class methodsFor: 'instance creation' stamp: 'KenD 10/5/2013 16:54'!
-new
-
-	Error signal: 'USE: ', self name asString, ' forObject: anObject'
-	! !
-
-!SignMorph class methodsFor: 'examples' stamp: 'KenD 10/5/2013 17:03'!
-example1
-"
-	self example1
-"
-	| newInst |
-	newInst := SignMorph forObject: Preferences standardListFont.
-	newInst openInWorld.
-	
-	^ newInst ! !
-
-!SignMorph class methodsFor: 'examples' stamp: 'KenD 10/5/2013 17:27'!
-example2
-"
-	self example2
-"
-	| newInst  |
-	newInst := SignMorph forObject: #giveMeASign .
-	newInst openInWorld.
-	
-	^ newInst ! !
-
-!SignMorph class methodsFor: 'examples' stamp: 'KenD 10/5/2013 17:28'!
-example3
-"
-	self example3
-"
-	| newInst rect |
-	rect := Rectangle origin: 1@2 corner: 2@3.
-	newInst := SignMorph forObject: rect withName: 'aRectangle(' , rect hash asString, ')' .
-	newInst openInWorld.
-	
-	^ newInst ! !
-
-!SignMorph class methodsFor: 'examples' stamp: 'KenD 11/14/2013 14:35'!
-example4
-"
-	self example4
-"
-	| newInst rect |
-	rect := Rectangle origin: 1@2 corner: 2@3.
-	newInst := SignMorph forObject: rect .
-	newInst openInWorld.
-	
-	^ newInst ! !
-
-!SignMorph class methodsFor: 'new-morph participation' stamp: 'KenD 10/5/2013 16:55'!
-includeInNewMorphMenu 
-
-	^ false! !
-
-!MultiSelectMenu methodsFor: 'events-processing' stamp: 'KenD 12/17/2016 14:36:43'!
-accept
-
-	self modalSelection: self result! !
-
-!MultiSelectMenu methodsFor: 'events-processing' stamp: 'KenD 12/17/2016 14:33:01'!
-cancel
-
-	self modalSelection: self seed! !
-
-!MultiSelectMenu methodsFor: 'events-processing' stamp: 'KenD 12/17/2016 15:59:22'!
-toggle: nameSymbol
-
-	| index bit |
-	index := self choices indexOf: nameSymbol.
-	bit := index - 1.
-	
-	(index = 1)
-	ifTrue:  [  
-		self result: 0.
-		self clearAllButZero.
-	]
-	ifFalse: [ | menuItem bitClear |
-		menuItem := self itemFor: nameSymbol.
-		bitClear := (self result bitAt: bit) isZero.
-		bitClear 
-			ifTrue: [ "Set bit"
-				self result: (self result bitAt: bit put: 1).
-				menuItem contents: ('<on>', menuItem contents).
-			]
-			ifFalse: [ "Clear bit"
-				self result: (self result bitAt: bit put: 0).
-				menuItem contents: ('<off>', menuItem contents).
-			] 
-	].
-	
-	self updateZeroMarker.! !
-
-!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 13:31:57'!
-choices
-
-	^ choices ! !
-
-!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 14:36:58'!
-result
-
-	^ result ! !
-
-!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 14:37:13'!
-result: newResult
-
-	result := newResult ! !
-
-!MultiSelectMenu methodsFor: 'accessing' stamp: 'KenD 12/17/2016 13:32:09'!
-seed
-
-	^ seed ! !
-
-!MultiSelectMenu methodsFor: 'initialization' stamp: 'KenD 5/15/2018 00:10:12'!
-choices: aSymbolCollection seed: initialValue
+!PluggableScrollBar methodsFor: 'initialization' stamp: 'KenD 11/26/2013 21:12'!
+initialize
 
 	super initialize.
-	self stayUp: true.
-	choices := aSymbolCollection.
-	seed := initialValue.
-	result := seed.
-	"Add my selections" 
-	self choices do: [ :nameSymbol |
-		self add: (self tagFromSeedFor: nameSymbol)
-			  target: self 
-			  action: #toggle: 
-			  argument: nameSymbol.
-	].
-	self updateZeroMarker.
-		
-	self addLine.
-	
-	self add: 'ACCEPT' 
-		  target: self 
-		  action: #accept.
-	self add: 'CANCEL' 
-		  target: self 
-		  action: #cancel.
-! !
+	slider morphExtent: self buttonExtent @ self buttonExtent.! !
 
-!MultiSelectMenu methodsFor: 'initialization' stamp: 'KenD 12/17/2016 14:35:16'!
-choices: aSymbolCollection seed: initialValue title: aString
+!PluggableScrollBar methodsFor: 'accessing' stamp: 'KenD 11/25/2013 18:44'!
+model: thang setValueSelector: setValueSym refreshValueSelector: getValueSym
 
-	self choices: aSymbolCollection seed: initialValue.
-	self addTitle: aString.! !
+	model := thang.
+	setValueSelector := setValueSym.
+	refreshValueSelector := getValueSym ! !
 
-!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:49:12'!
-clearAllButZero
-	"Set 'zero' selector to '<on>' => everyone else is '<off>'"
+!PluggableScrollBar methodsFor: 'model access' stamp: 'KenD 11/25/2013 18:42'!
+refreshValueFromModel
+	"Called externally to reset value from model"
 
-	| zeroName |
-	zeroName := self choices at: 1.
-	self submorphsDo: [ :item |
-		((item isKindOf: MenuItemMorph) and: [ self choices includes: item contents ])
-		ifTrue: [ (item contents = zeroName)
-				ifFalse: [ item contents: '<off>', item contents ]
-				ifTrue:  [ item contents: '<on>' , item contents ]. "zero marker"
-		]
-	]  
-! !
+	refreshValueSelector ifNotNil: [
+		self value:  (model perform: refreshValueSelector) ]! !
 
-!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:12:07'!
-clearForZero
-	"Set 'zero' selector to '<on>'"
-
-	| zeroName zeroItem |
-	zeroName := self choices at: 1.
-	zeroItem := self submorphs detect:
-		[ :item | (item isKindOf: MenuItemMorph) and: [ item contents = zeroName ] ].
-	zeroItem contents: '<off>' , zeroName asString.! !
-
-!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:34:11'!
-itemFor: nameSymbol
-
-	^ self submorphs detect: [ :item |
-			(item isKindOf: MenuItemMorph) 
-				and: [ item contents = nameSymbol ]
-	  ]! !
-
-!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:12:15'!
-setForZero
-	"Set 'zero' selector to '<on>'"
-
-	| zeroName zeroItem |
-	zeroName := self choices at: 1.
-	zeroItem := self submorphs detect:
-		[ :item | (item isKindOf: MenuItemMorph) and: [ item contents = zeroName ] ].
-	zeroItem contents: '<on>' , zeroName asString.! !
-
-!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 14:08:36'!
-tagFromSeedFor: nameSymbol
-	"Answer nameSymbol preceeded by '<on>' or '<off>'"
-
-	| index bit |
-	index := self choices indexOf: nameSymbol.
-	bit := index - 1.
-	
-	^ ((seed bitAt: bit) isZero)
-		ifTrue:   [ '<off>' , nameSymbol asString ]
-		ifFalse:  [ '<on>'  , nameSymbol asString ]! !
-
-!MultiSelectMenu methodsFor: 'private' stamp: 'KenD 12/17/2016 15:24:12'!
-updateZeroMarker
-	"If no choices checked, set zero'th choice, else clear it"
-
-	(self result isZero)
-		ifTrue:  [ self clearAllButZero ]
-		ifFalse: [ self clearForZero ].! !
-
-!MultiSelectMenu class methodsFor: 'instance creation' stamp: 'KenD 12/17/2016 14:01:56'!
-choices: aSymbolCollection seed: initialValue
-"
-	(MultiSelectMenu choices: TextEmphasis choices seed: 3) openInHand.
-"
-	^ self new choices: aSymbolCollection seed: initialValue! !
-
-!MultiSelectMenu class methodsFor: 'instance creation' stamp: 'KenD 12/17/2016 14:39:40'!
-choices: aSymbolCollection seed: initialValue title: aString
-"
-	(MultiSelectMenu choices: TextEmphasis choices seed: 3 title: 'Text Emphasis') invokeModal inspect.
-"
-	^ self new choices: aSymbolCollection seed: initialValue title: aString ! !
-
-!MultiSelectMenu class methodsFor: 'new-morph participation' stamp: 'KenD 12/23/2016 09:13:31'!
+!PluggableScrollBar class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
 includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	
 	^ false! !
+
+!DropTargetMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/3/2013 19:33'!
+allowsMorphDrop
+	"Answer whether we accept dropping morphs. By default answer false."
+
+	^ true! !
+
+!DropTargetMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/3/2013 19:32'!
+wantsDroppedMorph: aMorph event: evt
+	"Return true if the receiver wishes to accept the given morph, which is being dropped by a hand in response to the given event. Note that for a successful drop operation both parties need to agree. The symmetric check is done automatically via aMorph wantsToBeDroppedInto: self."
+
+	^ (aMorph hasProperty: #DropActionMorph)! !
+
+!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 1/6/2016 09:56'!
+createHaloBox
+	^ (PluggableButtonMorph model: self action: #showHaloButtonClicked)
+		icon: (Theme current doItIcon magnifyTo: self boxExtent);
+		iconName: #showHalo;
+		setBalloonText: 'show target halo' ;
+		morphExtent: self boxExtent! !
+
+!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 7/4/2015 16:11'!
+createMenuBox
+	"Substitute a different button."
+	"This avoids having a button on top of the window title."
+
+	^ self createHaloBox ! !
+
+!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 12/3/2013 18:25'!
+defaultBorderColor
+
+	^ Color orange! !
+
+!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 12/3/2013 18:25'!
+defaultColor
+	"See through me"
+
+	^ Color transparent! !
+
+!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 7/5/2015 15:20'!
+initialize
+
+	super initialize.
+	self widgetsColor: self defaultBorderColor.
+
+! !
+
+!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 7/24/2015 13:38'!
+openFor: aMorph
+
+	self targetMorph: aMorph.
+	"Don't let Layout obfiscate view below"
+	(self layoutMorph) color: (Color teal alpha: 0.3).
+
+	"Nota Bene: must set my extent before asking about label"
+
+	self 
+		morphExtent: aMorph morphExtent + self boxExtent;
+		setLabel: ('DropTarget: ', (aMorph printStringLimitedTo: 64));
+		openInWorld; "Ignores settings; RESET them!!!!"
+		morphPosition: aMorph morphPositionInWorld - self boxExtent ;
+		morphExtent: aMorph morphExtent + self boxExtent;
+		color: (Color teal alpha: 0.3);
+		refreshSubmorphs;
+		yourself
+	
+! !
+
+!DropTargetMorph methodsFor: 'morphIt' stamp: 'KenD 7/5/2015 07:02'!
+refreshSubmorphs
+	"remove submorphs and get 'em back"
+"
+	| curPos deltaX deltaY myExtent|
+	curPos := self borderWidth @ self borderWidth.
+	deltaX := deltaY := 40.  ""Large Icon Size including border""
+	myExtent := self morphExtent max: 80@240.
+"
+	self layoutMorph removeAllMorphs. 
+	"(MorphMorph modifiersOf: self targetMorph) "
+	(self targetMorph valueOfProperty: #morphModifiers  ifAbsent: [ nil ])
+		ifNotNil: [ :modifiers | modifiers do: 
+			[ :m | 
+				m ifNotNil: [
+					self addMorph: m layoutSpec: LayoutSpec keepMorphExtent .
+					m show.
+"
+					m morphPosition: curPos.
+					(curPos x + deltaX > myExtent x)
+						ifTrue: [ curPos := self borderWidth @ (curPos y + deltaY) ]
+						ifFalse: [ curPos := (curPos x + deltaX) @ curPos y ].
+"
+"					Transcript newLine; show: 'SubM curPos: ', curPos printString .
+"
+				]
+			]
+		].
+	self layoutMorph layoutSubmorphs .
+	self redrawNeeded.
+	! !
+
+!DropTargetMorph methodsFor: 'event handling' stamp: 'KenD 7/27/2015 16:25'!
+showHaloButtonClicked
+
+	| aMorph |
+	aMorph := self model.
+	
+	(aMorph isInWorld)
+	ifTrue: [aMorph show; addHalo ]
+	ifFalse: [
+		(HoverHelpMorph 
+			contents: aMorph printString , ' not shown in world')
+				popUpForHand: self  world activeHand
+	]! !
+
+!DropTargetMorph methodsFor: 'access' stamp: 'KenD 7/4/2015 15:53'!
+targetMorph
+
+	^ self model! !
+
+!DropTargetMorph methodsFor: 'access' stamp: 'KenD 7/4/2015 16:34'!
+targetMorph: aMorph
+
+	self model: aMorph! !
+
+!DropTargetMorph class methodsFor: 'new-morph participation' stamp: 'KenD 12/6/2013 19:06'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ false! !
+
+!DropTargetMorph class methodsFor: 'instance creation' stamp: 'KenD 12/3/2013 18:40'!
+openFor: aMorph
+
+	^ self basicNew initialize openFor: aMorph ! !
+
+!MorphMessageBox methodsFor: 'initialization' stamp: 'KenD 9/30/2016 15:28:45'!
+initialize
+
+	super initialize.
+	self morphExtent: self minimumExtent.! !
+
+!MorphMessageBox methodsFor: 'geometry' stamp: 'KenD 9/30/2016 17:06:54'!
+minimumExtent
+
+	^ 700@(self boxExtent y * 2.3)! !
+
+!MorphMessageBox class methodsFor: 'instance creation' stamp: 'KenD 9/30/2016 16:59:14'!
+openForMorph: aMorph
+"
+	MorphMessageBox openForMorph: EllipseMorph initializedInstance.
+"
+	| morphName win work textModelMorph |
+	morphName := aMorph nameForWorkspace.
+	work := Workspace new contents: ''.
+	win := self editText: work label: 'Message for ', morphName wrap: false.
+	textModelMorph := win layoutMorph submorphs at: 1.
+	win morphExtent: win minimumExtent.
+	textModelMorph editor afterSelectionInsertAndSelect: morphName , ' '; 
+	afterSelectionInsertAndSelect: ' '.
+		"deselectAndPlaceCursorAt: (morphName size + 2) ."
+	(win model  bindingOf: morphName) value: aMorph.
+	win changed: #actualContents.
+	win activateAndSendTopToBack: true.
+	self runningWorld activeHand newMouseFocus: win.
+	^win! !
 
 !RadioButtonMorph methodsFor: 'initialization' stamp: 'hlsf 10/29/2021 10:45:24'!
 defaultBorderWidth
@@ -5303,305 +5691,6 @@ legalChars: entryChars numCharsToHold: nilOrInteger value: initialValue validato
 
 	self new legalChars: entryChars numCharsToHold: nilOrInteger value: initialValue validator: aClosureToValidate toString: aClosureForString! !
 
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
-borderStyle
-
-	^ borderStyle! !
-
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
-borderStyle: aSymbol
-
-	( #(simple raised inset) includes: aSymbol )
-		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
-		
-	borderStyle := aSymbol.
-	self redrawNeeded! !
-
-!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
-drawOn: aCanvas
-	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
-	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
-	
-	aCanvas
-		fillRectangle: self morphLocalBounds
-		color: color
-		borderWidth: borderWidth
-		borderStyleSymbol: borderStyle
-		baseColorForBorder: borderColor.
-
-! !
-
-!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
-initialize
-	"Set my defaults"
-
-	super initialize.
-	borderWidth := 4.
-	borderColor := Color brown.
-	borderStyle := #raised.! !
-
-!FontMorph methodsFor: 'geometry' stamp: 'KenD 3/7/2019 13:40:47'!
-adjustExtent 
-	"Some aspect of my font has changed. Don't shrink beyond minimum"
-
-	self morphExtent: (self morphExtent min: self minimumExtent)! !
-
-!FontMorph methodsFor: 'geometry' stamp: 'KenD 3/28/2020 08:18:42'!
-labelMorphOffset
-	"LabelMorph is offset by combinedBorder"
-	| combinedBorder |
-	combinedBorder := self labelMorph extentBorder 
-							+ self borderWidth
-							+ (self font pointSize / 2).
-	
-	^ (combinedBorder)@(combinedBorder)! !
-
-!FontMorph methodsFor: 'initialization' stamp: 'KenD 11/29/2016 09:54:03'!
-defaultColor
-	^ super defaultColor muchLighter ! !
-
-!FontMorph methodsFor: 'initialization' stamp: 'KenD 11/29/2016 10:08:49'!
-font: aFont emphasis: emphasisCode
-
-	self font: aFont emphasis: emphasisCode string: self class defaultString ! !
-
-!FontMorph methodsFor: 'initialization' stamp: 'KenD 10/16/2020 14:54:01'!
-font: aFont emphasis: emphasisCode string: aString
-	"I am a WidgetMorph showing a LabelMorph.
-	Make it so."
-	
-	labelMorph := LabelMorph new
-				initWithContents: aString 
-				font: aFont 
-				emphasis: emphasisCode.
-	self morphExtent: self minimumExtent.
-	self addMorph: labelMorph.
-	labelMorph morphPosition: self labelMorphOffset.! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:53:07'!
-emphasis
-
-	^ self labelMorph emphasis ! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:53:02'!
-emphasis: emphasisCode
-
-	^ self labelMorph emphasis: emphasisCode ! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:52:57'!
-font
-
-	^ self labelMorph font! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:52:52'!
-font: aFont
-
-	self labelMorph font: aFont.
-	self adjustExtent! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:56:44'!
-label
-
-	^ self labelMorph contents! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:26:47'!
-labelMorph
-
-	^ labelMorph! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 5/11/2019 13:33:39'!
-minimumExtent
-
-	^ (2 * self borderWidth) + self labelMorph minimumExtent + 18! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 09:59:09'!
-morphExtent: aPoint 
-	"Set the receiver's extent to value provided. Honor my minimumExtent."
-
-	super morphExtent: (aPoint max: self minimumExtent)! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:56:09'!
-string
-
-	^ self labelMorph contents! !
-
-!FontMorph methodsFor: 'accessing' stamp: 'KenD 11/29/2016 10:56:17'!
-string: aString
-
-	self labelMorph contents: aString.
-	self adjustExtent ! !
-
-!FontMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/6/2016 18:56:31'!
-valueWhenDropped
-
-	^ self font! !
-
-!FontMorph class methodsFor: 'defaults' stamp: 'KenD 11/29/2016 09:25:45'!
-defaultEmphasis
-	"Answer the emphasis code  to display in the typical case"
-
-	^  AbstractFont normalCode! !
-
-!FontMorph class methodsFor: 'defaults' stamp: 'KenD 11/29/2016 10:08:34'!
-defaultString
-	"Answer a string to display in the typical case"
-
-	^  'AbBbCc $123'! !
-
-!FontMorph class methodsFor: 'instance creation' stamp: 'KenD 11/29/2016 10:08:53'!
-font: aFont
-
-	^ self new font: aFont emphasis: self defaultEmphasis string: self defaultString! !
-
-!FontMorph class methodsFor: 'instance creation' stamp: 'KenD 11/29/2016 10:08:56'!
-font: aFont emphasis: emphasisCode
-
-	^ self new font: aFont emphasis: emphasisCode string: self defaultString ! !
-
-!FontMorph class methodsFor: 'instance creation' stamp: 'KenD 11/29/2016 09:21:59'!
-font: aFont emphasis: emphasisCode string: aString
-
-	^ self new font: aFont emphasis: emphasisCode string: aString! !
-
-!FrameMorph methodsFor: 'accessing' stamp: 'KenD 9/16/2013 14:58'!
-borderWidth
-
-	^ borderWidth ! !
-
-!FrameMorph methodsFor: 'accessing' stamp: 'KenD 9/15/2013 20:57'!
-frameSelector
-
-	^ frameSelector! !
-
-!FrameMorph methodsFor: 'accessing' stamp: 'KenD 9/15/2013 21:02'!
-frameSelector: aSymbol
-
-	(#(simple inset raised) includes: aSymbol) ifFalse: [
-		 Error signal: aSymbol printString, ' must be #raised, #inset, or #simple'
-	].
-	frameSelector := aSymbol! !
-
-!FrameMorph methodsFor: 'events-processing' stamp: 'KenD 9/15/2013 21:15'!
-cycleBorderColor
-	"Change border color to next in Colors"
-
-	(colorIndex = self class colors size)
-	ifTrue:  [colorIndex := 1]
-	ifFalse: [colorIndex := colorIndex + 1].
-
-	self borderColor: (self class colors at: colorIndex).
-
-	^ self borderColor! !
-
-!FrameMorph methodsFor: 'events-processing' stamp: 'jmv 2/13/2014 14:24'!
-stepAt: millisecondClockValue
-
-	self cycleBorderColor ! !
-
-!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:45'!
-defaultBorderColor
-	"answer the default border color/fill style for the receiver"
-	
-	^  self class colors first! !
-
-!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:41'!
-defaultBorderWidth
-	"answer the default border width for the receiver"
-	
-	^ 8! !
-
-!FrameMorph methodsFor: 'initialization' stamp: 'KenD 9/17/2013 15:25'!
-defaultColor
-
-     ^ Color transparent! !
-
-!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:59'!
-defaultExtent
-
-	^ 100 @ 60! !
-
-!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:41'!
-defaultFrameSelector
-	"answer the default frame selector for the receiver"
-	
-	^ #simple! !
-
-!FrameMorph methodsFor: 'initialization' stamp: 'KenD 10/12/2013 16:58'!
-initialize
-
-	super initialize.
-
-	colorIndex := 1.
-	self borderColor:    self defaultBorderColor;
-		 frameSelector: self defaultFrameSelector;
-		 borderWidth:    self defaultBorderWidth;
-		 morphExtent:    self defaultExtent.
-! !
-
-!FrameMorph methodsFor: 'drawing' stamp: 'KenD 10/12/2013 17:29'!
-drawOn: aCanvas
-	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
-
-	aCanvas
-		frameRectangle: (0@0 extent: extent)
-		color: borderColor
-		borderWidth: borderWidth
-		borderStyleSymbol: frameSelector
-! !
-
-!FrameMorph methodsFor: 'geometry testing' stamp: 'KenD 9/16/2013 15:03'!
-morphContainsPoint: aPoint
-	"Only the frame contains a point"
-	| outerExtent innerExtent |
-	outerExtent := (0@0 extent: self morphExtent).
-	innerExtent := outerExtent insetBy: self borderWidth.
-	^ (outerExtent containsPoint: aPoint)
-		and: [(innerExtent containsPoint: aPoint) not].! !
-
-!FrameMorph methodsFor: 'events' stamp: 'KenD 9/15/2013 21:35'!
-stopStepping
-
-	self world stopStepping: self.! !
-
-!FrameMorph class methodsFor: 'accessing' stamp: 'KenD 9/15/2013 21:05'!
-colors
-
-	^ Colors ! !
-
-!FrameMorph class methodsFor: 'accessing' stamp: 'KenD 9/15/2016 15:55:19'!
-setColors: colorArray
-"
-	self setColors: (Color orange mix: Color purple shades: 8).
-	self example1.
-"
-
-	Colors := colorArray! !
-
-!FrameMorph class methodsFor: 'examples' stamp: 'KenD 9/17/2013 15:23'!
-example1
-"
-	self example1.
-"
-	| fm |
-	fm := FrameMorph new..
-	"fm cycleBorderColor."
-	fm frameSelector: #simple.
-	fm borderWidth: 8.
-	fm morphPosition: 20@20.
-	fm morphExtent: 200@100.
-	fm openInWorld.
-	fm startStepping.
-"
-	fm stopStepping.
-"! !
-
-!FrameMorph class methodsFor: 'class initialization' stamp: 'KenD 9/29/2013 15:43'!
-initialize
-"
-	self initialize.
-"
-	Colors := { Color yellow. Color mustard. Color brown. }.! !
-
 !String methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 11:56:12'!
 asTextEmphasis
 
@@ -5611,162 +5700,6 @@ asTextEmphasis
 asTextEmphasisCode
 
 	^ TextEmphasis codeForChoice: self! !
-
-!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/22/2017 11:00:32'!
-choices
-
-	^ #(leftFlush rightFlush centered justified)! !
-
-!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:40:22'!
-codeForChoice: aStringOrSymbol
-	"On error, answer 0 as the default value, else index - 1"
-"	
-	self codeForChoice: #centered.
-"
-	^ (self choices indexOf: aStringOrSymbol asSymbol ifAbsent: [ 1 ]) - 1! !
-
-!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/22/2017 11:07:38'!
-fromChoiceString: aStringOrSymbol
-
-	^self new alignment: (self codeForChoice: aStringOrSymbol)! !
-
-!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:29:18'!
-fromUser
-"
-   self fromUser inspect.
-"
-
-	^ self fromUser: 0! !
-
-!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:30:12'!
-fromUser: defaultChoiceCode
-	"Put up a menu and answer an instance of me"
-"
-	(TextAlignment fromUser: 3) inspect.
-"
-		
-	| aMenu |
-
-	aMenu _ MenuMorph new defaultTarget: self.
-	
-	aMenu addTitle: 'Text Alignment'.
-	self choices do: [ :choice | 
-		aMenu add: choice asString 
-				target: self
-			     selector: #privateSetResult:inMorph:
-				argumentList: { choice. aMenu. }
-	].
-	aMenu invokeModal.
-	^ self perform: (aMenu valueOfProperty: #resultValue
-									 ifAbsent: [ self stringForCode: defaultChoiceCode ])! !
-
-!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:27:15'!
-privateSetResult: aResult inMorph: aMenuMorph
-	"Used by self>>fromUser: to let a MenuMorph transmit the result"
-
-	aMenuMorph setProperty: #resultValue toValue: aResult ! !
-
-!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 09:05:18'!
-stringForCode: alignmentCode
-"
-	self stringForCode: 3.
-"
-	^ self choices at: alignmentCode + 1 ifAbsent: [ self leftFlush ]! !
-
-!TextEmphasis methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 12:21:17'!
-asUIString
-	"Return a string for UI text display"
-	
-	^ self class stringForCode: self emphasisCode! !
-
-!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 08:43:02'!
-choices
-
-	^ #(normal bold italic underline struckThrough superscript subscript withST80Glyphs)! !
-
-!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 09:04:20'!
-codeForChoice: aStringOrSymbol
-	"Take emphasis choices and return a code.
-	e.g. 'bold+italic' -> 3"
-
-	| collectedChoices |
-	collectedChoices := aStringOrSymbol findTokens: $+.
-	(collectedChoices size < 1)
-		ifTrue: [ self error: 'Bad choice for TextEmphasis: ', aStringOrSymbol asString ].
-	(collectedChoices allSatisfy: [ :choice | self choices includes: choice ])
-		ifFalse: [ self error: 'Bad choice for TextEmphasis: ', aStringOrSymbol asString ].
-		
-	^ collectedChoices 
-				inject: 0 
-				into: [:sum :choice | sum + (self privateCodeForChoice: choice) ]
-	! !
-
-!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 11:52:54'!
-fromChoiceString: aStringOrSymbol
-	"Answer an instance of me"
-	
-	^ self new emphasisCode: (self codeForChoice: aStringOrSymbol)! !
-
-!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/18/2016 09:07:04'!
-fromUser
-
-	^ self fromUser: 0
-	! !
-
-!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/17/2016 16:08:14'!
-fromUser: defaultChoiceCode
-	"Put up a menu and answer an instance of me"
-"
-	(TextEmphasis fromUser: 3) asUIString.
-"
-	| emphasisCode |
-	emphasisCode :=  (MultiSelectMenu 
-							choices: TextEmphasis choices
-							seed: defaultChoiceCode 
-							title: 'Text Emphasis') invokeModal. 
-	^ self new emphasisCode: emphasisCode ! !
-
-!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 09:02:18'!
-privateCodeForChoice: aStringOrSymbol
-	"Take emphasis choice and return a code.  E.g. 'bold' -> 1
-	Here, a multi-choice, like  'bold+italic', is an error.
-	aStringOrSymbol MUST be in self choices"
-
-	| indexLessTwo |
-	indexLessTwo
-		:= ((self choices indexOf: aStringOrSymbol
-					 ifAbsent: [ self error: 
-						'Bad choice for TextEmphasis: ', aStringOrSymbol asString ])
-			- 2 ).
-	^ (indexLessTwo < 0)
-		ifTrue: [ 0 ]
-		ifFalse: [ 1 bitShift: indexLessTwo ]
-		
-	! !
-
-!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 11:46:59'!
-stringForCode: emphasisCode
-	"Answer combined choices with $+.
-	E.g. 3 -> 'bold+italic' "
-
-	| stringResult |
-	(emphasisCode isZero)
-		ifTrue: [ ^ #normal asString ].
-
-	stringResult := nil. 
-	1 to: 7 do: [ :bitPos |
-		((emphasisCode bitAt: bitPos) isZero)
-			ifFalse: [ 
-				(stringResult isNil)
-					ifTrue: [ stringResult := self choices at: bitPos + 1 ]
-					ifFalse: [ stringResult := stringResult
-										, '+'
-										,  (self choices at: bitPos + 1) 
-					]
-			]
-	].
-	
-	^ stringResult! !
 
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/3/2019 09:16:03'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
@@ -6002,7 +5935,163 @@ privateProportionalHeight
 privateProportionalWidth
 
 	^ proportionalWidth ! !
+
+!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/22/2017 11:00:32'!
+choices
+
+	^ #(leftFlush rightFlush centered justified)! !
+
+!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:40:22'!
+codeForChoice: aStringOrSymbol
+	"On error, answer 0 as the default value, else index - 1"
+"	
+	self codeForChoice: #centered.
+"
+	^ (self choices indexOf: aStringOrSymbol asSymbol ifAbsent: [ 1 ]) - 1! !
+
+!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/22/2017 11:07:38'!
+fromChoiceString: aStringOrSymbol
+
+	^self new alignment: (self codeForChoice: aStringOrSymbol)! !
+
+!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:29:18'!
+fromUser
+"
+   self fromUser inspect.
+"
+
+	^ self fromUser: 0! !
+
+!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:30:12'!
+fromUser: defaultChoiceCode
+	"Put up a menu and answer an instance of me"
+"
+	(TextAlignment fromUser: 3) inspect.
+"
+		
+	| aMenu |
+
+	aMenu _ MenuMorph new defaultTarget: self.
+	
+	aMenu addTitle: 'Text Alignment'.
+	self choices do: [ :choice | 
+		aMenu add: choice asString 
+				target: self
+			     selector: #privateSetResult:inMorph:
+				argumentList: { choice. aMenu. }
+	].
+	aMenu invokeModal.
+	^ self perform: (aMenu valueOfProperty: #resultValue
+									 ifAbsent: [ self stringForCode: defaultChoiceCode ])! !
+
+!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 08:27:15'!
+privateSetResult: aResult inMorph: aMenuMorph
+	"Used by self>>fromUser: to let a MenuMorph transmit the result"
+
+	aMenuMorph setProperty: #resultValue toValue: aResult ! !
+
+!TextAlignment class methodsFor: '*morphic-misc1' stamp: 'KenD 3/23/2017 09:05:18'!
+stringForCode: alignmentCode
+"
+	self stringForCode: 3.
+"
+	^ self choices at: alignmentCode + 1 ifAbsent: [ self leftFlush ]! !
+
+!TextEmphasis methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 12:21:17'!
+asUIString
+	"Return a string for UI text display"
+	
+	^ self class stringForCode: self emphasisCode! !
+
+!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 08:43:02'!
+choices
+
+	^ #(normal bold italic underline struckThrough superscript subscript withST80Glyphs)! !
+
+!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 09:04:20'!
+codeForChoice: aStringOrSymbol
+	"Take emphasis choices and return a code.
+	e.g. 'bold+italic' -> 3"
+
+	| collectedChoices |
+	collectedChoices := aStringOrSymbol findTokens: $+.
+	(collectedChoices size < 1)
+		ifTrue: [ self error: 'Bad choice for TextEmphasis: ', aStringOrSymbol asString ].
+	(collectedChoices allSatisfy: [ :choice | self choices includes: choice ])
+		ifFalse: [ self error: 'Bad choice for TextEmphasis: ', aStringOrSymbol asString ].
+		
+	^ collectedChoices 
+				inject: 0 
+				into: [:sum :choice | sum + (self privateCodeForChoice: choice) ]
+	! !
+
+!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 11:52:54'!
+fromChoiceString: aStringOrSymbol
+	"Answer an instance of me"
+	
+	^ self new emphasisCode: (self codeForChoice: aStringOrSymbol)! !
+
+!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/18/2016 09:07:04'!
+fromUser
+
+	^ self fromUser: 0
+	! !
+
+!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/17/2016 16:08:14'!
+fromUser: defaultChoiceCode
+	"Put up a menu and answer an instance of me"
+"
+	(TextEmphasis fromUser: 3) asUIString.
+"
+	| emphasisCode |
+	emphasisCode :=  (MultiSelectMenu 
+							choices: TextEmphasis choices
+							seed: defaultChoiceCode 
+							title: 'Text Emphasis') invokeModal. 
+	^ self new emphasisCode: emphasisCode ! !
+
+!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 09:02:18'!
+privateCodeForChoice: aStringOrSymbol
+	"Take emphasis choice and return a code.  E.g. 'bold' -> 1
+	Here, a multi-choice, like  'bold+italic', is an error.
+	aStringOrSymbol MUST be in self choices"
+
+	| indexLessTwo |
+	indexLessTwo
+		:= ((self choices indexOf: aStringOrSymbol
+					 ifAbsent: [ self error: 
+						'Bad choice for TextEmphasis: ', aStringOrSymbol asString ])
+			- 2 ).
+	^ (indexLessTwo < 0)
+		ifTrue: [ 0 ]
+		ifFalse: [ 1 bitShift: indexLessTwo ]
+		
+	! !
+
+!TextEmphasis class methodsFor: '*morphic-misc1' stamp: 'KenD 12/10/2016 11:46:59'!
+stringForCode: emphasisCode
+	"Answer combined choices with $+.
+	E.g. 3 -> 'bold+italic' "
+
+	| stringResult |
+	(emphasisCode isZero)
+		ifTrue: [ ^ #normal asString ].
+
+	stringResult := nil. 
+	1 to: 7 do: [ :bitPos |
+		((emphasisCode bitAt: bitPos) isZero)
+			ifFalse: [ 
+				(stringResult isNil)
+					ifTrue: [ stringResult := self choices at: bitPos + 1 ]
+					ifFalse: [ stringResult := stringResult
+										, '+'
+										,  (self choices at: bitPos + 1) 
+					]
+			]
+	].
+	
+	^ stringResult! !
 AddedCursors initialize!
-RadioButtonMorph initialize!
 FrameMorph initialize!
+RadioButtonMorph initialize!
 MorphicMisc1Package postPackageInstall!
