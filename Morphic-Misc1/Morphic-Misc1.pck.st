@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4958] on 31 October 2021 at 8:46:44 am'!
+'From Cuis 5.0 [latest update: #4958] on 31 October 2021 at 1:13:05 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 201!
+!provides: 'Morphic-Misc1' 1 202!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -1459,7 +1459,7 @@ unselectAll
 	self redrawNeeded 
 	! !
 
-!RadioGroup class methodsFor: 'examples' stamp: 'KenD 10/31/2021 08:46:21'!
+!RadioGroup class methodsFor: 'examples' stamp: 'KenD 10/31/2021 13:12:01'!
 imageTestPallet
 	"Answer a RadioGroup of images"
 "
@@ -1478,7 +1478,7 @@ imageTestPallet
 	formsDict keysAndValuesDo: [ :aName :aForm |
 		morphDict 
 			at: aName 
-			put: (ImageMorph new image: aForm)
+			put: (ImageMorph new image: (aForm magnifyTo: 32@32))
 	].
 	radioSelection := RadioGroup fromMorphsDict: morphDict.
 	statusLabel contents: 'unselected'.
