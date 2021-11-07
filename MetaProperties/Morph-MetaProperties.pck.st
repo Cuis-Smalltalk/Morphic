@@ -1,11 +1,11 @@
-'From Cuis 5.0 [latest update: #4923] on 14 October 2021 at 8:20:17 am'!
+'From Cuis 5.0 [latest update: #4967] on 7 November 2021 at 2:34:29 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 92!
+!provides: 'Morph-MetaProperties' 1 93!
 !requires: 'Cuis-Base' 50 4856 nil!
-!requires: 'Morphic-Misc1' 1 167 nil!
-!requires: 'Morphic-ColorEditor' 1 39 nil!
-!requires: 'Complex' 1 0 nil!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
+!requires: 'Morphic-ColorEditor' 1 39 nil!
+!requires: 'Morphic-Misc1' 1 167 nil!
+!requires: 'Complex' 1 0 nil!
 SystemOrganization addCategory: #'Morph-MetaProperties'!
 
 
@@ -288,7 +288,7 @@ initialize
 	"self initializeDictionaries." "invoked in VisualPropertyEditor class>>initialize"
 ! !
 
-!MetaProperty class methodsFor: 'class initialization' stamp: 'KenD 10/3/2019 18:21:43'!
+!MetaProperty class methodsFor: 'class initialization' stamp: 'KenD 11/7/2021 14:12:26'!
 initializeDictionaries
 	"Add typical usages to dictionary for sharing."
 "
@@ -311,7 +311,7 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent;
+												+ morph morphExtentInOwner;
 							    fitInWorld
 							 ]).
 	props at: #acceptsSymbol 
@@ -324,7 +324,7 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent;
+												+ morph morphExtentInOwner;
 								fitInWorld ]).
 	props at: #acceptsCharacter 
 			put: (MetaProperty 
@@ -336,7 +336,7 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent; fitInWorld
+												+ morph morphExtentInOwner; fitInWorld
 						]).
 	props at: #acceptsNumber put: (MetaProperty kind: Number).
 	props at: #acceptsColor 
@@ -353,7 +353,7 @@ initializeDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent; fitInWorld ]).
+												+ morph morphExtentInOwner; fitInWorld ]).
 	props at: #acceptsRectangle put: (MetaProperty kind: Rectangle).
 	props at: #acceptsBoolean put: (MetaProperty kind: Boolean).
 	props at: #acceptsMorph put: (MetaProperty kind: Morph).
@@ -480,7 +480,7 @@ minValue: aValue
 
 	minValue := aValue ! !
 
-!MetaPropertyFrom class methodsFor: 'class initialization' stamp: 'KenD 10/3/2019 18:22:53'!
+!MetaPropertyFrom class methodsFor: 'class initialization' stamp: 'KenD 11/7/2021 14:12:49'!
 addToInitialDictionaries
 	"Add typical usages to dictionary for sharing."
 "
@@ -500,7 +500,7 @@ addToInitialDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent
+												+ morph morphExtentInOwner
 								; fitInWorld ]).
 	props at: #acceptsPositiveNumber put: (MetaPropertyFrom kind: Number minValue: 0).
 	props at: #acceptsPositiveInteger
@@ -514,7 +514,7 @@ addToInitialDictionaries
 								model: menuItem;
 								openInWorld;
 								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtent;
+												+ morph morphExtentInOwner;
 								fitInWorld ]).
 	! !
 
@@ -995,15 +995,14 @@ addPropertiesDisplay
 
 	self notYetImplemented ! !
 
-!VisualPropertyEditor methodsFor: 'construction' stamp: 'KenD 12/3/2016 09:51:35'!
+!VisualPropertyEditor methodsFor: 'construction' stamp: 'KenD 11/7/2021 14:25:14'!
 adjustSubmorphsLayout
 
 	| calculatedExtent |
 	super adjustSubmorphsLayout.
-	calculatedExtent := self morphExtent.
+	calculatedExtent := self morphExtentInOwner.
 	self morphExtent: (calculatedExtent x max: self minItemWidth) @ calculatedExtent y.
 	self titleMorph morphExtent: (calculatedExtent x max: self minItemWidth) @ self titleMorph morphHeight.
-	self titleMorph reset.  "Needed after adjustSubmorphsLayout"
 ! !
 
 !VisualPropertyEditor methodsFor: 'initialization' stamp: 'KenD 11/28/2016 18:27:45'!
@@ -1183,7 +1182,7 @@ fontPreferenceChanged
 	super fontPreferenceChanged.
 	self refreshView.! !
 
-!VisualPropertyEditor methodsFor: 'events' stamp: 'jmv 4/25/2019 10:08:23'!
+!VisualPropertyEditor methodsFor: 'events' stamp: 'KenD 11/7/2021 14:16:06'!
 refreshView
 
 	"Something may have changed.."
@@ -1198,7 +1197,7 @@ refreshView
 	self showAllIvars  ifTrue: [ self addIVarsDisplay ].
 	self showAllProps ifTrue: [ self addOrdinaryPropertiesDisplay ].
 	
-	self titleMorph morphExtent: (self titleMorph morphExtent x) @ (Preferences windowTitleFont lineSpacing).
+	self titleMorph morphExtent: (self titleMorph morphExtentInOwner x) @ (Preferences windowTitleFont lineSpacing).
 	self adjustSubmorphsLayout;
 		yourself! !
 
@@ -1395,13 +1394,13 @@ processMouseDown: evt localPosition: localEventPosition
 
 ! !
 
-!OrdinaryPropertyMenuItem methodsFor: 'dropping/grabbing' stamp: 'KenD 12/23/2016 09:25:22'!
+!OrdinaryPropertyMenuItem methodsFor: 'dropping/grabbing' stamp: 'KenD 11/7/2021 14:17:00'!
 showReject: aMorph
 	"Draw and erase a red X"
 
 	| leftStroke rightStroke mPos mExtent |
 	mPos := aMorph morphPositionInWorld.
-	mExtent := aMorph morphExtent.
+	mExtent := aMorph morphExtentInOwner.
 	leftStroke   := LineMorph 
 						startPoint: mPos - (10@10) 
 						endPoint: (mPos + mExtent + (10@10)) 
@@ -1616,13 +1615,13 @@ updateContents
 	self contents: ( self displayStringForWidth: (myWidth - 20) ). "space for icon + border"
 	self setIcon: (self propertyValue icon)! !
 
-!VisualPropertyMenuItem methodsFor: 'events' stamp: 'KenD 12/18/2016 15:36:45'!
+!VisualPropertyMenuItem methodsFor: 'events' stamp: 'KenD 11/7/2021 14:17:09'!
 showAccept: aMorph
 	"Draw and erase a green box"
 
 	| hilightMorph mPos mExtent |
 	mPos     := aMorph morphPositionInWorld.
-	mExtent := aMorph morphExtent.
+	mExtent := aMorph morphExtentInOwner.
 	hilightMorph := FrameMorph new.
 	hilightMorph   borderWidth: 6;
 					borderColor: Color green;
@@ -1633,13 +1632,13 @@ showAccept: aMorph
 	aMorph        addAlarm: #delete after: 200.
 	hilightMorph addAlarm: #delete after: 400.! !
 
-!VisualPropertyMenuItem methodsFor: 'events' stamp: 'KenD 12/18/2016 15:37:40'!
+!VisualPropertyMenuItem methodsFor: 'events' stamp: 'KenD 11/7/2021 14:17:15'!
 showReject: aMorph
 	"Draw and erase a red X"
 
 	| leftStroke rightStroke mPos mExtent |
 	mPos := aMorph morphPositionInWorld.
-	mExtent := aMorph morphExtent.
+	mExtent := aMorph morphExtentInOwner.
 	"Show a red X"
 	leftStroke   := LineMorph 
 						startPoint: mPos - (10@10) 
