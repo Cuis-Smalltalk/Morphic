@@ -4343,7 +4343,7 @@ updateMasterFromCopy
 	editCopy := self editModel.
 	(self model morph isKindOf: ImageMorph)
 	ifTrue: [
-		^self inform: 'NOTE: ImageMorphs can''t be resized'
+		self inform: 'NOTE: ImageMorphs can''t be resized'
 	] 
 	ifFalse: [
 		original proportionalHeight: editCopy privateProportionalHeight 
