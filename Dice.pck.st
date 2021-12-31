@@ -1,8 +1,8 @@
 'From Cuis 5.0 of 7 November 2016 [latest update: #3190] on 28 October 2017 at 4:59:08 pm'!
 'Description A morph simulating a dice with an arbitrary number of faces, bellow 9.'!
-!provides: 'Dice' 1 0!
+!provides: 'Dice' 1 1!
 !classDefinition: #DiceMorph category: #Dice!
-WidgetMorph subclass: #DiceMorph
+BoxedMorph subclass: #DiceMorph
 	instanceVariableNames: 'faces value isRolling'
 	classVariableNames: ''
 	poolDictionaries: ''

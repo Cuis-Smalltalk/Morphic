@@ -1,12 +1,12 @@
 'From Cuis 5.0 [latest update: #4519] on 5 January 2021 at 3:00:09 pm'!
 'Description A WheelMorph is a mouse based "thumb wheel" for adjusting a value.
 '!
-!provides: 'WheelMorph' 1 6!
+!provides: 'WheelMorph' 1 7!
 SystemOrganization addCategory: 'WheelMorph'!
 
 
 !classDefinition: #WheelMorph category: 'WheelMorph'!
-WidgetMorph subclass: #WheelMorph
+BoxedMorph subclass: #WheelMorph
 	instanceVariableNames: 'target actionSelector factor circular old angle maxAngle lastRedraw isHorizontal'
 	classVariableNames: ''
 	poolDictionaries: ''

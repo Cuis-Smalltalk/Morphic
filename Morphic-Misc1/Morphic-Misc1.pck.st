@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #5004] on 22 December 2021 at 12:34:23 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 206!
+!provides: 'Morphic-Misc1' 1 207!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -59,7 +59,7 @@ AddedCursors class
 	instanceVariableNames: ''!
 
 !classDefinition: #LineMorph category: 'Morphic-Misc1'!
-KernelMorph subclass: #LineMorph
+BoxedMorph subclass: #LineMorph
 	instanceVariableNames: 'startPointSelector endPointSelector lineWidth'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -369,7 +369,7 @@ SimpleNumberEntryMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #BorderedRectMorph category: 'Morphic-Misc1'!
-WidgetMorph subclass: #BorderedRectMorph
+BoxedMorph subclass: #BorderedRectMorph
 	instanceVariableNames: 'borderStyle'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -379,7 +379,7 @@ BorderedRectMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FontMorph category: 'Morphic-Misc1'!
-WidgetMorph subclass: #FontMorph
+BoxedMorph subclass: #FontMorph
 	instanceVariableNames: 'labelMorph'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -389,7 +389,7 @@ FontMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FrameMorph category: 'Morphic-Misc1'!
-WidgetMorph subclass: #FrameMorph
+BoxedMorph subclass: #FrameMorph
 	instanceVariableNames: 'colorIndex frameSelector'
 	classVariableNames: 'Colors'
 	poolDictionaries: ''
@@ -440,7 +440,7 @@ To simplify management, all buttons are present but hidden unless requested.
 See Panel, LayoutMorphEditPanel and LayoutSpecEditPanel as usage examples!
 
 !BorderedImageMorph commentStamp: '<historical>' prior: 0!
-I am an WidgetMorph with a borderStyle.
+I am an BoxedMorph with a borderStyle.
 
 borderStyle may be #simple, #raised, or #inset!
 
@@ -609,7 +609,7 @@ The validator is applied on return and if nil, the old value is redisplayed and 
 else the new value is remembered and displayed.!
 
 !BorderedRectMorph commentStamp: '<historical>' prior: 0!
-I am a WidgetMorph (rect) with a borderStyle.
+I am a BoxedMorph (rect) with a borderStyle.
 
 borderStyle may be #simple, #raised, or #inset.!
 
@@ -1018,7 +1018,7 @@ initialize
 
 	super initialize.
 	self endPointMorph:
-		(WidgetMorph new 
+		(BoxedMorph new 
 			:: color: Color yellow; 
 			borderColor: Color red; 
 			borderWidth: 3; 
@@ -5497,7 +5497,7 @@ font: aFont emphasis: emphasisCode
 
 !FontMorph methodsFor: 'initialization' stamp: 'KenD 10/16/2020 14:54:01'!
 font: aFont emphasis: emphasisCode string: aString
-	"I am a WidgetMorph showing a LabelMorph.
+	"I am a BoxedMorph showing a LabelMorph.
 	Make it so."
 	
 	labelMorph := LabelMorph new

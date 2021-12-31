@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #4815] on 28 August 2021 at 7:38:23 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 37!
+!provides: 'Morphic-Widgets-Extras' 1 38!
 !requires: 'Cuis-Base' 50 4430 nil!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
@@ -27,7 +27,7 @@ LimitedHeightTextMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #DragAndDropAreaMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #DragAndDropAreaMorph
+BoxedMorph subclass: #DragAndDropAreaMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -47,7 +47,7 @@ PartsBinMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #EllipseMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #EllipseMorph
+BoxedMorph subclass: #EllipseMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -67,7 +67,7 @@ HandleMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FrameRateMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #FrameRateMorph
+BoxedMorph subclass: #FrameRateMorph
 	instanceVariableNames: 'lastStepDelta meanStepDelta'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -77,7 +77,7 @@ FrameRateMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FunctionGraphMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #FunctionGraphMorph
+BoxedMorph subclass: #FunctionGraphMorph
 	instanceVariableNames: 'xMin xMax yMin yMax functions colors yRangeInvalid'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -87,7 +87,7 @@ FunctionGraphMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #MagnifierMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #MagnifierMorph
+BoxedMorph subclass: #MagnifierMorph
 	instanceVariableNames: 'magnification trackPointer lastPos srcExtent auxCanvas magnifiedForm'
 	classVariableNames: 'RecursionLock'
 	poolDictionaries: ''
@@ -97,7 +97,7 @@ MagnifierMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #MinimalStringMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #MinimalStringMorph
+BoxedMorph subclass: #MinimalStringMorph
 	instanceVariableNames: 'font emphasis contents'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -107,7 +107,7 @@ MinimalStringMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #OneLineEditorMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #OneLineEditorMorph
+BoxedMorph subclass: #OneLineEditorMorph
 	instanceVariableNames: 'font emphasis contents editor showTextCursor pauseBlinking textCursorRect keyboardFocusWatcher crAction'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -117,7 +117,7 @@ OneLineEditorMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #SamplePlotterMorph category: 'Morphic-Widgets-Extras'!
-WidgetMorph subclass: #SamplePlotterMorph
+BoxedMorph subclass: #SamplePlotterMorph
 	instanceVariableNames: 'domain sampleSequences colors yMax yMin'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -154,7 +154,7 @@ A simple morph that allows dragging submorphs, and dropping other morphs on it. 
 | m |
 m _ DragAndDropAreaMorph new.
 m openInWorld.
-m addMorph: WidgetMorph new.
+m addMorph: BoxedMorph new.
 m morphExtent: 320@240!
 
 !PartsBinMorph commentStamp: '<historical>' prior: 0!

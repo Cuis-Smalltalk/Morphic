@@ -1,6 +1,6 @@
 'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:13:22 am'!
 'Description A port of Bouncing Atoms with the atoms in a SystemWindow. A pop-up menu enables selection of options, including an active plot of infection history, also in a SystemWindow.'!
-!provides: 'BouncingAtoms' 1 35!
+!provides: 'BouncingAtoms' 1 36!
 !requires: 'Morphic-Widgets-Extras' 1 0 nil!
 !requires: 'Morphic-Deprecated' 1 0 nil!
 SystemOrganization addCategory: #BouncingAtoms!
@@ -37,7 +37,7 @@ InfectionGraph class
 	instanceVariableNames: ''!
 
 !classDefinition: #BouncingAtomsMorph category: #BouncingAtoms!
-WidgetMorph subclass: #BouncingAtomsMorph
+BoxedMorph subclass: #BouncingAtomsMorph
 	instanceVariableNames: 'infectionHistory transmitInfection recentTemperatures temperature historyWindow nAtoms fpsEnabled fps fpsCurrentFrameCount fpsCurrentFrameCountTime resume'
 	classVariableNames: ''
 	poolDictionaries: ''
