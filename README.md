@@ -9,3 +9,12 @@ Now depricated:
 - 'Morph-MetaProperties'
 
 Please look at (and use!) _Cuis-Smalltalk-UI_
+
+'Examples-Morphic' includes
+-  Animator
+-  DragAndDropAreaMorph
+-    PartsBinMorph
+-  FrameRateMorph
+-  FunctionGraphMorph
+-  MagnifierMorph
+-  MorphMessageBox
