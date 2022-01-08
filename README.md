@@ -4,7 +4,7 @@ A number of these classes have been refactored and placed into the _Cuis-Smallta
 
 Now depricated:
 - 'Morphic-Misc1' 
-- 'Morphic-Widgets-Extras'
+- 'Morphic-Widgets-Extras'  [see 'Examples-Morphic']
 - 'Morphic-ColorEditor'
 - 'Morph-MetaProperties'
 
