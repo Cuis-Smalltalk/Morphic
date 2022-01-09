@@ -16,5 +16,6 @@ Please look at (and use!) _Cuis-Smalltalk-UI_
 -    PartsBinMorph
 -  FrameRateMorph
 -  FunctionGraphMorph
+-  HandleMorph
 -  MagnifierMorph
 -  MorphMessageBox
