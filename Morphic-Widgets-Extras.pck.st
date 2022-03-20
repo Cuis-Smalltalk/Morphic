@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4815] on 28 August 2021 at 7:38:23 pm'!
+'From Cuis 6.0 [latest update: #5093] on 20 March 2022 at 7:11:09 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 38!
+!provides: 'Morphic-Widgets-Extras' 1 39!
 !requires: 'Cuis-Base' 50 4430 nil!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
@@ -632,11 +632,11 @@ aboutToGrab: aMorph
 
 	^aMorph copy! !
 
-!EllipseMorph methodsFor: 'drawing' stamp: 'jmv 4/9/2015 09:43'!
+!EllipseMorph methodsFor: 'drawing' stamp: 'HAW 3/20/2022 19:04:53'!
 drawOn: aCanvas 
 
 	| rx ry |
-	self revisar. "The morph should be specified better!!"
+	
 	rx _ extent x //2.
 	ry _ extent y // 2.
 	aCanvas ellipseCenterX: rx y: ry rx: rx ry: ry borderWidth: borderWidth borderColor: borderColor fillColor: color! !
