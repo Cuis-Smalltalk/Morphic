@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #5004] on 22 December 2021 at 12:34:23 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 207!
+!provides: 'Morphic-Misc1' 1 208!
 !requires: 'Cuis-Base' 50 4946 nil!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
@@ -734,7 +734,7 @@ initClosedHand
 		2r0001000000001110
 		2r0000100000001100
 		2r0000010000001100)
-	offset: -1@-1)
+	offset: -1 @ -1)
  setMaskForm: (Form
 	small1BitExtent: 16@16
 	pixelBits: #(
@@ -781,7 +781,7 @@ initOpenHand
 		2r0001000000001110
 		2r0000100000001100
 		2r0000010000001100)
-	offset: -1@-1)
+	offset: -1 @ -1)
  setMaskForm: (Form
 	small1BitExtent: 16@16
 	pixelBits: #(

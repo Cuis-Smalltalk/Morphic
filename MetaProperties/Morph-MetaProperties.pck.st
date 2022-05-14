@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #4967] on 7 November 2021 at 2:34:29 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 94!
+!provides: 'Morph-MetaProperties' 1 95!
 !requires: 'Cuis-Base' 50 4856 nil!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
 !requires: 'Morphic-ColorEditor' 1 39 nil!
@@ -1915,8 +1915,8 @@ testAccepts
 	"Positive Point"
 	self assert: ((MetaPropertyFrom kind: Point minValue: 0@0) accepts: 23@47).
 	self deny: ((MetaPropertyFrom kind: Point minValue: 0@0) accepts: -23@47).
-	self deny: ((MetaPropertyFrom kind: Point minValue: 0@0) accepts: -23@-47).
-	self deny: ((MetaPropertyFrom kind: Point minValue: 0@0) accepts: 1@-1).
+	self deny: ((MetaPropertyFrom kind: Point minValue: 0@0) accepts: -23 @ -47).
+	self deny: ((MetaPropertyFrom kind: Point minValue: 0@0) accepts: 1 @ -1).
 
 	"Pattern Match"
 	self assert: ((MetaPropertyViaTest kind: String test: [ :s | '*baz*' match: s ]) accepts: 'mombazzi').
