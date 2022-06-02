@@ -7,6 +7,7 @@ Now depricated:
 - 'Morphic-Widgets-Extras'  [see 'Examples-Morphic']
 - 'Morphic-ColorEditor'
 - 'Morph-MetaProperties'
+- 'Dice'
 
 Please look at (and use!) _Cuis-Smalltalk-UI_
 
