@@ -1,7 +1,7 @@
 'From Cuis 5.0 [latest update: #4967] on 7 November 2021 at 2:34:29 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
 !provides: 'Morph-MetaProperties' 1 95!
-!requires: 'Cuis-Base' 50 4856 nil!
+!requires: 'Cuis-Base' 50 4856 50 5000!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
 !requires: 'Morphic-ColorEditor' 1 39 nil!
 !requires: 'Morphic-Misc1' 1 167 nil!

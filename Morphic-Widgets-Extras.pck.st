@@ -1,7 +1,7 @@
 'From Cuis 6.0 [latest update: #5093] on 20 March 2022 at 7:11:09 pm'!
 'Description Please enter a description for this package'!
 !provides: 'Morphic-Widgets-Extras' 1 39!
-!requires: 'Cuis-Base' 50 4430 nil!
+!requires: 'Cuis-Base' 50 4430 50 5000!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
 

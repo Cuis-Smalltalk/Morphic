@@ -1,7 +1,7 @@
 'From Cuis 6.0 [latest update: #5041] on 8 January 2022 at 6:29:55 pm'!
 'Description Simple Morphs showing useful features or ideas.'!
 !provides: 'Examples-Morphic' 1 4!
-!requires: 'Cuis-Base' 60 5041 nil!
+!requires: 'Cuis-Base' 60 5041 50 5000!
 !requires: 'UI-Base-Morphs' 1 12 nil!
 !requires: 'Graphics-Files-Additional' 1 24 nil!
 SystemOrganization addCategory: #'Examples-Morphic'!

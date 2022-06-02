@@ -1,6 +1,6 @@
 # Morphic
 
-A number of these classes have been refactored and placed into the _Cuis-Smalltalk-UI_ repo.
+A number of these classes have been refactored and placed into the _Cuis-Smalltalk-UI_ repo.  This is in concert with Cuis 6 Morphic class hierarchy refactor and Vector Graphics addition.  The examples here should still work with Cuis 5 images, but are unsusported.
 
 Now depricated:
 - 'Morphic-Misc1' 
