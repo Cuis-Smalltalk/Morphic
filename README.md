@@ -9,14 +9,11 @@ Now depricated:
 - 'Morph-MetaProperties'
 - 'Dice'
 
-Please look at (and use!) _Cuis-Smalltalk-UI_
-
 'Examples-Morphic' includes
 -  Animator
--  DragAndDropAreaMorph
--    PartsBinMorph
 -  FrameRateMorph
 -  FunctionGraphMorph
--  HandleMorph
 -  MagnifierMorph
 -  MorphMessageBox
+
+For more examples please look at (and use!) _Cuis-Smalltalk-UI_
