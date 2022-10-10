@@ -1,14 +1,16 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3190] on 28 October 2017 at 4:59:08 pm'!
+'From Cuis 6.0 [latest update: #5494] on 10 October 2022 at 7:40:23 pm'!
 'Description A morph simulating a dice with an arbitrary number of faces, bellow 9.'!
-!provides: 'Dice' 1 1!
-!requires: 'Cuis-Base' 50 4430 50 5000!
-!classDefinition: #DiceMorph category: #Dice!
+!provides: 'Dice' 1 2!
+SystemOrganization addCategory: 'Dice'!
+
+
+!classDefinition: #DiceMorph category: 'Dice'!
 BoxedMorph subclass: #DiceMorph
 	instanceVariableNames: 'faces value isRolling'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Dice'!
-!classDefinition: 'DiceMorph class' category: #Dice!
+!classDefinition: 'DiceMorph class' category: 'Dice'!
 DiceMorph class
 	instanceVariableNames: ''!
 
@@ -31,15 +33,12 @@ drawDotOn: canvas at: aPoint
 		rx: radius x ry: radius y
 		borderWidth: 0 borderColor: Color black fillColor: Color black! !
 
-!DiceMorph methodsFor: 'drawing' stamp: 'HilaireFernandes 10/28/2017 16:43:33'!
+!DiceMorph methodsFor: 'drawing' stamp: 'tsl 10/10/2022 19:38:59'!
 drawOn: canvas
 	canvas 
 		roundRect: self morphLocalBounds 
 		color: color 
-		radius: 10
-		gradientTop:  1.0
-		gradientBottom: 0.5 
-		gradientHeight: (extent y // 2 min: 200).
+		radius: 10	.
 	(self perform: ('face', value asString) asSymbol) do: [:eachPoint |
 		self drawDotOn: canvas at: eachPoint]! !
 
@@ -86,6 +85,10 @@ faces: integer
 	faces _ integer min: 9.
 	self redrawNeeded ! !
 
+!DiceMorph methodsFor: 'accessing' stamp: 'HilaireFernandes 10/28/2017 15:40:46'!
+value
+	^ value! !
+
 !DiceMorph methodsFor: 'initialization' stamp: 'HilaireFernandes 10/28/2017 16:48:31'!
 initialize
 	super initialize.
@@ -112,10 +115,6 @@ stepTime
 stopRolling
 	isRolling _ false.
 	self stopStepping! !
-
-!DiceMorph methodsFor: 'accessing' stamp: 'HilaireFernandes 10/28/2017 15:40:46'!
-value
-	^ value! !
 
 !DiceMorph methodsFor: 'stepping' stamp: 'HilaireFernandes 10/28/2017 16:46:00'!
 wantsSteps
