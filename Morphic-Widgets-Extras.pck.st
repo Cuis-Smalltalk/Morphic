@@ -1,4 +1,4 @@
-'From Cuis 6.0 [latest update: #5494] on 13 October 2022 at 3:19:59 pm'!
+'From Cuis 6.0 [latest update: #5494] on 13 October 2022 at 4:34:13 pm'!
 'Description Please enter a description for this package'!
 !provides: 'Morphic-Widgets-Extras' 1 40!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
@@ -246,6 +246,24 @@ Would be cool to add other interpolators. So far, we only have Nearest Neighbor.
 
 Check SignalProcessing.pck.st for other 1D interpolators: Linear, Cubic, Splines, Beziers, Lanczos...
 !
+
+!LimitedHeightTextMorph class methodsFor: 'instance creation' stamp: 'jmv 11/14/2011 16:32'!
+initializedInstance
+	^self new
+		maxHeight: 48;
+		model: (TextModel new contents: 'This is some text to test the morph.')! !
+
+!FunctionGraphMorph class methodsFor: 'instance creation' stamp: 'jmv 7/20/2016 10:00:31'!
+initializedInstance
+	"
+	self  initializedInstance openInWorld
+	"
+	| g |
+	g _ FunctionGraphMorph new.
+	g domain: (-4 to: 4).
+	g addFunction: [ :x | x cos ] color: Color green.
+	g addFunction: [ :x | (x + 1) squared - 3 ] color: Color red. "parabola with vertex at (-1,-3)"
+	^ g! !
 
 !SimpleEditor methodsFor: 'typing support' stamp: 'jmv 12/19/2011 12:24'!
 addString: aString
@@ -552,12 +570,6 @@ privateExtent: aPoint
 maxHeight: aNumber
 	maxHeight _ aNumber! !
 
-!LimitedHeightTextMorph class methodsFor: 'instance creation' stamp: 'jmv 11/14/2011 16:32'!
-initializedInstance
-	^self new
-		maxHeight: 48;
-		model: (TextModel new contents: 'This is some text to test the morph.')! !
-
 !DragAndDropAreaMorph methodsFor: 'drag and drop us' stamp: 'jmv 1/24/2013 22:53'!
 aboutToBeGrabbedBy: aHand
 	"The receiver is being grabbed by a hand.
@@ -858,18 +870,6 @@ xToMorphic: x
 !FunctionGraphMorph methodsFor: 'geometry' stamp: 'jmv 11/25/2016 11:03:27'!
 yToMorphic: y
 	^yMax - y / (yMax - yMin ) * (extent y-20)! !
-
-!FunctionGraphMorph class methodsFor: 'instance creation' stamp: 'jmv 7/20/2016 10:00:31'!
-initializedInstance
-	"
-	self  initializedInstance openInWorld
-	"
-	| g |
-	g _ FunctionGraphMorph new.
-	g domain: (-4 to: 4).
-	g addFunction: [ :x | x cos ] color: Color green.
-	g addFunction: [ :x | (x + 1) squared - 3 ] color: Color red. "parabola with vertex at (-1,-3)"
-	^ g! !
 
 !MagnifierMorph methodsFor: 'menu' stamp: 'di 9/28/1999 23:06'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
