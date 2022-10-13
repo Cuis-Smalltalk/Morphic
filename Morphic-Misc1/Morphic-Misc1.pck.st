@@ -21,7 +21,7 @@ MorphicMisc1Package class
 My purpose in life is to check that any base image methods overridden have not been updated.
 See #MorphMisc1Package class>>prePackageInstall!
 
-!MorphicMisc1Package class methodsFor: 'installing' stamp: 'KenD 5/29/2022 07:38:12'!
+!MorphicMisc1Package class methodsFor: 'installing' stamp: 'tsl 10/13/2022 16:34:12'!
 prePackageInstall
 
 	"Check that any method in base image that I wish to override has not changed"
