@@ -1,7 +1,6 @@
-'From Cuis 6.0 [latest update: #5202] on 29 May 2022 at 7:38:24 am'!
+'From Cuis 6.0 [latest update: #5494] on 13 October 2022 at 4:34:13 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 209!
-!requires: 'Cuis-Base' 50 4946 50 5000!
+!provides: 'Morphic-Misc1' 1 210!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -22,11 +21,10 @@ MorphicMisc1Package class
 My purpose in life is to check that any base image methods overridden have not been updated.
 See #MorphMisc1Package class>>prePackageInstall!
 
-!MorphicMisc1Package class methodsFor: 'installing' stamp: 'KenD 5/29/2022 07:38:12'!
+!MorphicMisc1Package class methodsFor: 'installing' stamp: 'tsl 10/13/2022 16:33:52'!
 prePackageInstall
 
 	"Check that any method in base image that I wish to override has not changed"
-self halt.
 	"Morph>>changeColor
 	 Last updated   2013-03-05T13:29:00+00:00 @@"
 	((Morph methodDictionary at: #changeColor) dateAndTime 
@@ -118,8 +116,18 @@ SystemWindow subclass: #DropTargetMorph
 DropTargetMorph class
 	instanceVariableNames: ''!
 
+!classDefinition: #BorderedRectMorph category: 'Morphic-Misc1'!
+BoxedMorph subclass: #BorderedRectMorph
+	instanceVariableNames: 'borderStyle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedRectMorph class' category: 'Morphic-Misc1'!
+BorderedRectMorph class
+	instanceVariableNames: ''!
+
 !classDefinition: #LayoutMorphEditPanel category: 'Morphic-Misc1'!
-EditPanel subclass: #LayoutMorphEditPanel
+ProtoObject subclass: #LayoutMorphEditPanel
 	instanceVariableNames: 'directionArea paddingArea separationArea colorArea padRadio padEntry'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -129,7 +137,7 @@ LayoutMorphEditPanel class
 	instanceVariableNames: ''!
 
 !classDefinition: #LayoutSpecEditPanel category: 'Morphic-Misc1'!
-EditPanel subclass: #LayoutSpecEditPanel
+ProtoObject subclass: #LayoutSpecEditPanel
 	instanceVariableNames: 'widthArea heightArea paddingArea padRadio padEntry'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -139,7 +147,7 @@ LayoutSpecEditPanel class
 	instanceVariableNames: ''!
 
 !classDefinition: #PickAColorPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickAColorPallet
+ProtoObject subclass: #PickAColorPallet
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -149,7 +157,7 @@ PickAColorPallet class
 	instanceVariableNames: ''!
 
 !classDefinition: #PickAIconPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickAIconPallet
+ProtoObject subclass: #PickAIconPallet
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -159,23 +167,13 @@ PickAIconPallet class
 	instanceVariableNames: ''!
 
 !classDefinition: #PickALargerIconPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickALargerIconPallet
+ProtoObject subclass: #PickALargerIconPallet
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
 !classDefinition: 'PickALargerIconPallet class' category: 'Morphic-Misc1'!
 PickALargerIconPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #BorderedRectMorph category: 'Morphic-Misc1'!
-BoxedMorph subclass: #BorderedRectMorph
-	instanceVariableNames: 'borderStyle'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'BorderedRectMorph class' category: 'Morphic-Misc1'!
-BorderedRectMorph class
 	instanceVariableNames: ''!
 
 
@@ -206,6 +204,11 @@ I allow one to drop morphs which make changes to myMorph.
 Each such morph has property DropActionMorph set to true.
 !
 
+!BorderedRectMorph commentStamp: '<historical>' prior: 0!
+I am a BoxedMorph (rect) with a borderStyle.
+
+borderStyle may be #simple, #raised, or #inset.!
+
 !LayoutMorphEditPanel commentStamp: '<historical>' prior: 0!
 I am a simple editor for a LayoutMorph.
 
@@ -235,11 +238,6 @@ See my class side.!
 I am just a way of getting an initializedInstance from the New Morph.. menu..  
 
 See my class side.!
-
-!BorderedRectMorph commentStamp: '<historical>' prior: 0!
-I am a BoxedMorph (rect) with a borderStyle.
-
-borderStyle may be #simple, #raised, or #inset.!
 
 !AddedCursors class methodsFor: 'constants' stamp: 'KenD 1/17/2016 12:02'!
 closedHand
@@ -819,6 +817,43 @@ includeInNewMorphMenu
 openFor: aMorph
 
 	^ self basicNew initialize openFor: aMorph ! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
+borderStyle
+
+	^ borderStyle! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
+borderStyle: aSymbol
+
+	( #(simple raised inset) includes: aSymbol )
+		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
+		
+	borderStyle := aSymbol.
+	self redrawNeeded! !
+
+!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
+drawOn: aCanvas
+	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
+	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
+	
+	aCanvas
+		fillRectangle: self morphLocalBounds
+		color: color
+		borderWidth: borderWidth
+		borderStyleSymbol: borderStyle
+		baseColorForBorder: borderColor.
+
+! !
+
+!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
+initialize
+	"Set my defaults"
+
+	super initialize.
+	borderWidth := 4.
+	borderColor := Color brown.
+	borderStyle := #raised.! !
 
 !LayoutMorphEditPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 13:27:43'!
 buildMorphicWindow
@@ -1867,43 +1902,6 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	
 	^ true! !
-
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
-borderStyle
-
-	^ borderStyle! !
-
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
-borderStyle: aSymbol
-
-	( #(simple raised inset) includes: aSymbol )
-		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
-		
-	borderStyle := aSymbol.
-	self redrawNeeded! !
-
-!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
-drawOn: aCanvas
-	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
-	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
-	
-	aCanvas
-		fillRectangle: self morphLocalBounds
-		color: color
-		borderWidth: borderWidth
-		borderStyleSymbol: borderStyle
-		baseColorForBorder: borderColor.
-
-! !
-
-!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
-initialize
-	"Set my defaults"
-
-	super initialize.
-	borderWidth := 4.
-	borderColor := Color brown.
-	borderStyle := #raised.! !
 
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/3/2019 09:16:03'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
