@@ -1,7 +1,6 @@
-'From Cuis 6.0 [latest update: #5202] on 29 May 2022 at 7:38:24 am'!
+'From Cuis 6.0 [latest update: #5494] on 13 October 2022 at 4:34:13 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 209!
-!requires: 'Cuis-Base' 50 4946 50 5000!
+!provides: 'Morphic-Misc1' 1 210!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: 'Morphic-Misc1'!
@@ -22,11 +21,10 @@ MorphicMisc1Package class
 My purpose in life is to check that any base image methods overridden have not been updated.
 See #MorphMisc1Package class>>prePackageInstall!
 
-!MorphicMisc1Package class methodsFor: 'installing' stamp: 'KenD 5/29/2022 07:38:12'!
+!MorphicMisc1Package class methodsFor: 'installing' stamp: 'tsl 10/13/2022 16:34:12'!
 prePackageInstall
 
 	"Check that any method in base image that I wish to override has not changed"
-self halt.
 	"Morph>>changeColor
 	 Last updated   2013-03-05T13:29:00+00:00 @@"
 	((Morph methodDictionary at: #changeColor) dateAndTime 
