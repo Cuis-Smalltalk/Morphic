@@ -1,6 +1,6 @@
-'From Cuis 6.0 [latest update: #5494] on 13 October 2022 at 4:34:13 pm'!
+'From Cuis 6.0 [latest update: #5552] on 9 November 2022 at 12:01:23 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 40!
+!provides: 'Morphic-Widgets-Extras' 1 41!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
 
@@ -246,24 +246,6 @@ Would be cool to add other interpolators. So far, we only have Nearest Neighbor.
 
 Check SignalProcessing.pck.st for other 1D interpolators: Linear, Cubic, Splines, Beziers, Lanczos...
 !
-
-!LimitedHeightTextMorph class methodsFor: 'instance creation' stamp: 'jmv 11/14/2011 16:32'!
-initializedInstance
-	^self new
-		maxHeight: 48;
-		model: (TextModel new contents: 'This is some text to test the morph.')! !
-
-!FunctionGraphMorph class methodsFor: 'instance creation' stamp: 'jmv 7/20/2016 10:00:31'!
-initializedInstance
-	"
-	self  initializedInstance openInWorld
-	"
-	| g |
-	g _ FunctionGraphMorph new.
-	g domain: (-4 to: 4).
-	g addFunction: [ :x | x cos ] color: Color green.
-	g addFunction: [ :x | (x + 1) squared - 3 ] color: Color red. "parabola with vertex at (-1,-3)"
-	^ g! !
 
 !SimpleEditor methodsFor: 'typing support' stamp: 'jmv 12/19/2011 12:24'!
 addString: aString
@@ -549,6 +531,12 @@ cmdShortcutsSpec
 		#(		$ 	#selectWord:			'Select the current word as with double clicking')
 	)! !
 
+!SimpleEditor class methodsFor: 'new morph participation' stamp: 'KenD 1/1/2022 08:16:31'!
+includeInNewMorphMenu
+	"Return true for all classes that can be instantiated from the menu"
+	
+	^ false! !
+
 !LimitedHeightTextMorph methodsFor: 'initialization' stamp: 'jmv 8/21/2012 21:59'!
 initialize
 	super initialize.
@@ -569,6 +557,12 @@ privateExtent: aPoint
 !LimitedHeightTextMorph methodsFor: 'accessing' stamp: 'jmv 11/14/2011 16:32'!
 maxHeight: aNumber
 	maxHeight _ aNumber! !
+
+!LimitedHeightTextMorph class methodsFor: 'instance creation' stamp: 'jmv 11/14/2011 16:32'!
+initializedInstance
+	^self new
+		maxHeight: 48;
+		model: (TextModel new contents: 'This is some text to test the morph.')! !
 
 !DragAndDropAreaMorph methodsFor: 'drag and drop us' stamp: 'jmv 1/24/2013 22:53'!
 aboutToBeGrabbedBy: aHand
@@ -631,17 +625,22 @@ aboutToGrab: aMorph
 
 	^aMorph copy! !
 
-!EllipseMorph methodsFor: 'drawing' stamp: 'HAW 3/20/2022 19:04:53'!
+!EllipseMorph methodsFor: 'drawing' stamp: 'KenD 11/9/2022 11:58:57'!
 drawOn: aCanvas 
 
 	| rx ry |
 	
 	rx _ extent x //2.
 	ry _ extent y // 2.
-	aCanvas ellipseCenterX: rx y: ry rx: rx ry: ry borderWidth: borderWidth borderColor: borderColor fillColor: color! !
+	aCanvas ellipseCenter: extent // 2 radius: rx @ ry borderWidth: borderWidth borderColor: borderColor fillColor: color! !
 
 !EllipseMorph methodsFor: 'geometry testing' stamp: 'jmv 10/7/2009 23:21'!
 isOrthoRectangularMorph
+	^false! !
+
+!EllipseMorph methodsFor: 'geometry testing' stamp: 'KenD 2/8/2022 17:32:49'!
+knowsOwnLocalBounds
+
 	^false! !
 
 !EllipseMorph methodsFor: 'geometry testing' stamp: 'pb 3/17/2020 13:36:07'!
@@ -663,6 +662,19 @@ defaultBorderWidth
 	"answer the default border width for the receiver"
 	^ 1! !
 
+!EllipseMorph methodsFor: 'visual properties' stamp: 'KenD 12/31/2021 13:07:32'!
+borderStyle
+
+	^ borderStyle! !
+
+!EllipseMorph methodsFor: 'visual properties' stamp: 'KenD 12/31/2021 13:08:14'!
+borderStyle: aSymbol
+
+	( #(simple raised inset) includes: aSymbol )
+		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
+		
+	borderStyle := aSymbol! !
+
 !EllipseMorph methodsFor: 'visual properties' stamp: 'jmv 3/10/2018 22:24:29'!
 defaultColor
 	"Return the default fill style for the receiver"
@@ -671,6 +683,24 @@ defaultColor
 !EllipseMorph class methodsFor: 'new-morph participation' stamp: 'pb 6/8/2017 23:50:14'!
 categoryInNewMorphMenu
 	^ 'Basic'! !
+
+!EllipseMorph class methodsFor: 'examples' stamp: 'KenD 12/20/2021 10:57:45'!
+example1
+"
+  EllipseMorph example1 openInWorld 
+"
+	^ self new morphExtent: 50@20! !
+
+!EllipseMorph class methodsFor: 'examples' stamp: 'KenD 12/20/2021 10:58:03'!
+example2
+"
+  EllipseMorph example2 openInWorld 
+"
+	^ self new morphExtent: 50@80;
+		borderWidth: 4;
+		borderColor: Color red muchDarker;
+		color: Color red;
+		morphPosition: 0@0! !
 
 !HandleMorph methodsFor: 'events' stamp: 'jmv 3/12/2018 15:51:54'!
 keyStroke: aKeyboardEvent
@@ -870,6 +900,18 @@ xToMorphic: x
 !FunctionGraphMorph methodsFor: 'geometry' stamp: 'jmv 11/25/2016 11:03:27'!
 yToMorphic: y
 	^yMax - y / (yMax - yMin ) * (extent y-20)! !
+
+!FunctionGraphMorph class methodsFor: 'instance creation' stamp: 'jmv 7/20/2016 10:00:31'!
+initializedInstance
+	"
+	self  initializedInstance openInWorld
+	"
+	| g |
+	g _ FunctionGraphMorph new.
+	g domain: (-4 to: 4).
+	g addFunction: [ :x | x cos ] color: Color green.
+	g addFunction: [ :x | (x + 1) squared - 3 ] color: Color red. "parabola with vertex at (-1,-3)"
+	^ g! !
 
 !MagnifierMorph methodsFor: 'menu' stamp: 'di 9/28/1999 23:06'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
