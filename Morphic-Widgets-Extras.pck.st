@@ -1,6 +1,6 @@
-'From Cuis 6.0 [latest update: #5552] on 9 November 2022 at 12:01:23 pm'!
+'From Cuis 6.0 [latest update: #5734] on 30 March 2023 at 3:20:03 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 41!
+!provides: 'Morphic-Widgets-Extras' 1 42!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
 
@@ -634,46 +634,19 @@ drawOn: aCanvas
 	ry _ extent y // 2.
 	aCanvas ellipseCenter: extent // 2 radius: rx @ ry borderWidth: borderWidth borderColor: borderColor fillColor: color! !
 
-!EllipseMorph methodsFor: 'geometry testing' stamp: 'jmv 10/7/2009 23:21'!
-isOrthoRectangularMorph
-	^false! !
-
 !EllipseMorph methodsFor: 'geometry testing' stamp: 'KenD 2/8/2022 17:32:49'!
 knowsOwnLocalBounds
 
 	^false! !
 
-!EllipseMorph methodsFor: 'geometry testing' stamp: 'pb 3/17/2020 13:36:07'!
-morphContainsPoint: aLocalPoint
-
-	| radius other delta xOverY |
-	(self morphLocalBounds containsPoint: aLocalPoint) ifFalse: [^ false].  "quick elimination"
-	extent > `1@1`
-		ifFalse: [^ true].  "Degenerate case -- code below fails by a bit"
-
-	radius _ extent y asFloat / 2.
-	other _ extent x asFloat / 2.
-	delta _ aLocalPoint - (other@radius).
-	xOverY _ extent x asFloat / extent y asFloat.
-	^ (delta x asFloat / xOverY) squared + delta y squared <= radius squared! !
+!EllipseMorph methodsFor: 'geometry testing' stamp: 'jmv 3/30/2023 15:16:49'!
+requiresVectorCanvas
+	^true! !
 
 !EllipseMorph methodsFor: 'initialization' stamp: 'dgd 2/14/2003 22:37'!
 defaultBorderWidth
 	"answer the default border width for the receiver"
 	^ 1! !
-
-!EllipseMorph methodsFor: 'visual properties' stamp: 'KenD 12/31/2021 13:07:32'!
-borderStyle
-
-	^ borderStyle! !
-
-!EllipseMorph methodsFor: 'visual properties' stamp: 'KenD 12/31/2021 13:08:14'!
-borderStyle: aSymbol
-
-	( #(simple raised inset) includes: aSymbol )
-		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
-		
-	borderStyle := aSymbol! !
 
 !EllipseMorph methodsFor: 'visual properties' stamp: 'jmv 3/10/2018 22:24:29'!
 defaultColor
