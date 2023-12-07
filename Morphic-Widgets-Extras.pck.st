@@ -1,137 +1,138 @@
-'From Cuis 6.0 [latest update: #5734] on 30 March 2023 at 3:20:03 pm'!
-'Description Please enter a description for this package'!
-!provides: 'Morphic-Widgets-Extras' 1 42!
-SystemOrganization addCategory: 'Morphic-Widgets-Extras'!
-SystemOrganization addCategory: 'Morphic-Widgets-Extras-Tests'!
+'From Cuis6.0 [latest update: #6114] on 7 December 2023 at 9:09:59 am'!
+'Description Various useful widgets'!
+!provides: 'Morphic-Widgets-Extras' 1 43!
+!requires: 'Cuis-Base' 60 6114 nil!
+SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
+SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
 
-!classDefinition: #SimpleEditor category: 'Morphic-Widgets-Extras'!
+!classDefinition: #SimpleEditor category: #'Morphic-Widgets-Extras'!
 Editor subclass: #SimpleEditor
 	instanceVariableNames: 'string pointIndex markIndex'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'SimpleEditor class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'SimpleEditor class' category: #'Morphic-Widgets-Extras'!
 SimpleEditor class
 	instanceVariableNames: ''!
 
-!classDefinition: #LimitedHeightTextMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #LimitedHeightTextMorph category: #'Morphic-Widgets-Extras'!
 TextModelMorph subclass: #LimitedHeightTextMorph
 	instanceVariableNames: 'maxHeight'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'LimitedHeightTextMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'LimitedHeightTextMorph class' category: #'Morphic-Widgets-Extras'!
 LimitedHeightTextMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #DragAndDropAreaMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #DragAndDropAreaMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #DragAndDropAreaMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'DragAndDropAreaMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'DragAndDropAreaMorph class' category: #'Morphic-Widgets-Extras'!
 DragAndDropAreaMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #PartsBinMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #PartsBinMorph category: #'Morphic-Widgets-Extras'!
 DragAndDropAreaMorph subclass: #PartsBinMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'PartsBinMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'PartsBinMorph class' category: #'Morphic-Widgets-Extras'!
 PartsBinMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #EllipseMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #EllipseMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #EllipseMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'EllipseMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'EllipseMorph class' category: #'Morphic-Widgets-Extras'!
 EllipseMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #HandleMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #HandleMorph category: #'Morphic-Widgets-Extras'!
 EllipseMorph subclass: #HandleMorph
 	instanceVariableNames: 'pointBlock'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'HandleMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'HandleMorph class' category: #'Morphic-Widgets-Extras'!
 HandleMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FrameRateMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #FrameRateMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #FrameRateMorph
 	instanceVariableNames: 'lastStepDelta meanStepDelta'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'FrameRateMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'FrameRateMorph class' category: #'Morphic-Widgets-Extras'!
 FrameRateMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #FunctionGraphMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #FunctionGraphMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #FunctionGraphMorph
 	instanceVariableNames: 'xMin xMax yMin yMax functions colors yRangeInvalid'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'FunctionGraphMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'FunctionGraphMorph class' category: #'Morphic-Widgets-Extras'!
 FunctionGraphMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #MagnifierMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #MagnifierMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #MagnifierMorph
 	instanceVariableNames: 'magnification trackPointer lastPos srcExtent auxCanvas magnifiedForm'
 	classVariableNames: 'RecursionLock'
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'MagnifierMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'MagnifierMorph class' category: #'Morphic-Widgets-Extras'!
 MagnifierMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #MinimalStringMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #MinimalStringMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #MinimalStringMorph
 	instanceVariableNames: 'font emphasis contents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'MinimalStringMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'MinimalStringMorph class' category: #'Morphic-Widgets-Extras'!
 MinimalStringMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #OneLineEditorMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #OneLineEditorMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #OneLineEditorMorph
 	instanceVariableNames: 'font emphasis contents editor showTextCursor pauseBlinking textCursorRect keyboardFocusWatcher crAction'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'OneLineEditorMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'OneLineEditorMorph class' category: #'Morphic-Widgets-Extras'!
 OneLineEditorMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #SamplePlotterMorph category: 'Morphic-Widgets-Extras'!
+!classDefinition: #SamplePlotterMorph category: #'Morphic-Widgets-Extras'!
 BoxedMorph subclass: #SamplePlotterMorph
 	instanceVariableNames: 'domain sampleSequences colors yMax yMin'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras'!
-!classDefinition: 'SamplePlotterMorph class' category: 'Morphic-Widgets-Extras'!
+!classDefinition: 'SamplePlotterMorph class' category: #'Morphic-Widgets-Extras'!
 SamplePlotterMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #TextEditorTest category: 'Morphic-Widgets-Extras-Tests'!
+!classDefinition: #TextEditorTest category: #'Morphic-Widgets-Extras-Tests'!
 TestCase subclass: #TextEditorTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Widgets-Extras-Tests'!
-!classDefinition: 'TextEditorTest class' category: 'Morphic-Widgets-Extras-Tests'!
+!classDefinition: 'TextEditorTest class' category: #'Morphic-Widgets-Extras-Tests'!
 TextEditorTest class
 	instanceVariableNames: ''!
 
@@ -1224,13 +1225,13 @@ measureContents
 	f _ self fontToUse.
 	^((f widthOfString: contents) max: 3)  @ f lineSpacing.! !
 
-!OneLineEditorMorph methodsFor: 'drawing' stamp: 'jmv 4/25/2019 10:10:12'!
+!OneLineEditorMorph methodsFor: 'drawing' stamp: 'KenD 12/7/2023 09:06:36'!
 characterIndexAtPoint: aPoint
 
 	| line block f |
-	f _ self fontToUse.
+	f := self fontToUse.
 	
-	line _ TextLine 
+	line := TextLine 
 		start: 1
 		stop: contents size
 		internalSpaces: 0
@@ -1239,10 +1240,9 @@ characterIndexAtPoint: aPoint
 		rectangle: (0@0 extent: extent);
 		lineHeight: f lineSpacing baseline: f ascent.
 		
-	block _ (CharacterBlockScanner new text: (contents asText font: f))
+	block := (CharacterBlockScanner new text: (contents asText font: f))
 		defaultFont: f;
-		characterBlockAtPoint: aPoint index: nil
-		in: line.
+		characterBlockAtPoint: aPoint 	in: line forCursorPosition: false.
 
 	^ block stringIndex! !
 
