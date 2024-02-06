@@ -1,6 +1,6 @@
 'From Cuis 5.0 of 7 November 2016 [latest update: #3710] on 25 April 2019 at 10:13:22 am'!
 'Description A port of Bouncing Atoms with the atoms in a SystemWindow. A pop-up menu enables selection of options, including an active plot of infection history, also in a SystemWindow.'!
-!provides: 'BouncingAtoms' 1 36!
+!provides: 'BouncingAtoms' 1 37!
 !requires: 'Morphic-Widgets-Extras' 1 0 nil!
 !requires: 'Morphic-Deprecated' 1 0 nil!
 SystemOrganization addCategory: #BouncingAtoms!
@@ -547,7 +547,7 @@ initialize
 
 !BouncingAtomsMorph methodsFor: 'initialization' stamp: 'jmv 6/16/2015 09:58'!
 reset
-	infectionHistory := OrderedCollection new: 500.
+	infectionHistory := OrderedCollection new.
 	infectionHistory add: 0.
 	transmitInfection _ false.
 ! !
@@ -642,7 +642,7 @@ startInfection
 		non do: [:ea | ea infected: false].	"disinfect"
 		non shuffled first infected: true].	"randomly infect one"
 	
-	infectionHistory := OrderedCollection new: 500.
+	infectionHistory := OrderedCollection new.
 	infectionHistory add: 0.
 	transmitInfection := true.
 	self startStepping.
