@@ -1,18 +1,18 @@
-'From Cuis 6.0 [latest update: #5494] on 13 October 2022 at 4:34:13 pm'!
+'From Cuis7.1 [latest update: #6378] on 18 May 2024 at 4:44:11 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 210!
+!provides: 'Morphic-Misc1' 1 211!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
-SystemOrganization addCategory: 'Morphic-Misc1'!
+SystemOrganization addCategory: #'Morphic-Misc1'!
 
 
-!classDefinition: #MorphicMisc1Package category: 'Morphic-Misc1'!
+!classDefinition: #MorphicMisc1Package category: #'Morphic-Misc1'!
 CodePackage subclass: #MorphicMisc1Package
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'MorphicMisc1Package class' category: 'Morphic-Misc1'!
+!classDefinition: 'MorphicMisc1Package class' category: #'Morphic-Misc1'!
 MorphicMisc1Package class
 	instanceVariableNames: ''!
 
@@ -46,134 +46,134 @@ OK to replace?  Y->OK; N->fail. ')
 
 ! !
 MorphicMisc1Package prePackageInstall!
-!classDefinition: #AddedCursors category: 'Morphic-Misc1'!
+!classDefinition: #AddedCursors category: #'Morphic-Misc1'!
 CursorWithMask subclass: #AddedCursors
 	instanceVariableNames: ''
 	classVariableNames: 'ClosedHand OpenHand'
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'AddedCursors class' category: 'Morphic-Misc1'!
+!classDefinition: 'AddedCursors class' category: #'Morphic-Misc1'!
 AddedCursors class
 	instanceVariableNames: ''!
 
-!classDefinition: #PalletLayoutMorph category: 'Morphic-Misc1'!
+!classDefinition: #PalletLayoutMorph category: #'Morphic-Misc1'!
 LayoutMorph subclass: #PalletLayoutMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'PalletLayoutMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'PalletLayoutMorph class' category: #'Morphic-Misc1'!
 PalletLayoutMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #BorderedImageMorph category: 'Morphic-Misc1'!
+!classDefinition: #BorderedImageMorph category: #'Morphic-Misc1'!
 ImageMorph subclass: #BorderedImageMorph
 	instanceVariableNames: 'borderStyle'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'BorderedImageMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedImageMorph class' category: #'Morphic-Misc1'!
 BorderedImageMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #InnerPluggableImagePallet category: 'Morphic-Misc1'!
+!classDefinition: #InnerPluggableImagePallet category: #'Morphic-Misc1'!
 InnerPluggableMorph subclass: #InnerPluggableImagePallet
 	instanceVariableNames: 'nameImageCollection imageFilter imageExtent calculatedExtent'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'InnerPluggableImagePallet class' category: 'Morphic-Misc1'!
+!classDefinition: 'InnerPluggableImagePallet class' category: #'Morphic-Misc1'!
 InnerPluggableImagePallet class
 	instanceVariableNames: ''!
 
-!classDefinition: #PluggableImagePallet category: 'Morphic-Misc1'!
+!classDefinition: #PluggableImagePallet category: #'Morphic-Misc1'!
 PluggableScrollPane subclass: #PluggableImagePallet
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'PluggableImagePallet class' category: 'Morphic-Misc1'!
+!classDefinition: 'PluggableImagePallet class' category: #'Morphic-Misc1'!
 PluggableImagePallet class
 	instanceVariableNames: ''!
 
-!classDefinition: #MorphMessageBox category: 'Morphic-Misc1'!
+!classDefinition: #MorphMessageBox category: #'Morphic-Misc1'!
 WorkspaceWindow subclass: #MorphMessageBox
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'MorphMessageBox class' category: 'Morphic-Misc1'!
+!classDefinition: 'MorphMessageBox class' category: #'Morphic-Misc1'!
 MorphMessageBox class
 	instanceVariableNames: ''!
 
-!classDefinition: #DropTargetMorph category: 'Morphic-Misc1'!
+!classDefinition: #DropTargetMorph category: #'Morphic-Misc1'!
 SystemWindow subclass: #DropTargetMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'DropTargetMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'DropTargetMorph class' category: #'Morphic-Misc1'!
 DropTargetMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #LayoutMorphEditPanel category: 'Morphic-Misc1'!
-EditPanel subclass: #LayoutMorphEditPanel
-	instanceVariableNames: 'directionArea paddingArea separationArea colorArea padRadio padEntry'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'LayoutMorphEditPanel class' category: 'Morphic-Misc1'!
-LayoutMorphEditPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #LayoutSpecEditPanel category: 'Morphic-Misc1'!
-EditPanel subclass: #LayoutSpecEditPanel
-	instanceVariableNames: 'widthArea heightArea paddingArea padRadio padEntry'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'LayoutSpecEditPanel class' category: 'Morphic-Misc1'!
-LayoutSpecEditPanel class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickAColorPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickAColorPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickAColorPallet class' category: 'Morphic-Misc1'!
-PickAColorPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickAIconPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickAIconPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickAIconPallet class' category: 'Morphic-Misc1'!
-PickAIconPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #PickALargerIconPallet category: 'Morphic-Misc1'!
-ImagePickerPanel subclass: #PickALargerIconPallet
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'PickALargerIconPallet class' category: 'Morphic-Misc1'!
-PickALargerIconPallet class
-	instanceVariableNames: ''!
-
-!classDefinition: #BorderedRectMorph category: 'Morphic-Misc1'!
+!classDefinition: #BorderedRectMorph category: #'Morphic-Misc1'!
 BoxedMorph subclass: #BorderedRectMorph
 	instanceVariableNames: 'borderStyle'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'BorderedRectMorph class' category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedRectMorph class' category: #'Morphic-Misc1'!
 BorderedRectMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #LayoutMorphEditPanel category: #'Morphic-Misc1'!
+ProtoObject subclass: #LayoutMorphEditPanel
+	instanceVariableNames: 'directionArea paddingArea separationArea colorArea padRadio padEntry'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'LayoutMorphEditPanel class' category: #'Morphic-Misc1'!
+LayoutMorphEditPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #LayoutSpecEditPanel category: #'Morphic-Misc1'!
+ProtoObject subclass: #LayoutSpecEditPanel
+	instanceVariableNames: 'widthArea heightArea paddingArea padRadio padEntry'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'LayoutSpecEditPanel class' category: #'Morphic-Misc1'!
+LayoutSpecEditPanel class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickAColorPallet category: #'Morphic-Misc1'!
+ProtoObject subclass: #PickAColorPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickAColorPallet class' category: #'Morphic-Misc1'!
+PickAColorPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickAIconPallet category: #'Morphic-Misc1'!
+ProtoObject subclass: #PickAIconPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickAIconPallet class' category: #'Morphic-Misc1'!
+PickAIconPallet class
+	instanceVariableNames: ''!
+
+!classDefinition: #PickALargerIconPallet category: #'Morphic-Misc1'!
+ProtoObject subclass: #PickALargerIconPallet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'PickALargerIconPallet class' category: #'Morphic-Misc1'!
+PickALargerIconPallet class
 	instanceVariableNames: ''!
 
 
@@ -204,6 +204,11 @@ I allow one to drop morphs which make changes to myMorph.
 Each such morph has property DropActionMorph set to true.
 !
 
+!BorderedRectMorph commentStamp: '<historical>' prior: 0!
+I am a BoxedMorph (rect) with a borderStyle.
+
+borderStyle may be #simple, #raised, or #inset.!
+
 !LayoutMorphEditPanel commentStamp: '<historical>' prior: 0!
 I am a simple editor for a LayoutMorph.
 
@@ -233,11 +238,6 @@ See my class side.!
 I am just a way of getting an initializedInstance from the New Morph.. menu..  
 
 See my class side.!
-
-!BorderedRectMorph commentStamp: '<historical>' prior: 0!
-I am a BoxedMorph (rect) with a borderStyle.
-
-borderStyle may be #simple, #raised, or #inset.!
 
 !AddedCursors class methodsFor: 'constants' stamp: 'KenD 1/17/2016 12:02'!
 closedHand
@@ -483,11 +483,6 @@ initialize
 adjustExtent
 	
 	"Nothing to do here"! !
-
-!InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:37:56'!
-getMenu
-
-	^ nil! !
 
 !InnerPluggableImagePallet methodsFor: 'accessing' stamp: 'KenD 9/15/2021 14:39:10'!
 imageExtent
@@ -817,6 +812,43 @@ includeInNewMorphMenu
 openFor: aMorph
 
 	^ self basicNew initialize openFor: aMorph ! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
+borderStyle
+
+	^ borderStyle! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
+borderStyle: aSymbol
+
+	( #(simple raised inset) includes: aSymbol )
+		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
+		
+	borderStyle := aSymbol.
+	self redrawNeeded! !
+
+!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
+drawOn: aCanvas
+	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
+	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
+	
+	aCanvas
+		fillRectangle: self morphLocalBounds
+		color: color
+		borderWidth: borderWidth
+		borderStyleSymbol: borderStyle
+		baseColorForBorder: borderColor.
+
+! !
+
+!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
+initialize
+	"Set my defaults"
+
+	super initialize.
+	borderWidth := 4.
+	borderColor := Color brown.
+	borderStyle := #raised.! !
 
 !LayoutMorphEditPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 13:27:43'!
 buildMorphicWindow
@@ -1865,43 +1897,6 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	
 	^ true! !
-
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
-borderStyle
-
-	^ borderStyle! !
-
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
-borderStyle: aSymbol
-
-	( #(simple raised inset) includes: aSymbol )
-		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
-		
-	borderStyle := aSymbol.
-	self redrawNeeded! !
-
-!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
-drawOn: aCanvas
-	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
-	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
-	
-	aCanvas
-		fillRectangle: self morphLocalBounds
-		color: color
-		borderWidth: borderWidth
-		borderStyleSymbol: borderStyle
-		baseColorForBorder: borderColor.
-
-! !
-
-!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
-initialize
-	"Set my defaults"
-
-	super initialize.
-	borderWidth := 4.
-	borderColor := Color brown.
-	borderStyle := #raised.! !
 
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/3/2019 09:16:03'!
 addCustomMenuItems: aCustomMenu hand: aHandMorph
