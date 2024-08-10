@@ -1,16 +1,16 @@
-'From Cuis 6.0 [latest update: #5494] on 10 October 2022 at 7:40:23 pm'!
+'From Cuis7.1 [latest update: #6578] on 10 August 2024 at 5:01:45 pm'!
 'Description A morph simulating a dice with an arbitrary number of faces, bellow 9.'!
-!provides: 'Dice' 1 2!
-SystemOrganization addCategory: 'Dice'!
+!provides: 'Dice' 1 3!
+SystemOrganization addCategory: #Dice!
 
 
-!classDefinition: #DiceMorph category: 'Dice'!
+!classDefinition: #DiceMorph category: #Dice!
 BoxedMorph subclass: #DiceMorph
 	instanceVariableNames: 'faces value isRolling'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Dice'!
-!classDefinition: 'DiceMorph class' category: 'Dice'!
+!classDefinition: 'DiceMorph class' category: #Dice!
 DiceMorph class
 	instanceVariableNames: ''!
 
@@ -23,14 +23,14 @@ dice := DiceMorph new openInWorld.
 dice startRolling.
 !
 
-!DiceMorph methodsFor: 'drawing' stamp: 'HilaireFernandes 10/28/2017 16:16:36'!
+!DiceMorph methodsFor: 'drawing' stamp: 'hlsf 8/10/2024 16:55:03'!
 drawDotOn: canvas at: aPoint
 	| radius center |
-	center _ aPoint * extent.
-	radius _ extent // 12.
+	center := aPoint * extent.
+	radius := extent // 12.
 	canvas 
-		ellipseCenterX: center x y: center y 
-		rx: radius x ry: radius y
+		ellipseCenter: center
+		radius: radius
 		borderWidth: 0 borderColor: Color black fillColor: Color black! !
 
 !DiceMorph methodsFor: 'drawing' stamp: 'tsl 10/10/2022 19:38:59'!

@@ -1,7 +1,10 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3190] on 20 October 2017 at 9:37:21 pm'!
+'From Cuis7.1 [latest update: #6578] on 10 August 2024 at 5:01:49 pm'!
 'Description A blinking avatar with eyes following the mouse cursor.'!
-!provides: 'Avatar' 1 5!
+!provides: 'Avatar' 1 6!
 !requires: 'Morphic-Widgets-Extras' 1 0 nil!
+SystemOrganization addCategory: #Avatar!
+
+
 !classDefinition: #AvatarMorph category: #Avatar!
 EllipseMorph subclass: #AvatarMorph
 	instanceVariableNames: 'blink'
@@ -20,50 +23,44 @@ AvatarMorph new openInWorld .!
 defaultColor
 	^ Color pink paler paler! !
 
-!AvatarMorph methodsFor: 'drawing' stamp: 'HilaireFernandes 10/20/2017 21:32:20'!
+!AvatarMorph methodsFor: 'drawing' stamp: 'hlsf 8/10/2024 16:55:31'!
 drawIrisOn: canvas at: irisCenter
 	| center radius shiftedDirection |
-	radius _ (extent x min: extent y) // 12.
-	shiftedDirection _ (self activeHand morphPosition - (self externalizeToWorld: irisCenter)) normalized * 5.
-	center _ irisCenter + shiftedDirection.
+	radius := (extent x min: extent y) // 12.
+	shiftedDirection := (self activeHand morphPosition - (self externalizeToWorld: irisCenter)) normalized * 5.
+	center := irisCenter + shiftedDirection.
 	canvas 
-		ellipseCenterX: center x
-		y: center y
-		rx: radius
-		ry:  radius
+		ellipseCenter: center
+		radius: radius asPoint
 		borderWidth:  1 
 		borderColor: Color black
 		fillColor: Color blue! !
 
-!AvatarMorph methodsFor: 'drawing' stamp: 'HilaireFernandes 10/20/2017 20:50:11'!
+!AvatarMorph methodsFor: 'drawing' stamp: 'hlsf 8/10/2024 16:56:09'!
 drawLeftEyeOn: canvas
 	canvas 
-		ellipseCenterX: extent x // 4 
-		y: extent y // 4 
-		rx: extent x // 6
-		ry:  extent y // 6 
+		ellipseCenter: extent // 4
+		radius: extent // 6
 		borderWidth:  3 
 		borderColor: Color black
 		fillColor: Color white.
-	self drawIrisOn: canvas at: (extent x // 4) @ (extent y// 4)! !
+	self drawIrisOn: canvas at: extent // 4! !
 
-!AvatarMorph methodsFor: 'drawing' stamp: 'HilaireFernandes 10/20/2017 21:11:57'!
+!AvatarMorph methodsFor: 'drawing' stamp: 'hlsf 8/10/2024 16:56:48'!
 drawOn: canvas
 	super drawOn: canvas.
 	self drawLeftEyeOn: canvas.
 	self drawRightEyeOn: canvas.
 	"Mouth, no much option to draw it"
-	canvas line: (extent x // 4) @ (extent y * 3 // 4) to: (extent x *3 // 4) @ (extent y * 3 // 4) width: 3 color: Color brown! !
+	canvas line: (extent x // 4) @ (extent y * 3 // 4) to: extent *3 // 4 width: 3 color: Color brown! !
 
-!AvatarMorph methodsFor: 'drawing' stamp: 'HilaireFernandes 10/20/2017 20:51:08'!
+!AvatarMorph methodsFor: 'drawing' stamp: 'hlsf 8/10/2024 16:57:15'!
 drawRightEyeOn: canvas
 	blink
 	ifFalse: [ 
 		canvas 
-			ellipseCenterX: extent x * 3 // 4 
-			y: extent y // 4 
-			rx: extent x // 6
-			ry:  extent y // 6 
+			ellipseCenter: (extent x * 3 // 4) @ (extent y // 4)
+			radius: extent // 6
 			borderWidth:  3 
 			borderColor: Color black
 			fillColor: Color white.
