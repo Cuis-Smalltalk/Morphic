@@ -1,6 +1,6 @@
-'From Cuis7.1 [latest update: #6378] on 18 May 2024 at 4:44:11 pm'!
+'From Cuis7.1 [latest update: #6669] on 2 September 2024 at 8:54:45 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 211!
+!provides: 'Morphic-Misc1' 1 215!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -66,6 +66,16 @@ LayoutMorph subclass: #PalletLayoutMorph
 PalletLayoutMorph class
 	instanceVariableNames: ''!
 
+!classDefinition: #BorderedRectMorph category: #'Morphic-Misc1'!
+BoxedMorph subclass: #BorderedRectMorph
+	instanceVariableNames: 'borderStyle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Morphic-Misc1'!
+!classDefinition: 'BorderedRectMorph class' category: #'Morphic-Misc1'!
+BorderedRectMorph class
+	instanceVariableNames: ''!
+
 !classDefinition: #BorderedImageMorph category: #'Morphic-Misc1'!
 ImageMorph subclass: #BorderedImageMorph
 	instanceVariableNames: 'borderStyle'
@@ -96,16 +106,6 @@ PluggableScrollPane subclass: #PluggableImagePallet
 PluggableImagePallet class
 	instanceVariableNames: ''!
 
-!classDefinition: #MorphMessageBox category: #'Morphic-Misc1'!
-WorkspaceWindow subclass: #MorphMessageBox
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Morphic-Misc1'!
-!classDefinition: 'MorphMessageBox class' category: #'Morphic-Misc1'!
-MorphMessageBox class
-	instanceVariableNames: ''!
-
 !classDefinition: #DropTargetMorph category: #'Morphic-Misc1'!
 SystemWindow subclass: #DropTargetMorph
 	instanceVariableNames: ''
@@ -116,14 +116,14 @@ SystemWindow subclass: #DropTargetMorph
 DropTargetMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #BorderedRectMorph category: #'Morphic-Misc1'!
-BoxedMorph subclass: #BorderedRectMorph
-	instanceVariableNames: 'borderStyle'
+!classDefinition: #MorphMessageBox category: #'Morphic-Misc1'!
+WorkspaceWindow subclass: #MorphMessageBox
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Morphic-Misc1'!
-!classDefinition: 'BorderedRectMorph class' category: #'Morphic-Misc1'!
-BorderedRectMorph class
+!classDefinition: 'MorphMessageBox class' category: #'Morphic-Misc1'!
+MorphMessageBox class
 	instanceVariableNames: ''!
 
 !classDefinition: #LayoutMorphEditPanel category: #'Morphic-Misc1'!
@@ -186,6 +186,11 @@ AddedCursors closedHand activateCursor.!
 !PalletLayoutMorph commentStamp: '<historical>' prior: 0!
 I am a LayoutMorph which allows grabbing (cloning) my submorphs.!
 
+!BorderedRectMorph commentStamp: '<historical>' prior: 0!
+I am a BoxedMorph (rect) with a borderStyle.
+
+borderStyle may be #simple, #raised, or #inset.!
+
 !BorderedImageMorph commentStamp: '<historical>' prior: 0!
 I am an BoxedMorph with a borderStyle.
 
@@ -194,9 +199,6 @@ borderStyle may be #simple, #raised, or #inset!
 !InnerPluggableImagePallet commentStamp: '<historical>' prior: 0!
 I display pick/clone-able images in a PluggableImagePallet which is a PluggableScrollPane!
 
-!MorphMessageBox commentStamp: '<historical>' prior: 0!
-I am a Workspace specialized to send a message to a Morph.!
-
 !DropTargetMorph commentStamp: '<historical>' prior: 0!
 I am a transcient drop target for a morph.
 
@@ -204,10 +206,8 @@ I allow one to drop morphs which make changes to myMorph.
 Each such morph has property DropActionMorph set to true.
 !
 
-!BorderedRectMorph commentStamp: '<historical>' prior: 0!
-I am a BoxedMorph (rect) with a borderStyle.
-
-borderStyle may be #simple, #raised, or #inset.!
+!MorphMessageBox commentStamp: '<historical>' prior: 0!
+I am a Workspace specialized to send a message to a Morph.!
 
 !LayoutMorphEditPanel commentStamp: '<historical>' prior: 0!
 I am a simple editor for a LayoutMorph.
@@ -391,7 +391,7 @@ allowsSubmorphDrag
 
 	^ true! !
 
-!PalletLayoutMorph methodsFor: 'layout' stamp: 'KenD 11/7/2021 14:14:42'!
+!PalletLayoutMorph methodsFor: 'layout' stamp: 'KenD 9/2/2024 20:27:30'!
 shrinkWrap
 	"Resize self to minimally contain submorphs with specified separation"
 	
@@ -402,12 +402,12 @@ shrinkWrap
 			width := sep + 
 				(self submorphs 
 					inject: 0 
-					into: [ :subTotal :m |  subTotal + (m morphExtentInOwner x) + sep ]).
+					into: [ :subTotal :m |  subTotal + (m extentInOwner x) + sep ]).
 			sep := 2 * self ySeparation.
 			height := 
 				(self submorphs 
 					inject: 10 
-					into: [ :maxHeight :m |  maxHeight max: (m morphExtentInOwner y) + sep ]).
+					into: [ :maxHeight :m |  maxHeight max: (m extentInOwner y) + sep ]).
 			self layoutSpec: 
 					(LayoutSpec 
 							fixedWidth: width
@@ -419,12 +419,12 @@ shrinkWrap
 			width := 
 				(self submorphs 
 					inject: 10 
-					into: [ :maxWidth :m |  maxWidth max: (m morphExtentInOwner x) + sep ]).
+					into: [ :maxWidth :m |  maxWidth max: (m extentInOwner x) + sep ]).
 			sep := self ySeparation.
 			height := sep + 
 				(self submorphs 
 					inject: 0 
-					into: [ :subTotal :m |  subTotal + (m morphExtentInOwner y) + sep ]).
+					into: [ :subTotal :m |  subTotal + (m extentInOwner y) + sep ]).
 			self layoutSpec: 
 					(LayoutSpec 
 							fixedWidth: width 
@@ -440,6 +440,43 @@ includeInNewMorphMenu
 	"Return true for all classes that can be instantiated from the menu"
 	^ false! !
 
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
+borderStyle
+
+	^ borderStyle! !
+
+!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
+borderStyle: aSymbol
+
+	( #(simple raised inset) includes: aSymbol )
+		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
+		
+	borderStyle := aSymbol.
+	self redrawNeeded! !
+
+!BorderedRectMorph methodsFor: 'drawing' stamp: 'jmv 9/2/2024 20:37:04'!
+drawOn: aCanvas
+	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
+	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
+	
+	aCanvas
+		fillRectangle: self localBounds
+		color: color
+		borderWidth: borderWidth
+		borderStyleSymbol: borderStyle
+		baseColorForBorder: borderColor.
+
+! !
+
+!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
+initialize
+	"Set my defaults"
+
+	super initialize.
+	borderWidth := 4.
+	borderColor := Color brown.
+	borderStyle := #raised.! !
+
 !BorderedImageMorph methodsFor: 'accessing' stamp: 'KenD 4/16/2021 12:49:08'!
 borderStyle
 
@@ -453,7 +490,7 @@ borderStyle: aSymbol
 		
 	borderStyle := aSymbol! !
 
-!BorderedImageMorph methodsFor: 'drawing' stamp: 'KenD 11/7/2021 14:16:33'!
+!BorderedImageMorph methodsFor: 'drawing' stamp: 'KenD 9/2/2024 20:27:10'!
 drawOn: aCanvas
 	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
 	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
@@ -463,7 +500,7 @@ drawOn: aCanvas
 		at: borderWidth @ borderWidth.
 
 	aCanvas "The border is drawn around the image."
-		frameRectangle: (`0@0`  extent: self morphExtentInOwner) 
+		frameRectangle: (`0@0`  extent: self extentInOwner) 
 		color: borderColor 
 		borderWidth: borderWidth 
 		borderStyleSymbol: borderStyle.
@@ -515,7 +552,7 @@ nameImageCollection
 
 	^ nameImageCollection ! !
 
-!InnerPluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 11/7/2021 14:16:42'!
+!InnerPluggableImagePallet methodsFor: 'initialization' stamp: 'KenD 9/2/2024 20:27:14'!
 collection: aNameImageCollection filter: imageTransducer
 
 	| numImages maxWidth numAcross numDown spacedExtent |
@@ -529,7 +566,7 @@ collection: aNameImageCollection filter: imageTransducer
 		ifTrue: [Error signal: 'Collection too large to display safely'].
 	"@@FIXME: assumes all images same size@@"
 	self imageExtent: 
-		(self processImage: (aNameImageCollection anyOne value)) morphExtentInOwner.
+		(self processImage: (aNameImageCollection anyOne value)) extentInOwner.
 
 	maxWidth := (DisplayScreen actualScreenSize x) // 1.2.
 	spacedExtent := imageExtent + self spaceWidth.
@@ -648,37 +685,6 @@ innerMorphClass
 
 	^ InnerPluggableImagePallet! !
 
-!MorphMessageBox methodsFor: 'initialization' stamp: 'KenD 9/30/2016 15:28:45'!
-initialize
-
-	super initialize.
-	self morphExtent: self minimumExtent.! !
-
-!MorphMessageBox methodsFor: 'geometry' stamp: 'KenD 9/30/2016 17:06:54'!
-minimumExtent
-
-	^ 700@(self boxExtent y * 2.3)! !
-
-!MorphMessageBox class methodsFor: 'instance creation' stamp: 'KenD 9/30/2016 16:59:14'!
-openForMorph: aMorph
-"
-	MorphMessageBox openForMorph: EllipseMorph initializedInstance.
-"
-	| morphName win work textModelMorph |
-	morphName := aMorph nameForWorkspace.
-	work := Workspace new contents: ''.
-	win := self editText: work label: 'Message for ', morphName wrap: false.
-	textModelMorph := win layoutMorph submorphs at: 1.
-	win morphExtent: win minimumExtent.
-	textModelMorph editor afterSelectionInsertAndSelect: morphName , ' '; 
-	afterSelectionInsertAndSelect: ' '.
-		"deselectAndPlaceCursorAt: (morphName size + 2) ."
-	(win model  bindingOf: morphName) value: aMorph.
-	win changed: #actualContents.
-	win activateAndSendTopToBack: true.
-	self runningWorld activeHand newMouseFocus: win.
-	^win! !
-
 !DropTargetMorph methodsFor: 'dropping/grabbing' stamp: 'KenD 12/3/2013 19:33'!
 allowsMorphDrop
 	"Answer whether we accept dropping morphs. By default answer false."
@@ -725,7 +731,7 @@ initialize
 
 ! !
 
-!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 11/7/2021 14:19:28'!
+!DropTargetMorph methodsFor: 'initialization' stamp: 'KenD 9/2/2024 20:39:29'!
 openFor: aMorph
 
 	self targetMorph: aMorph.
@@ -735,11 +741,11 @@ openFor: aMorph
 	"Nota Bene: must set my extent before asking about label"
 
 	self 
-		morphExtent: aMorph morphExtentInOwner + self boxExtent;
+		morphExtent: aMorph extentInOwner + self boxExtent;
 		setLabel: ('DropTarget: ', (aMorph printStringLimitedTo: 64));
 		openInWorld; "Ignores settings; RESET them!!!!"
-		morphPosition: aMorph morphPositionInWorld - self boxExtent ;
-		morphExtent: aMorph morphExtentInOwner + self boxExtent;
+		morphPosition: aMorph positionInWorld - self boxExtent ;
+		morphExtent: aMorph extentInOwner + self boxExtent;
 		color: (Color teal alpha: 0.3);
 		refreshSubmorphs;
 		yourself
@@ -813,42 +819,36 @@ openFor: aMorph
 
 	^ self basicNew initialize openFor: aMorph ! !
 
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 4/29/2021 14:08:41'!
-borderStyle
-
-	^ borderStyle! !
-
-!BorderedRectMorph methodsFor: 'accessing' stamp: 'KenD 5/6/2021 06:03:10'!
-borderStyle: aSymbol
-
-	( #(simple raised inset) includes: aSymbol )
-		ifFalse: [ self error: 'Border Style must be one of #simple #raised or #inset; got: ', aSymbol printString ].
-		
-	borderStyle := aSymbol.
-	self redrawNeeded! !
-
-!BorderedRectMorph methodsFor: 'drawing' stamp: 'KenD 4/29/2021 14:13:08'!
-drawOn: aCanvas
-	"A canvas is already set with a proper transformation from our coordinates to those of the Canvas target."
-	"If you redefine this method in a subclass, please take a look at the comment at #isOpaqueMorph"
-	
-	aCanvas
-		fillRectangle: self morphLocalBounds
-		color: color
-		borderWidth: borderWidth
-		borderStyleSymbol: borderStyle
-		baseColorForBorder: borderColor.
-
-! !
-
-!BorderedRectMorph methodsFor: 'initialization' stamp: 'KenD 4/29/2021 14:09:45'!
+!MorphMessageBox methodsFor: 'initialization' stamp: 'KenD 9/30/2016 15:28:45'!
 initialize
-	"Set my defaults"
 
 	super initialize.
-	borderWidth := 4.
-	borderColor := Color brown.
-	borderStyle := #raised.! !
+	self morphExtent: self minimumExtent.! !
+
+!MorphMessageBox methodsFor: 'geometry' stamp: 'KenD 9/30/2016 17:06:54'!
+minimumExtent
+
+	^ 700@(self boxExtent y * 2.3)! !
+
+!MorphMessageBox class methodsFor: 'instance creation' stamp: 'KenD 9/30/2016 16:59:14'!
+openForMorph: aMorph
+"
+	MorphMessageBox openForMorph: EllipseMorph initializedInstance.
+"
+	| morphName win work textModelMorph |
+	morphName := aMorph nameForWorkspace.
+	work := Workspace new contents: ''.
+	win := self editText: work label: 'Message for ', morphName wrap: false.
+	textModelMorph := win layoutMorph submorphs at: 1.
+	win morphExtent: win minimumExtent.
+	textModelMorph editor afterSelectionInsertAndSelect: morphName , ' '; 
+	afterSelectionInsertAndSelect: ' '.
+		"deselectAndPlaceCursorAt: (morphName size + 2) ."
+	(win model  bindingOf: morphName) value: aMorph.
+	win changed: #actualContents.
+	win activateAndSendTopToBack: true.
+	self runningWorld activeHand newMouseFocus: win.
+	^win! !
 
 !LayoutMorphEditPanel methodsFor: 'GUI building' stamp: 'KenD 5/25/2020 13:27:43'!
 buildMorphicWindow
@@ -1912,15 +1912,6 @@ addCustomMenuItems: aCustomMenu hand: aHandMorph
 			 ]
 		ifFalse: [ aCustomMenu add: 'edit my layoutSpec' action: #editMyLayoutSpec ]! !
 
-!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 10/12/2019 14:40:40'!
-boxExtent
-	"answer the extent to use in all the buttons. 
-	 
-	the label height is used to be proportional to the fonts preferences"
-	| e |
-	e _ Preferences windowTitleFont lineSpacing.
-	^e@e! !
-
 !Morph methodsFor: '*morphic-misc1' stamp: 'KenD 9/17/2016 10:08:23'!
 colorizeLayouts
 	"debug"
@@ -1953,7 +1944,7 @@ editMyLayoutSpec
 	self layoutSpec ifNil: [ self layoutSpec: LayoutSpec keepMorphExtent ].
 	LayoutSpecEditPanel open: self layoutSpec! !
 
-!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 11/7/2021 14:13:03'!
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 9/2/2024 20:39:20'!
 frameLayouts: colors depth: depth
 	"Display frames around LayoutMorphs, then erase"
 	
@@ -1966,14 +1957,14 @@ frameLayouts: colors depth: depth
 		frame := FrameMorph new 
 			:: borderColor: (colors at: colorIndex); 
 			borderWidth: 2;
-			morphExtent: self morphExtentInOwner;
-			morphPosition: self morphPositionInWorld;
+			morphExtent: self extentInOwner;
+			morphPosition: self positionInWorld;
 			yourself.
 		frame openInWorld.
 		self submorphsDo: [ :m | m frameLayouts: colors depth: depth + 1 ].
 	].! !
 
-!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 11/7/2021 14:13:12'!
+!Morph methodsFor: '*morphic-misc1' stamp: 'KenD 9/2/2024 20:39:25'!
 frameNonLayouts: colors depth: depth
 	"Display frames around LayoutMorphs, then erase"
 	
@@ -1986,8 +1977,8 @@ frameNonLayouts: colors depth: depth
 		frame := FrameMorph new 
 			:: borderColor: (colors at: colorIndex); 
 			borderWidth: 2;
-			morphExtent: self morphExtentInOwner;
-			morphPosition: self morphPositionInWorld;
+			morphExtent: self extentInOwner;
+			morphPosition: self positionInWorld;
 			yourself.
 		frame openInWorld.
 		self submorphsDo: [ :m | m frameNonLayouts: colors depth: depth + 1 ].

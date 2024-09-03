@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #4967] on 7 November 2021 at 2:34:34 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 48!
+!provides: 'Morphic-ColorEditor' 1 49!
 !requires: 'Cuis-Base' 50 4890 50 5000!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'CSS3-NamedColors' 1 1 nil!
@@ -1585,7 +1585,7 @@ colorSelectionMenu
 		ifTrue: [ | pickerPanel savedExtent |
 			ColorPallet perform: ( choicesSetter at: selectedIndex ).
 			pickerPanel := ImagePickerPanel namedColors. 
-			savedExtent := pickerPanel morphExtentInOwner. 
+			savedExtent := pickerPanel extentInOwner. 
 			pickerPanel openInWorld. "#openInWorld resets morphExtent!!"
 			pickerPanel morphExtent: savedExtent. 
 		].

@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #4967] on 7 November 2021 at 2:34:29 pm'!
 'Description MetaProperties describe and define public visual properties of Morphs.  They are used by a PropertyEditor.'!
-!provides: 'Morph-MetaProperties' 1 95!
+!provides: 'Morph-MetaProperties' 1 96!
 !requires: 'Cuis-Base' 50 4856 50 5000!
 !requires: 'Graphics-Files-Additional' 1 18 nil!
 !requires: 'Morphic-ColorEditor' 1 39 nil!
@@ -310,8 +310,8 @@ initializeDictionaries
 								label: (menuItem name asString) ::
 								model: menuItem;
 								openInWorld;
-								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtentInOwner;
+								morphPosition: morph positionInWorld 
+												+ morph extentInOwner;
 							    fitInWorld
 							 ]).
 	props at: #acceptsSymbol 
@@ -323,8 +323,8 @@ initializeDictionaries
 								label: (menuItem name asString) ::
 								model: menuItem;
 								openInWorld;
-								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtentInOwner;
+								morphPosition: morph positionInWorld 
+												+ morph extentInOwner;
 								fitInWorld ]).
 	props at: #acceptsCharacter 
 			put: (MetaProperty 
@@ -335,8 +335,8 @@ initializeDictionaries
 								label: (menuItem name asString) ::
 								model: menuItem;
 								openInWorld;
-								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtentInOwner; fitInWorld
+								morphPosition: morph positionInWorld 
+												+ morph extentInOwner; fitInWorld
 						]).
 	props at: #acceptsNumber put: (MetaProperty kind: Number).
 	props at: #acceptsColor 
@@ -352,8 +352,8 @@ initializeDictionaries
 								label: (menuItem name asString) ::
 								model: menuItem;
 								openInWorld;
-								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtentInOwner; fitInWorld ]).
+								morphPosition: morph positionInWorld 
+												+ morph extentInOwner; fitInWorld ]).
 	props at: #acceptsRectangle put: (MetaProperty kind: Rectangle).
 	props at: #acceptsBoolean put: (MetaProperty kind: Boolean).
 	props at: #acceptsMorph put: (MetaProperty kind: Morph).
@@ -499,8 +499,8 @@ addToInitialDictionaries
 								label: (menuItem name asString) ::
 								model: menuItem;
 								openInWorld;
-								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtentInOwner
+								morphPosition: morph positionInWorld 
+												+ morph extentInOwner
 								; fitInWorld ]).
 	props at: #acceptsPositiveNumber put: (MetaPropertyFrom kind: Number minValue: 0).
 	props at: #acceptsPositiveInteger
@@ -513,8 +513,8 @@ addToInitialDictionaries
 								label: (menuItem name asString) ::
 								model: menuItem;
 								openInWorld;
-								morphPosition: morph morphPositionInWorld 
-												+ morph morphExtentInOwner;
+								morphPosition: morph positionInWorld 
+												+ morph extentInOwner;
 								fitInWorld ]).
 	! !
 
@@ -1000,7 +1000,7 @@ adjustSubmorphsLayout
 
 	| calculatedExtent |
 	super adjustSubmorphsLayout.
-	calculatedExtent := self morphExtentInOwner.
+	calculatedExtent := self extentInOwner.
 	self morphExtent: (calculatedExtent x max: self minItemWidth) @ calculatedExtent y.
 	self titleMorph morphExtent: (calculatedExtent x max: self minItemWidth) @ self titleMorph morphHeight.
 ! !
@@ -1197,7 +1197,7 @@ refreshView
 	self showAllIvars  ifTrue: [ self addIVarsDisplay ].
 	self showAllProps ifTrue: [ self addOrdinaryPropertiesDisplay ].
 	
-	self titleMorph morphExtent: (self titleMorph morphExtentInOwner x) @ (Preferences windowTitleFont lineSpacing).
+	self titleMorph morphExtent: (self titleMorph extentInOwner x) @ (Preferences windowTitleFont lineSpacing).
 	self adjustSubmorphsLayout;
 		yourself! !
 
@@ -1399,8 +1399,8 @@ showReject: aMorph
 	"Draw and erase a red X"
 
 	| leftStroke rightStroke mPos mExtent |
-	mPos := aMorph morphPositionInWorld.
-	mExtent := aMorph morphExtentInOwner.
+	mPos := aMorph positionInWorld.
+	mExtent := aMorph extentInOwner.
 	leftStroke   := LineMorph 
 						startPoint: mPos - (10@10) 
 						endPoint: (mPos + mExtent + (10@10)) 
@@ -1620,8 +1620,8 @@ showAccept: aMorph
 	"Draw and erase a green box"
 
 	| hilightMorph mPos mExtent |
-	mPos     := aMorph morphPositionInWorld.
-	mExtent := aMorph morphExtentInOwner.
+	mPos     := aMorph positionInWorld.
+	mExtent := aMorph extentInOwner.
 	hilightMorph := FrameMorph new.
 	hilightMorph   borderWidth: 6;
 					borderColor: Color green;
@@ -1637,8 +1637,8 @@ showReject: aMorph
 	"Draw and erase a red X"
 
 	| leftStroke rightStroke mPos mExtent |
-	mPos := aMorph morphPositionInWorld.
-	mExtent := aMorph morphExtentInOwner.
+	mPos := aMorph positionInWorld.
+	mExtent := aMorph extentInOwner.
 	"Show a red X"
 	leftStroke   := LineMorph 
 						startPoint: mPos - (10@10) 
@@ -2096,7 +2096,7 @@ morphForDrag
 openVisualPropertyEditor
 
 	(VisualPropertyEditor forMorph: self) openInWorld ::
-		morphPositionInWorld: self morphPositionInWorld
+		positionInWorld: self positionInWorld
 								  + (self displayFullBounds extent // 2) ;
 		removeHalo ! !
 

@@ -1,6 +1,6 @@
-'From Cuis7.1 [latest update: #6578] on 10 August 2024 at 4:51:28 pm'!
+'From Cuis7.1 [latest update: #6669] on 2 September 2024 at 8:25:47 pm'!
 'Description A port of Bouncing Atoms with the atoms in a SystemWindow. A pop-up menu enables selection of options, including an active plot of infection history, also in a SystemWindow.'!
-!provides: 'BouncingAtoms' 1 38!
+!provides: 'BouncingAtoms' 1 39!
 !requires: 'Morphic-Widgets-Extras' 1 0 nil!
 !requires: 'Morphic-Deprecated' 1 0 nil!
 SystemOrganization addCategory: #BouncingAtoms!
@@ -81,16 +81,16 @@ A heater atom or a cooler atom, its temperature determined by the sign of its ve
 !InfectionGraph commentStamp: 'dhn 5/11/2016 15:55' prior: 0!
 Normalize the number of infected atoms, treat them as a time series, and plot them in a graph.!
 
-!BouncingAtomsMorph methodsFor: 'other' stamp: 'jmv 6/16/2015 10:02'!
+!BouncingAtomsMorph methodsFor: 'other' stamp: 'jmv 9/2/2024 20:25:34'!
 addAtoms: n
 	"Add a bunch of new atoms."
 
-	nAtoms _ n.
+	nAtoms := n.
 	n timesRepeat: [
 		| a |
-		a _ AtomMorph new.
+		a := AtomMorph new.
 		self addMorph: a.
-		a randomPositionIn: self morphLocalBounds maxVelocity: 10.].
+		a randomPositionIn: self localBounds maxVelocity: 10.].
 	historyWindow ifNotNil: [historyWindow yScaleFactor: n].
 	self stopStepping.
 ! !
@@ -216,19 +216,19 @@ drawAsRect
 handlesMouseDown: aMouseButtonEvent
 	^ true! !
 
-!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 6/3/2016 19:45'!
+!BouncingAtomsMorph methodsFor: 'menu' stamp: 'jmv 9/2/2024 20:25:38'!
 installHeaterCooler
 	"Replace a regular atom with a heater/cooler atom"
 	| non x |
 
-	non _ self submorphs select: [:a | (a hasProperty: #velocityDelta) not].
+	non := self submorphs select: [:a | (a hasProperty: #velocityDelta) not].
 	non ifNotEmpty: [	
 		
 		non shuffled first delete.	"Take away an atom"
-		nAtoms _ nAtoms - 1.
+		nAtoms := nAtoms - 1.
 
-		x _ HeaterCoolerAtom new.
-		x randomPositionIn: self morphLocalBounds maxVelocity: 10.
+		x := HeaterCoolerAtom new.
+		x randomPositionIn: self localBounds maxVelocity: 10.
 		self addMorph: x]	"Add an atom"
 ! !
 
@@ -460,17 +460,17 @@ randomPositionIn: aRectangle maxVelocity: maxVelocity
 		(maxVelocity - (2 * maxVelocity) atRandom).
 ! !
 
-!AtomMorph methodsFor: 'drawing' stamp: 'jmv 6/16/2015 10:02'!
+!AtomMorph methodsFor: 'drawing' stamp: 'jmv 9/2/2024 20:25:42'!
 drawOn: aCanvas
 	"Note: Set 'drawAsRect' to true to make the atoms draw faster. When testing the speed of other aspects of Morphic, such as its damage handling efficiency for large numbers of atoms, it is useful to make drawing faster."
 
 	| drawAsRect |
-	drawAsRect _ owner valueOfProperty: #drawAsRect.
+	drawAsRect := owner valueOfProperty: #drawAsRect.
 	drawAsRect 
 		ifNil: [super drawOn: aCanvas]
 		ifNotNil: [
 			drawAsRect 	"rectangles are faster to draw"
-				ifTrue: [aCanvas fillRectangle: self morphLocalBounds color: color]
+				ifTrue: [aCanvas fillRectangle: self localBounds color: color]
 				ifFalse: [super drawOn: aCanvas]]! !
 
 !AtomMorph methodsFor: 'accessing'!

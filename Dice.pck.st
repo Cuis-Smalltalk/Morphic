@@ -1,6 +1,6 @@
-'From Cuis7.1 [latest update: #6578] on 10 August 2024 at 5:01:45 pm'!
+'From Cuis7.1 [latest update: #6669] on 2 September 2024 at 8:24:38 pm'!
 'Description A morph simulating a dice with an arbitrary number of faces, bellow 9.'!
-!provides: 'Dice' 1 3!
+!provides: 'Dice' 1 4!
 SystemOrganization addCategory: #Dice!
 
 
@@ -33,10 +33,10 @@ drawDotOn: canvas at: aPoint
 		radius: radius
 		borderWidth: 0 borderColor: Color black fillColor: Color black! !
 
-!DiceMorph methodsFor: 'drawing' stamp: 'tsl 10/10/2022 19:38:59'!
+!DiceMorph methodsFor: 'drawing' stamp: 'tsl 9/2/2024 20:23:51'!
 drawOn: canvas
 	canvas 
-		roundRect: self morphLocalBounds 
+		roundRect: self localBounds 
 		color: color 
 		radius: 10	.
 	(self perform: ('face', value asString) asSymbol) do: [:eachPoint |
