@@ -1,6 +1,6 @@
 'From Cuis7.1 [latest update: #6715] on 12 September 2024 at 12:33:44 pm'!
 'Description Various useful widgets'!
-!provides: 'Morphic-Widgets-Extras' 1 44!
+!provides: 'Morphic-Widgets-Extras' 1 45!
 !requires: 'Cuis-Base' 60 6114 nil!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
@@ -17,7 +17,7 @@ LimitedHeightTextMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #DragAndDropAreaMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #DragAndDropAreaMorph
+BorderedBoxMorph subclass: #DragAndDropAreaMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -37,7 +37,7 @@ PartsBinMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #EllipseMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #EllipseMorph
+BorderedBoxMorph subclass: #EllipseMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -57,7 +57,7 @@ HandleMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FrameRateMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #FrameRateMorph
+BorderedBoxMorph subclass: #FrameRateMorph
 	instanceVariableNames: 'lastStepDelta meanStepDelta'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -67,7 +67,7 @@ FrameRateMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FunctionGraphMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #FunctionGraphMorph
+BorderedBoxMorph subclass: #FunctionGraphMorph
 	instanceVariableNames: 'xMin xMax yMin yMax functions colors yRangeInvalid'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -77,7 +77,7 @@ FunctionGraphMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #MagnifierMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #MagnifierMorph
+BorderedBoxMorph subclass: #MagnifierMorph
 	instanceVariableNames: 'magnification trackPointer lastPos srcExtent auxCanvas magnifiedForm'
 	classVariableNames: 'RecursionLock'
 	poolDictionaries: ''
@@ -87,7 +87,7 @@ MagnifierMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #MinimalStringMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #MinimalStringMorph
+BorderedBoxMorph subclass: #MinimalStringMorph
 	instanceVariableNames: 'font emphasis contents'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -97,7 +97,7 @@ MinimalStringMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #OneLineEditorMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #OneLineEditorMorph
+BorderedBoxMorph subclass: #OneLineEditorMorph
 	instanceVariableNames: 'font emphasis contents editor showTextCursor pauseBlinking textCursorRect keyboardFocusWatcher crAction'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -107,7 +107,7 @@ OneLineEditorMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #SamplePlotterMorph category: #'Morphic-Widgets-Extras'!
-BoxedMorph subclass: #SamplePlotterMorph
+BorderedBoxMorph subclass: #SamplePlotterMorph
 	instanceVariableNames: 'domain sampleSequences colors yMax yMin'
 	classVariableNames: ''
 	poolDictionaries: ''

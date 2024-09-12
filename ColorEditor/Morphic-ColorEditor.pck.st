@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #4967] on 7 November 2021 at 2:34:34 pm'!
 'Description Color Editor/Picker'!
-!provides: 'Morphic-ColorEditor' 1 49!
+!provides: 'Morphic-ColorEditor' 1 50!
 !requires: 'Cuis-Base' 50 4890 50 5000!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'CSS3-NamedColors' 1 1 nil!
@@ -974,7 +974,7 @@ colorPane: aColorPaneMorph
 initialize
 
 	super initialize.
-	sliderMorph := BoxedMorph new.
+	sliderMorph := BorderedBoxMorph new.
 	sliderMorph 
 		color: Color transparent;
 		borderColor: Color black;

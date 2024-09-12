@@ -1,6 +1,6 @@
 'From Cuis7.1 [latest update: #6669] on 2 September 2024 at 8:54:45 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 215!
+!provides: 'Morphic-Misc1' 1 216!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -67,7 +67,7 @@ PalletLayoutMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #BorderedRectMorph category: #'Morphic-Misc1'!
-BoxedMorph subclass: #BorderedRectMorph
+BorderedBoxMorph subclass: #BorderedRectMorph
 	instanceVariableNames: 'borderStyle'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -187,12 +187,12 @@ AddedCursors closedHand activateCursor.!
 I am a LayoutMorph which allows grabbing (cloning) my submorphs.!
 
 !BorderedRectMorph commentStamp: '<historical>' prior: 0!
-I am a BoxedMorph (rect) with a borderStyle.
+I am a BorderedBoxMorph (rect) with a borderStyle.
 
 borderStyle may be #simple, #raised, or #inset.!
 
 !BorderedImageMorph commentStamp: '<historical>' prior: 0!
-I am an BoxedMorph with a borderStyle.
+I am an BorderedBoxMorph with a borderStyle.
 
 borderStyle may be #simple, #raised, or #inset!
 

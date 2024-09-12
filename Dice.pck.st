@@ -1,11 +1,11 @@
 'From Cuis7.1 [latest update: #6669] on 2 September 2024 at 8:24:38 pm'!
 'Description A morph simulating a dice with an arbitrary number of faces, bellow 9.'!
-!provides: 'Dice' 1 4!
+!provides: 'Dice' 1 5!
 SystemOrganization addCategory: #Dice!
 
 
 !classDefinition: #DiceMorph category: #Dice!
-BoxedMorph subclass: #DiceMorph
+BorderedBoxMorph subclass: #DiceMorph
 	instanceVariableNames: 'faces value isRolling'
 	classVariableNames: ''
 	poolDictionaries: ''

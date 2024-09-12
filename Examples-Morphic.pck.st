@@ -1,13 +1,13 @@
 'From Cuis 6.0 [latest update: #5392] on 22 July 2022 at 1:43:42 pm'!
 'Description Various Morphs for study and playtime'!
-!provides: 'Examples-Morphic' 1 4!
+!provides: 'Examples-Morphic' 1 5!
 !requires: 'Cuis-Base' 60 5392 nil!
 !requires: 'Graphics-Files-Additional' 1 24 nil!
 SystemOrganization addCategory: 'Examples-Morphic'!
 
 
 !classDefinition: #FrameRateMorph category: 'Examples-Morphic'!
-BoxedMorph subclass: #FrameRateMorph
+BorderedBoxMorph subclass: #FrameRateMorph
 	instanceVariableNames: 'lastStepDelta meanStepDelta'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -17,7 +17,7 @@ FrameRateMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #FunctionGraphMorph category: 'Examples-Morphic'!
-BoxedMorph subclass: #FunctionGraphMorph
+BorderedBoxMorph subclass: #FunctionGraphMorph
 	instanceVariableNames: 'xMin xMax yMin yMax functions colors yRangeInvalid'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -27,7 +27,7 @@ FunctionGraphMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #MagnifierMorph category: 'Examples-Morphic'!
-BoxedMorph subclass: #MagnifierMorph
+BorderedBoxMorph subclass: #MagnifierMorph
 	instanceVariableNames: 'magnification trackPointer lastPos srcExtent auxCanvas magnifiedForm'
 	classVariableNames: 'RecursionLock'
 	poolDictionaries: ''
@@ -677,7 +677,7 @@ bouncingBallExample    "Bounces off walls of container"
 "
 	
 	| morphClass morph animator |
-	morphClass := (Smalltalk at: #EllipseMorph ifAbsent: [BoxedMorph]).
+	morphClass := (Smalltalk at: #EllipseMorph ifAbsent: [BorderedBoxMorph]).
 	morph := morphClass initializedInstance openInWorld.
 	animator := Animator
 						 actor: morph 
@@ -692,7 +692,7 @@ colorCyclingExample  "Color Cycling"
 	self colorCyclingExample.  
 "
 	| morph colors animator |
-	morph := BoxedMorph initializedInstance.
+	morph := BorderedBoxMorph initializedInstance.
 	morph borderWidth: 6;
 		      morphPosition: 100@200.
 	colors := { Color green. Color red. Color blue. Color yellow.  }.
@@ -713,7 +713,7 @@ composedActionExample  "Compose actions:  grow&shring + path"
 	Animator stopStepping.
 "
 	| morph actions animator |
-	morph := BoxedMorph initializedInstance.
+	morph := BorderedBoxMorph initializedInstance.
 	morph morphPosition: 120@120;
 	 		 openInWorld.
 	actions := { 
@@ -736,7 +736,7 @@ composedActionExample1  "Compose actions:  grow&shring + path"
 	Animator stopStepping.
 "
 	| morph actions animator |
-	morph := BoxedMorph initializedInstance.
+	morph := BorderedBoxMorph initializedInstance.
 	morph morphPosition: 120@120;
 	 		 openInWorld.
 	actions := { 
@@ -759,7 +759,7 @@ growAndShrinkExample    "Grow &Shrink"
 	Animator stopStepping.
 "
 	| morph animator |
-	morph := BoxedMorph initializedInstance openInWorld.
+	morph := BorderedBoxMorph initializedInstance openInWorld.
 	morph morphPosition: 200 @ 100.
 	animator := Animator
 				actor: morph 
