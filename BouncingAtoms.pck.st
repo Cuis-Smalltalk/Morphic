@@ -1,6 +1,6 @@
-'From Cuis7.1 [latest update: #6669] on 2 September 2024 at 8:25:47 pm'!
+'From Cuis7.1 [latest update: #6715] on 12 September 2024 at 12:25:59 pm'!
 'Description A port of Bouncing Atoms with the atoms in a SystemWindow. A pop-up menu enables selection of options, including an active plot of infection history, also in a SystemWindow.'!
-!provides: 'BouncingAtoms' 1 39!
+!provides: 'BouncingAtoms' 1 40!
 !requires: 'Morphic-Widgets-Extras' 1 0 nil!
 !requires: 'Morphic-Deprecated' 1 0 nil!
 SystemOrganization addCategory: #BouncingAtoms!
@@ -256,11 +256,11 @@ pauseResume
 	
 	resume _ resume not! !
 
-!BouncingAtomsMorph methodsFor: 'menu' stamp: 'BAP 8/4/2024 22:11:36'!
+!BouncingAtomsMorph methodsFor: 'menu' stamp: 'jmv 9/12/2024 12:25:33'!
 setAtomCount
 
 	| countString count |
-	countString := FillInTheBlankMorph 
+	countString := StringRequestMorph 
 		request: 'Number of atoms?' 
 		initialAnswer: self submorphCount printString.
 	countString isEmpty ifTrue: [^ self].
@@ -538,17 +538,17 @@ defaultColor
 		ifTrue: [^ Color white ]
 		ifFalse: [^ Color lightRed]]! !
 
-!HeaterCoolerAtom methodsFor: 'initialization' stamp: 'dhn 10/7/2015 18:49'!
+!HeaterCoolerAtom methodsFor: 'initialization' stamp: 'jmv 9/12/2024 12:25:37'!
 initialize
 	| f x |
-	f _ FillInTheBlankMorph
+	f := StringRequestMorph
 		request: '-100 < factor < 100 % Cooler/Hotter' 
 		initialAnswer: '-10'.
-	x _ f asNumber.
+	x := f asNumber.
 	(x > -100 and: x < 100) 
 		ifTrue: [self setProperty: #velocityDelta toValue: x]
 		ifFalse: [self setProperty: #velocityDelta toValue: 0].
-	color _ self defaultColor.
+	color := self defaultColor.
 	super initialize.
 	self borderWidth: 1
 ! !
