@@ -1,6 +1,6 @@
-'From Cuis7.1 [latest update: #6715] on 12 September 2024 at 12:33:44 pm'!
+'From Cuis7.3 [latest update: #7092] on 30 March 2025 at 3:16:50 pm'!
 'Description Various useful widgets'!
-!provides: 'Morphic-Widgets-Extras' 1 45!
+!provides: 'Morphic-Widgets-Extras' 1 46!
 !requires: 'Cuis-Base' 60 6114 nil!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
@@ -626,23 +626,23 @@ trackingPointerString
 		ifTrue: ['stop tracking pointer']
 		ifFalse: ['start tracking pointer']! !
 
-!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 8/28/2021 19:34:31'!
+!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 3/30/2025 15:15:01'!
 borderWidth: anInteger
 	"Grow outwards preserving innerBounds"
 
 	super borderWidth: anInteger.
-	self morphExtent: self defaultExtent.! !
+	self morphExtent: self desiredExtent.! !
 
-!MagnifierMorph methodsFor: 'geometry' stamp: 'bf 9/21/1999 09:22'!
-defaultExtent
+!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 3/30/2025 15:14:50'!
+desiredExtent
 	^(srcExtent * magnification) truncated + (2 * borderWidth)! !
 
-!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 6/6/2014 18:06'!
+!MagnifierMorph methodsFor: 'geometry' stamp: 'jmv 3/30/2025 15:15:09'!
 privateExtent: aPoint
 	"Round to multiples of magnification"
 
-	srcExtent _ (aPoint - (2 * borderWidth)) // magnification.
-	^ super privateExtent: self defaultExtent! !
+	srcExtent := (aPoint - (2 * borderWidth)) // magnification.
+	^ super privateExtent: self desiredExtent! !
 
 !MagnifierMorph methodsFor: 'initialization' stamp: 'jmv 12/2/2011 10:20'!
 defaultBorderWidth
@@ -692,42 +692,42 @@ toggleRoundness
 				w addMorph: sm]
 			"! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/28/2021 19:34:57'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 3/30/2025 15:15:04'!
 magnification: aNumber
 
-	magnification _ aNumber min: 8 max: 0.5.
-	magnification _ magnification roundTo:
+	magnification := aNumber min: 8 max: 0.5.
+	magnification := magnification roundTo:
 		(magnification < 3 ifTrue: [0.5] ifFalse: [1]).
-	srcExtent _ srcExtent min: (512@512) // magnification. "to prevent accidents"
-	self morphExtent: self defaultExtent.! !
+	srcExtent := srcExtent min: (512@512) // magnification. "to prevent accidents"
+	self morphExtent: self desiredExtent.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/26/2021 17:39:10'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 3/30/2025 15:10:29'!
 magnifiedForm
 	| srcRect form neededExtent |
 	self displayBounds ifNil: [ ^nil ].
-	lastPos _ self sourcePoint.
-	srcRect _ self sourceRectFrom: lastPos.
+	lastPos := self sourcePoint.
+	srcRect := self sourceRectFrom: lastPos.
 	((srcRect intersects: self displayBounds) and: [ RecursionLock == nil ])
 		ifTrue: [
-			RecursionLock _ self.
+			RecursionLock := self.
 			"try to reuse form if appropriate"
-			auxCanvas _ (auxCanvas notNil and: [ auxCanvas extent = srcExtent ])
+			auxCanvas := (auxCanvas notNil and: [ auxCanvas extent = srcExtent ])
 				ifTrue: [
 					"Just in case we go out of the Display"
 					srcRect origin > (0@0) ifFalse: [
 						auxCanvas form fillBlack ].
-					BitBltCanvas onForm: auxCanvas form over: srcRect ]
+					BitBltCanvas onForm: auxCanvas form translation: srcRect origin ]
 				ifFalse: [ BitBltCanvas depth: 32 over: srcRect ].
 			auxCanvas fullDraw: self world.
-			form _ auxCanvas form.
-			RecursionLock _ nil]
+			form := auxCanvas form.
+			RecursionLock := nil]
 		ifFalse: [
 			"cheaper method if the source is not occluded"
-			form _ Display copy: srcRect].
+			form := Display copy: srcRect].
 	"smooth if non-integer scale"
-	neededExtent _ (srcExtent * magnification ) truncated.
+	neededExtent := (srcExtent * magnification ) truncated.
 	(magnifiedForm isNil or: [ magnifiedForm extent ~=  neededExtent ])
-		ifTrue: [ magnifiedForm _ Form extent: neededExtent depth: 32 ].
+		ifTrue: [ magnifiedForm := Form extent: neededExtent depth: 32 ].
 	(WarpBlt toForm: magnifiedForm)
 		sourceForm: form;
 		colorMap: (form colormapIfNeededFor: magnifiedForm);
