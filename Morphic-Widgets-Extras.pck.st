@@ -1,6 +1,6 @@
-'From Cuis7.3 [latest update: #7092] on 30 March 2025 at 3:16:50 pm'!
+'From Cuis7.5 [latest update: #7342] on 8 July 2025 at 4:57:27 pm'!
 'Description Various useful widgets'!
-!provides: 'Morphic-Widgets-Extras' 1 46!
+!provides: 'Morphic-Widgets-Extras' 1 47!
 !requires: 'Cuis-Base' 60 6114 nil!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
@@ -701,23 +701,25 @@ magnification: aNumber
 	srcExtent := srcExtent min: (512@512) // magnification. "to prevent accidents"
 	self morphExtent: self desiredExtent.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 3/30/2025 15:10:29'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 7/8/2025 16:50:41'!
 magnifiedForm
-	| srcRect form neededExtent |
+	| srcRect form neededExtent newForm |
 	self displayBounds ifNil: [ ^nil ].
 	lastPos := self sourcePoint.
 	srcRect := self sourceRectFrom: lastPos.
+	srcRect := srcRect origin // magnification * magnification extent: srcRect extent.
 	((srcRect intersects: self displayBounds) and: [ RecursionLock == nil ])
+			| true
 		ifTrue: [
 			RecursionLock := self.
-			"try to reuse form if appropriate"
-			auxCanvas := (auxCanvas notNil and: [ auxCanvas extent = srcExtent ])
-				ifTrue: [
-					"Just in case we go out of the Display"
-					srcRect origin > (0@0) ifFalse: [
-						auxCanvas form fillBlack ].
-					BitBltCanvas onForm: auxCanvas form translation: srcRect origin ]
-				ifFalse: [ BitBltCanvas depth: 32 over: srcRect ].
+			"try to reuse form if possible"
+			newForm := (auxCanvas notNil and: [ auxCanvas extent = srcExtent ])
+				ifTrue: [ auxCanvas form ]
+				ifFalse: [ Form extent: srcRect extent depth: 32 ].
+			"Just in case we go out of the Display"
+			srcRect origin > (0@0) ifFalse: [
+				newForm fillBlack ].
+			auxCanvas := BitBltCanvas onForm: newForm translation: srcRect origin negated.
 			auxCanvas fullDraw: self world.
 			form := auxCanvas form.
 			RecursionLock := nil]
@@ -736,11 +738,11 @@ magnifiedForm
 		copyQuad: form boundingBox innerCorners toRect: magnifiedForm boundingBox.
 	^magnifiedForm.! !
 
-!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 10/15/2020 15:40:20'!
+!MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 7/8/2025 16:53:54'!
 sourcePoint
 	"If we are being dragged use our center, otherwise use pointer position"
-	(trackPointer not or: [owner notNil and: [owner is: #HandMorph]])
-		ifTrue: [ self displayBounds ifNotNil: [ :r | ^r center ]].
+	"(trackPointer not or: [owner notNil and: [owner is: #HandMorph]])
+		ifTrue: [ self displayBounds ifNotNil: [ :r | ^r center ]]."
 	^self world activeHand morphPosition! !
 
 !MagnifierMorph methodsFor: 'magnifying' stamp: 'jmv 8/4/2012 16:41'!
