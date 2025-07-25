@@ -1,6 +1,6 @@
 'From Cuis7.1 [latest update: #6669] on 2 September 2024 at 8:54:45 pm'!
 'Description Various basic morphs used by several packages -- KenD'!
-!provides: 'Morphic-Misc1' 1 216!
+!provides: 'Morphic-Misc1' 1 217!
 !requires: 'Color-Extras' 1 4 nil!
 !requires: 'Morphic-Widgets-Extras' 1 37 nil!
 SystemOrganization addCategory: #'Morphic-Misc1'!
@@ -57,7 +57,7 @@ AddedCursors class
 	instanceVariableNames: ''!
 
 !classDefinition: #PalletLayoutMorph category: #'Morphic-Misc1'!
-LayoutMorph subclass: #PalletLayoutMorph
+LinearLayoutMorph subclass: #PalletLayoutMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
