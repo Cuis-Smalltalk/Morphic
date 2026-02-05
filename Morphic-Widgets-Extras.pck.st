@@ -1,6 +1,6 @@
 'From Cuis7.5 [latest update: #7342] on 8 July 2025 at 4:57:27 pm'!
 'Description Various useful widgets'!
-!provides: 'Morphic-Widgets-Extras' 1 47!
+!provides: 'Morphic-Widgets-Extras' 1 48!
 !requires: 'Cuis-Base' 60 6114 nil!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
@@ -390,7 +390,7 @@ keyStroke: aKeyboardEvent
 		owner releaseKeyboardFocus: self.
 		self delete ]! !
 
-!HandleMorph methodsFor: 'initialization' stamp: 'di 11/3/97 16:34'!
+!HandleMorph methodsFor: 'initialization' stamp: 'di 11/3/1997 16:34'!
 forEachPointDo: aBlock
 	pointBlock _ aBlock! !
 

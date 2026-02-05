@@ -1,6 +1,6 @@
 'From Cuis7.1 [latest update: #6715] on 12 September 2024 at 12:25:59 pm'!
 'Description A port of Bouncing Atoms with the atoms in a SystemWindow. A pop-up menu enables selection of options, including an active plot of infection history, also in a SystemWindow.'!
-!provides: 'BouncingAtoms' 1 41!
+!provides: 'BouncingAtoms' 1 42!
 !requires: 'Morphic-Widgets-Extras' 1 0 nil!
 !requires: 'Morphic-Deprecated' 1 0 nil!
 SystemOrganization addCategory: #BouncingAtoms!
@@ -518,7 +518,7 @@ example
  	[1000 timesRepeat:  [a bounceIn: b.  (Delay forMilliseconds: 20) wait]. 
 	 a delete] fork.! !
 
-!AtomMorph class methodsFor: 'new-morph participation' stamp: 'di 6/22/97 09:07'!
+!AtomMorph class methodsFor: 'new-morph participation' stamp: 'di 6/22/1997 09:07'!
 includeInNewMorphMenu
 	"Not to be instantiated from the menu"
 	^ false! !

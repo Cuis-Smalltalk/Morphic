@@ -1,6 +1,6 @@
 'From Cuis 5.0 [latest update: #4219] on 12 June 2020 at 11:58:06 am'!
 'Description Draw with a pen and messages as go: turn: etc.'!
-!provides: 'Pen' 1 5!
+!provides: 'Pen' 1 6!
 SystemOrganization addCategory: #Pen!
 
 
@@ -92,7 +92,7 @@ go: distance
 
 	self goto: (direction degreeCos @ direction degreeSin) * distance + location! !
 
-!Pen methodsFor: 'operations' stamp: 'di 11/4/97 20:11'!
+!Pen methodsFor: 'operations' stamp: 'di 11/4/1997 20:11'!
 goto: aPoint 
 	"Move the receiver to position aPoint. If the pen is down, a line will be 
 	drawn from the current position to the new one using the receiver's 
