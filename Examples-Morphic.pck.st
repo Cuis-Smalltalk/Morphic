@@ -1,7 +1,7 @@
 'From Cuis7.3 [latest update: #7088] on 22 March 2025 at 11:14:23 pm'!
 'Description Various Morphs for study and playtime'!
-!provides: 'Examples-Morphic' 1.0.7!
-!requires: 'Cuis-Base' '7.9.8257' '7.*.*'!
+!provides: 'Examples-Morphic' 1 6!
+!requires: 'Cuis-Base' 60 5392 nil!
 !requires: 'Graphics-Files-Additional' 1 24 nil!
 SystemOrganization addCategory: #'Examples-Morphic'!
 
