@@ -1,7 +1,7 @@
 'From Cuis7.5 [latest update: #7342] on 8 July 2025 at 4:57:27 pm'!
 'Description Various useful widgets'!
-!provides: 'Morphic-Widgets-Extras' 1 48!
-!requires: 'Cuis-Base' 60 6114 nil!
+!provides: 'Morphic-Widgets-Extras' '1.48.0'!
+!requires: 'Cuis-Base' '7.9.8257' '7.*.*'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras'!
 SystemOrganization addCategory: #'Morphic-Widgets-Extras-Tests'!
 
